@@ -43,11 +43,11 @@
             rev = "v1.3";
             sha256 = "07n05zz8fbddkp35ppay1pzw3rgk56ivph7c5hysp26ivris1mim";
           }) {} );
-          flex5ScreenRotate = (pkgs.callPackage (pkgs.fetchFromGitHub {
+          screenrotate = (pkgs.callPackage (pkgs.fetchFromGitHub {
             owner = "quoteme";
-            repo = "flex5ScreenRotate";
-            rev = "v1.5";
-            sha256 = "17jsq5qwqkfsyk4b01wk6bjf6czhirbyh9z5a4b0d73ppykbjz9j";
+            repo = "screenrotate";
+            rev = "v1.6";
+            sha256 = "sha256-BwDJei2zAIP585A7h5JDaqSzH/QauoeYr2D2U5LygJM=";
           }) {} );
           xmonadctl = (pkgs.callPackage (pkgs.fetchFromGitHub {
             owner = "quoteme";
@@ -136,6 +136,11 @@
                     ];
                     config = ./xmonad/xmonad.hs;
                   };
+                  bspwm = {
+                    enable = true;
+                    configFile = ./config/bspwmrc;
+                    sxhkd.configFile = ./config/sxhkdrc;
+                  };
                 };
               };
             
@@ -212,25 +217,25 @@
           # TODO move this into another file
           environment.systemPackages = with pkgs; [
             # Internet
-              chromium
+              google-chrome
               thunderbird
               discord
               transmission-gtk
             # # Drawing
               xournalpp
-              write_stylus
+              # write_stylus
               inkscape
               gimp
-              blender
-              krita # all the kde dependencies are annoying so far; TODO remove kde deps
+              # blender
+              # krita # all the kde dependencies are annoying so far; TODO remove kde deps
             # # Media
               mpv
-              vlc
+              # vlc
               evince
               deadbeef
               sxiv
             # Gaming
-              minecraft
+              # minecraft
             # Productivity
               libreoffice
             # Small Utilities
@@ -249,10 +254,14 @@
               xorg.xkill
               wget
               git
+              gitkraken
               exa
-              fzf
               ripgrep
+              fd
               bat
+              # archiving
+                zip
+                unzip
               toilet
               htop-vim
               nvimpager
@@ -261,13 +270,16 @@
               inputs.st-nix.defaultPackage.x86_64-linux
             # Programming
               inputs.neovim-luca.defaultPackage.x86_64-linux
-              vscode
-              devdocs-desktop
+              # vscode
+              # devdocs-desktop
               # math
-                sage
+                # sage # TODO currently not working
               # python
                 poetry
                 (pkgs.unstable.python39.withPackages(ps : with ps; [
+                  ipython
+                  jupyterlab
+                  sympy
                   numpy
                   scipy
                   matplotlib
@@ -276,6 +288,7 @@
               # Latex
                 pandoc
                 texlive.combined.scheme-full
+                tex-match
               # Haskell
                 (haskellPackages.ghcWithPackages (hpkgs: with hpkgs; [
                   base
@@ -284,6 +297,12 @@
                   comonad
                   containers_0_6_5_1
                 ]))
+              # Java
+                jdk
+                gradle
+              # C
+                valgrind
+                gcc
               # Spelling
                 hunspell
                 hunspellDicts.de_DE
@@ -292,28 +311,6 @@
                 libmtp
                 usbutils
                 scrcpy
-            # Development
-              # Language Server
-                # LaTex
-                  texlab
-                # Haskell
-                  haskell-language-server
-                  ormolu
-                # JavaScript / Typescript
-                  nodePackages.typescript-language-server
-                # NIX
-                  rnix-lsp
-                # Python
-                  pyright
-                # Rust
-                  rls
-                # Clojure
-                  leiningen
-                  clojure-lsp 
-                # C
-                  gcc
-                  clang
-                  clang-tools
             # Window Manager
               rofi
               rofimoji
@@ -337,12 +334,15 @@
               dunst
               #xmobar-luca
               xmonadctl
-              flex5ScreenRotate
+              screenrotate
               batsignal
               polkit_gnome
               gnome.gnome-clocks
               # emulation
-              virt-manager # currently broken TODO
+              # virt-manager # currently broken TODO
+              # UNI HHU ZEUG
+              # PROPORA
+              mob
           ];
           programs = {
             # Some programs need SUID wrappers, can be configured further or are
@@ -371,7 +371,7 @@
               promptInit = "autoload -U promptinit && promptinit && prompt fade && setopt prompt_sp";
               shellAliases = {
                 l = "exa";
-                ls = "exa -l";
+                ll = "exa -l";
                 lt = "exa -lT";
                 webcam = "mpv av://v4l2:/dev/video0 --profile=low-latency --untimed";
               };
@@ -389,17 +389,13 @@
             # FZF - Ripgrep integration
             "INITIAL_QUERY" = "";
             "RG_PREFIX"="rg --column --line-number --no-heading --color=always --smart-case ";
-            "FZF_DEFAULT_COMMAND"=''$RG_PREFIX '$INITIAL_QUERY'" \
-              fzf --bind "change:reload:$RG_PREFIX {q} || true" \
-                  --ansi --disabled --query "$INITIAL_QUERY" \
-                  --height=50% --layout=reverse'';
           };
-          virtualisation = {
-            libvirtd = {
-              enable = true;
-              qemu.package = pkgs.qemu_full;
-            };
-          };
+          # virtualisation = {
+          #   libvirtd = {
+          #     enable = true;
+          #     qemu.package = pkgs.qemu_full;
+          #   };
+          # };
           security = {
             polkit.enable = true;
             sudo.extraRules = [
@@ -413,7 +409,7 @@
               # allow user Luca to authenticate using a fingerprint
               services = {
                 luca = {
-                  fprintAuth = true;
+                  fprintAuth = true; 
                   sshAgentAuth = true;
                 };
               };

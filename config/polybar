@@ -147,7 +147,7 @@ label-song-ellipsis = true
 
 [module/backlight]
 type = internal/backlight
-card = amdgpu_bl0
+card = intel_backlight
 use-actual-brightness = false
 
 format = <label> <bar>
@@ -278,7 +278,8 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 [module/battery]
 type = internal/battery
 battery = BAT0
-adapter = ADP1
+; adapter = ADP1
+adapter = AC
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>

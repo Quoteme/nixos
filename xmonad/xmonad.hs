@@ -68,24 +68,43 @@ myKeys config = mkKeymap config $
   -- Directional Focus Movement
   , ("M-h"                     , windowGo L False)
   , ("M-j"                     , windowGo D False)
-  , ("M-k"                     , windowGo U False  )
+  , ("M-k"                     , windowGo U False)
   , ("M-l"                     , windowGo R False)
+  , ("M-<Left>"                , windowGo L False)
+  , ("M-<Down>"                , windowGo D False)
+  , ("M-<Up>"                  , windowGo U False)
+  , ("M-<Right>"               , windowGo R False)
   , ("M-m"                     , windows W.focusMaster  )
   -- Directional Window Movement
   , ("M-S-h"                   , windowSwap L False)
   , ("M-S-j"                   , windowSwap D False)
-  , ("M-S-k"                   , windowSwap U False  )
+  , ("M-S-k"                   , windowSwap U False)
   , ("M-S-l"                   , windowSwap R False)
-  , ("M-S-m"                   , windows W.swapMaster  )
+  , ("M-S-<Left>"              , windowSwap L False)
+  , ("M-S-<Down>"              , windowSwap D False)
+  , ("M-S-<Up>"                , windowSwap U False)
+  , ("M-S-<Right>"             , windowSwap R False)
+  , ("M-S-m"                   , windows W.swapMaster)
   -- Window resizing
   , ("M-C-h"                   , sendMessage $ ExpandTowards L)
   , ("M-C-j"                   , sendMessage $ ExpandTowards D)
   , ("M-C-k"                   , sendMessage $ ExpandTowards U)
   , ("M-C-l"                   , sendMessage $ ExpandTowards R)
+  , ("M-C-<Left>"              , sendMessage $ ExpandTowards L)
+  , ("M-C-<Down>"              , sendMessage $ ExpandTowards D)
+  , ("M-C-<Up>"                , sendMessage $ ExpandTowards U)
+  , ("M-C-<Right>"             , sendMessage $ ExpandTowards R)
   , ("M-M1-h"                  , sendMessage $ ShrinkFrom L)
   , ("M-M1-j"                  , sendMessage $ ShrinkFrom D)
   , ("M-M1-k"                  , sendMessage $ ShrinkFrom U)
   , ("M-M1-l"                  , sendMessage $ ShrinkFrom R)
+  , ("M-M1-<Left>"             , sendMessage $ ShrinkFrom L)
+  , ("M-M1-<Down>"             , sendMessage $ ShrinkFrom D)
+  , ("M-M1-<Up>"               , sendMessage $ ShrinkFrom U)
+  , ("M-M1-<Right>"            , sendMessage $ ShrinkFrom R)
+  -- Splitting and moving
+  , ("M-S-C-j"                 , sendMessage $ SplitShift Prev)
+  , ("M-S-C-k"                 , sendMessage $ SplitShift Next)
   -- Rotations/Swappings
   , ("M-r"                     , sendMessage Rotate)
   , ("M-s"                     , sendMessage Swap)
@@ -130,6 +149,11 @@ myKeys config = mkKeymap config $
 myAdditionalKeys config = additionalKeys config
   [ ((0                 , xF86XK_TouchpadToggle ), disableTouchpad)
   , ((0                 , xF86XK_TouchpadOn     ), enableTouchpad)
+  -- Thinkpad X201T keys
+  , ((0                 , xF86XK_RotateWindows  ), spawn "screenrotation.sh cycle_left")
+  , ((0                 , xF86XK_TaskPane       ), spawn "screenrotation.sh swap")
+  , ((0                 , xF86XK_ScreenSaver    ), spawn "xdotool key super+s")
+  , ((0                 , xF86XK_Launch1        ), spawn "xdotool key super+r")
   ]
   -- mod-{y,x,c}, Switch to physical/Xinerama screens 1, 2, or 3
   -- mod-shift-{y,x,c}, Move client to screen 1, 2, or 3
@@ -184,6 +208,7 @@ myEventHook = focusOnMouseMove
 myStartupHook = do
    spawnOnce "sudo bluetooth off"
    spawnOnce "$(echo $(nix eval --raw nixos.polkit_gnome.outPath)/libexec/polkit-gnome-authentication-agent-1)"
+   spawnOnce "xinput disable \"ThinkPad Extra Buttons\""
    spawnOnce "redshift"
    spawnOnce "nitrogen --restore &"
    spawnOnce "autoscreenrotation.sh &"

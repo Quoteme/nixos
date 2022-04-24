@@ -23,7 +23,9 @@
         };
         wacom.enable = true;
     };
-    fprintd.enable = true;
+    fprintd = {
+      enable = true;
+    };
   };
   hardware = {
     sensor.iio.enable = true;
