@@ -2,8 +2,8 @@
 
 {
   boot = {
-    initrd.kernelModules = ["amdgpu"];
-    kernelModules = ["kvm-amd"];
+    # initrd.kernelModules = ["amdgpu"];
+    # kernelModules = ["kvm-amd"];
     extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
     # Use the GRUB 2 boot loader.
     loader.grub = {

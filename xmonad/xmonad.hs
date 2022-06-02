@@ -122,8 +122,8 @@ myKeys config = mkKeymap config $
   -- XMobar
   , ("M-b"                     , sendMessage ToggleStruts)
   -- Quitting
-  , ("M-0"                     , io exitSuccess)
-  , ("M-S-0"                   , restart "xmonad" True)
+  , ("M-<Backspace>"           , io exitSuccess)
+  , ("M-S-<Backspace>"         , restart "xmonad" True)
   -- Function Keys
   , ("<XF86MonBrightnessUp>"   , raiseBrigthness)
   , ("<XF86MonBrightnessDown>" , lowerBrigthness)

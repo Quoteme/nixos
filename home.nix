@@ -32,6 +32,10 @@
     userName  = "quoteme";
     userEmail = "lucahappel99@gmx.de";
   };
+  programs.keychain = {
+    enable = true;
+    enableZshIntegration = true;
+  };
   programs.mpv = {
     enable = true;
     config = {

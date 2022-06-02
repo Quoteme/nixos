@@ -8,9 +8,15 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     st-nix.url = "github:Quoteme/st-nix";
     neovim-luca.url = "github:Quoteme/neovim-luca";
+    # FIX: This will be obsolete in NixOS 22.05
+    # nix-ld stuff
+    nix-ld.url = "github:Mic92/nix-ld";
+    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
+    nix-autobahn.url = "github:Lassulus/nix-autobahn";
+    nix-alien.url = "github:thiagokokada/nix-alien";
   };
   
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@attrs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-ld, ... }@attrs:
     let
       system = "x86_64-linux";
       overlay-unstable = final: prev: {
@@ -23,7 +29,7 @@
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          # TODO make use of overlay stable
+          # TODO: make use of overlay stable
           overlay-unstable
         ];
       };
@@ -32,6 +38,8 @@
       system = "x86_64-linux";
       specialArgs = attrs;
       modules = [
+        # FIX: This will be obsolete in NixOS 22.05
+        nix-ld.nixosModules.nix-ld
         # ┏━╸┏━┓┏┓╻┏━╸╻┏━╸╻ ╻┏━┓┏━┓╺┳╸╻┏━┓┏┓╻ ┏┓╻╻╻ ╻
         # ┃  ┃ ┃┃┗┫┣╸ ┃┃╺┓┃ ┃┣┳┛┣━┫ ┃ ┃┃ ┃┃┗┫ ┃┗┫┃┏╋┛
         # ┗━╸┗━┛╹ ╹╹  ╹┗━┛┗━┛╹┗╸╹ ╹ ╹ ╹┗━┛╹ ╹╹╹ ╹╹╹ ╹
@@ -85,6 +93,10 @@
             # Per-interface useDHCP will be mandatory in the future, so this generated config
             # replicates the default behaviour.
             useDHCP = false;
+            firewall = {
+              allowedUDPPortRanges = [{from=32768; to=61000;}];
+              allowedTCPPortRanges = [{from=8008; to=8009;}];
+            };
           };
           # Time and location settings
           time.timeZone = "Europe/Berlin";
@@ -167,12 +179,17 @@
             devmon.enable = true;
             gvfs.enable = true;
             tumbler.enable = true;
-            # picom.enable = true;
+            picom.enable = true;
             redshift.enable = true;
             # Powersaving
             tlp.enable = true;
             # cloud storage
             onedrive.enable = true;
+            # Lock screen
+            physlock = {
+              enable = true;
+              lockMessage = "Lulca\'s Laptop";
+            };
           };
           # make qt apps look like gtk
           # https://nixos.org/manual/nixos/stable/index.html#sec-x11-gtk-and-qt-themes
@@ -192,7 +209,7 @@
             };
           };
           # Define a user account. Don't forget to set a password with ‘passwd’.
-          # TODO set passwort using hashed password
+          # TODO: set passwort using hashed password
           users.users.root.initialHashedPassword = "";
           users.users.luca = {
             isNormalUser = true;
@@ -214,7 +231,7 @@
           ];
           # List packages installed in system profile. To search, run:
           # $ nix search nixpkgs wget
-          # TODO move this into another file
+          # TODO: move this into another file
           environment.systemPackages = with pkgs; [
             # Internet
               google-chrome
@@ -226,8 +243,9 @@
               # write_stylus
               inkscape
               gimp
+              aseprite
               # blender
-              # krita # all the kde dependencies are annoying so far; TODO remove kde deps
+              # krita # all the kde dependencies are annoying so far; TODO: remove kde deps
             # # Media
               mpv
               # vlc
@@ -239,7 +257,13 @@
             # Productivity
               libreoffice
             # Small Utilities
+              # nix-ld stuff
+                inputs.nix-autobahn.defaultPackage.x86_64-linux
+                inputs.nix-alien.defaultPackage.x86_64-linux
+                nix-index
+                fzf
               mons
+              arandr
               brightnessctl
               iw
               ffmpeg
@@ -265,28 +289,35 @@
               toilet
               htop-vim
               nvimpager
-              # TODO add manual how to add nix-flakes as system-programs
-              # TODO add this manual to reddit post
+              # TODO: add manual how to add nix-flakes as system-programs
+              # TODO: add this manual to reddit post
               inputs.st-nix.defaultPackage.x86_64-linux
             # Programming
               inputs.neovim-luca.defaultPackage.x86_64-linux
-              # vscode
+              vscode-fhs
               # devdocs-desktop
               # math
-                # sage # TODO currently not working
+                sage
               # python
                 poetry
-                (pkgs.unstable.python39.withPackages(ps : with ps; [
+                ((python39.withPackages(ps : with ps; [
                   ipython
                   jupyterlab
                   sympy
                   numpy
                   scipy
                   matplotlib
-                  pysimplegui
-                ]))
+                  (qiskit.overrideAttrs (prev: {
+                    doCheck = false;
+                  }))
+                  # qiskit optional dependencies
+                    pylatexenc
+                  # pysimplegui
+                  # qiskit
+                ])).override (args: { ignoreCollisions = true; })) # this is for qiskit
               # Latex
                 pandoc
+                poppler_utils
                 texlive.combined.scheme-full
                 tex-match
               # Haskell
@@ -300,9 +331,14 @@
               # Java
                 jdk
                 gradle
+                jetbrains.idea-community
               # C
                 valgrind
                 gcc
+                check
+                lldb
+                gdb
+                gdbgui
               # Spelling
                 hunspell
                 hunspellDicts.de_DE
@@ -323,6 +359,7 @@
                 # Thumbnailers
                 ffmpegthumbnailer
                 f3d
+              gparted
               onboard
               jgmenu
               pamixer
@@ -341,10 +378,16 @@
               # emulation
               # virt-manager # currently broken TODO
               # UNI HHU ZEUG
+              # konferenzen
+              zoom-us
               # PROPORA
               mob
           ];
           programs = {
+            # https://github.com/Mic92/nix-ld
+            # /!\ Run unpatched elf files on NixOS /!\
+            # FIX: This will work in 22.05
+            # nix-ld.enable = true;
             # Some programs need SUID wrappers, can be configured further or are
             # started in user sessions.
             mtr.enable = true;
@@ -352,7 +395,8 @@
               enable = true;
               enableSSHSupport = true;
             };
-            # This option somehow does not work??? TODO
+            seahorse.enable = true;
+            # TODO: This option somehow does not work???
             # ssh.enableAskPassword = true;
             # Shell stuff
             bash.shellInit = "set -o vi";
@@ -381,6 +425,8 @@
             # Other
             file-roller.enable = true;
             dconf.enable = true;
+            # development
+            java.enable = true;
           };
           # Shell configuration
           environment.variables = {
@@ -412,6 +458,7 @@
                   fprintAuth = true; 
                   sshAgentAuth = true;
                 };
+                lightdm.enableGnomeKeyring = true;
               };
               enableSSHAgentAuth = true;
             };
