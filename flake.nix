@@ -280,6 +280,7 @@
               xorg.xkill
               wget
               git
+              gh
               gitkraken
               exa
               ripgrep
