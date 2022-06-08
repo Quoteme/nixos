@@ -68,7 +68,8 @@
           imports = [
             ./hardware-configuration.nix
             # ./hardware/ideapadflex5.nix
-            ./hardware/thinkpadx201t.nix
+            # ./hardware/thinkpadx201t.nix
+            ./hardware/asusk55vj.nix
           ];
           nix = {
             package = pkgs.unstable.nix;
@@ -227,7 +228,8 @@
             noto-fonts-emoji
             fira-code
             hasklig
-            nerdfonts
+            # nerdfonts
+            (nerdfonts.override { fonts = [ "FiraCode" ]; })
           ];
           # List packages installed in system profile. To search, run:
           # $ nix search nixpkgs wget
@@ -347,6 +349,9 @@
                 libmtp
                 usbutils
                 scrcpy
+              # game-dev
+                godot
+                # blender
             # Window Manager
               rofi
               rofimoji

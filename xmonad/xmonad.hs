@@ -214,7 +214,7 @@ myStartupHook = do
    spawnOnce "autoscreenrotation.sh &"
    spawnOnce "dunst -conf /etc/nixos/dunstrc"
    spawnOnce "polybar top"
-   spawnOnce "onboard ; xdotool key 199 ; xdotool key 200"
+   -- spawnOnce "onboard ; xdotool key 199 ; xdotool key 200"
    spawnOnce "nm-applet"
    spawnOnce "blueman-applet"
    spawnOnce "export $(dbus-launch)"
