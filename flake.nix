@@ -350,9 +350,11 @@
                 libmtp
                 usbutils
                 scrcpy
+              # Flutter
+                flutter
               # game-dev
                 godot
-                # blender
+                blender
             # Window Manager
               rofi
               rofimoji
