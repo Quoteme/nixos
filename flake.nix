@@ -397,7 +397,7 @@
               polkit_gnome
               gnome.gnome-clocks
               # emulation
-              # virt-manager # currently broken TODO
+              virt-manager
               # UNI HHU ZEUG
               # konferenzen
               zoom-us
