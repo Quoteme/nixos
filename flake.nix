@@ -2,16 +2,12 @@
   description = "Luca Happels nixos ";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-21.11";
+    nixpkgs.url = "nixpkgs/nixos-22.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     st-nix.url = "github:Quoteme/st-nix";
     neovim-luca.url = "github:Quoteme/neovim-luca";
-    # FIX: This will be obsolete in NixOS 22.05
-    # nix-ld stuff
-    nix-ld.url = "github:Mic92/nix-ld";
-    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
     nix-autobahn.url = "github:Lassulus/nix-autobahn";
     nix-alien.url = "github:thiagokokada/nix-alien";
   };
@@ -38,8 +34,6 @@
       system = "x86_64-linux";
       specialArgs = attrs;
       modules = [
-        # FIX: This will be obsolete in NixOS 22.05
-        nix-ld.nixosModules.nix-ld
         # ┏━╸┏━┓┏┓╻┏━╸╻┏━╸╻ ╻┏━┓┏━┓╺┳╸╻┏━┓┏┓╻ ┏┓╻╻╻ ╻
         # ┃  ┃ ┃┃┗┫┣╸ ┃┃╺┓┃ ┃┣┳┛┣━┫ ┃ ┃┃ ┃┃┗┫ ┃┗┫┃┏╋┛
         # ┗━╸┗━┛╹ ╹╹  ╹┗━┛┗━┛╹┗╸╹ ╹ ╹ ╹┗━┛╹ ╹╹╹ ╹╹╹ ╹
@@ -163,7 +157,7 @@
               gutenprintBin
               hplip
               hplipWithPlugin
-              samsungUnifiedLinuxDriver
+              samsung-unified-linux-driver
               splix
               brlaser
               brgenml1lpr
@@ -392,8 +386,7 @@
           programs = {
             # https://github.com/Mic92/nix-ld
             # /!\ Run unpatched elf files on NixOS /!\
-            # FIX: This will work in 22.05
-            # nix-ld.enable = true;
+            nix-ld.enable = true;
             # Some programs need SUID wrappers, can be configured further or are
             # started in user sessions.
             mtr.enable = true;
