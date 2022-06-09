@@ -351,6 +351,7 @@
                 usbutils
                 scrcpy
               # Flutter
+                android-studio
                 flutter
               # game-dev
                 godot
