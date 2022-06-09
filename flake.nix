@@ -458,12 +458,12 @@
             "INITIAL_QUERY" = "";
             "RG_PREFIX"="rg --column --line-number --no-heading --color=always --smart-case ";
           };
-          # virtualisation = {
-          #   libvirtd = {
-          #     enable = true;
-          #     qemu.package = pkgs.qemu_full;
-          #   };
-          # };
+          virtualisation = {
+            libvirtd = {
+              enable = true;
+              qemu.package = pkgs.qemu_full;
+            };
+          };
           security = {
             polkit.enable = true;
             sudo.extraRules = [
