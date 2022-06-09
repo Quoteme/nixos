@@ -356,6 +356,7 @@
                 usbutils
                 scrcpy
               # Flutter
+                android-tools
                 android-studio
                 flutter
                 (android-nixpkgs.sdk (sdkPkgs: with sdkPkgs; [
