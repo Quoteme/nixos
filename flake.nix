@@ -447,6 +447,11 @@
             "INITIAL_QUERY" = "";
             "RG_PREFIX"="rg --column --line-number --no-heading --color=always --smart-case ";
           };
+          environment.sessionVariables = {
+            PATH = [ 
+              "~/Android/Sdk/cmdline-tools/latest/bin/"
+            ];
+          };
           virtualisation = {
             libvirtd = {
               enable = true;
