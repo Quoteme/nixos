@@ -439,6 +439,7 @@
           };
           # Shell configuration
           environment.variables = {
+            "CHROME_EXECUTABLE" = ${pkgs.google-chrome}/bin/google-chrome-stable;
             "ACCESSIBILITY_ENABLED" = "1";
             "PAGER" = "nvimpager";
             # FZF - Ripgrep integration
