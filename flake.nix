@@ -14,11 +14,6 @@
     nix-ld.inputs.nixpkgs.follows = "nixpkgs";
     nix-autobahn.url = "github:Lassulus/nix-autobahn";
     nix-alien.url = "github:thiagokokada/nix-alien";
-    # android stuff
-    android-nixpkgs = {
-      url = "github:tadfisher/android-nixpkgs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
   
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-ld, ... }@attrs:
@@ -359,13 +354,6 @@
                 android-tools
                 android-studio
                 flutter
-                (android-nixpkgs.sdk (sdkPkgs: with sdkPkgs; [
-                  cmdline-tools-latest
-                  build-tools-32-0-0
-                  platform-tools
-                  platforms-android-31
-                  emulator
-                ]))
               # game-dev
                 godot
                 blender
