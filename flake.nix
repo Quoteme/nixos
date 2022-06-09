@@ -21,7 +21,7 @@
     };
   };
   
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-ld, android-nixpkgs, ... }@attrs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-ld, ... }@attrs:
     let
       system = "x86_64-linux";
       overlay-unstable = final: prev: {
