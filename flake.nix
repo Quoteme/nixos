@@ -442,7 +442,7 @@
           };
           environment.sessionVariables = {
             PATH = [ 
-              "~/Android/Sdk/cmdline-tools/latest/bin/"
+              "/home/luca/Android/Sdk/cmdline-tools/latest/bin/"
             ];
           };
           virtualisation = {
