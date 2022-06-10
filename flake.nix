@@ -344,9 +344,13 @@
                 libmtp
                 usbutils
                 scrcpy
+              # Flutter
+                android-tools
+                android-studio
+                flutter
               # game-dev
                 godot
-                # blender
+                blender
             # Window Manager
               rofi
               rofimoji
@@ -376,7 +380,7 @@
               polkit_gnome
               gnome.gnome-clocks
               # emulation
-              # virt-manager # currently broken TODO
+              virt-manager
               # UNI HHU ZEUG
               # konferenzen
               zoom-us
@@ -429,18 +433,24 @@
           };
           # Shell configuration
           environment.variables = {
+            "CHROME_EXECUTABLE" = "${pkgs.google-chrome}/bin/google-chrome-stable";
             "ACCESSIBILITY_ENABLED" = "1";
             "PAGER" = "nvimpager";
             # FZF - Ripgrep integration
             "INITIAL_QUERY" = "";
             "RG_PREFIX"="rg --column --line-number --no-heading --color=always --smart-case ";
           };
-          # virtualisation = {
-          #   libvirtd = {
-          #     enable = true;
-          #     qemu.package = pkgs.qemu_full;
-          #   };
-          # };
+          environment.sessionVariables = {
+            PATH = [ 
+              "~/Android/Sdk/cmdline-tools/latest/bin/"
+            ];
+          };
+          virtualisation = {
+            libvirtd = {
+              enable = true;
+              qemu.package = pkgs.qemu_full;
+            };
+          };
           security = {
             polkit.enable = true;
             sudo.extraRules = [

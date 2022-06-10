@@ -19,7 +19,7 @@
       # Enable different input methods
         libinput = {
           enable = true;
-          touchpad.tapping = false;
+          touchpad.tapping = true;
           touchpad.naturalScrolling = true;
         };
     };
