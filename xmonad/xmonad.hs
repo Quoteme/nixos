@@ -26,6 +26,7 @@ import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Layout.BorderResize (borderResize)
 import XMonad.Layout.DecorationMadness ( mirrorTallSimpleDecoResizable )
 import XMonad.Layout.Spiral (spiral)
+import XMonad.Layout.LayoutHints
 import Data.Maybe (isJust, fromJust)
 import Data.List (elemIndex)
 import System.Exit
@@ -184,7 +185,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
 myLayout = (avoidStruts . smartBorders) defaultLayouts
   where
-    defaultLayouts =   borderResize emptyBSP -- TODO: add tabs to this layout
+    defaultLayouts =   layoutHints (borderResize emptyBSP) -- TODO: add tabs to this layout
                    ||| Full
 
 myManageHook = placeHook (withGaps (10,10,10,10) (smart (0.5,0.5)))
@@ -193,6 +194,7 @@ myManageHook = placeHook (withGaps (10,10,10,10) (smart (0.5,0.5)))
 
 myEventHook = focusOnMouseMove
             <+> fullscreenEventHook
+            <+> hintsEventHook
             <+> serverModeEventHookF "XMONAD_COMMAND" defaultServerCommands
               where
                 defaultServerCommands "menu"        = windowMenu
