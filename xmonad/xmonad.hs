@@ -18,7 +18,7 @@ import XMonad.Hooks.Place (placeHook, withGaps, smart)
 import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Hooks.ServerMode (serverModeEventHookF)
 -- import XMonad.Hooks.Rescreen
-import XMonad.Actions.Navigation2D (windowGo, windowSwap)
+import XMonad.Actions.Navigation2D
 import XMonad.Actions.UpdateFocus ( adjustEventInput, focusOnMouseMove )
 import XMonad.Actions.WindowMenu (windowMenu)
 import XMonad.Layout.Renamed
@@ -172,7 +172,9 @@ myAdditionalKeys config = additionalKeys config
                     *> spawn "xinput --disable \"AT Translated Set 2 keyboard\""
                     *> spawn "dunstify 'touchpad disabled'"
 
-myNavigation2DConfig = def { layoutNavigation = [("myBSP", centerNavigation)] }
+myNavigation2DConfig = def { layoutNavigation = [
+    ("myBSP", hybridOf lineNavigation sideNavigation)
+  ] }
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-button1, Set the window to floating mode and move by dragging
