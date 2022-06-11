@@ -21,6 +21,7 @@ import XMonad.Hooks.ServerMode (serverModeEventHookF)
 import XMonad.Actions.Navigation2D (windowGo, windowSwap)
 import XMonad.Actions.UpdateFocus ( adjustEventInput, focusOnMouseMove )
 import XMonad.Actions.WindowMenu (windowMenu)
+import XMonad.Layout.Renamed
 import XMonad.Layout.BinarySpacePartition
 import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Layout.BorderResize (borderResize)
@@ -185,8 +186,10 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
 myLayout = (avoidStruts . smartBorders) defaultLayouts
   where
-    defaultLayouts =   layoutHints (borderResize emptyBSP) -- TODO: add tabs to this layout
+    defaultLayouts =   myBSP
                    ||| Full
+    -- TODO: add tabs to this layout
+    myBSP = renamed [Replace "myBSP"] (layoutHints (borderResize emptyBSP))
 
 myManageHook = placeHook (withGaps (10,10,10,10) (smart (0.5,0.5)))
   <+> composeAll [
