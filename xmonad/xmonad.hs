@@ -184,9 +184,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
 myLayout = (avoidStruts . smartBorders) defaultLayouts
   where
-    defaultLayouts =   borderResize emptyBSP -- TODO add tabs to this layout
-                   ||| borderResize mirrorTallSimpleDecoResizable
-                   ||| spiral (6/7)
+    defaultLayouts =   borderResize emptyBSP -- TODO: add tabs to this layout
                    ||| Full
 
 myManageHook = placeHook (withGaps (10,10,10,10) (smart (0.5,0.5)))
