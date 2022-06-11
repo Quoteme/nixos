@@ -193,7 +193,6 @@ myManageHook = placeHook (withGaps (10,10,10,10) (smart (0.5,0.5)))
     className =? "Onboard" --> doFloat]
 
 myEventHook = focusOnMouseMove
-            <+> fullscreenEventHook
             <+> hintsEventHook
             <+> serverModeEventHookF "XMONAD_COMMAND" defaultServerCommands
               where
