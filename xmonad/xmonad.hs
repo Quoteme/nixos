@@ -173,7 +173,7 @@ myAdditionalKeys config = additionalKeys config
                     *> spawn "dunstify 'touchpad disabled'"
 
 myNavigation2DConfig = def { layoutNavigation = [
-    ("myBSP", hybridOf lineNavigation sideNavigation)
+    ("myBSP", hybridOf sideNavigation lineNavigation )
   ] }
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
