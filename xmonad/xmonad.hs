@@ -172,6 +172,8 @@ myAdditionalKeys config = additionalKeys config
                     *> spawn "xinput --disable \"AT Translated Set 2 keyboard\""
                     *> spawn "dunstify 'touchpad disabled'"
 
+myNavigation2DConfig = def { layoutNavigation = [("myBSP", centerNavigation)] }
+
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-button1, Set the window to floating mode and move by dragging
     [ ((modm, button1), \w -> focus w >> mouseMoveWindow w
@@ -229,7 +231,12 @@ myStartupHook = do
    adjustEventInput
 
 main = do
-  xmonad $ docks $ ewmh $ myAdditionalKeys $ def
+  xmonad
+  $ docks
+  $ ewmh
+  $ myAdditionalKeys
+  $ withNavigation2DConfig myNavigation2DConfig
+  $ def
     {
       -- simple stuff
         terminal           = myTerminal,
