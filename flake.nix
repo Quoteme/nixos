@@ -349,6 +349,7 @@
                 android-tools
                 android-studio
                 flutter
+                dart
               # game-dev
                 godot
                 blender
@@ -411,6 +412,7 @@
                 highlighters = [ "main" "brackets" ];
               };
               ohMyZsh.plugins = [
+                "flutter"
                 "lein"
                 "poetry"
               ];
@@ -443,7 +445,7 @@
           };
           environment.sessionVariables = {
             PATH = [ 
-              "~/Android/Sdk/cmdline-tools/latest/bin/"
+              "/home/luca/Android/Sdk/cmdline-tools/latest/bin/"
             ];
           };
           virtualisation = {

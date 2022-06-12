@@ -18,14 +18,16 @@ import XMonad.Hooks.Place (placeHook, withGaps, smart)
 import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Hooks.ServerMode (serverModeEventHookF)
 -- import XMonad.Hooks.Rescreen
-import XMonad.Actions.Navigation2D (windowGo, windowSwap)
+import XMonad.Actions.Navigation2D
 import XMonad.Actions.UpdateFocus ( adjustEventInput, focusOnMouseMove )
 import XMonad.Actions.WindowMenu (windowMenu)
+import XMonad.Layout.Renamed
 import XMonad.Layout.BinarySpacePartition
 import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Layout.BorderResize (borderResize)
 import XMonad.Layout.DecorationMadness ( mirrorTallSimpleDecoResizable )
 import XMonad.Layout.Spiral (spiral)
+import XMonad.Layout.LayoutHints
 import Data.Maybe (isJust, fromJust)
 import Data.List (elemIndex)
 import System.Exit
@@ -170,6 +172,10 @@ myAdditionalKeys config = additionalKeys config
                     *> spawn "xinput --disable \"AT Translated Set 2 keyboard\""
                     *> spawn "dunstify 'touchpad disabled'"
 
+myNavigation2DConfig = def { layoutNavigation = [
+    ("myBSP", hybridOf sideNavigation lineNavigation )
+  ] }
+
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-button1, Set the window to floating mode and move by dragging
     [ ((modm, button1), \w -> focus w >> mouseMoveWindow w
@@ -184,17 +190,17 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
 myLayout = (avoidStruts . smartBorders) defaultLayouts
   where
-    defaultLayouts =   borderResize emptyBSP -- TODO add tabs to this layout
-                   ||| borderResize mirrorTallSimpleDecoResizable
-                   ||| spiral (6/7)
+    defaultLayouts =   myBSP
                    ||| Full
+    -- TODO: add tabs to this layout
+    myBSP = renamed [Replace "myBSP"] (layoutHints (borderResize emptyBSP))
 
 myManageHook = placeHook (withGaps (10,10,10,10) (smart (0.5,0.5)))
   <+> composeAll [
     className =? "Onboard" --> doFloat]
 
 myEventHook = focusOnMouseMove
-            <+> fullscreenEventHook
+            <+> hintsEventHook
             <+> serverModeEventHookF "XMONAD_COMMAND" defaultServerCommands
               where
                 defaultServerCommands "menu"        = windowMenu
@@ -227,7 +233,12 @@ myStartupHook = do
    adjustEventInput
 
 main = do
-  xmonad $ docks $ ewmh $ myAdditionalKeys $ def
+  xmonad
+  $ docks
+  $ ewmh
+  $ myAdditionalKeys
+  $ withNavigation2DConfig myNavigation2DConfig
+  $ def
     {
       -- simple stuff
         terminal           = myTerminal,
