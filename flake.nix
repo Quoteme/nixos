@@ -383,6 +383,8 @@
               gnome.gnome-clocks
               # emulation
               virt-manager
+              # Wine
+                wineWowPackages.stable
               # UNI HHU ZEUG
               # konferenzen
               zoom-us
