@@ -410,6 +410,7 @@
                 highlighters = [ "main" "brackets" ];
               };
               ohMyZsh.plugins = [
+                "flutter"
                 "lein"
                 "poetry"
               ];
