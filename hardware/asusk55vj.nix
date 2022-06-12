@@ -22,6 +22,7 @@
           touchpad.tapping = true;
           touchpad.naturalScrolling = true;
         };
+        wacom.enable = true;
     };
   };
   hardware = {
