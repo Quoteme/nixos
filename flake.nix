@@ -348,6 +348,7 @@
                 android-tools
                 android-studio
                 flutter
+                dart
               # game-dev
                 godot
                 blender
