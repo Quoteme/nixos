@@ -385,6 +385,7 @@
               virt-manager
               # Wine
                 wineWowPackages.stable
+                bottles
               # UNI HHU ZEUG
               # konferenzen
               zoom-us
