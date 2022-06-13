@@ -76,7 +76,7 @@
   };
   xdg.configFile."onedrive/config".text = ''
     sync_dir = "~/OneDrive"
-    skip_dir = "*.git"
+    skip_dir = "*.git|Videos"
     skip_file = "*~"
   '';
   xdg.configFile."networkmanager-dmenu/config.ini".text = ''
