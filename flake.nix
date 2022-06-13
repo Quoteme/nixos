@@ -128,7 +128,7 @@
                 updateDbusEnvironment = true;
               # Display Manager
                 displayManager = {
-                  gdm.enable = true;
+                  lightdm.enable = true;
                   defaultSession = "none+xmonad";
                 };
               # Window managers / Desktop managers
@@ -481,7 +481,7 @@
                   fprintAuth = true; 
                   sshAgentAuth = true;
                 };
-                gdm.enableGnomeKeyring = true;
+                lightdm.enableGnomeKeyring = true;
               };
               enableSSHAgentAuth = true;
             };
