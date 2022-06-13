@@ -345,6 +345,7 @@
                 libmtp
                 usbutils
                 scrcpy
+                nodePackages.cordova
               # Flutter
                 android-tools
                 android-studio
