@@ -208,7 +208,7 @@
           users.users.root.initialHashedPassword = "";
           users.users.luca = {
             isNormalUser = true;
-            extraGroups = [ "networkmanager" "storage" "video" "bluetooth" "adbusers" "wheel" "kvm" "libvirtd" ];
+            extraGroups = [ "networkmanager" "storage" "video" "bluetooth" "adbusers" "wheel" "kvm" "libvirtd" "docker"];
             shell = pkgs.zsh;
             initialHashedPassword = "";
           };
@@ -463,6 +463,7 @@
               enable = true;
               qemu.package = pkgs.qemu_full;
             };
+            docker.enable = true;
           };
           security = {
             polkit.enable = true;
