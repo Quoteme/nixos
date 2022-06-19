@@ -293,6 +293,7 @@
             # Programming
               inputs.neovim-luca.defaultPackage.x86_64-linux
               vscode-fhs
+              devdocs-desktop
               # devdocs-desktop
               # math
                 sage
