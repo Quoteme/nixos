@@ -8,7 +8,7 @@
       package = pkgs.papirus-icon-theme;
     };
     theme = {
-      name = "Mojave-dark";
+      name = "Mojave-Dark";
       package = pkgs.mojave-gtk-theme;
     };
   };
