@@ -179,12 +179,17 @@
         "plugin:barbar.nvim": "plugin:barbar.nvim",
         "plugin:cheatsheet.nvim": "plugin:cheatsheet.nvim",
         "plugin:cmp-buffer": "plugin:cmp-buffer",
+        "plugin:cmp-emoji": "plugin:cmp-emoji",
+        "plugin:cmp-latex-symbols": "plugin:cmp-latex-symbols",
         "plugin:cmp-nvim-lsp": "plugin:cmp-nvim-lsp",
+        "plugin:cmp-pandoc.nvim": "plugin:cmp-pandoc.nvim",
         "plugin:cmp-path": "plugin:cmp-path",
+        "plugin:cmp-spell": "plugin:cmp-spell",
         "plugin:cmp_luasnip": "plugin:cmp_luasnip",
         "plugin:conjure": "plugin:conjure",
         "plugin:copilot-cmp": "plugin:copilot-cmp",
         "plugin:copilot.lua": "plugin:copilot.lua",
+        "plugin:copilot.vim": "plugin:copilot.vim",
         "plugin:delimitMate": "plugin:delimitMate",
         "plugin:focus.nvim": "plugin:focus.nvim",
         "plugin:fold-cycle.nvim": "plugin:fold-cycle.nvim",
@@ -241,11 +246,11 @@
         "snippets-shebang": "snippets-shebang"
       },
       "locked": {
-        "lastModified": 1655032545,
-        "narHash": "sha256-FkBHmpXGhC57z7pWzMROk4k1V7ijmtAk+kQH4a+Q7F0=",
+        "lastModified": 1655739828,
+        "narHash": "sha256-L7a6w7iTpCB61x7pOxRt61uJxFMij/NeIp+jmtf+wLA=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "1bd430c403f948dad931590e915ca4cde04902f7",
+        "rev": "8d851c8c59e87f8ff868f2d33b15fc504445459e",
         "type": "github"
       },
       "original": {
@@ -498,6 +503,38 @@
         "type": "github"
       }
     },
+    "plugin:cmp-emoji": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1632834658,
+        "narHash": "sha256-zc5GNkwdVHaeEoCer9tz40F2Xc8qTzPw6NbgkMjjWQI=",
+        "owner": "hrsh7th",
+        "repo": "cmp-emoji",
+        "rev": "19075c36d5820253d32e2478b6aaf3734aeaafa0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hrsh7th",
+        "repo": "cmp-emoji",
+        "type": "github"
+      }
+    },
+    "plugin:cmp-latex-symbols": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1655473992,
+        "narHash": "sha256-A9SO+vyyKGhpZzRFcCi/RskHEWdAVtVgyfrYKEIjZYA=",
+        "owner": "kdheepak",
+        "repo": "cmp-latex-symbols",
+        "rev": "46e7627afa8c8ff57158d1c29d721d8efebbc39f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kdheepak",
+        "repo": "cmp-latex-symbols",
+        "type": "github"
+      }
+    },
     "plugin:cmp-nvim-lsp": {
       "flake": false,
       "locked": {
@@ -514,6 +551,22 @@
         "type": "github"
       }
     },
+    "plugin:cmp-pandoc.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1651590057,
+        "narHash": "sha256-SWauAbIfw88Sjbxjbtbd4uCBuU8ZixctxKHa9qVNgzQ=",
+        "owner": "aspeddro",
+        "repo": "cmp-pandoc.nvim",
+        "rev": "cb2980263e14fb3c1b776edbd2c7a312b67c65ae",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aspeddro",
+        "repo": "cmp-pandoc.nvim",
+        "type": "github"
+      }
+    },
     "plugin:cmp-path": {
       "flake": false,
       "locked": {
@@ -527,6 +580,22 @@
       "original": {
         "owner": "hrsh7th",
         "repo": "cmp-path",
+        "type": "github"
+      }
+    },
+    "plugin:cmp-spell": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1634666972,
+        "narHash": "sha256-ZVsDbaITPbusJ93N7/hFQY4bOjYNZx8vdlYxxPmPZt4=",
+        "owner": "f3fora",
+        "repo": "cmp-spell",
+        "rev": "5602f1a0de7831f8dad5b0c6db45328fbd539971",
+        "type": "github"
+      },
+      "original": {
+        "owner": "f3fora",
+        "repo": "cmp-spell",
         "type": "github"
       }
     },
@@ -591,6 +660,22 @@
       "original": {
         "owner": "zbirenbaum",
         "repo": "copilot.lua",
+        "type": "github"
+      }
+    },
+    "plugin:copilot.vim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1655477152,
+        "narHash": "sha256-V13La54aIb3hQNDE7BmOIIZWy7In5cG6kE0fti/wxVQ=",
+        "owner": "github",
+        "repo": "copilot.vim",
+        "rev": "c2e75a3a7519c126c6fdb35984976df9ae13f564",
+        "type": "github"
+      },
+      "original": {
+        "owner": "github",
+        "repo": "copilot.vim",
         "type": "github"
       }
     },
