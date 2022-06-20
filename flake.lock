@@ -1497,11 +1497,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1649357094,
-        "narHash": "sha256-tqDwoJnMypnA6X9rIIcJZA4lLJQXvkj+mkcwbRYi3Bo=",
+        "lastModified": 1655725793,
+        "narHash": "sha256-x7FXW7Dj3+GCKT2jnz37f8rQnJ0LfkTmP0klCS4oaDA=",
         "owner": "Quoteme",
         "repo": "st-nix",
-        "rev": "0bbaa7c7e8941b74c1c36dde7f52f409bb50d861",
+        "rev": "69a8c1870863e3312ac67582faad3b0c9741bf8f",
         "type": "github"
       },
       "original": {
