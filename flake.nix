@@ -298,6 +298,7 @@
               # devdocs-desktop
               # math
                 sage
+                julia-bin
               # python
                 poetry
                 ((python39.withPackages(ps : with ps; [
