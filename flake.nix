@@ -244,9 +244,9 @@
               # blender
               # krita # all the kde dependencies are annoying so far; TODO: remove kde deps
             # # Media
+              vlc
               mpv
               yt-dlp
-              # vlc
               evince
               deadbeef
               sxiv
