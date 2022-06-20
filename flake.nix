@@ -219,12 +219,13 @@
             font-awesome
             unifont
             siji
-            noto-fonts-emoji
+            openmoji-color
             fira-code
             hasklig
             # nerdfonts
             (nerdfonts.override { fonts = [ "FiraCode" ]; })
           ];
+          fonts.fontconfig.defaultFonts.emoji = ["openmoji-color"];
           # List packages installed in system profile. To search, run:
           # $ nix search nixpkgs wget
           # TODO: move this into another file
