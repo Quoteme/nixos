@@ -377,7 +377,6 @@
               xdotool
               neofetch
               onefetch
-              pywal
               dunst
               #xmobar-luca
               xmonadctl
@@ -418,13 +417,17 @@
                 enable = true;
                 highlighters = [ "main" "brackets" ];
               };
-              ohMyZsh.plugins = [
-                "flutter"
-                "lein"
-                "poetry"
-              ];
+              ohMyZsh = {
+                enable = true;
+                plugins = [
+                  "flutter"
+                  "lein"
+                  "poetry"
+                ];
+                theme = "robbyrussell";
+              };
               autosuggestions.enable = true;
-              shellInit = "(cat ~/.cache/wal/sequences &) && bindkey -v";
+              shellInit = "bindkey -v";
               promptInit = "autoload -U promptinit && promptinit && prompt fade && setopt prompt_sp";
               shellAliases = {
                 l = "exa";
