@@ -420,14 +420,25 @@
               ohMyZsh = {
                 enable = true;
                 plugins = [
+                  "adb"
+                  "cabal"
+                  "docker-compose"
+                  "docker-machine"
+                  "docker"
                   "flutter"
                   "lein"
+                  "gradle"
                   "poetry"
+                  "fd"
+                  "vi-mode"
+                  "dirhistory"
+                  "gpg-agent"
+                  "keychain"
+                  "zsh-interactive-cd"
                 ];
                 theme = "robbyrussell";
               };
               autosuggestions.enable = true;
-              shellInit = "bindkey -v";
               promptInit = "autoload -U promptinit && promptinit && prompt fade && setopt prompt_sp";
               shellAliases = {
                 l = "exa";
