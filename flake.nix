@@ -407,8 +407,7 @@
               enableSSHSupport = true;
             };
             seahorse.enable = true;
-            # TODO: This option somehow does not work???
-            # ssh.enableAskPassword = true;
+            ssh.enableAskPassword = true;
             # Shell stuff
             bash.shellInit = "set -o vi";
             zsh = {
