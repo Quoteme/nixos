@@ -215,6 +215,7 @@
         "plugin:nvim-ts-rainbow": "plugin:nvim-ts-rainbow",
         "plugin:nvim-web-devicons": "plugin:nvim-web-devicons",
         "plugin:onedark-vim": "plugin:onedark-vim",
+        "plugin:pandoc.nvim": "plugin:pandoc.nvim",
         "plugin:plenary.nvim": "plugin:plenary.nvim",
         "plugin:popup.nvim": "plugin:popup.nvim",
         "plugin:pretty-fold.nvim": "plugin:pretty-fold.nvim",
@@ -246,11 +247,11 @@
         "snippets-shebang": "snippets-shebang"
       },
       "locked": {
-        "lastModified": 1655996048,
-        "narHash": "sha256-GshAtkYhAj+LcIbYbrwGwgFyH7/1VksS2EjCheOSx4Q=",
+        "lastModified": 1656011424,
+        "narHash": "sha256-+CifJ6oc+yy76EIQYOIr6wUZuULJEggE13U2Vei1YNk=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "9f21ff1c4ace3cbacda5f38967857c1e3dc2c010",
+        "rev": "734a5730ff49c12a1828a165d723f3383dde8fc8",
         "type": "github"
       },
       "original": {
@@ -1079,6 +1080,22 @@
         "type": "github"
       }
     },
+    "plugin:pandoc.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1648166495,
+        "narHash": "sha256-RXATsMgfMtQ4eb90dHi1CWcqTN/eSmopuu6CR6wG4Bs=",
+        "owner": "aspeddro",
+        "repo": "pandoc.nvim",
+        "rev": "26220db69935b36815ed85edb431f66c1315f831",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aspeddro",
+        "repo": "pandoc.nvim",
+        "type": "github"
+      }
+    },
     "plugin:plenary.nvim": {
       "flake": false,
       "locked": {
@@ -1535,7 +1552,7 @@
       "flake": false,
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-YkZ1v4eOVfTcoRj02v4rxiSWvel9VI7cMwPYzhTAq3A=",
+        "narHash": "sha256-cma+Z5sdclnlGIQBjnSVNBXrcWH8lS/lzmk9etCGj6E=",
         "path": "./runtime/",
         "type": "path"
       },
