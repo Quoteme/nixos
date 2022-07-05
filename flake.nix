@@ -61,10 +61,9 @@
         {
           imports = [
             ./hardware-configuration.nix
-            # ./hardware/ideapadflex5.nix
-            # ./hardware/thinkpadx201t.nix
-            ./hardware/asusk55vj.nix
+            ./hardware/asusROGFlowX13.nix
           ];
+
           nix = {
             package = pkgs.unstable.nix;
             extraOptions = ''
@@ -72,39 +71,34 @@
               warn-dirty = false
            '';
           };
+
           boot = {
-            # allow AMD graphics card
             kernelPackages = pkgs.linuxPackages_latest;
             # windows integration
             supportedFilesystems = [ "ntfs" ];
           };
-          # enable swap
-          swapDevices = [ {device = "/dev/disk/by-label/swap";} ];
+	  
           # Networking
           networking = {
             hostName = "nixos";
             networkmanager.enable = true;
-            # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-            # Per-interface useDHCP will be mandatory in the future, so this generated config
-            # replicates the default behaviour.
-            useDHCP = false;
             firewall = {
               allowedUDPPortRanges = [{from=32768; to=61000;}];
               allowedTCPPortRanges = [{from=8008; to=8009;}];
             };
           };
+
           # Time and location settings
           time.timeZone = "Europe/Berlin";
           time.hardwareClockInLocalTime = true;
-          location.provider = "manual";
-          location.latitude = 51.192230;
-          location.longitude = 6.439590;
+
           # Select internationalisation properties.
           i18n.defaultLocale = "de_DE.UTF-8";
           console = {
             font = "Lat2-Terminus16";
-            keyMap = "de-latin1";
+            useXkbConfig = true;
           };
+
           # Enable the X11 windowing system.
           # TODO clean this up
           services = {
@@ -176,10 +170,6 @@
             tumbler.enable = true;
             picom.enable = true;
             redshift.enable = true;
-            # Powersaving
-            tlp.enable = true;
-            # cloud storage
-            onedrive.enable = true;
             # Lock screen
             physlock = {
               enable = true;
@@ -207,10 +197,13 @@
           # TODO: set passwort using hashed password
           users.users.root.initialHashedPassword = "";
           users.users.luca = {
+            initialHashedPassword = "$6$W62LDzjtggxhhOiJ$KKM1yuHOrEr3Mz4MSstUGBtlpEF2AHR8bAzFeaqo2l.rrka/phKnzbKbyM5HX955d9et2NnV2fOr9LnDCgB5M1";
             isNormalUser = true;
             extraGroups = [ "networkmanager" "storage" "video" "bluetooth" "adbusers" "wheel" "kvm" "libvirtd" "docker"];
             shell = pkgs.zsh;
-            initialHashedPassword = "";
+            packages = with pkgs; [
+              thunderbird
+            ];
           };
           users.defaultUserShell = pkgs.zsh;
           # List fonts installed in system profile
@@ -232,7 +225,6 @@
           environment.systemPackages = with pkgs; [
             # Internet
               google-chrome
-              thunderbird
               discord
               transmission-gtk
             # # Drawing
@@ -292,7 +284,7 @@
               # TODO: add this manual to reddit post
               inputs.st-nix.defaultPackage.x86_64-linux
             # Programming
-              inputs.neovim-luca.defaultPackage.x86_64-linux
+              # inputs.neovim-luca.defaultPackage.x86_64-linux
               vscode-fhs
               devdocs-desktop
               # devdocs-desktop
@@ -397,8 +389,8 @@
           ];
           programs = {
             # https://github.com/Mic92/nix-ld
-            # /!\ Run unpatched elf files on NixOS /!\
             nix-ld.enable = true;
+
             # Some programs need SUID wrappers, can be configured further or are
             # started in user sessions.
             mtr.enable = true;
@@ -406,8 +398,11 @@
               enable = true;
               enableSSHSupport = true;
             };
+
+	    # Password stuff
             seahorse.enable = true;
             ssh.enableAskPassword = true;
+
             # Shell stuff
             bash.shellInit = "set -o vi";
             zsh = {
@@ -446,13 +441,17 @@
                 webcam = "mpv av://v4l2:/dev/video0 --profile=low-latency --untimed";
               };
             };
+
             # Android
             adb.enable = true;
+
             # Other
             file-roller.enable = true;
             dconf.enable = true;
+
             # development
             java.enable = true;
+
             # Gaming
             steam = {
               enable = true;
@@ -460,6 +459,7 @@
               dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
             };
           };
+
           # Shell configuration
           environment.variables = {
             "CHROME_EXECUTABLE" = "${pkgs.google-chrome}/bin/google-chrome-stable";
@@ -469,11 +469,11 @@
             "INITIAL_QUERY" = "";
             "RG_PREFIX"="rg --column --line-number --no-heading --color=always --smart-case ";
           };
-          environment.sessionVariables = {
-            PATH = [ 
-              "/home/luca/Android/Sdk/cmdline-tools/latest/bin/"
-            ];
-          };
+          # environment.sessionVariables = {
+          #   PATH = [ 
+          #     "/home/luca/Android/Sdk/cmdline-tools/latest/bin/"
+          #   ];
+          # };
           virtualisation = {
             libvirtd = {
               enable = true;
@@ -508,7 +508,7 @@
           # this value at the release version of the first install of this system.
           # Before changing this value read the documentation for this option
           # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-          system.stateVersion = "21.05"; # Did you read the comment?
+          system.stateVersion = "22.05"; # Did you read the comment?
         })
         # ╻ ╻┏━┓┏┳┓┏━╸   ┏┳┓┏━┓┏┓╻┏━┓┏━╸┏━╸┏━┓
         # ┣━┫┃ ┃┃┃┃┣╸ ╺━╸┃┃┃┣━┫┃┗┫┣━┫┃╺┓┣╸ ┣┳┛
