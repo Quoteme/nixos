@@ -127,8 +127,10 @@ myKeys config = mkKeymap config $
   , ("M-<Backspace>"           , io exitSuccess)
   , ("M-S-<Backspace>"         , restart "xmonad" True)
   -- Function Keys
-  , ("<XF86MonBrightnessUp>"   , raiseBrigthness)
-  , ("<XF86MonBrightnessDown>" , lowerBrigthness)
+  , ("<XF86MonBrightnessUp>"   , raiseMonBrigthness)
+  , ("<XF86MonBrightnessDown>" , lowerMonBrigthness)
+  , ("<XF86KbdBrightnessUp>"   , raiseKbdBrigthness)
+  , ("<XF86KbdBrightnessDown>" , lowerKbdBrigthness)
   , ("<XF86AudioRaiseVolume>"  , spawn "pamixer --increase 5 && dunstify -a \"changeVolume\" -u low -i /etc/nixos/xmonad/icon/high-volume.png \"volume up\"")
   , ("<XF86AudioLowerVolume>"  , spawn "pamixer --decrease 5 && dunstify -a \"changeVolume\" -u low -i /etc/nixos/xmonad/icon/volume-down.png \"volume down\"")
   , ("<XF86AudioMute>"         , spawn "pamixer --toggle-mute")
@@ -141,12 +143,18 @@ myKeys config = mkKeymap config $
       , (m, f) <- [("M-", W.greedyView), ("M-S-", W.shift)]
   ]
   where
-    lowerBrigthness :: MonadIO m => m ()
-    lowerBrigthness =  spawn "brightnessctl set 5%-"
-                    *> spawn "dunstify 'Brightness lowered'"
-    raiseBrigthness :: MonadIO m => m ()
-    raiseBrigthness =  spawn "brightnessctl set 5%+"
-                    *> spawn "dunstify 'Brightness raised'"
+    lowerMonBrigthness :: MonadIO m => m ()
+    lowerMonBrigthness =  spawn "brightnessctl set 5%-"
+                       *> spawn "dunstify 'Brightness lowered'"
+    raiseMonBrigthness :: MonadIO m => m ()
+    raiseMonBrigthness =  spawn "brightnessctl set 5%+"
+                       *> spawn "dunstify 'Brightness raised'"
+    lowerKbdBrigthness :: MonadIO m => m ()
+    lowerKbdBrigthness =  spawn "brightnessctl --device=\"asus::kbd_backlight\" set 1-"
+                       *> spawn "dunstify 'Brightness lowered'"
+    raiseKbdBrigthness :: MonadIO m => m ()
+    raiseKbdBrigthness =  spawn "brightnessctl --device=\"asus::kbd_backlight\" set 1+"
+                       *> spawn "dunstify 'Brightness raised'"
 
 myAdditionalKeys config = additionalKeys config
   [ ((0                 , xF86XK_TouchpadToggle ), disableTouchpad)

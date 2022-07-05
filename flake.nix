@@ -175,6 +175,7 @@
               enable = true;
               lockMessage = "Lulca\'s Laptop";
             };
+            power-profiles-daemon.enable = true;
           };
           # make qt apps look like gtk
           # https://nixos.org/manual/nixos/stable/index.html#sec-x11-gtk-and-qt-themes
