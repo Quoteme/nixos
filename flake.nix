@@ -203,39 +203,17 @@
             extraGroups = [ "networkmanager" "storage" "video" "bluetooth" "adbusers" "wheel" "kvm" "libvirtd" "docker"];
             shell = pkgs.zsh;
             packages = with pkgs; [
-              thunderbird
-            ];
-          };
-          users.defaultUserShell = pkgs.zsh;
-          # List fonts installed in system profile
-          fonts.fonts = with pkgs; [
-            scientifica
-            font-awesome
-            unifont
-            siji
-            openmoji-color
-            fira-code
-            hasklig
-            # nerdfonts
-            (nerdfonts.override { fonts = [ "FiraCode" ]; })
-          ];
-          fonts.fontconfig.defaultFonts.emoji = ["openmoji-color"];
-          # List packages installed in system profile. To search, run:
-          # $ nix search nixpkgs wget
-          # TODO: move this into another file
-          environment.systemPackages = with pkgs; [
             # Internet
               google-chrome
               discord
               transmission-gtk
             # # Drawing
               xournalpp
-              # write_stylus
               inkscape
               gimp
               aseprite
-              # blender
-              # krita # all the kde dependencies are annoying so far; TODO: remove kde deps
+              blender
+              krita
             # # Media
               vlc
               mpv
@@ -244,48 +222,11 @@
               deadbeef
               sxiv
             # Gaming
-              # minecraft
+              minecraft
             # Productivity
               libreoffice
-            # Small Utilities
-              # nix-ld stuff
-                inputs.nix-autobahn.defaultPackage.x86_64-linux
-                inputs.nix-alien.defaultPackage.x86_64-linux
-                nix-index
-                fzf
-              mons
-              arandr
-              brightnessctl
-              iw
-              ffmpeg
-              linux-router
-              macchanger
-              pavucontrol
-              imagemagick
-              maim
-              xclip
-              peek
-              killall
-              xorg.xkill
-              wget
-              git
-              gh
-              gitkraken
-              exa
-              ripgrep
-              fd
-              bat
-              # archiving
-                zip
-                unzip
-              toilet
-              htop-vim
-              nvimpager
-              # TODO: add manual how to add nix-flakes as system-programs
-              # TODO: add this manual to reddit post
-              inputs.st-nix.defaultPackage.x86_64-linux
             # Programming
-              # inputs.neovim-luca.defaultPackage.x86_64-linux
+              inputs.neovim-luca.defaultPackage.x86_64-linux
               vscode-fhs
               devdocs-desktop
               # devdocs-desktop
@@ -325,7 +266,7 @@
               # Java
                 jdk
                 gradle
-                jetbrains.idea-community
+                # jetbrains.idea-community
               # C
                 valgrind
                 gcc
@@ -349,7 +290,69 @@
                 dart
               # game-dev
                 godot
-                blender
+              # UNI HHU ZEUG
+                # konferenzen
+                  zoom-us
+                # PROPORA
+                  mob
+            ];
+          };
+          users.defaultUserShell = pkgs.zsh;
+          # List fonts installed in system profile
+          fonts.fonts = with pkgs; [
+            scientifica
+            font-awesome
+            unifont
+            siji
+            openmoji-color
+            fira-code
+            hasklig
+            # nerdfonts
+            (nerdfonts.override { fonts = [ "FiraCode" ]; })
+          ];
+          fonts.fontconfig.defaultFonts.emoji = ["openmoji-color"];
+          # List packages installed in system profile. To search, run:
+          # $ nix search nixpkgs wget
+          # TODO: move this into another file
+          environment.systemPackages = with pkgs; [
+            # Small Utilities
+              # nix-ld stuff
+                inputs.nix-autobahn.defaultPackage.x86_64-linux
+                inputs.nix-alien.defaultPackage.x86_64-linux
+                nix-index
+                fzf
+              mons
+              arandr
+              brightnessctl
+              iw
+              ffmpeg
+              linux-router
+              macchanger
+              pavucontrol
+              imagemagick
+              maim
+              xclip
+              peek
+              killall
+              xorg.xkill
+              wget
+              git
+              gh
+              gitkraken
+              exa
+              ripgrep
+              fd
+              bat
+              power-profiles-daemon
+              # archiving
+                zip
+                unzip
+              toilet
+              htop-vim
+              nvimpager
+              # TODO: add manual how to add nix-flakes as system-programs
+              # TODO: add this manual to reddit post
+              inputs.st-nix.defaultPackage.x86_64-linux
             # Window Manager
               rofi
               rofimoji
@@ -383,11 +386,6 @@
               # Wine
                 wineWowPackages.stable
                 bottles
-              # UNI HHU ZEUG
-              # konferenzen
-              zoom-us
-              # PROPORA
-              mob
           ];
           programs = {
             # https://github.com/Mic92/nix-ld
@@ -498,6 +496,7 @@
                 luca = {
                   fprintAuth = true; 
                   sshAgentAuth = true;
+                  gnupg.enable = true;
                 };
                 lightdm.enableGnomeKeyring = true;
               };
