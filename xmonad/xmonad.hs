@@ -120,7 +120,7 @@ myKeys config = mkKeymap config $
   , ("M-,"                     , sendMessage (IncMasterN 1))
   , ("M-."                     , sendMessage (IncMasterN (-1)))
   , ("M-o"                     , windowMenu)
-  , ("M-p"                     , rescreen *> spawn "dunstify \"changed screen config\"") -- confirmed keybinding works
+  , ("M-p"                     , rescreen *> spawn "notify-send \"changed screen config\"") -- confirmed keybinding works
   -- XMobar
   , ("M-b"                     , sendMessage ToggleStruts)
   -- Quitting
@@ -131,8 +131,8 @@ myKeys config = mkKeymap config $
   , ("<XF86MonBrightnessDown>" , lowerMonBrigthness)
   , ("<XF86KbdBrightnessUp>"   , raiseKbdBrigthness)
   , ("<XF86KbdBrightnessDown>" , lowerKbdBrigthness)
-  , ("<XF86AudioRaiseVolume>"  , spawn "pamixer --increase 5 && dunstify -a \"changeVolume\" -u low -i /etc/nixos/xmonad/icon/high-volume.png \"volume up\"")
-  , ("<XF86AudioLowerVolume>"  , spawn "pamixer --decrease 5 && dunstify -a \"changeVolume\" -u low -i /etc/nixos/xmonad/icon/volume-down.png \"volume down\"")
+  , ("<XF86AudioRaiseVolume>"  , spawn "pamixer --increase 5 && notify-send -a \"changeVolume\" -u low -i /etc/nixos/xmonad/icon/high-volume.png \"volume up\"")
+  , ("<XF86AudioLowerVolume>"  , spawn "pamixer --decrease 5 && notify-send -a \"changeVolume\" -u low -i /etc/nixos/xmonad/icon/volume-down.png \"volume down\"")
   , ("<XF86AudioMute>"         , spawn "pamixer --toggle-mute")
   , ("<XF86AudioNext>"         , spawn "playerctl next")
   , ("<XF86AudioPrev>"         , spawn "playerctl previous")
@@ -145,16 +145,16 @@ myKeys config = mkKeymap config $
   where
     lowerMonBrigthness :: MonadIO m => m ()
     lowerMonBrigthness =  spawn "brightnessctl set 5%-"
-                       *> spawn "dunstify 'Brightness lowered'"
+                       *> spawn "notify-send 'Brightness lowered'"
     raiseMonBrigthness :: MonadIO m => m ()
     raiseMonBrigthness =  spawn "brightnessctl set 5%+"
-                       *> spawn "dunstify 'Brightness raised'"
+                       *> spawn "notify-send 'Brightness raised'"
     lowerKbdBrigthness :: MonadIO m => m ()
     lowerKbdBrigthness =  spawn "brightnessctl --device=\"asus::kbd_backlight\" set 1-"
-                       *> spawn "dunstify 'Brightness lowered'"
+                       *> spawn "notify-send 'Brightness lowered'"
     raiseKbdBrigthness :: MonadIO m => m ()
     raiseKbdBrigthness =  spawn "brightnessctl --device=\"asus::kbd_backlight\" set 1+"
-                       *> spawn "dunstify 'Brightness raised'"
+                       *> spawn "notify-send 'Brightness raised'"
 
 myAdditionalKeys config = additionalKeys config
   [ ((0                 , xF86XK_TouchpadToggle ), disableTouchpad)
@@ -174,11 +174,11 @@ myAdditionalKeys config = additionalKeys config
     enableTouchpad :: MonadIO m => m ()
     enableTouchpad =  spawn "xinput --enable \"MSFT0001:00 06CB:CE2D Touchpad\""
                    *> spawn "xinput --enable \"AT Translated Set 2 keyboard\""
-                   *> spawn "dunstify 'touchpad enabled'"
+                   *> spawn "notify-send 'touchpad enabled'"
     disableTouchpad :: MonadIO m => m ()
     disableTouchpad =  spawn "xinput --disable \"MSFT0001:00 06CB:CE2D Touchpad\""
                     *> spawn "xinput --disable \"AT Translated Set 2 keyboard\""
-                    *> spawn "dunstify 'touchpad disabled'"
+                    *> spawn "notify-send 'touchpad disabled'"
 
 myNavigation2DConfig = def { layoutNavigation = [
     ("myBSP", hybridOf sideNavigation lineNavigation )
