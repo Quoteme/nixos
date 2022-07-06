@@ -147,7 +147,7 @@ label-song-ellipsis = true
 
 [module/backlight]
 type = internal/backlight
-card = intel_backlight
+card = amdgpu_bl1
 use-actual-brightness = false
 
 format = <label> <bar>
