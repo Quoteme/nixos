@@ -370,6 +370,7 @@
               xdotool
               neofetch
               onefetch
+              libnotify
               dunst
               #xmobar-luca
               xmonadctl
