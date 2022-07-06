@@ -91,6 +91,7 @@
           # Time and location settings
           time.timeZone = "Europe/Berlin";
           time.hardwareClockInLocalTime = true;
+          location.provider = "geoclue2";
 
           # Select internationalisation properties.
           i18n.defaultLocale = "de_DE.UTF-8";
