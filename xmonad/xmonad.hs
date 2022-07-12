@@ -240,29 +240,28 @@ myStartupHook = do
    setWMName "LG3D"
    adjustEventInput
 
-main = do
-  xmonad
-  $ docks
-  $ ewmh
-  $ myAdditionalKeys
-  $ withNavigation2DConfig myNavigation2DConfig
-  $ def
-    {
-      -- simple stuff
-        terminal           = myTerminal,
-        focusFollowsMouse  = myFocusFollowsMouse,
-        clickJustFocuses   = myClickJustFocuses,
-        borderWidth        = myBorderWidth,
-        modMask            = myModMask,
-        workspaces         = myWorkspaces,
-        normalBorderColor  = myNormalBorderColor,
-        focusedBorderColor = myFocusedBorderColor,
-      -- key bindings
-        keys               = myKeys,
-        mouseBindings      = myMouseBindings,
-      -- hooks, layouts
-        layoutHook         = myLayout,
-        manageHook         = myManageHook,
-        handleEventHook    = myEventHook,
-        startupHook        = myStartupHook
-    }
+main = getDirectories >>= launch
+        ( docks
+        $ ewmh
+        $ myAdditionalKeys
+        $ withNavigation2DConfig myNavigation2DConfig
+        $ def
+          {
+            -- simple stuff
+              terminal           = myTerminal,
+              focusFollowsMouse  = myFocusFollowsMouse,
+              clickJustFocuses   = myClickJustFocuses,
+              borderWidth        = myBorderWidth,
+              modMask            = myModMask,
+              workspaces         = myWorkspaces,
+              normalBorderColor  = myNormalBorderColor,
+              focusedBorderColor = myFocusedBorderColor,
+            -- key bindings
+              keys               = myKeys,
+              mouseBindings      = myMouseBindings,
+            -- hooks, layouts
+              layoutHook         = myLayout,
+              manageHook         = myManageHook,
+              handleEventHook    = myEventHook,
+              startupHook        = myStartupHook
+          })
