@@ -208,6 +208,7 @@
               google-chrome
               discord
               transmission-gtk
+              thunderbird
             # # Drawing
               xournalpp
               inkscape
@@ -294,6 +295,7 @@
               # UNI HHU ZEUG
                 # konferenzen
                   zoom-us
+                  slack
                 # PROPORA
                   mob
             ];
