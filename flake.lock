@@ -247,11 +247,11 @@
         "snippets-shebang": "snippets-shebang"
       },
       "locked": {
-        "lastModified": 1656011424,
-        "narHash": "sha256-+CifJ6oc+yy76EIQYOIr6wUZuULJEggE13U2Vei1YNk=",
+        "lastModified": 1657641330,
+        "narHash": "sha256-oy4hq3GfyMv9FjJo2+lzK3QGfqOSzQ13qJSeWuK2Jz0=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "734a5730ff49c12a1828a165d723f3383dde8fc8",
+        "rev": "1436f22a410e0ca2d6bfe21053671297e2ca0555",
         "type": "github"
       },
       "original": {
@@ -1552,7 +1552,7 @@
       "flake": false,
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-cma+Z5sdclnlGIQBjnSVNBXrcWH8lS/lzmk9etCGj6E=",
+        "narHash": "sha256-bOw+yGdzhaKL9J5jx3Vf50yNNLvTUYyJXhiupmXfJ3A=",
         "path": "./runtime/",
         "type": "path"
       },
