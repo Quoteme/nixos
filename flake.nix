@@ -364,7 +364,7 @@
               openvpn
               networkmanager-openvpn
             # File manager
-              pcmanfm
+              pcmanfm-qt
                 # Thumbnailers
                 ffmpegthumbnailer
                 f3d
