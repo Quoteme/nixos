@@ -50,7 +50,21 @@
       export __VK_LAYER_NV_optimus=NVIDIA_only
       exec "$@"
     '')
+    (pkgs.writeShellScriptBin "powerprofilesctl-cycle" ''
+      case $(powerprofilesctl get) in
+        power-saver)
+          notify-send -a \"changepowerprofile\" -u low -i /etc/nixos/xmonad/icon/powerprofilesctl-balanced.png \"powerprofile: balanced\"
+          powerprofilesctl set balanced;;
+        balanced)
+          notify-send -a \"changepowerprofile\" -u low -i /etc/nixos/xmonad/icon/powerprofilesctl-performance.png \"powerprofile: performance\"
+          powerprofilesctl set performance;;
+        performance)
+          notify-send -a \"changepowerprofile\" -u low -i /etc/nixos/xmonad/icon/powerprofilesctl-power-saver.png \"powerprofile: power-saver\"
+          powerprofilesctl set power-saver;;
+      esac
+    '')
   ];
+  services.power-profiles-daemon.enable = true;
   services.acpid.enable = true;
   services.udev.extraHwdb = ''
     evdev:input:b0003v0B05p19B6*

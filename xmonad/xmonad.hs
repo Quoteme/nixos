@@ -124,8 +124,8 @@ myKeys config = mkKeymap config $
   -- XMobar
   , ("M-b"                     , sendMessage ToggleStruts)
   -- Quitting
-  , ("M-<Backspace>"           , io exitSuccess)
-  , ("M-S-<Backspace>"         , restart "xmonad" True)
+  , ("M-<Delete>"           , io exitSuccess)
+  , ("M-S-<Delete>"         , restart "xmonad" True)
   -- Function Keys
   , ("<XF86MonBrightnessUp>"   , raiseMonBrigthness)
   , ("<XF86MonBrightnessDown>" , lowerMonBrigthness)
@@ -133,10 +133,12 @@ myKeys config = mkKeymap config $
   , ("<XF86KbdBrightnessDown>" , lowerKbdBrigthness)
   , ("<XF86AudioRaiseVolume>"  , spawn "pamixer --increase 5 && notify-send -a \"changeVolume\" -u low -i /etc/nixos/xmonad/icon/high-volume.png \"volume up\"")
   , ("<XF86AudioLowerVolume>"  , spawn "pamixer --decrease 5 && notify-send -a \"changeVolume\" -u low -i /etc/nixos/xmonad/icon/volume-down.png \"volume down\"")
+  , ("<XF86AudioMicMute>"      , spawn "amixer set Capture toggle")
   , ("<XF86AudioMute>"         , spawn "pamixer --toggle-mute")
   , ("<XF86AudioNext>"         , spawn "playerctl next")
   , ("<XF86AudioPrev>"         , spawn "playerctl previous")
   , ("<XF86AudioPlay>"         , spawn "playerctl play-pause")
+  , ("<XF86Launch4>"           , spawn "powerprofilesctl-cycle")
   ] ++
   [ (m ++ i, windows $ f j)
       | (i, j) <- zip (map show [1..9]) (workspaces config)
@@ -162,8 +164,8 @@ myAdditionalKeys config = additionalKeys config
   -- Thinkpad X201T keys
   , ((0                 , xF86XK_RotateWindows  ), spawn "screenrotation.sh cycle_left")
   , ((0                 , xF86XK_TaskPane       ), spawn "screenrotation.sh swap")
-  , ((0                 , xF86XK_ScreenSaver    ), spawn "xdotool key super+s")
-  , ((0                 , xF86XK_Launch1        ), spawn "xdotool key super+r")
+  -- , ((0                 , xF86XK_ScreenSaver    ), spawn "xdotool key super+s")
+  -- , ((0                 , xF86XK_Launch1        ), spawn "xdotool key super+r")
   ]
   -- mod-{y,x,c}, Switch to physical/Xinerama screens 1, 2, or 3
   -- mod-shift-{y,x,c}, Move client to screen 1, 2, or 3
@@ -172,11 +174,11 @@ myAdditionalKeys config = additionalKeys config
   --     , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
   where
     enableTouchpad :: MonadIO m => m ()
-    enableTouchpad =  spawn "xinput --enable \"MSFT0001:00 06CB:CE2D Touchpad\""
+    enableTouchpad =  spawn "xinput --enable \"ELAN1201:00 04F3:3098 Touchpad\""
                    *> spawn "xinput --enable \"AT Translated Set 2 keyboard\""
                    *> spawn "notify-send 'touchpad enabled'"
     disableTouchpad :: MonadIO m => m ()
-    disableTouchpad =  spawn "xinput --disable \"MSFT0001:00 06CB:CE2D Touchpad\""
+    disableTouchpad =  spawn "xinput --disable \"ELAN1201:00 04F3:3098 Touchpad\""
                     *> spawn "xinput --disable \"AT Translated Set 2 keyboard\""
                     *> spawn "notify-send 'touchpad disabled'"
 
