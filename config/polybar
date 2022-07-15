@@ -116,21 +116,21 @@ label-active = %icon% %name%
 label-active-foreground = #ffffff
 label-active-background = #3f3f3f
 label-active-underline = #fba922
-label-active-padding = 4
+label-active-padding = 3
 
 label-occupied = %icon% %name%
 label-occupied-underline = #555555
-label-occupied-padding = 2
+label-occupied-padding = 3
 
 label-urgent = %icon% %name%
 label-urgent-foreground = #000000
 label-urgent-background = #bd2c40
 label-urgent-underline = #9b0a20
-label-urgent-padding = 4
+label-urgent-padding = 3
 
 label-empty = %icon% %name%
 label-empty-foreground = #55
-label-empty-padding = 2
+label-empty-padding = 3
 
 [module/mpd]
 type = internal/mpd
