@@ -242,16 +242,17 @@
         "plugin:vim-visual-multi": "plugin:vim-visual-multi",
         "plugin:vimspector": "plugin:vimspector",
         "plugin:which-key.nvim": "plugin:which-key.nvim",
+        "plugin:yuck.vim": "plugin:yuck.vim",
         "runtime": "runtime",
         "snippets-java": "snippets-java",
         "snippets-shebang": "snippets-shebang"
       },
       "locked": {
-        "lastModified": 1657641330,
-        "narHash": "sha256-oy4hq3GfyMv9FjJo2+lzK3QGfqOSzQ13qJSeWuK2Jz0=",
+        "lastModified": 1657661197,
+        "narHash": "sha256-4H+afllncxiC0UoV7Fk2GUO73caBe6P3BHLy23wjMrs=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "1436f22a410e0ca2d6bfe21053671297e2ca0555",
+        "rev": "6fe55056a820aa68aa55f0fd1679ddd1f7f89b4a",
         "type": "github"
       },
       "original": {
@@ -1509,6 +1510,22 @@
       "original": {
         "owner": "folke",
         "repo": "which-key.nvim",
+        "type": "github"
+      }
+    },
+    "plugin:yuck.vim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1628507071,
+        "narHash": "sha256-lp7qJWkvelVfoLCyI0aAiajTC+0W1BzDhmtta7tnICE=",
+        "owner": "elkowar",
+        "repo": "yuck.vim",
+        "rev": "6dc3da77c53820c32648cf67cbdbdfb6994f4e08",
+        "type": "github"
+      },
+      "original": {
+        "owner": "elkowar",
+        "repo": "yuck.vim",
         "type": "github"
       }
     },
