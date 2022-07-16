@@ -50,6 +50,9 @@
       export __VK_LAYER_NV_optimus=NVIDIA_only
       exec "$@"
     '')
+    pkgs.cudatoolkit
+    # pkgs.cudaPackages.cuda-samples
+    pkgs.pciutils
     (pkgs.writeShellScriptBin "powerprofilesctl-cycle" ''
       case $(powerprofilesctl get) in
         power-saver)
