@@ -213,7 +213,7 @@
               inkscape
               gimp
               aseprite
-              blender
+              pkgs.unstable.blender
               krita
             # # Media
               vlc
@@ -386,7 +386,7 @@
               # emulation
               virt-manager
               # Wine
-                wineWowPackages.stable
+                wineWowPackages.full
                 bottles
           ];
           programs = {
