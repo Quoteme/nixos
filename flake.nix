@@ -213,7 +213,9 @@
               inkscape
               gimp
               aseprite
-              pkgs.unstable.blender
+              (pkgs.unstable.blender.override {
+                cudaSupport = true;
+              })
               krita
             # # Media
               vlc
