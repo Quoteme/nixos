@@ -274,4 +274,5 @@
     config = ./config/polybar;
     script = "polybar top &";
   };
+  home.stateVersion = "22.05";
 }
