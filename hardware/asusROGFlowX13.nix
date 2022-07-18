@@ -15,6 +15,17 @@
         wacom.enable = true;
     };
   };
+  # power management
+  systemd.services.batterThreshold = {
+    script = ''
+      echo 80 | tee /sys/class/power_supply/BAT0/charge_control_end_threshold
+    '';
+    wantedBy = [ "multi-user.target" ];
+    description = "Set the charge threshold to protect battery life";
+    serviceConfig = {
+      Restart = "on-failure";
+    };
+  };
   # `nixos-generate-config --show-hardware-config` doesn't detect mount options automatically,
    # so to enable compression, you must specify it and other mount options
    # in a persistent configuration
