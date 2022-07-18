@@ -226,6 +226,7 @@ myStartupHook = do
    spawnOnce "$(echo $(nix eval --raw nixos.polkit_gnome.outPath)/libexec/polkit-gnome-authentication-agent-1)"
    spawnOnce "xinput disable \"ThinkPad Extra Buttons\""
    spawnOnce "redshift"
+   spawnOnce "birdtray"
    spawnOnce "nitrogen --restore &"
    spawnOnce "autoscreenrotation.sh &"
    spawnOnce "dunst -conf /etc/nixos/dunstrc"

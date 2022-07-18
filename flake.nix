@@ -208,6 +208,7 @@
               discord
               transmission-gtk
               thunderbird
+              birdtray
             # # Drawing
               xournalpp
               inkscape
