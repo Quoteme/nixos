@@ -38,6 +38,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import XMonad.Layout.DraggingVisualizer
 import XMonad.Layout.ImageButtonDecoration
+import XMonad.Util.Hacks (windowedFullscreenFixEventHook)
 
 -- Options
 myTerminal                  = "st"
