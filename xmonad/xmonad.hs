@@ -25,9 +25,10 @@ import XMonad.Layout.Renamed
 import XMonad.Layout.BinarySpacePartition
 import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Layout.BorderResize (borderResize)
-import XMonad.Layout.DecorationMadness ( mirrorTallSimpleDecoResizable )
+import XMonad.Layout.DecorationMadness ( mirrorTallSimpleDecoResizable, shrinkText )
 import XMonad.Layout.Spiral (spiral)
 import XMonad.Layout.LayoutHints
+import XMonad.Layout.WindowSwitcherDecoration
 import Data.Maybe (isJust, fromJust)
 import Data.List (elemIndex)
 import System.Exit
@@ -35,6 +36,8 @@ import System.IO (hPutStrLn)
 import Graphics.X11.ExtraTypes.XF86
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
+import XMonad.Layout.DraggingVisualizer
+import XMonad.Layout.ImageButtonDecoration
 
 -- Options
 myTerminal                  = "st"
@@ -201,9 +204,14 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 myLayout = (avoidStruts . smartBorders) defaultLayouts
   where
     defaultLayouts =   myBSP
+                   ||| tabletmodeBSP
                    ||| Full
     -- TODO: add tabs to this layout
-    myBSP = renamed [Replace "myBSP"] (layoutHints (borderResize emptyBSP))
+    myBSP = renamed [Replace "myBSP"] 
+          $ hiddenWindows
+          $ (layoutHints (borderResize emptyBSP))
+    tabletmodeBSP = renamed [Replace "tabletmodeBSP"]
+                    (windowSwitcherDecorationWithImageButtons shrinkText defaultThemeWithImageButtons (draggingVisualizer myBSP))
 
 myManageHook = placeHook (withGaps (10,10,10,10) (smart (0.5,0.5)))
   <+> composeAll [
@@ -211,6 +219,7 @@ myManageHook = placeHook (withGaps (10,10,10,10) (smart (0.5,0.5)))
 
 myEventHook = focusOnMouseMove
             <+> hintsEventHook
+            <+> windowedFullscreenFixEventHook
             <+> serverModeEventHookF "XMONAD_COMMAND" defaultServerCommands
               where
                 defaultServerCommands "menu"        = windowMenu
