@@ -38,6 +38,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import XMonad.Layout.DraggingVisualizer
 import XMonad.Layout.ImageButtonDecoration
+import XMonad.Util.NamedActions (addDescrKeys, xMessage, addName, (^++^), subtitle)
 import XMonad.Util.Hacks (windowedFullscreenFixEventHook)
 
 -- Options
@@ -50,7 +51,7 @@ myWorkspaces                = ["1","2","3","4","5","6","7","8","9"]
 myNormalBorderColor         = "#161616"
 myFocusedBorderColor        = "#888888"
 
-myKeys config = mkKeymap config $
+myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   -- Code | Key
   -- M    | super key
   -- C    | control
@@ -59,91 +60,94 @@ myKeys config = mkKeymap config $
   -- M2   | num lock
   -- M3   | 
   -- M4   | super
-  [ ("M-<Return>"              , spawn $ terminal config)
-  , ("M-d"                     , spawn "rofi -show combi -show-icons")
-  , ("M-e"                     , spawn "rofimoji")
-  , ("M-S-w"                   , spawn "networkmanager_dmenu")
-  , ("M-S-q"                   , kill)
-  , ("M-<Space>"               , sendMessage NextLayout)
-  , ("M-S-<Space>"             , setLayout $ layoutHook config)
+  [ ("M-<Return>"              , addName "Spawn Terminal" $ spawn $ terminal config)
+  , ("M-d"                     , addName "Open program launcher" $ spawn "rofi -show combi -show-icons")
+  , ("M-e"                     , addName "Open emoji selector" $ spawn "rofimoji")
+  , ("M-S-w"                   , addName "Open network settings" $ spawn "networkmanager_dmenu")
+  , ("M-S-q"                   , addName "Kill window" $ kill)
+  , ("M-<Space>"               , addName "Layout: next" $ sendMessage NextLayout)
+  , ("M-S-<Space>"             , addName "Layout: default" $ setLayout $ layoutHook config)
   -- Rotational Focus Movement
-  , ("M-<Tab>"                 , windows W.focusDown)
-  , ("M-S-<Tab>"               , windows W.focusUp)
-  , ("M-C-<Tab>"               , windows W.swapDown)
-  , ("M-C-S-<Tab>"             , windows W.swapUp)
+  , ("M-<Tab>"                 , addName "WindowStack: rotate next" $ windows W.focusDown)
+  , ("M-S-<Tab>"               , addName "WindowStack: rotate previous" $ windows W.focusUp)
+  , ("M-C-<Tab>"               , addName "WindowStack: swap next" $ windows W.swapDown)
+  , ("M-C-S-<Tab>"             , addName "WindowStack: swap previous" $ windows W.swapUp)
   -- Directional Focus Movement
-  , ("M-h"                     , windowGo L False)
-  , ("M-j"                     , windowGo D False)
-  , ("M-k"                     , windowGo U False)
-  , ("M-l"                     , windowGo R False)
-  , ("M-<Left>"                , windowGo L False)
-  , ("M-<Down>"                , windowGo D False)
-  , ("M-<Up>"                  , windowGo U False)
-  , ("M-<Right>"               , windowGo R False)
-  , ("M-m"                     , windows W.focusMaster  )
+  , ("M-h"                     , addName "Focus: left" $ windowGo L False)
+  , ("M-j"                     , addName "Focus: down" $ windowGo D False)
+  , ("M-k"                     , addName "Focus: up" $ windowGo U False)
+  , ("M-l"                     , addName "Focus: right" $ windowGo R False)
+  , ("M-<Left>"                , addName "Focus: left" $ windowGo L False)
+  , ("M-<Down>"                , addName "Focus: down" $ windowGo D False)
+  , ("M-<Up>"                  , addName "Focus: up" $ windowGo U False)
+  , ("M-<Right>"               , addName "Focus: right" $ windowGo R False)
+  , ("M-m"                     , addName "Focus: master" $ windows W.focusMaster  )
   -- Directional Window Movement
-  , ("M-S-h"                   , windowSwap L False)
-  , ("M-S-j"                   , windowSwap D False)
-  , ("M-S-k"                   , windowSwap U False)
-  , ("M-S-l"                   , windowSwap R False)
-  , ("M-S-<Left>"              , windowSwap L False)
-  , ("M-S-<Down>"              , windowSwap D False)
-  , ("M-S-<Up>"                , windowSwap U False)
-  , ("M-S-<Right>"             , windowSwap R False)
-  , ("M-S-m"                   , windows W.swapMaster)
+  , ("M-S-h"                   , addName "Swap: left" $ windowSwap L False)
+  , ("M-S-j"                   , addName "Swap: down" $ windowSwap D False)
+  , ("M-S-k"                   , addName "Swap: up" $ windowSwap U False)
+  , ("M-S-l"                   , addName "Swap: right" $ windowSwap R False)
+  , ("M-S-<Left>"              , addName "Swap: left" $ windowSwap L False)
+  , ("M-S-<Down>"              , addName "Swap: down" $ windowSwap D False)
+  , ("M-S-<Up>"                , addName "Swap: up" $ windowSwap U False)
+  , ("M-S-<Right>"             , addName "Swap: right" $ windowSwap R False)
+  , ("M-S-m"                   , addName "Swap: master" $ windows W.swapMaster)
   -- Window resizing
-  , ("M-C-h"                   , sendMessage $ ExpandTowards L)
-  , ("M-C-j"                   , sendMessage $ ExpandTowards D)
-  , ("M-C-k"                   , sendMessage $ ExpandTowards U)
-  , ("M-C-l"                   , sendMessage $ ExpandTowards R)
-  , ("M-C-<Left>"              , sendMessage $ ExpandTowards L)
-  , ("M-C-<Down>"              , sendMessage $ ExpandTowards D)
-  , ("M-C-<Up>"                , sendMessage $ ExpandTowards U)
-  , ("M-C-<Right>"             , sendMessage $ ExpandTowards R)
-  , ("M-M1-h"                  , sendMessage $ ShrinkFrom L)
-  , ("M-M1-j"                  , sendMessage $ ShrinkFrom D)
-  , ("M-M1-k"                  , sendMessage $ ShrinkFrom U)
-  , ("M-M1-l"                  , sendMessage $ ShrinkFrom R)
-  , ("M-M1-<Left>"             , sendMessage $ ShrinkFrom L)
-  , ("M-M1-<Down>"             , sendMessage $ ShrinkFrom D)
-  , ("M-M1-<Up>"               , sendMessage $ ShrinkFrom U)
-  , ("M-M1-<Right>"            , sendMessage $ ShrinkFrom R)
+  , ("M-C-h"                   , addName "Expand: left" $ sendMessage $ ExpandTowards L)
+  , ("M-C-j"                   , addName "Expand: down" $ sendMessage $ ExpandTowards D)
+  , ("M-C-k"                   , addName "Expand: up" $ sendMessage $ ExpandTowards U)
+  , ("M-C-l"                   , addName "Expand: right" $ sendMessage $ ExpandTowards R)
+  , ("M-C-<Left>"              , addName "Expand: left" $ sendMessage $ ExpandTowards L)
+  , ("M-C-<Down>"              , addName "Expand: down" $ sendMessage $ ExpandTowards D)
+  , ("M-C-<Up>"                , addName "Expand: up" $ sendMessage $ ExpandTowards U)
+  , ("M-C-<Right>"             , addName "Expand: right" $ sendMessage $ ExpandTowards R)
+  , ("M-M1-h"                  , addName "Expand: left" $ sendMessage $ ShrinkFrom L)
+  , ("M-M1-j"                  , addName "Expand: down" $ sendMessage $ ShrinkFrom D)
+  , ("M-M1-k"                  , addName "Expand: up" $ sendMessage $ ShrinkFrom U)
+  , ("M-M1-l"                  , addName "Expand: right" $ sendMessage $ ShrinkFrom R)
+  , ("M-M1-<Left>"             , addName "Expand: left" $ sendMessage $ ShrinkFrom L)
+  , ("M-M1-<Down>"             , addName "Expand: down" $ sendMessage $ ShrinkFrom D)
+  , ("M-M1-<Up>"               , addName "Expand: up" $ sendMessage $ ShrinkFrom U)
+  , ("M-M1-<Right>"            , addName "Expand: right" $ sendMessage $ ShrinkFrom R)
   -- Splitting and moving
-  , ("M-S-C-j"                 , sendMessage $ SplitShift Prev)
-  , ("M-S-C-k"                 , sendMessage $ SplitShift Next)
+  , ("M-S-C-k"                 , addName "Split: next" $ sendMessage $ SplitShift Next)
+  , ("M-S-C-j"                 , addName "Split: previous" $ sendMessage $ SplitShift Prev)
   -- Rotations/Swappings
-  , ("M-r"                     , sendMessage Rotate)
-  , ("M-s"                     , sendMessage Swap)
-  , ("M-n"                     , sendMessage FocusParent)
-  , ("M-C-n"                   , sendMessage SelectNode)
-  , ("M-S-n"                   , sendMessage MoveNode)
-  , ("M-a"                     , sendMessage Balance)
-  , ("M-S-a"                   , sendMessage Equalize)
+  , ("M-r"                     , addName "BSP: rotate" $ sendMessage Rotate)
+  , ("M-s"                     , addName "BSP: swap" $ sendMessage Swap)
+  , ("M-n"                     , addName "BSP: focus parent" $ sendMessage FocusParent)
+  , ("M-C-n"                   , addName "BSP: select node" $ sendMessage SelectNode)
+  , ("M-S-n"                   , addName "BSP: move node" $ sendMessage MoveNode)
+  , ("M-a"                     , addName "BSP: balance" $ sendMessage Balance)
+  , ("M-S-a"                   , addName "BSP: equalize" $ sendMessage Equalize)
+  -- (Un-)Hiding
+  , ("M-<Backspace>"           , addName "Window: hide" $ withFocused hideWindow *> spawn "notify-send \"hidden a window\"")
+  , ("M-S-<Backspace>"         , addName "Window: unhide" $ popOldestHiddenWindow)
   -- Other stuff
-  , ("M-t"                     , withFocused $ windows . W.sink)
-  , ("M-,"                     , sendMessage (IncMasterN 1))
-  , ("M-."                     , sendMessage (IncMasterN (-1)))
-  , ("M-o"                     , windowMenu)
-  , ("M-p"                     , rescreen *> spawn "notify-send \"changed screen config\"") -- confirmed keybinding works
-  -- XMobar
-  , ("M-b"                     , sendMessage ToggleStruts)
+  , ("M-t"                     , addName "Window: unfloat" $ withFocused $ windows . W.sink)
+  , ("M-,"                     , addName "Master: increase" $ sendMessage (IncMasterN 1))
+  , ("M-."                     , addName "Master: decrease" $ sendMessage (IncMasterN (-1)))
+  , ("M-o"                     , addName "Window: menu" $ windowMenu)
+  , ("M-p"                     , addName "Screen: rescreen" $ rescreen *> spawn "notify-send \"changed screen config\"") -- confirmed keybinding works
+  -- Statusbar
+  , ("M-b"                     , addName "Statusbar: toggle" $ sendMessage ToggleStruts)
   -- Quitting
-  , ("M-<Delete>"           , io exitSuccess)
-  , ("M-S-<Delete>"         , restart "xmonad" True)
+  , ("M-<Delete>"              , addName "Xmonad: exit" $ io exitSuccess)
+  , ("M-S-<Delete>"            , addName "Xmonad: restart" $ restart "xmonad" True *> spawn "notify-send \"Xmonad: restarted\"")
   -- Function Keys
-  , ("<XF86MonBrightnessUp>"   , raiseMonBrigthness)
-  , ("<XF86MonBrightnessDown>" , lowerMonBrigthness)
-  , ("<XF86KbdBrightnessUp>"   , raiseKbdBrigthness)
-  , ("<XF86KbdBrightnessDown>" , lowerKbdBrigthness)
-  , ("<XF86AudioRaiseVolume>"  , spawn "pamixer --increase 5 && notify-send -a \"changeVolume\" -u low -i /etc/nixos/xmonad/icon/high-volume.png \"volume up\"")
-  , ("<XF86AudioLowerVolume>"  , spawn "pamixer --decrease 5 && notify-send -a \"changeVolume\" -u low -i /etc/nixos/xmonad/icon/volume-down.png \"volume down\"")
-  , ("<XF86AudioMicMute>"      , spawn "amixer set Capture toggle")
-  , ("<XF86AudioMute>"         , spawn "pamixer --toggle-mute")
-  , ("<XF86AudioNext>"         , spawn "playerctl next")
-  , ("<XF86AudioPrev>"         , spawn "playerctl previous")
-  , ("<XF86AudioPlay>"         , spawn "playerctl play-pause")
-  , ("<XF86Launch4>"           , spawn "powerprofilesctl-cycle")
-  ] ++
+  , ("<XF86MonBrightnessUp>"   , addName "Brightness: Monitor: raise" $ raiseMonBrigthness)
+  , ("<XF86MonBrightnessDown>" , addName "Brightness: Monitor: lower" $ lowerMonBrigthness)
+  , ("<XF86KbdBrightnessUp>"   , addName "Brightness: Keyboard: raise"$ raiseKbdBrigthness)
+  , ("<XF86KbdBrightnessDown>" , addName "Brightness: Keyboard: lower" $ lowerKbdBrigthness)
+  , ("<XF86AudioLowerVolume>"  , addName "Volume: raise" $ raiseAudio)
+  , ("<XF86AudioRaiseVolume>"  , addName "Volume: lower" $ lowerAudio)
+  , ("<XF86AudioMicMute>"      , addName "Microphone: toggle" $ spawn "amixer set Capture toggle")
+  , ("<XF86AudioMute>"         , addName "Volume: toggle" $ spawn "pamixer --toggle-mute")
+  , ("<XF86AudioNext>"         , addName "Media: next" $ spawn "playerctl next")
+  , ("<XF86AudioPrev>"         , addName "Media: previous" $ spawn "playerctl previous")
+  , ("<XF86AudioPlay>"         , addName "Media: pause" $ spawn "playerctl play-pause")
+  , ("<XF86Launch4>"           , addName "Power profile: cycle" $ spawn "powerprofilesctl-cycle")
+  ] ^++^
   [ (m ++ i, windows $ f j)
       | (i, j) <- zip (map show [1..9]) (workspaces config)
       , (m, f) <- [("M-", W.greedyView), ("M-S-", W.shift)]
@@ -161,6 +165,12 @@ myKeys config = mkKeymap config $
     raiseKbdBrigthness :: MonadIO m => m ()
     raiseKbdBrigthness =  spawn "brightnessctl --device=\"asus::kbd_backlight\" set 1+"
                        *> spawn "notify-send 'Brightness raised'"
+    lowerAudio :: MonadIO m => m ()
+    lowerAudio =  spawn "pamixer --increase 5"
+                       *> spawn "notify-send -a \"changeVolume\" -u low -i /etc/nixos/xmonad/icon/high-volume.png \"volume up\""
+    raiseAudio :: MonadIO m => m ()
+    raiseAudio =  spawn "pamixer --decrease 5"
+                       *> spawn "notify-send -a \"changeVolume\" -u low -i /etc/nixos/xmonad/icon/volume-down.png \"volume down\""
 
 myAdditionalKeys config = additionalKeys config
   [ ((0                 , xF86XK_TouchpadToggle ), disableTouchpad)
@@ -190,7 +200,7 @@ myNavigation2DConfig = def { layoutNavigation = [
     ("myBSP", hybridOf sideNavigation lineNavigation )
   ] }
 
-myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
+myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
     -- mod-button1, Set the window to floating mode and move by dragging
     [ ((modm, button1), \w -> focus w >> mouseMoveWindow w
                                        >> windows W.shiftMaster)
@@ -257,6 +267,7 @@ main = getDirectories >>= launch
         ( docks
         $ ewmh
         $ myAdditionalKeys
+        $ addDescrKeys ((myModMask, xK_F1), xMessage) myKeys
         $ withNavigation2DConfig myNavigation2DConfig
         $ def
           {
@@ -269,8 +280,7 @@ main = getDirectories >>= launch
               workspaces         = myWorkspaces,
               normalBorderColor  = myNormalBorderColor,
               focusedBorderColor = myFocusedBorderColor,
-            -- key bindings
-              keys               = myKeys,
+            -- mouse bindings
               mouseBindings      = myMouseBindings,
             -- hooks, layouts
               layoutHook         = myLayout,
