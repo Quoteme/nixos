@@ -40,6 +40,7 @@ import XMonad.Layout.DraggingVisualizer
 import XMonad.Layout.ImageButtonDecoration
 import XMonad.Util.NamedActions (addDescrKeys, xMessage, addName, (^++^), subtitle)
 import XMonad.Util.Hacks (windowedFullscreenFixEventHook)
+import XMonad.Layout.Hidden
 
 -- Options
 myTerminal                  = "st"
