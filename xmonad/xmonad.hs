@@ -1,3 +1,4 @@
+-- vim: foldmethod=manual
 --
 -- xmonad example config file.
 --
@@ -205,7 +206,8 @@ myAdditionalKeys config = additionalKeys config
                     *> spawn "notify-send 'touchpad disabled'"
 
 myNavigation2DConfig = def { layoutNavigation = [
-    ("myBSP", hybridOf sideNavigation lineNavigation )
+    ("myBSP", hybridOf sideNavigation lineNavigation ),
+    ("tabletmodeBSP", hybridOf sideNavigation lineNavigation )
   ] }
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
@@ -225,12 +227,17 @@ myLayout = (avoidStruts . smartBorders) defaultLayouts
     defaultLayouts =   myBSP
                    ||| tabletmodeBSP
                    ||| Full
+    myTheme :: Theme
+    myTheme = (defaultThemeWithImageButtons {
+      fontName = "xft:scientifica:pixelsize=11:antialias=false"
+    })
     -- TODO: add tabs to this layout
     myBSP = renamed [Replace "myBSP"] 
           $ hiddenWindows
           $ (layoutHints (borderResize emptyBSP))
     tabletmodeBSP = renamed [Replace "tabletmodeBSP"]
-                    (windowSwitcherDecorationWithImageButtons shrinkText defaultThemeWithImageButtons (draggingVisualizer myBSP))
+                    (windowSwitcherDecorationWithImageButtons shrinkText myTheme (draggingVisualizer myBSP))
+
 
 myManageHook = placeHook (withGaps (10,10,10,10) (smart (0.5,0.5)))
   <+> composeAll [
