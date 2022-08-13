@@ -61,7 +61,7 @@
       export __VK_LAYER_NV_optimus=NVIDIA_only
       exec "$@"
     '')
-    pkgs.cudatoolkit
+    # pkgs.cudatoolkit # TODO: Maybe add this again when there is more internet
     # pkgs.cudaPackages.cuda-samples
     pkgs.pciutils
     (pkgs.writeShellScriptBin "powerprofilesctl-cycle" ''
