@@ -270,7 +270,7 @@
               # Java
                 jdk
                 gradle
-                # jetbrains.idea-community
+                jetbrains.idea-community
               # C
                 valgrind
                 gcc
