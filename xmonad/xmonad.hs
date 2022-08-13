@@ -114,19 +114,19 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   , ("M-M1-<Up>"               , addName "Expand: up" $ sendMessage $ ShrinkFrom U)
   , ("M-M1-<Right>"            , addName "Expand: right" $ sendMessage $ ShrinkFrom R)
   -- Splitting and moving
-  , ("M-S-C-k"                 , addName "Split: next" $ sendMessage $ SplitShift Next)
+  , ("M-S-C-k"                 , addName "Split: next" $ sendMessage $ SplitShift Next )
   , ("M-S-C-j"                 , addName "Split: previous" $ sendMessage $ SplitShift Prev)
   -- Rotations/Swappings
-  , ("M-r"                     , addName "BSP: rotate" $ sendMessage Rotate)
-  , ("M-s"                     , addName "BSP: swap" $ sendMessage Swap)
-  , ("M-n"                     , addName "BSP: focus parent" $ sendMessage FocusParent)
+  , ("M-r"                     , addName "BSP: rotate" $ myUpdateFocus <> sendMessage Rotate)
+  , ("M-s"                     , addName "BSP: swap" $ myUpdateFocus <> sendMessage Swap)
+  , ("M-n"                     , addName "BSP: focus parent" $ myUpdateFocus <> sendMessage FocusParent)
   , ("M-C-n"                   , addName "BSP: select node" $ sendMessage SelectNode)
   , ("M-S-n"                   , addName "BSP: move node" $ sendMessage MoveNode)
   , ("M-a"                     , addName "BSP: balance" $ sendMessage Balance)
   , ("M-S-a"                   , addName "BSP: equalize" $ sendMessage Equalize)
   -- (Un-)Hiding
   , ("M-<Backspace>"           , addName "Window: hide" $ withFocused hideWindow *> spawn "notify-send \"hidden a window\"")
-  , ("M-S-<Backspace>"         , addName "Window: unhide" $ popOldestHiddenWindow)
+  , ("M-S-<Backspace>"         , addName "Window: unhide" $ popOldestHiddenWindow >> myUpdateFocus)
   -- Other stuff
   , ("M-t"                     , addName "Window: unfloat" $ withFocused $ windows . W.sink)
   , ("M-,"                     , addName "Master: increase" $ sendMessage (IncMasterN 1))
@@ -175,6 +175,7 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
     raiseAudio :: MonadIO m => m ()
     raiseAudio =  spawn "pamixer --decrease 5"
                        *> spawn "notify-send -a \"changeVolume\" -u low -i /etc/nixos/xmonad/icon/volume-down.png \"volume down\""
+    myUpdateFocus = updatePointer (0.5, 0.5) (0.1, 0.1)
 
 myAdditionalKeys config = additionalKeys config
   [ ((0                 , xF86XK_TouchpadToggle ), disableTouchpad)
@@ -245,6 +246,8 @@ myEventHook = focusOnMouseMove
                 defaultServerCommands "rotate"      = sendMessage Rotate
                 defaultServerCommands "layout-next" = sendMessage NextLayout
 
+-- myLogHook = updatePointer (0.5, 0.5) (0.1, 0.1)
+
 myStartupHook = do
    spawnOnce "sudo bluetooth off"
    spawnOnce "$(echo $(nix eval --raw nixos.polkit_gnome.outPath)/libexec/polkit-gnome-authentication-agent-1)"
@@ -291,4 +294,5 @@ main = getDirectories >>= launch
               manageHook         = myManageHook,
               handleEventHook    = myEventHook,
               startupHook        = myStartupHook
+              -- logHook            = myLogHook
           })
