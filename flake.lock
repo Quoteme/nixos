@@ -157,7 +157,6 @@
         "nixpkgs": "nixpkgs",
         "plugin:LuaSnip": "plugin:LuaSnip",
         "plugin:auto-session": "plugin:auto-session",
-        "plugin:barbar.nvim": "plugin:barbar.nvim",
         "plugin:cheatsheet.nvim": "plugin:cheatsheet.nvim",
         "plugin:cmp-buffer": "plugin:cmp-buffer",
         "plugin:cmp-emoji": "plugin:cmp-emoji",
@@ -175,6 +174,7 @@
         "plugin:focus.nvim": "plugin:focus.nvim",
         "plugin:fold-cycle.nvim": "plugin:fold-cycle.nvim",
         "plugin:friendly-snippets": "plugin:friendly-snippets",
+        "plugin:gesture.nvim": "plugin:gesture.nvim",
         "plugin:gitsigns.nvim": "plugin:gitsigns.nvim",
         "plugin:indent-blankline.nvim": "plugin:indent-blankline.nvim",
         "plugin:lsp_signature.nvim": "plugin:lsp_signature.nvim",
@@ -229,11 +229,11 @@
         "snippets-shebang": "snippets-shebang"
       },
       "locked": {
-        "lastModified": 1657661197,
-        "narHash": "sha256-4H+afllncxiC0UoV7Fk2GUO73caBe6P3BHLy23wjMrs=",
+        "lastModified": 1660424768,
+        "narHash": "sha256-ez9Ro4JEh5ADJ+AT4y4jKlc6StHO0xJq0dcHvvDHRvg=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "6fe55056a820aa68aa55f0fd1679ddd1f7f89b4a",
+        "rev": "c4ca8803b952465c702b84ebaadf27cbd690a8a5",
         "type": "github"
       },
       "original": {
@@ -345,11 +345,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1657815135,
-        "narHash": "sha256-+5Jby1ayRjtSgsM5IpRNeUgdcIutCKQWR6sypRtd1RE=",
+        "lastModified": 1660318005,
+        "narHash": "sha256-g9WCa9lVUmOV6dYRbEPjv/TLOR5hamjeCcKExVGS3OQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c06d5fa9c605d143b15cafdbbb61c7c95388d76e",
+        "rev": "5c211b47aeadcc178c5320afd4e74c7eed5c389f",
         "type": "github"
       },
       "original": {
@@ -403,22 +403,6 @@
       "original": {
         "owner": "rmagatti",
         "repo": "auto-session",
-        "type": "github"
-      }
-    },
-    "plugin:barbar.nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1655485086,
-        "narHash": "sha256-76KeWaVS6y5+YeXLujmTk+6gTnIZ/2gqmOyAhpWDENc=",
-        "owner": "romgrk",
-        "repo": "barbar.nvim",
-        "rev": "d7123f0368aa7fdd10f587176ad60aedcdfa44de",
-        "type": "github"
-      },
-      "original": {
-        "owner": "romgrk",
-        "repo": "barbar.nvim",
         "type": "github"
       }
     },
@@ -691,6 +675,22 @@
       "original": {
         "owner": "rafamadriz",
         "repo": "friendly-snippets",
+        "type": "github"
+      }
+    },
+    "plugin:gesture.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1659235264,
+        "narHash": "sha256-ZzJZBu5FHYXF9+Lw7xa1v/KC3Sr4ui/6C3QwB4xlemE=",
+        "owner": "notomo",
+        "repo": "gesture.nvim",
+        "rev": "1f79ae130789462674e476a1814bae2c79b26fff",
+        "type": "github"
+      },
+      "original": {
+        "owner": "notomo",
+        "repo": "gesture.nvim",
         "type": "github"
       }
     },
