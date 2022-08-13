@@ -48,8 +48,8 @@
           screenrotate = (pkgs.callPackage (pkgs.fetchFromGitHub {
             owner = "quoteme";
             repo = "screenrotate";
-            rev = "v1.6";
-            sha256 = "sha256-BwDJei2zAIP585A7h5JDaqSzH/QauoeYr2D2U5LygJM=";
+            rev = "v1.7.0";
+            sha256 = "sha256-q14Z+Ku7XGg+0WknoEN61adKyAjp43nR7h7cn0kIWrE=";
           }) {} );
           xmonadctl = (pkgs.callPackage (pkgs.fetchFromGitHub {
             owner = "quoteme";
