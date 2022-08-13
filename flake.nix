@@ -205,6 +205,7 @@
             packages = with pkgs; [
             # Internet
               google-chrome
+              microsoft-edge
               discord
               transmission-gtk
               thunderbird
