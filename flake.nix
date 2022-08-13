@@ -266,7 +266,6 @@
                   xmonad
                   xmonad-contrib
                   comonad
-                  containers_0_6_5_1
                 ]))
               # Java
                 jdk
