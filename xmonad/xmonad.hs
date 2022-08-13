@@ -41,6 +41,8 @@ import XMonad.Layout.ImageButtonDecoration
 import XMonad.Util.NamedActions (addDescrKeys, xMessage, addName, (^++^), subtitle)
 import XMonad.Util.Hacks (windowedFullscreenFixEventHook)
 import XMonad.Layout.Hidden
+import XMonad.Actions.UpdatePointer (updatePointer)
+import XMonad.Layout.Decoration (Theme (fontName))
 
 -- Options
 myTerminal                  = "st"
