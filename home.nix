@@ -94,8 +94,10 @@
     ^sep()
     Exit,^checkout(exit),system-shutdown
     ^tag(exit)
-    Suspend,systemctl -i suspend,system-log-out
     Reboot,systemctl -i reboot,system-reboot
+    Log-Out,xdotool super+del,system-log-out
+    Suspend,systemctl -i suspend,system-suspend
+    Hibernate,systemctl hibernate,system-suspend-hibernate
     Poweroff,systemctl -i poweroff,system-shutdown
   '';
   xdg.configFile."jgmenu/jgmenurc".text = ''
