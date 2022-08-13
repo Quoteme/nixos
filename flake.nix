@@ -297,6 +297,7 @@
               # UNI HHU ZEUG
                 # konferenzen
                   zoom-us
+                  teams
                   slack
                 # PROPORA
                   mob
