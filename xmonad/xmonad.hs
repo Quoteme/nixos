@@ -21,6 +21,7 @@ import XMonad.Hooks.ServerMode (serverModeEventHookF)
 import XMonad.Actions.Navigation2D
 import XMonad.Actions.UpdateFocus ( adjustEventInput, focusOnMouseMove )
 import XMonad.Actions.WindowMenu (windowMenu)
+import XMonad.Actions.EasyMotion (selectWindow)
 import XMonad.Layout.Renamed
 import XMonad.Layout.BinarySpacePartition
 import XMonad.Layout.NoBorders (smartBorders)
