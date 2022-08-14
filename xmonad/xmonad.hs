@@ -44,7 +44,7 @@ import XMonad.Util.NamedActions (addDescrKeys, xMessage, addName, (^++^), subtit
 import XMonad.Util.Hacks (windowedFullscreenFixEventHook)
 import XMonad.Layout.Hidden
 import XMonad.Actions.UpdatePointer (updatePointer)
-import XMonad.Layout.Decoration (Theme (fontName))
+import XMonad.Layout.Decoration (Theme (..))
 
 -- Options
 myTerminal                  = "st"
@@ -53,8 +53,8 @@ myClickJustFocuses          = True -- clicking to focus passes click to window?
 myBorderWidth               = 3
 myModMask                   = mod4Mask
 myWorkspaces                = ["1","2","3","4","5","6","7","8","9"]
-myNormalBorderColor         = "#161616"
-myFocusedBorderColor        = "#888888"
+myNormalBorderColor         = "#0c0c0c"
+myFocusedBorderColor        = "#161616"
 
 myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   -- Code | Key
@@ -229,12 +229,24 @@ myLayout = (avoidStruts . smartBorders) defaultLayouts
                    ||| Full
     myTheme :: Theme
     myTheme = (defaultThemeWithImageButtons {
-      fontName = "xft:scientifica:pixelsize=11:antialias=false"
+      activeColor         = "#161616",
+      inactiveColor       = "#0c0c0c",
+      urgentColor         = "#0c0c0c",
+      activeBorderColor   = "#161616",
+      inactiveBorderColor = "#0c0c0c",
+      urgentBorderColor   = "#0c0c0c",
+      activeBorderWidth   = 3,
+      inactiveBorderWidth = 3,
+      urgentBorderWidth   = 5,
+      activeTextColor     = "#fae73b",
+      inactiveTextColor   = "#d9d9d9",
+      urgentTextColor     = "#fa693b",
+      fontName            = "xft:scientifica:pixelsize=11:antialias=false"
     })
     -- TODO: add tabs to this layout
-    myBSP = renamed [Replace "myBSP"] 
+    myBSP = renamed [Replace "myBSP"]
           $ hiddenWindows
-          $ (layoutHints (borderResize emptyBSP))
+          $ layoutHints (borderResize emptyBSP)
     tabletmodeBSP = renamed [Replace "tabletmodeBSP"]
                     (windowSwitcherDecorationWithImageButtons shrinkText myTheme (draggingVisualizer myBSP))
 
