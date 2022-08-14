@@ -236,7 +236,7 @@
               devdocs-desktop
               # devdocs-desktop
               # math
-                sage
+                pkgs.unstable.sage
                 julia-bin
               # python
                 poetry
