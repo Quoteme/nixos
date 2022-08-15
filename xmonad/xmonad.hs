@@ -25,7 +25,7 @@ import XMonad.Actions.WindowMenu (windowMenu)
 import XMonad.Actions.EasyMotion (selectWindow)
 import XMonad.Layout.Renamed
 import XMonad.Layout.BinarySpacePartition
-import XMonad.Layout.NoBorders (smartBorders)
+import XMonad.Layout.NoBorders (smartBorders, noBorders)
 import XMonad.Layout.BorderResize (borderResize)
 import XMonad.Layout.DecorationMadness ( mirrorTallSimpleDecoResizable, shrinkText )
 import XMonad.Layout.Spiral (spiral)
@@ -54,7 +54,7 @@ myBorderWidth               = 3
 myModMask                   = mod4Mask
 myWorkspaces                = ["1","2","3","4","5","6","7","8","9"]
 myNormalBorderColor         = "#0c0c0c"
-myFocusedBorderColor        = "#161616"
+myFocusedBorderColor        = "#888888"
 
 myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   -- Code | Key
@@ -222,7 +222,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
 
-myLayout = (avoidStruts . smartBorders) defaultLayouts
+myLayout = avoidStruts defaultLayouts
   where
     defaultLayouts =   myBSP
                    ||| tabletmodeBSP
@@ -235,9 +235,9 @@ myLayout = (avoidStruts . smartBorders) defaultLayouts
       activeBorderColor   = "#161616",
       inactiveBorderColor = "#0c0c0c",
       urgentBorderColor   = "#0c0c0c",
-      activeBorderWidth   = 3,
-      inactiveBorderWidth = 3,
-      urgentBorderWidth   = 5,
+      activeBorderWidth   = 0,
+      inactiveBorderWidth = 0,
+      urgentBorderWidth   = 3,
       activeTextColor     = "#fae73b",
       inactiveTextColor   = "#d9d9d9",
       urgentTextColor     = "#fa693b",
@@ -246,9 +246,13 @@ myLayout = (avoidStruts . smartBorders) defaultLayouts
     -- TODO: add tabs to this layout
     myBSP = renamed [Replace "myBSP"]
           $ hiddenWindows
-          $ layoutHints (borderResize emptyBSP)
+          $ layoutHints
+          $ smartBorders
+          $ borderResize
+          emptyBSP
     tabletmodeBSP = renamed [Replace "tabletmodeBSP"]
-                    (windowSwitcherDecorationWithImageButtons shrinkText myTheme (draggingVisualizer myBSP))
+                  $ noBorders
+                  $ windowSwitcherDecorationWithImageButtons shrinkText myTheme (draggingVisualizer myBSP)
 
 
 myManageHook = placeHook (withGaps (10,10,10,10) (smart (0.5,0.5)))
