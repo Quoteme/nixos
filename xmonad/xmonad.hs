@@ -241,6 +241,7 @@ myLayout = avoidStruts defaultLayouts
       activeTextColor     = "#fae73b",
       inactiveTextColor   = "#d9d9d9",
       urgentTextColor     = "#fa693b",
+      decoHeight          = 30,
       fontName            = "xft:scientifica:pixelsize=11:antialias=false"
     })
     -- TODO: add tabs to this layout
