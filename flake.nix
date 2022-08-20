@@ -57,6 +57,11 @@
             rev = "v1.0";
             sha256 = "1bjf3wnxsghfb64jji53m88vpin916yqlg3j0r83kz9k79vqzqxd";
           }) {} );
+          myGHCPackages = (hpkgs: with hpkgs; [
+            xmonad
+            xmonad-contrib
+            xmonad-extras
+          ]);
         in
         {
           imports = [
@@ -131,11 +136,7 @@
                   xmonad = {
                     enable = true;
                     enableContribAndExtras = true;
-                    extraPackages = hpkgs: with hpkgs; [
-                      xmonad
-                      xmonad-contrib
-                      xmonad-extras
-                    ];
+                    extraPackages = myGHCPackages;
                     config = ./xmonad/xmonad.hs;
                   };
                   bspwm = {
@@ -261,12 +262,7 @@
                 texlive.combined.scheme-full
                 tex-match
               # Haskell
-                (haskellPackages.ghcWithPackages (hpkgs: with hpkgs; [
-                  base
-                  xmonad
-                  xmonad-contrib
-                  comonad
-                ]))
+                (haskellPackages.ghcWithPackages myGHCPackages)
               # Java
                 jdk
                 gradle
