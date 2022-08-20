@@ -171,7 +171,9 @@
         "plugin:copilot-cmp": "plugin:copilot-cmp",
         "plugin:copilot.lua": "plugin:copilot.lua",
         "plugin:copilot.vim": "plugin:copilot.vim",
+        "plugin:dartlang-snippets": "plugin:dartlang-snippets",
         "plugin:delimitMate": "plugin:delimitMate",
+        "plugin:flutter-tools.nvim": "plugin:flutter-tools.nvim",
         "plugin:focus.nvim": "plugin:focus.nvim",
         "plugin:fold-cycle.nvim": "plugin:fold-cycle.nvim",
         "plugin:friendly-snippets": "plugin:friendly-snippets",
@@ -205,10 +207,12 @@
         "plugin:tabular": "plugin:tabular",
         "plugin:telescope.nvim": "plugin:telescope.nvim",
         "plugin:todo-comments.nvim": "plugin:todo-comments.nvim",
+        "plugin:trouble.nvim": "plugin:trouble.nvim",
         "plugin:twilight.nvim": "plugin:twilight.nvim",
         "plugin:vim-commentary": "plugin:vim-commentary",
         "plugin:vim-dispatch": "plugin:vim-dispatch",
         "plugin:vim-dispatch-neovim": "plugin:vim-dispatch-neovim",
+        "plugin:vim-flutter": "plugin:vim-flutter",
         "plugin:vim-jack-in": "plugin:vim-jack-in",
         "plugin:vim-matchup": "plugin:vim-matchup",
         "plugin:vim-nix": "plugin:vim-nix",
@@ -230,11 +234,11 @@
         "snippets-shebang": "snippets-shebang"
       },
       "locked": {
-        "lastModified": 1660425006,
-        "narHash": "sha256-F1lAbvrvkB19Ch/82yCmJcMdx3tHeqB7ZIR7T5+4neQ=",
+        "lastModified": 1660993473,
+        "narHash": "sha256-zlD64gqgL+2aPzBz+YQjXfyHmtb7vS0eKjssdwC73jQ=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "8aa12090db67b55233cffbef9b73be1d114285f9",
+        "rev": "532d7e087b8a64a6a2e816ba562bc4ee8ce87963",
         "type": "github"
       },
       "original": {
@@ -631,6 +635,22 @@
         "type": "github"
       }
     },
+    "plugin:dartlang-snippets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1629479636,
+        "narHash": "sha256-mKJim252LXgJUOk9E/3+D+92pPAaG5RrZ/6flfDq8gU=",
+        "owner": "natebosch",
+        "repo": "dartlang-snippets",
+        "rev": "6ec48e1693ff9576e53dcbf358b32c70d1828ba8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "natebosch",
+        "repo": "dartlang-snippets",
+        "type": "github"
+      }
+    },
     "plugin:delimitMate": {
       "flake": false,
       "locked": {
@@ -644,6 +664,22 @@
       "original": {
         "owner": "Raimondi",
         "repo": "delimitMate",
+        "type": "github"
+      }
+    },
+    "plugin:flutter-tools.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1660673020,
+        "narHash": "sha256-SahmJbXXrFBq0uHoBWV+6dhA1sX8GTSbc6ncHUyNMFI=",
+        "owner": "akinsho",
+        "repo": "flutter-tools.nvim",
+        "rev": "78551498310e25055ec26d0f8dec2b5297043676",
+        "type": "github"
+      },
+      "original": {
+        "owner": "akinsho",
+        "repo": "flutter-tools.nvim",
         "type": "github"
       }
     },
@@ -1098,11 +1134,11 @@
     "plugin:pretty-fold.nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1651369514,
-        "narHash": "sha256-GhPSqkCHToZazJv8hDNGfhN8NZyRvplNv0ZKNEnC7FU=",
+        "lastModified": 1658330126,
+        "narHash": "sha256-PQPZw0qXwMtpVE4uSxR3xUvkHE9iG4T+ZwgV6H9pUjo=",
         "owner": "anuvyklack",
         "repo": "pretty-fold.nvim",
-        "rev": "e6385d62eec67fdc8a21700b42a701d0d6fb8b32",
+        "rev": "a7d8b424abe0eedf50116c460fbe6dfd5783b1d5",
         "type": "github"
       },
       "original": {
@@ -1175,6 +1211,22 @@
         "type": "github"
       }
     },
+    "plugin:trouble.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1652074521,
+        "narHash": "sha256-YfhujgR+EGtvBVAk7VSIWudyUIXVv+LQVPBV9FMuRKk=",
+        "owner": "folke",
+        "repo": "trouble.nvim",
+        "rev": "da61737d860ddc12f78e638152834487eabf0ee5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "trouble.nvim",
+        "type": "github"
+      }
+    },
     "plugin:twilight.nvim": {
       "flake": false,
       "locked": {
@@ -1236,6 +1288,22 @@
       "original": {
         "owner": "radenling",
         "repo": "vim-dispatch-neovim",
+        "type": "github"
+      }
+    },
+    "plugin:vim-flutter": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1654339473,
+        "narHash": "sha256-HGviAM1AvyucJzHJxshGFJxHzCEBmj68+KxFqnxJZ/s=",
+        "owner": "thosakwe",
+        "repo": "vim-flutter",
+        "rev": "32b9fa0126a4a4994c296c69ad038dc78aa83d68",
+        "type": "github"
+      },
+      "original": {
+        "owner": "thosakwe",
+        "repo": "vim-flutter",
         "type": "github"
       }
     },
@@ -1535,7 +1603,7 @@
       "flake": false,
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-bOw+yGdzhaKL9J5jx3Vf50yNNLvTUYyJXhiupmXfJ3A=",
+        "narHash": "sha256-eK60ZAbFv2NadledrtzgwzbLISQLL0RYTtYzfe4wWwg=",
         "path": "./runtime/",
         "type": "path"
       },
