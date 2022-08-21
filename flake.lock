@@ -176,6 +176,7 @@
         "plugin:flutter-tools.nvim": "plugin:flutter-tools.nvim",
         "plugin:focus.nvim": "plugin:focus.nvim",
         "plugin:fold-cycle.nvim": "plugin:fold-cycle.nvim",
+        "plugin:fold-preview.nvim": "plugin:fold-preview.nvim",
         "plugin:friendly-snippets": "plugin:friendly-snippets",
         "plugin:gesture.nvim": "plugin:gesture.nvim",
         "plugin:gitsigns.nvim": "plugin:gitsigns.nvim",
@@ -234,11 +235,11 @@
         "snippets-shebang": "snippets-shebang"
       },
       "locked": {
-        "lastModified": 1660993473,
-        "narHash": "sha256-zlD64gqgL+2aPzBz+YQjXfyHmtb7vS0eKjssdwC73jQ=",
+        "lastModified": 1661068510,
+        "narHash": "sha256-MUmwcoLvugIGfP/H8DfiPXBWE4tGjrBlYF8YM0X5y3s=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "532d7e087b8a64a6a2e816ba562bc4ee8ce87963",
+        "rev": "47abd4868303fdbc809936581f0601291b1e8a3c",
         "type": "github"
       },
       "original": {
@@ -712,6 +713,22 @@
       "original": {
         "owner": "jghauser",
         "repo": "fold-cycle.nvim",
+        "type": "github"
+      }
+    },
+    "plugin:fold-preview.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1660061136,
+        "narHash": "sha256-kMjm+q9Jm+YRrdxZp7yGsQSB0BmJzBrowbJzl6LHkqs=",
+        "owner": "anuvyklack",
+        "repo": "fold-preview.nvim",
+        "rev": "33c24101dc1b2be29876ee3354de98bb8bd14cb0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anuvyklack",
+        "repo": "fold-preview.nvim",
         "type": "github"
       }
     },
