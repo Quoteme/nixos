@@ -173,7 +173,6 @@
         "plugin:copilot.vim": "plugin:copilot.vim",
         "plugin:dartlang-snippets": "plugin:dartlang-snippets",
         "plugin:delimitMate": "plugin:delimitMate",
-        "plugin:flutter-tools.nvim": "plugin:flutter-tools.nvim",
         "plugin:focus.nvim": "plugin:focus.nvim",
         "plugin:fold-cycle.nvim": "plugin:fold-cycle.nvim",
         "plugin:fold-preview.nvim": "plugin:fold-preview.nvim",
@@ -213,7 +212,6 @@
         "plugin:vim-commentary": "plugin:vim-commentary",
         "plugin:vim-dispatch": "plugin:vim-dispatch",
         "plugin:vim-dispatch-neovim": "plugin:vim-dispatch-neovim",
-        "plugin:vim-flutter": "plugin:vim-flutter",
         "plugin:vim-jack-in": "plugin:vim-jack-in",
         "plugin:vim-matchup": "plugin:vim-matchup",
         "plugin:vim-nix": "plugin:vim-nix",
@@ -235,11 +233,11 @@
         "snippets-shebang": "snippets-shebang"
       },
       "locked": {
-        "lastModified": 1661068510,
-        "narHash": "sha256-MUmwcoLvugIGfP/H8DfiPXBWE4tGjrBlYF8YM0X5y3s=",
+        "lastModified": 1661071517,
+        "narHash": "sha256-0T1OhPEMfBGRMEBQ73UME2oN7z+LSB8SqRvFSKqs3ao=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "47abd4868303fdbc809936581f0601291b1e8a3c",
+        "rev": "32556973f10325117c71eb13e56d1fd127d6f67c",
         "type": "github"
       },
       "original": {
@@ -351,11 +349,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1657815135,
-        "narHash": "sha256-+5Jby1ayRjtSgsM5IpRNeUgdcIutCKQWR6sypRtd1RE=",
+        "lastModified": 1661427965,
+        "narHash": "sha256-LJeSDbiebN0/eRt9vyOm+Bxljdsq5ZdalmmTk9Xpp30=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c06d5fa9c605d143b15cafdbbb61c7c95388d76e",
+        "rev": "058de3818577db19d1965c21e2479916a3eaaf95",
         "type": "github"
       },
       "original": {
@@ -665,22 +663,6 @@
       "original": {
         "owner": "Raimondi",
         "repo": "delimitMate",
-        "type": "github"
-      }
-    },
-    "plugin:flutter-tools.nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1660673020,
-        "narHash": "sha256-SahmJbXXrFBq0uHoBWV+6dhA1sX8GTSbc6ncHUyNMFI=",
-        "owner": "akinsho",
-        "repo": "flutter-tools.nvim",
-        "rev": "78551498310e25055ec26d0f8dec2b5297043676",
-        "type": "github"
-      },
-      "original": {
-        "owner": "akinsho",
-        "repo": "flutter-tools.nvim",
         "type": "github"
       }
     },
@@ -1305,22 +1287,6 @@
       "original": {
         "owner": "radenling",
         "repo": "vim-dispatch-neovim",
-        "type": "github"
-      }
-    },
-    "plugin:vim-flutter": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1654339473,
-        "narHash": "sha256-HGviAM1AvyucJzHJxshGFJxHzCEBmj68+KxFqnxJZ/s=",
-        "owner": "thosakwe",
-        "repo": "vim-flutter",
-        "rev": "32b9fa0126a4a4994c296c69ad038dc78aa83d68",
-        "type": "github"
-      },
-      "original": {
-        "owner": "thosakwe",
-        "repo": "vim-flutter",
         "type": "github"
       }
     },
