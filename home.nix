@@ -127,12 +127,13 @@
     sep_height           = 5
     font                 = Ubuntu 12px
     icon_size            = 24
-    color_menu_bg        = #2b303b 100
-    color_norm_bg        = #2b303b 0
-    color_norm_fg        = #8fa1b3 100
-    color_sel_bg         = #8fa1b3 60
-    color_sel_fg         = #2b303b 100
-    color_sep_fg         = #8fa1b3 40
+    color_menu_bg        = #0b0f10 100
+    color_norm_bg        = #0b0f10 0
+    color_norm_fg        = #c5c8c9 100
+    color_menu_border	   = #0b0f10 100
+    color_sel_bg         = #192022 100
+    color_sel_fg         = #c5c8c9 100
+    color_sep_fg         = #192022 400
   '';
   xdg.configFile."touchegg/touchegg.conf".text = ''
   <touchégg>
