@@ -197,7 +197,18 @@
           users.users.luca = {
             initialHashedPassword = "$6$W62LDzjtggxhhOiJ$KKM1yuHOrEr3Mz4MSstUGBtlpEF2AHR8bAzFeaqo2l.rrka/phKnzbKbyM5HX955d9et2NnV2fOr9LnDCgB5M1";
             isNormalUser = true;
-            extraGroups = [ "networkmanager" "storage" "video" "bluetooth" "adbusers" "wheel" "kvm" "libvirtd" "docker"];
+            extraGroups = [
+              "networkmanager"
+              "storage"
+              "video"
+              "bluetooth"
+              "adbusers"
+              "wheel"
+              "kvm"
+              "libvirtd"
+              "libvirt"
+              "docker"
+            ];
             shell = pkgs.zsh;
             packages = with pkgs; [
             # Internet
@@ -475,10 +486,21 @@
           virtualisation = {
             libvirtd = {
               enable = true;
-              qemu.package = pkgs.qemu_full;
+              qemu.package = (pkgs.qemu_full.override {
+                gtkSupport = true;
+                sdlSupport = true;
+                virglSupport = true;
+                openGLSupport = true;
+              });
+            };
+            virtualbox.host = {
+              enable = true;
+              package = pkgs.virtualboxWithExtpack;
+              enableExtensionPack = true;
             };
             docker.enable = true;
           };
+          users.extraGroups.vboxusers.members = [ "luca" ];
           security = {
             polkit.enable = true;
             sudo.extraRules = [
