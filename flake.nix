@@ -58,6 +58,16 @@
             xmonad-contrib
             xmonad-extras
           ]);
+          myIDEA = pkgs.symlinkJoin {
+            name = "myIDEA";
+            paths = with pkgs; [
+              jetbrains.idea-community
+              # instead use:
+              # https://discourse.nixos.org/t/flutter-run-d-linux-build-process-failed/16552/3
+              flutter
+              dart
+            ];
+          };
         in
         {
           imports = [
@@ -235,7 +245,7 @@
               deadbeef
               sxiv
             # Gaming
-              minecraft
+              pkgs.unstable.minecraft
             # Productivity
               libreoffice
             # Programming
@@ -244,7 +254,7 @@
               devdocs-desktop
               # devdocs-desktop
               # math
-                pkgs.unstable.sage
+                # pkgs.unstable.sage # FIX: This currently is insecure and takes too long to compile :(
                 julia-bin
               # python
                 poetry
@@ -273,7 +283,7 @@
               # Java
                 jdk
                 gradle
-                jetbrains.idea-community
+                myIDEA
               # C
                 valgrind
                 gcc
@@ -316,6 +326,7 @@
             openmoji-color
             fira-code
             hasklig
+            material-icons
             # nerdfonts
             (nerdfonts.override { fonts = [ "FiraCode" ]; })
           ];
@@ -370,6 +381,7 @@
               openvpn
               networkmanager-openvpn
             # File manager
+              cinnamon.nemo
               pcmanfm-qt
                 # Thumbnailers
                 ffmpegthumbnailer
@@ -390,11 +402,16 @@
               batsignal
               polkit_gnome
               gnome.gnome-clocks
-              # emulation
+            # emulation
               virt-manager
+              virglrenderer
               # Wine
                 wineWowPackages.full
                 bottles
+            # FIX: This should be under home.nix
+              pkgs.unstable.eww
+              # Hier werde ich wohl lieber ganz selber ein eigenes
+              # UI Programm in Flutter schreiben.
           ];
           programs = {
             # https://github.com/Mic92/nix-ld
