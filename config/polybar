@@ -18,8 +18,8 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
-background-alt = #444
+background = #0c0c0c
+background-alt = #161616
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #555
@@ -55,7 +55,7 @@ font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
-modules-left = startmenu xworkspaces
+modules-left = startmenu windowmenu keyboardToggle xworkspaces
 modules-center = 
 modules-right = lightdec backlight lightinc volumedec pulseaudio volumeinc memory cpu battery temperature date
 
@@ -334,7 +334,7 @@ ramp-foreground = ${colors.foreground-alt}
 
 [module/startmenu]
 type = custom/text
-content = NixOS
+content = ""
 content-padding = 2
 content-background = ${colors.background-alt}
 click-left = jgmenu_run
@@ -343,12 +343,21 @@ click-right = jgmenu_run
 
 [module/windowmenu]
 type = custom/text
-content = WM
+content = ""
 content-padding = 2
 content-background = ${colors.background-alt}
 click-left = sleep 0.4; xmonadctl "menu"
 click-middle = sleep 0.4; xmonadctl "menu"
 click-right = sleep 0.4; xmonadctl "menu"
+
+[module/keyboardToggle]
+type = custom/text
+content = ""
+content-padding = 2
+content-background = ${colors.background-alt}
+click-left = onboard
+click-middle = onboard
+click-right = onboard
 
 [module/lightinc]
 type = custom/text
@@ -383,7 +392,7 @@ screenchange-reload = true
 ;pseudo-transparency = false
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+margin-top = 2
+margin-bottom = 2
 
 ; vim: ft=dosini
