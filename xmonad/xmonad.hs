@@ -45,6 +45,7 @@ import XMonad.Util.Hacks (windowedFullscreenFixEventHook)
 import XMonad.Layout.Hidden
 import XMonad.Actions.UpdatePointer (updatePointer)
 import XMonad.Layout.Decoration (Theme (..))
+import XMonad.Actions.OnScreen (viewOnScreen)
 
 -- Options
 myTerminal                  = "st"
@@ -156,9 +157,13 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   , ("<XF86AudioPlay>"         , addName "Media: pause" $ spawn "playerctl play-pause")
   , ("<XF86Launch4>"           , addName "Power profile: cycle" $ spawn "powerprofilesctl-cycle")
   ] ^++^
-  [ (m ++ i, windows $ f j)
-      | (i, j) <- zip (map show [1..9]) (workspaces config)
-      , (m, f) <- [("M-", W.greedyView), ("M-S-", W.shift)]
+  [ (modifier ++ nth_key, windows $ function nth_workspace)
+      | (nth_key,  nth_workspace) <- zip (map show [1..9]) (workspaces config)
+      , (modifier, function)      <- [ ("M-", W.greedyView)
+                                     , ("M-S-", W.shift)
+                                     , ("M-C-", viewOnScreen 0)
+                                     , ("M-M1-", viewOnScreen 1)
+                                     ]
   ]
   where
     lowerMonBrigthness :: MonadIO m => m ()
