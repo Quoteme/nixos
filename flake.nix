@@ -10,6 +10,8 @@
     neovim-luca.url = "github:Quoteme/neovim-luca";
     nix-autobahn.url = "github:Lassulus/nix-autobahn";
     nix-alien.url = "github:thiagokokada/nix-alien";
+    screenrotate.url = "github:Quoteme/screenrotate";
+    screenrotate.inputs.nixpkgs.follows = "nixpkgs";
   };
   
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@attrs:
@@ -44,12 +46,6 @@
             repo = "xmobar-luca";
             rev = "v1.3";
             sha256 = "07n05zz8fbddkp35ppay1pzw3rgk56ivph7c5hysp26ivris1mim";
-          }) {} );
-          screenrotate = (pkgs.callPackage (pkgs.fetchFromGitHub {
-            owner = "quoteme";
-            repo = "screenrotate";
-            rev = "v1.7.0";
-            sha256 = "sha256-q14Z+Ku7XGg+0WknoEN61adKyAjp43nR7h7cn0kIWrE=";
           }) {} );
           xmonadctl = (pkgs.callPackage (pkgs.fetchFromGitHub {
             owner = "quoteme";
@@ -379,7 +375,7 @@
               dunst
               #xmobar-luca
               xmonadctl
-              screenrotate
+              inputs.screenrotate.defaultPackage.x86_64-linux
               batsignal
               polkit_gnome
               gnome.gnome-clocks
