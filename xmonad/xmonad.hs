@@ -68,6 +68,7 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   -- M4   | super
   [ ("M-<Return>"              , addName "Spawn Terminal" $ spawn $ terminal config)
   , ("M-d"                     , addName "Open program launcher" $ spawn "rofi -show combi -show-icons")
+  , ("M-w"                     , addName "Search open window" $ spawn "rofi -show window")
   , ("M-e"                     , addName "Open emoji selector" $ spawn "rofimoji")
   , ("M-S-w"                   , addName "Open network settings" $ spawn "networkmanager_dmenu")
   , ("M-S-q"                   , addName "Kill window" $ kill)
