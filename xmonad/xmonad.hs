@@ -299,6 +299,7 @@ myStartupHook = do
    spawnOnce "export SSH_AUTH_SOCK"
    spawnOnce "batsignal -b"
    spawnOnce "touchegg &"
+   spawnOnce "xinput --map-to-output 'ELAN9008:00 04F3:2C82' eDP"
    -- spawnOnce "udiskie"
    setWMName "LG3D"
    adjustEventInput
