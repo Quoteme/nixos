@@ -1619,11 +1619,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1661805064,
-        "narHash": "sha256-1A/ANqxAxXk0t0bAUv+GhiR7/E5nLAdb4S59MBJXJdU=",
+        "lastModified": 1662164965,
+        "narHash": "sha256-QMNZ8C8ZJaa+6NHKjD73GFHCOIGDCsMnTg2VfL92iYk=",
         "owner": "Quoteme",
         "repo": "screenrotate",
-        "rev": "fedebeefba43ac43f4af19b1d55c8df7e1bcd766",
+        "rev": "1f61a6b7edd072f5c02fda839775a8da8a9dfe54",
         "type": "github"
       },
       "original": {
