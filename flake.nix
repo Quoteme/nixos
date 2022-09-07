@@ -12,6 +12,8 @@
     nix-alien.url = "github:thiagokokada/nix-alien";
     screenrotate.url = "github:Quoteme/screenrotate";
     screenrotate.inputs.nixpkgs.follows = "nixpkgs";
+    rescreenapp.url = "github:Quoteme/rescreenapp";
+    rescreenapp.inputs.nixpkgs.follows = "nixpkgs";
   };
   
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@attrs:
@@ -400,6 +402,7 @@
               #xmobar-luca
               xmonadctl
               inputs.screenrotate.defaultPackage.x86_64-linux
+              inputs.rescreenapp.defaultPackage.x86_64-linux
               batsignal
               polkit_gnome
               gnome.gnome-clocks

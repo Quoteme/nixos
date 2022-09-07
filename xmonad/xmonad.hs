@@ -297,6 +297,7 @@ myEventHook = focusOnMouseMove
 myRandrChangeHook :: X ()
 myRandrChangeHook = do
   spawn "notify-send 'Rescreen' 'screen changed'"
+  spawn "rescreenapp"
   spawn "xinput --map-to-output 'ELAN9008:00 04F3:2C82' eDP"
 
 
