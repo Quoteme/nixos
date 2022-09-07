@@ -186,6 +186,7 @@
         "plugin:copilot-cmp": "plugin:copilot-cmp",
         "plugin:copilot.lua": "plugin:copilot.lua",
         "plugin:copilot.vim": "plugin:copilot.vim",
+        "plugin:dart-vim-plugin": "plugin:dart-vim-plugin",
         "plugin:dartlang-snippets": "plugin:dartlang-snippets",
         "plugin:delimitMate": "plugin:delimitMate",
         "plugin:focus.nvim": "plugin:focus.nvim",
@@ -248,11 +249,11 @@
         "snippets-shebang": "snippets-shebang"
       },
       "locked": {
-        "lastModified": 1662548105,
-        "narHash": "sha256-jzFQFh9yRzhOIpQQvOsfCLjDbL2sKvDh2Rh1RzPxGwQ=",
+        "lastModified": 1662548853,
+        "narHash": "sha256-EuJpd3Va4y2047fByTnNIdgZIfL3FOWJgDdxov1ehcs=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "06d527d6cec23af78469836e73fb350b118be15c",
+        "rev": "2d24b84c0853d13dbbf4708a8483a4bfe965ae29",
         "type": "github"
       },
       "original": {
@@ -646,6 +647,22 @@
       "original": {
         "owner": "github",
         "repo": "copilot.vim",
+        "type": "github"
+      }
+    },
+    "plugin:dart-vim-plugin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1653333307,
+        "narHash": "sha256-NkmOlwVxObva/ka6xT54oYqIUSD2A9rZ9aMq5seOKHY=",
+        "owner": "dart-lang",
+        "repo": "dart-vim-plugin",
+        "rev": "81e50e80329e5eac2c115f45585b1838a614d07a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dart-lang",
+        "repo": "dart-vim-plugin",
         "type": "github"
       }
     },
