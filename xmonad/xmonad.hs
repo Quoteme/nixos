@@ -7,6 +7,7 @@
 --
 -- Normally, you'd only override those defaults you care about.
 --
+-- TODO: use `libinput debug-events` (maybe some other more performant program?) to detect touchscreen gestures
 
 import XMonad
 import XMonad.Util.SpawnOnce
@@ -141,7 +142,6 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   , ("M-,"                     , addName "Master: increase" $ sendMessage (IncMasterN 1))
   , ("M-."                     , addName "Master: decrease" $ sendMessage (IncMasterN (-1)))
   , ("M-o"                     , addName "Window: menu" $ windowMenu)
-  , ("M-p"                     , addName "Screen: rescreen" $ rescreen *> spawn "notify-send \"changed screen config\"") -- confirmed keybinding works
   -- Statusbar
   , ("M-b"                     , addName "Statusbar: toggle" $ sendMessage ToggleStruts)
   -- Quitting
@@ -287,6 +287,13 @@ myEventHook = focusOnMouseMove
                 defaultServerCommands "rotate"      = sendMessage Rotate
                 defaultServerCommands "layout-next" = sendMessage NextLayout
 
+
+myRandrChangeHook :: X ()
+myRandrChangeHook = do
+  spawn "notify-send 'Rescreen' 'screen changed'"
+  spawn "xinput --map-to-output 'ELAN9008:00 04F3:2C82' eDP"
+
+
 -- myLogHook = updatePointer (0.5, 0.5) (0.1, 0.1)
 
 myStartupHook = do
@@ -307,7 +314,6 @@ myStartupHook = do
    spawnOnce "export SSH_AUTH_SOCK"
    spawnOnce "batsignal -b"
    spawnOnce "touchegg &"
-   spawnOnce "xinput --map-to-output 'ELAN9008:00 04F3:2C82' eDP"
    -- spawnOnce "udiskie"
    setWMName "LG3D"
    adjustEventInput
@@ -318,6 +324,7 @@ main = getDirectories >>= launch
         $ myAdditionalKeys
         $ addDescrKeys ((myModMask, xK_F1), xMessage) myKeys
         $ withNavigation2DConfig myNavigation2DConfig
+        $ rescreenHook def{randrChangeHook = myRandrChangeHook}
         $ def
           {
             -- simple stuff
