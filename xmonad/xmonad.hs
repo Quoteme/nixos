@@ -278,7 +278,9 @@ myEventHook = focusOnMouseMove
             <+> hintsEventHook
             <+> windowedFullscreenFixEventHook
             <+> serverModeEventHookF "XMONAD_COMMAND" defaultServerCommands
+            <+> serverModeEventHookF "LAYOUT" layoutServerCommands
               where
+                defaultServerCommands :: String -> X ()
                 defaultServerCommands "menu"          = windowMenu
                 defaultServerCommands "swap-up"       = windowSwap U False
                 defaultServerCommands "swap-down"     = windowSwap D False
@@ -288,6 +290,8 @@ myEventHook = focusOnMouseMove
                 defaultServerCommands "layout-next"   = sendMessage NextLayout
                 defaultServerCommands "layout-tablet" = sendMessage $ JumpToLayout "tabletmodeBSP"
                 defaultServerCommands "layout-normal" = sendMessage $ JumpToLayout "myBSP"
+                layoutServerCommands :: String -> X ()
+                layoutServerCommands layout = sendMessage $ JumpToLayout layout
 
 
 myRandrChangeHook :: X ()
