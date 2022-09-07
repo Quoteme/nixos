@@ -46,6 +46,9 @@ import XMonad.Layout.Hidden
 import XMonad.Actions.UpdatePointer (updatePointer)
 import XMonad.Layout.Decoration (Theme (..))
 import XMonad.Actions.OnScreen (viewOnScreen)
+import XMonad.Actions.DynamicWorkspaces (appendWorkspacePrompt, removeEmptyWorkspace, selectWorkspace)
+import XMonad.Prompt (amberXPConfig)
+import XMonad.Hooks.Rescreen
 
 -- Options
 myTerminal                  = "st"
@@ -195,6 +198,11 @@ myAdditionalKeys config = additionalKeys config
   , ((0                 , xF86XK_TaskPane       ), spawn "screenrotation.sh swap")
   -- , ((0                 , xF86XK_ScreenSaver    ), spawn "xdotool key super+s")
   -- , ((0                 , xF86XK_Launch1        ), spawn "xdotool key super+r")
+  -- Workspaces
+-- selectWindow def >>= (`whenJust` windows . W.focusWindow) >> myUpdateFocus
+  , ((myModMask                 , xK_numbersign       ), selectWorkspace amberXPConfig)
+  , ((myModMask                 , xK_plus       ), appendWorkspacePrompt amberXPConfig)
+  , ((myModMask                 , xK_minus       ), removeEmptyWorkspace)
   ]
   -- mod-{y,x,c}, Switch to physical/Xinerama screens 1, 2, or 3
   -- mod-shift-{y,x,c}, Move client to screen 1, 2, or 3
