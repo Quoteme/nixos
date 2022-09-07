@@ -279,13 +279,15 @@ myEventHook = focusOnMouseMove
             <+> windowedFullscreenFixEventHook
             <+> serverModeEventHookF "XMONAD_COMMAND" defaultServerCommands
               where
-                defaultServerCommands "menu"        = windowMenu
-                defaultServerCommands "swap-up"     = windowSwap U False
-                defaultServerCommands "swap-down"   = windowSwap D False
-                defaultServerCommands "swap-left"   = windowSwap L False
-                defaultServerCommands "swap-right"  = windowSwap R False
-                defaultServerCommands "rotate"      = sendMessage Rotate
-                defaultServerCommands "layout-next" = sendMessage NextLayout
+                defaultServerCommands "menu"          = windowMenu
+                defaultServerCommands "swap-up"       = windowSwap U False
+                defaultServerCommands "swap-down"     = windowSwap D False
+                defaultServerCommands "swap-left"     = windowSwap L False
+                defaultServerCommands "swap-right"    = windowSwap R False
+                defaultServerCommands "rotate"        = sendMessage Rotate
+                defaultServerCommands "layout-next"   = sendMessage NextLayout
+                defaultServerCommands "layout-tablet" = sendMessage $ JumpToLayout "tabletmodeBSP"
+                defaultServerCommands "layout-normal" = sendMessage $ JumpToLayout "myBSP"
 
 
 myRandrChangeHook :: X ()
