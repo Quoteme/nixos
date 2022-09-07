@@ -38,6 +38,12 @@
     enable = true;
     enableZshIntegration = true;
   };
+  programs.bash = {
+    enable = true;
+    bashrcExtra = ''
+      set -o vi
+    '';
+  };
   programs.mpv = {
     enable = true;
     config = {
