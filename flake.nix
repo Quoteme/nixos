@@ -218,6 +218,7 @@
               "libvirtd"
               "libvirt"
               "docker"
+              "input"
             ];
             shell = pkgs.zsh;
             packages = with pkgs; [
