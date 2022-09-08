@@ -181,10 +181,10 @@
             picom.enable = true;
             redshift.enable = true;
             # Lock screen
-            physlock = {
-              enable = true;
-              lockMessage = "Lulca\'s Laptop";
-            };
+            # physlock = {
+            #   enable = true;
+            #   lockMessage = "Lulca\'s Laptop";
+            # };
           };
           # make qt apps look like gtk
           # https://nixos.org/manual/nixos/stable/index.html#sec-x11-gtk-and-qt-themes
@@ -406,6 +406,7 @@
               batsignal
               polkit_gnome
               gnome.gnome-clocks
+              lightlocker
             # emulation
               virt-manager
               virglrenderer

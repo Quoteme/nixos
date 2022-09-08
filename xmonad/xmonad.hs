@@ -304,6 +304,7 @@ myRandrChangeHook = do
 -- myLogHook = updatePointer (0.5, 0.5) (0.1, 0.1)
 
 myStartupHook = do
+   spawnOnce "light-locker --lock-on-lid"
    spawnOnce "sudo bluetooth off"
    spawnOnce "$(echo $(nix eval --raw nixos.polkit_gnome.outPath)/libexec/polkit-gnome-authentication-agent-1)"
    spawnOnce "xinput disable \"ThinkPad Extra Buttons\""
