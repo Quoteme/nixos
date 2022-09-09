@@ -57,7 +57,10 @@
           }) {} );
           myGHCPackages = (hpkgs: with hpkgs; [
             xmonad
-            xmonad-contrib
+            (xmonad-contrib.overrideAttrs (prev: {
+              dontPatch = false;
+              patches = ./patches/0001-add-parameter-to-borderresize.patch;
+            }))
             xmonad-extras
           ]);
           myIDEA = pkgs.symlinkJoin {
