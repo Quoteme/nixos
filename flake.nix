@@ -136,7 +136,17 @@
                 updateDbusEnvironment = true;
               # Display Manager
                 displayManager = {
-                  lightdm.enable = true;
+                  lightdm = {
+                    enable = true;
+                    greeters.gtk = {
+                      theme.package = pkgs.mojave-gtk-theme;
+                      theme.name = "Mojave-Dark";
+                      iconTheme.name ="Papirus";
+                      iconTheme.package = pkgs.papirus-icon-theme;
+                      indicators = [ "~host" "~spacer" "~clock" "~spacer" "~session" "~language" "~a11y" "~power" ];
+                      extraConfig = "keyboard=onboard";
+                    };
+                  };
                   defaultSession = "none+xmonad";
                 };
               # Window managers / Desktop managers
