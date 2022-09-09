@@ -312,7 +312,7 @@ myStartupHook = do
    spawnOnce "birdtray"
    spawnOnce "nitrogen --restore &"
    spawnOnce "autoscreenrotation.sh &"
-   spawnOnce "dunst -conf /etc/nixos/dunstrc"
+   spawnOnce "dunst -conf /etc/nixos/config/dunstrc"
    spawnOnce "polybar top"
    -- spawnOnce "onboard ; xdotool key 199 ; xdotool key 200"
    spawnOnce "nm-applet"
