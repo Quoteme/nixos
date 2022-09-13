@@ -94,8 +94,8 @@
   '';
   xdg.configFile."jgmenu/prepend.csv".text = ''
     Keyboard,onboard,onboard
-    Screenshot,maim -su | xclip -selection clipboard -t image/png,
-    toggle screen rot.,toggleautoscreenrotation.sh,
+    Screenshot,maim -su | xclip -selection clipboard -t image/png,accessories-screenshot-symbolic
+    toggle screen rot.,toggleautoscreenrotation.sh,rotation-allowed-symbolic
     ^sep()
   '';
   xdg.configFile."jgmenu/append.csv".text = ''
