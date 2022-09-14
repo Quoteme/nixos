@@ -206,16 +206,18 @@ ramp-signal-foreground = ${colors.foreground-alt}
 type = internal/date
 interval = 10
 
-date =" %Y-%m-%d"
-
+date =""
 time = %H:%M
+
+date-alt = "%d-%m-%Y (KW %W)"
+time-alt = %H:%M
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
 ;%date% 
-label = %time%
+label = %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
