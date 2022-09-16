@@ -271,7 +271,7 @@
                 julia-bin
               # python
                 poetry
-                ((pkgs.unstable.python310.withPackages(ps : with ps; [
+                ((pkgs.python310.withPackages(ps : with ps; [
                   ipython
                   jupyterlab
                   sympy
