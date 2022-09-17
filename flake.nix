@@ -13,7 +13,6 @@
     screenrotate.url = "github:Quoteme/screenrotate";
     screenrotate.inputs.nixpkgs.follows = "nixpkgs";
     rescreenapp.url = "github:Quoteme/rescreenapp";
-    rescreenapp.inputs.nixpkgs.follows = "nixpkgs";
   };
   
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@attrs:
@@ -59,6 +58,7 @@
             xmonad
             xmonad-contrib
             xmonad-extras
+            text-format-simple
           ]);
           myIDEA = pkgs.symlinkJoin {
             name = "myIDEA";
@@ -241,6 +241,8 @@
               transmission-gtk
               thunderbird
               birdtray
+            # Privacy
+              veracrypt
             # # Drawing
               xournalpp
               inkscape
@@ -274,6 +276,7 @@
                 ((pkgs.python310.withPackages(ps : with ps; [
                   ipython
                   jupyterlab
+                  pandas
                   sympy
                   numpy
                   scipy
