@@ -1,15 +1,18 @@
--- vim: foldmethod=manual
---
--- xmonad example config file.
---
--- A template showing all available configuration hooks,
--- and how to override the defaults in your own xmonad.hs conf file.
---
--- Normally, you'd only override those defaults you care about.
+-- vim: fdm=marker tabstop=2 shiftwidth=2 expandtab
 --
 -- TODO: use `libinput debug-events` (maybe some other more performant program?) to detect touchscreen gestures
 
+-- Language overrides
+-- {{{
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE ViewPatterns #-}
+-- }}}
+
+-- Imports
+-- {{{
 import XMonad
+import XMonad.Prelude
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig
@@ -19,7 +22,6 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.Place (placeHook, withGaps, smart)
 import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Hooks.ServerMode (serverModeEventHookF)
--- import XMonad.Hooks.Rescreen
 import XMonad.Actions.Navigation2D
 import XMonad.Actions.UpdateFocus ( adjustEventInput, focusOnMouseMove )
 import XMonad.Actions.WindowMenu (windowMenu)
@@ -34,24 +36,32 @@ import XMonad.Layout.LayoutHints
 import XMonad.Layout.WindowSwitcherDecoration
 import Data.Maybe (isJust, fromJust)
 import Data.List (elemIndex)
+import Data.List.NonEmpty (NonEmpty(..), nonEmpty)
 import System.Exit
 import System.IO (hPutStrLn)
 import Graphics.X11.ExtraTypes.XF86
-import qualified XMonad.StackSet as W
+import qualified XMonad.StackSet as S
 import qualified Data.Map        as M
+import qualified XMonad.Util.ExtensibleState as XS
 import XMonad.Layout.DraggingVisualizer
 import XMonad.Layout.ImageButtonDecoration
 import XMonad.Util.NamedActions (addDescrKeys, xMessage, addName, (^++^), subtitle)
 import XMonad.Util.Hacks (windowedFullscreenFixEventHook)
 import XMonad.Layout.Hidden
 import XMonad.Actions.UpdatePointer (updatePointer)
-import XMonad.Layout.Decoration (Theme (..))
+import XMonad.Layout.Decoration
 import XMonad.Actions.OnScreen (viewOnScreen)
 import XMonad.Actions.DynamicWorkspaces (appendWorkspacePrompt, removeEmptyWorkspace, selectWorkspace)
 import XMonad.Prompt (amberXPConfig)
 import XMonad.Hooks.Rescreen
+import XMonad.Layout.Magnifier (magnifier)
+import XMonad.Layout.DecorationAddons (handleScreenCrossing)
+import Control.Monad (unless)
+import Text.Format (format)
+-- }}}
 
 -- Options
+-- {{{
 myTerminal                  = "st"
 myFocusFollowsMouse         = True
 myClickJustFocuses          = True -- clicking to focus passes click to window?
@@ -60,8 +70,30 @@ myModMask                   = mod4Mask
 myWorkspaces                = ["1","2","3","4","5","6","7","8","9"]
 myNormalBorderColor         = "#0c0c0c"
 myFocusedBorderColor        = "#888888"
+myTheme :: Theme
+myTheme = (defaultThemeWithImageButtons {
+  activeColor         = "#161616",
+  inactiveColor       = "#0c0c0c",
+  urgentColor         = "#0c0c0c",
+  activeBorderColor   = "#161616",
+  inactiveBorderColor = "#0c0c0c",
+  urgentBorderColor   = "#0c0c0c",
+  activeBorderWidth   = 0,
+  inactiveBorderWidth = 0,
+  urgentBorderWidth   = 3,
+  activeTextColor     = "#fae73b",
+  inactiveTextColor   = "#d9d9d9",
+  urgentTextColor     = "#fa693b",
+  decoHeight          = 30,
+  fontName            = "xft:scientifica:pixelsize=11:antialias=false"
+})
+-- }}}
 
+-- My own keybindings
+-- {{{
 myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
+  -- Legend on how to use modifiers
+  -- {{{
   -- Code | Key
   -- M    | super key
   -- C    | control
@@ -70,6 +102,9 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   -- M2   | num lock
   -- M3   | 
   -- M4   | super
+  -- }}}
+  -- 🚀 Launch Programs
+  -- {{{
   [ ("M-<Return>"              , addName "Spawn Terminal" $ spawn $ terminal config)
   , ("M-d"                     , addName "Open program launcher" $ spawn "rofi -show combi -show-icons")
   , ("M-w"                     , addName "Search open window" $ spawn "rofi -show window")
@@ -79,15 +114,21 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   , ("M-S-q"                   , addName "Kill window" $ kill)
   , ("M-<Space>"               , addName "Layout: next" $ sendMessage NextLayout)
   , ("M-S-<Space>"             , addName "Layout: default" $ setLayout $ layoutHook config)
-  -- Rotational Focus Movement
-  , ("M-<Tab>"                 , addName "WindowStack: rotate next" $ windows W.focusDown   >> myUpdateFocus)
-  , ("M-S-<Tab>"               , addName "WindowStack: rotate previous" $ windows W.focusUp >> myUpdateFocus)
-  , ("M-C-<Tab>"               , addName "WindowStack: swap next" $ windows W.swapDown      >> myUpdateFocus)
-  , ("M-C-S-<Tab>"             , addName "WindowStack: swap previous" $ windows W.swapUp    >> myUpdateFocus)
-  -- Easymotion
-  , ("M-f"                     , addName "Easymotion: focus" $ selectWindow def >>= (`whenJust` windows . W.focusWindow) >> myUpdateFocus)
+  -- }}}
+  -- 🔄 Rotational Focus Movement
+  -- {{{
+  , ("M-<Tab>"                 , addName "WindowStack: rotate next" $ windows S.focusDown   >> myUpdateFocus)
+  , ("M-S-<Tab>"               , addName "WindowStack: rotate previous" $ windows S.focusUp >> myUpdateFocus)
+  , ("M-C-<Tab>"               , addName "WindowStack: swap next" $ windows S.swapDown      >> myUpdateFocus)
+  , ("M-C-S-<Tab>"             , addName "WindowStack: swap previous" $ windows S.swapUp    >> myUpdateFocus)
+  -- }}}
+  -- 🔎 Easymotion
+  -- {{{
+  , ("M-f"                     , addName "Easymotion: focus" $ selectWindow def >>= (`whenJust` windows . S.focusWindow) >> myUpdateFocus)
   , ("M-C-f"                   , addName "Easymotion: kill" $ selectWindow def >>= (`whenJust` killWindow))
-  -- Directional Focus Movement
+  -- }}}
+  -- 🏃 Directional Focus Movement
+  -- {{{
   , ("M-h"                     , addName "Focus: left"   $ windowGo L False      >> myUpdateFocus)
   , ("M-j"                     , addName "Focus: down"   $ windowGo D False      >> myUpdateFocus)
   , ("M-k"                     , addName "Focus: up"     $ windowGo U False      >> myUpdateFocus)
@@ -96,8 +137,10 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   , ("M-<Down>"                , addName "Focus: down"   $ windowGo D False      >> myUpdateFocus)
   , ("M-<Up>"                  , addName "Focus: up"     $ windowGo U False      >> myUpdateFocus)
   , ("M-<Right>"               , addName "Focus: right"  $ windowGo R False      >> myUpdateFocus)
-  , ("M-m"                     , addName "Focus: master" $ windows W.focusMaster >> myUpdateFocus)
-  -- Directional Window Movement
+  , ("M-m"                     , addName "Focus: master" $ windows S.focusMaster >> myUpdateFocus)
+  -- }}}
+  -- 🔀 Directional Window Movement
+  -- {{{
   , ("M-S-h"                   , addName "Swap: left"   $ windowSwap L False   >> myUpdateFocus)
   , ("M-S-j"                   , addName "Swap: down"   $ windowSwap D False   >> myUpdateFocus)
   , ("M-S-k"                   , addName "Swap: up"     $ windowSwap U False   >> myUpdateFocus)
@@ -106,8 +149,10 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   , ("M-S-<Down>"              , addName "Swap: down"   $ windowSwap D False   >> myUpdateFocus)
   , ("M-S-<Up>"                , addName "Swap: up"     $ windowSwap U False   >> myUpdateFocus)
   , ("M-S-<Right>"             , addName "Swap: right"  $ windowSwap R False   >> myUpdateFocus)
-  , ("M-S-m"                   , addName "Swap: master" $ windows W.swapMaster >> myUpdateFocus)
+  , ("M-S-m"                   , addName "Swap: master" $ windows S.swapMaster >> myUpdateFocus)
+  -- }}}
   -- Window resizing
+  -- {{{
   , ("M-C-h"                   , addName "Expand: left" $ sendMessage $ ExpandTowards L)
   , ("M-C-j"                   , addName "Expand: down" $ sendMessage $ ExpandTowards D)
   , ("M-C-k"                   , addName "Expand: up" $ sendMessage $ ExpandTowards U)
@@ -124,10 +169,14 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   , ("M-M1-<Down>"             , addName "Expand: down" $ sendMessage $ ShrinkFrom D)
   , ("M-M1-<Up>"               , addName "Expand: up" $ sendMessage $ ShrinkFrom U)
   , ("M-M1-<Right>"            , addName "Expand: right" $ sendMessage $ ShrinkFrom R)
+  -- }}}
   -- Splitting and moving
+  -- {{{
   , ("M-S-C-k"                 , addName "Split: next" $ sendMessage $ SplitShift Next )
   , ("M-S-C-j"                 , addName "Split: previous" $ sendMessage $ SplitShift Prev)
+  -- }}}
   -- Rotations/Swappings
+  -- {{{
   , ("M-r"                     , addName "BSP: rotate" $ myUpdateFocus <> sendMessage Rotate)
   , ("M-s"                     , addName "BSP: swap" $ myUpdateFocus <> sendMessage Swap)
   , ("M-n"                     , addName "BSP: focus parent" $ myUpdateFocus <> sendMessage FocusParent)
@@ -135,20 +184,27 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   , ("M-S-n"                   , addName "BSP: move node" $ sendMessage MoveNode)
   , ("M-a"                     , addName "BSP: balance" $ sendMessage Balance)
   , ("M-S-a"                   , addName "BSP: equalize" $ sendMessage Equalize)
+  -- }}}
   -- (Un-)Hiding
+  -- {{{
   , ("M-<Backspace>"           , addName "Window: hide" $ withFocused hideWindow *> spawn "notify-send \"hidden a window\"")
   , ("M-S-<Backspace>"         , addName "Window: unhide" $ popOldestHiddenWindow >> myUpdateFocus)
+  -- }}}
   -- Other stuff
-  , ("M-t"                     , addName "Window: unfloat" $ withFocused $ windows . W.sink)
+  -- {{{
+  , ("M-b"                     , addName "Statusbar: toggle" $ sendMessage ToggleStruts)
+  , ("M-t"                     , addName "Window: unfloat" $ withFocused $ windows . S.sink)
   , ("M-,"                     , addName "Master: increase" $ sendMessage (IncMasterN 1))
   , ("M-."                     , addName "Master: decrease" $ sendMessage (IncMasterN (-1)))
   , ("M-o"                     , addName "Window: menu" $ windowMenu)
-  -- Statusbar
-  , ("M-b"                     , addName "Statusbar: toggle" $ sendMessage ToggleStruts)
+  -- }}}
   -- Quitting
+  -- {{{
   , ("M-<Delete>"              , addName "Xmonad: exit" $ io exitSuccess)
   , ("M-S-<Delete>"            , addName "Xmonad: restart" $ restart "xmonad" True *> spawn "notify-send \"Xmonad: restarted\"")
+  -- }}}
   -- Function Keys
+  -- {{{
   , ("<XF86MonBrightnessUp>"   , addName "Brightness: Monitor: raise" $ raiseMonBrigthness)
   , ("<XF86MonBrightnessDown>" , addName "Brightness: Monitor: lower" $ lowerMonBrigthness)
   , ("<XF86KbdBrightnessUp>"   , addName "Brightness: Keyboard: raise"$ raiseKbdBrigthness)
@@ -161,16 +217,22 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   , ("<XF86AudioPrev>"         , addName "Media: previous" $ spawn "playerctl previous")
   , ("<XF86AudioPlay>"         , addName "Media: pause" $ spawn "playerctl play-pause")
   , ("<XF86Launch4>"           , addName "Power profile: cycle" $ spawn "powerprofilesctl-cycle")
+  -- }}}
+  -- Workspace keys
+  -- {{{
   ] ^++^
   [ (modifier ++ nth_key, windows $ function nth_workspace)
       | (nth_key,  nth_workspace) <- zip (map show [1..9]) (workspaces config)
-      , (modifier, function)      <- [ ("M-", W.greedyView)
-                                     , ("M-S-", W.shift)
+      , (modifier, function)      <- [ ("M-", S.greedyView)
+                                     , ("M-S-", S.shift)
                                      , ("M-C-", viewOnScreen 0)
                                      , ("M-M1-", viewOnScreen 1)
                                      ]
   ]
+  -- }}}
   where
+    -- Helper functions
+    -- {{{
     lowerMonBrigthness :: MonadIO m => m ()
     lowerMonBrigthness =  spawn "brightnessctl set 5%-"
                        *> spawn "notify-send 'Brightness lowered'"
@@ -190,7 +252,11 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
     raiseAudio =  spawn "pamixer --decrease 5"
                        *> spawn "notify-send -a \"changeVolume\" -u low -i /etc/nixos/xmonad/icon/volume-down.png \"volume down\""
     myUpdateFocus = updatePointer (0.5, 0.5) (0.1, 0.1)
+  -- }}}
+-- }}}
 
+-- My additional keybindings
+-- {{{
 myAdditionalKeys config = additionalKeys config
   [ ((0                 , xF86XK_TouchpadToggle ), disableTouchpad)
   , ((0                 , xF86XK_TouchpadOn     ), enableTouchpad)
@@ -200,7 +266,7 @@ myAdditionalKeys config = additionalKeys config
   -- , ((0                 , xF86XK_ScreenSaver    ), spawn "xdotool key super+s")
   -- , ((0                 , xF86XK_Launch1        ), spawn "xdotool key super+r")
   -- Workspaces
--- selectWindow def >>= (`whenJust` windows . W.focusWindow) >> myUpdateFocus
+-- selectWindow def >>= (`whenJust` windows . S.focusWindow) >> myUpdateFocus
   , ((myModMask                 , xK_numbersign       ), selectWorkspace amberXPConfig)
   , ((myModMask                 , xK_plus       ), appendWorkspacePrompt amberXPConfig)
   , ((myModMask                 , xK_minus       ), removeEmptyWorkspace)
@@ -209,7 +275,7 @@ myAdditionalKeys config = additionalKeys config
   -- mod-shift-{y,x,c}, Move client to screen 1, 2, or 3
   -- [((m, key), screenWorkspace sc >>= flip whenJust (windows . f))
   --     | (key, sc) <- zip [xK_y, xK_x, xK_c] [0..]
-  --     , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+  --     , (f, m) <- [(S.view, 0), (S.shift, shiftMask)]]
   where
     enableTouchpad :: MonadIO m => m ()
     enableTouchpad =  spawn "xinput --enable \"ELAN1201:00 04F3:3098 Touchpad\""
@@ -219,46 +285,39 @@ myAdditionalKeys config = additionalKeys config
     disableTouchpad =  spawn "xinput --disable \"ELAN1201:00 04F3:3098 Touchpad\""
                     *> spawn "xinput --disable \"AT Translated Set 2 keyboard\""
                     *> spawn "notify-send 'touchpad disabled'"
+-- }}}
 
+-- Navigation2DConfig
+-- {{{
 myNavigation2DConfig = def { layoutNavigation = [
     ("myBSP", hybridOf sideNavigation lineNavigation ),
     ("tabletmodeBSP", hybridOf sideNavigation lineNavigation )
   ] }
+-- }}}
 
+-- Mouse bindings
+-- {{{
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
     -- mod-button1, Set the window to floating mode and move by dragging
     [ ((modm, button1), \w -> focus w >> mouseMoveWindow w
-                                       >> windows W.shiftMaster)
+                                       >> windows S.shiftMaster)
     -- mod-button2, Raise the window to the top of the stack
-    , ((modm, button2), \w -> focus w >> windows W.shiftMaster)
+    , ((modm, button2), \w -> focus w >> windows S.shiftMaster)
     -- mod-button3, Set the window to floating mode and resize by dragging
     , ((modm, button3), \w -> focus w >> mouseResizeWindow w
-                                       >> windows W.shiftMaster)
+                                       >> windows S.shiftMaster)
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
+-- }}}
 
-myLayout = avoidStruts defaultLayouts
+-- My Layouts
+-- {{{
+myLayout = avoidStruts
+         $   myBSP
+         ||| tabletmodeBSP
+         -- ||| myOwnLayout
+         ||| Full
   where
-    defaultLayouts =   myBSP
-                   ||| tabletmodeBSP
-                   ||| Full
-    myTheme :: Theme
-    myTheme = (defaultThemeWithImageButtons {
-      activeColor         = "#161616",
-      inactiveColor       = "#0c0c0c",
-      urgentColor         = "#0c0c0c",
-      activeBorderColor   = "#161616",
-      inactiveBorderColor = "#0c0c0c",
-      urgentBorderColor   = "#0c0c0c",
-      activeBorderWidth   = 0,
-      inactiveBorderWidth = 0,
-      urgentBorderWidth   = 3,
-      activeTextColor     = "#fae73b",
-      inactiveTextColor   = "#d9d9d9",
-      urgentTextColor     = "#fa693b",
-      decoHeight          = 30,
-      fontName            = "xft:scientifica:pixelsize=11:antialias=false"
-    })
     -- TODO: add tabs to this layout
     myBSP = renamed [Replace "myBSP"]
           $ hiddenWindows
@@ -269,12 +328,66 @@ myLayout = avoidStruts defaultLayouts
     tabletmodeBSP = renamed [Replace "tabletmodeBSP"]
                   $ noBorders
                   $ windowSwitcherDecorationWithImageButtons shrinkText myTheme (draggingVisualizer myBSP)
+    myOwnLayout = renamed [Replace "myOwnLayout"]
+                $ extendedWindowSwitcherDecoration shrinkText myTheme (draggingVisualizer myBSP)
+-- My own extended version of windowSwitcherDecoration
+-- for example, draggina a window to the right edge of the screen should
+-- move it to the next workspace
+-- {{{
+data ExtendedWindowSwitcherDecoration a = EWSD deriving (Show, Read)
+instance Eq a => DecorationStyle ExtendedWindowSwitcherDecoration a where
+  describeDeco _ = "ExtendedWindowSwitcherDecoration"
+  decorationCatchClicksHook EWSD mainw dFl dFr = return False
+  decorationWhileDraggingHook _ ex ey (mainw, r) x y = do
+    let rect = Rectangle (x - (fi ex - rect_x r))
+                         (y - (fi ey - rect_y r))
+                         (rect_width  r)
+                         (rect_height r)
+    when (x<10) $
+      spawn $ format "notify-send 'xmonad internal' 'dragging at x: {0} y: {1}'" [show x, show y]
+    sendMessage $ DraggingWindow mainw rect
+  decorationAfterDraggingHook _ (mainw, r) decoWin = do
+    focus mainw
+    hasCrossed <- handleScreenCrossing mainw decoWin
+    unless hasCrossed $ do
+      sendMessage DraggingStopped
+      performWindowSwitching mainw
+    where 
+      performWindowSwitching :: Window -> X ()
+      performWindowSwitching win =
+          withDisplay $ \d -> do
+             root <- asks theRoot
+             (_, _, selWin, rx, ry, wx, wy, _) <- io $ queryPointer d root
+             spawn "notify-send 'xmonad internal' 'window switched'"
+             ws <- gets windowset
+             let allWindows = S.index ws
+             -- do a little double check to be sure
+             when ((win `elem` allWindows) && (selWin `elem` allWindows)) $ do
+                      let allWindowsSwitched = map (switchEntries win selWin) allWindows
+                      -- let (ls, v) = break (win ==) allWindowsSwitched
+                      let (ls,  t : rs) = break (win ==) allWindowsSwitched
+                      let newStack = S.Stack t (reverse ls) rs
+                      windows $ S.modify' $ const newStack
+          where
+              switchEntries a b x
+                  | x == a    = b
+                  | x == b    = a
+                  | otherwise = x
 
+extendedWindowSwitcherDecoration :: (Eq a, Shrinker s) => s -> Theme -> l a -> ModifiedLayout (Decoration ExtendedWindowSwitcherDecoration s) l a
+extendedWindowSwitcherDecoration s c = decoration s c EWSD
+-- }}}
+-- }}}
 
+-- Manage hooks
+-- {{{
 myManageHook = placeHook (withGaps (10,10,10,10) (smart (0.5,0.5)))
   <+> composeAll [
     className =? "Onboard" --> doFloat]
+-- }}}
 
+-- Event hook
+-- {{{
 myEventHook = focusOnMouseMove
             <+> hintsEventHook
             <+> windowedFullscreenFixEventHook
@@ -291,19 +404,22 @@ myEventHook = focusOnMouseMove
                 defaultServerCommands "layout-next"   = sendMessage NextLayout
                 defaultServerCommands "layout-tablet" = sendMessage $ JumpToLayout "tabletmodeBSP"
                 defaultServerCommands "layout-normal" = sendMessage $ JumpToLayout "myBSP"
+                defaultServerCommands "toggle-struts" = sendMessage ToggleStruts
                 layoutServerCommands :: String -> X ()
                 layoutServerCommands layout = sendMessage $ JumpToLayout layout
+-- }}}
 
-
+-- Screen / rander change hooks
+-- {{{
 myRandrChangeHook :: X ()
 myRandrChangeHook = do
   spawn "notify-send 'Rescreen' 'screen changed'"
   spawn "mons -o"
   spawn "xinput --map-to-output 'ELAN9008:00 04F3:2C82' eDP"
+-- }}}
 
-
--- myLogHook = updatePointer (0.5, 0.5) (0.1, 0.1)
-
+-- Startup hook
+-- {{{
 myStartupHook = do
    spawnOnce "light-locker --lock-on-lid"
    spawnOnce "sudo bluetooth off"
@@ -326,7 +442,10 @@ myStartupHook = do
    -- spawnOnce "udiskie"
    setWMName "LG3D"
    adjustEventInput
+-- }}}
 
+-- Main
+-- {{{
 main = getDirectories >>= launch
         ( docks
         $ ewmh
@@ -354,3 +473,4 @@ main = getDirectories >>= launch
               startupHook        = myStartupHook
               -- logHook            = myLogHook
           })
+-- }}}
