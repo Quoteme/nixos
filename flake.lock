@@ -1638,16 +1638,14 @@
     "rescreenapp": {
       "inputs": {
         "flake-utils": "flake-utils_5",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1663162836,
-        "narHash": "sha256-JRadHoA7Z1Z/9PY0/+ij813crzRPDJMFeXpl/Uc0WS4=",
+        "lastModified": 1663441082,
+        "narHash": "sha256-FGGAalPaeQe4MNK341l/1h5tUVQUbl+QtFMktkK5MX0=",
         "owner": "Quoteme",
         "repo": "rescreenapp",
-        "rev": "b4ee85368ba300bfbc9cc2d1ecf768015d2c14d5",
+        "rev": "bd43a13e846af59f8f9b301335b344160631f815",
         "type": "github"
       },
       "original": {
