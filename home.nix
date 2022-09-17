@@ -258,6 +258,14 @@
         </action>
       </gesture>
 
+    <gesture type="SWIPE" fingers="4" direction="DOWN">
+        <action type="RUN_COMMAND">
+          <repeat>false</repeat>
+          <command>xmonadctl toggle-struts</command>
+          <on>begin</on>
+        </action>
+      </gesture>
+
       <gesture type="TAP" fingers="2">
         <action type="MOUSE_CLICK">
           <button>3</button>
