@@ -26,6 +26,7 @@ foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
+underline = #353535
 
 [bar/top]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -115,7 +116,7 @@ enable-scroll = true
 label-active = %icon% %name%
 label-active-foreground = #ffffff
 label-active-background = #3f3f3f
-label-active-underline = #fba922
+label-active-underline = ${colors.underline}
 label-active-padding = 3
 
 label-occupied = %icon% %name%
@@ -170,7 +171,7 @@ type = internal/cpu
 interval = 10
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
+format-underline = ${colors.underline}
 label = %percentage:2%%
 
 [module/memory]
@@ -178,7 +179,7 @@ type = internal/memory
 interval = 10
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
+format-underline = ${colors.underline}
 label = %percentage_used%%
 
 [module/wlan]
@@ -187,7 +188,7 @@ interface = wlp2s0
 interval = 10.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
+format-connected-underline = ${colors.underline}
 label-connected = %essid%
 
 format-disconnected = <label-disconnected>
@@ -214,7 +215,7 @@ time-alt = %H:%M
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+format-underline = ${colors.underline}
 
 ;%date% 
 label = %date% %time%
@@ -285,7 +286,7 @@ adapter = AC
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+format-charging-underline = ${colors.underline}
 label-charging = %percentage%%
 
 format-discharging = <animation-discharging> <label-discharging>
@@ -321,7 +322,7 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f50a4d
+format-underline = ${colors.underline}
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
