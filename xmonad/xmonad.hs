@@ -63,6 +63,7 @@ import XMonad.Layout.Minimize (minimize)
 import qualified XMonad.Layout.BoringWindows as BW
 import XMonad.Actions.Minimize (withMinimized, maximizeWindow, minimizeWindow)
 import XMonad.Actions.GridSelect (gridselect)
+import XMonad.Layout.Maximize (maximize, maximizeRestore)
 -- }}}
 
 -- Options
@@ -195,6 +196,7 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   , ("M-<Backspace>"           , addName "Window: hide" $ withFocused hideWindow *> spawn "notify-send \"hidden a window\"")
   , ("M-S-<Backspace>"         , addName "Window: unhide" $ popOldestHiddenWindow >> myUpdateFocus)
   , ("M-S-o"                   , addName "Window: unminimize menu" $ selectMaximizeWindow)
+  , ("M-C-m"                   , addName "Window: maximize" $ withFocused (sendMessage . maximizeRestore))
   -- }}}
   -- Other stuff
   -- {{{
@@ -319,7 +321,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
 
 -- My Layouts
 -- {{{
-myLayout = avoidStruts $ minimize . BW.boringWindows
+myLayout = avoidStruts $ minimize . BW.boringWindows $ maximize
          $   myBSP
          ||| tabletmodeBSP
          ||| myOwnLayout
@@ -666,6 +668,12 @@ instance Eq a => DecorationStyle ExtendedWindowSwitcherDecoration a where
                   | x == b    = a
                   | otherwise = x
   --  }}}
+  -- {{{
+  -- Only show decoration for currently focused window
+  pureDecoration _ _ ht _ s _ (w, Rectangle x y wh ht') = if isInStack s w && w == S.focus s
+    then Just $ Rectangle x y wh ht
+    else Nothing
+  -- }}}
 -- }}}
 -- }}}
 -- }}}
