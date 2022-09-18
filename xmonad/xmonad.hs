@@ -64,6 +64,7 @@ import qualified XMonad.Layout.BoringWindows as BW
 import XMonad.Actions.Minimize (withMinimized, maximizeWindow, minimizeWindow)
 import XMonad.Actions.GridSelect (gridselect)
 import XMonad.Layout.Maximize (maximize, maximizeRestore)
+import Control.Concurrent (threadDelay)
 -- }}}
 
 -- Options
@@ -617,7 +618,7 @@ instance Eq a => DecorationStyle ExtendedWindowSwitcherDecoration a where
         -- left side
         -- Menu button
         | isNthLightButton 0 = do
-          spawn "notify-send 'xmonad' 'menu button clicked'"
+          windowMenu
           return True
         -- Rotate button
         | isNthLightButton 1 = do
