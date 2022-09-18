@@ -301,7 +301,7 @@ myAdditionalKeys config = additionalKeys config
 myNavigation2DConfig = def { layoutNavigation = [
     ("myBSP", hybridOf sideNavigation lineNavigation ),
     ("tabletmodeBSP", hybridOf sideNavigation lineNavigation ),
-    ("myOwnLayout", hybridOf sideNavigation lineNavigation )
+    ("myTabletMode", hybridOf sideNavigation lineNavigation )
   ] }
 -- }}}
 
@@ -324,8 +324,8 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
 -- {{{
 myLayout = avoidStruts $ minimize . BW.boringWindows $ maximize
          $   myBSP
-         ||| tabletmodeBSP
-         ||| myOwnLayout
+         -- ||| tabletmodeBSP
+         ||| myTabletMode
          ||| Full
   where
     -- TODO: add tabs to this layout
@@ -338,7 +338,7 @@ myLayout = avoidStruts $ minimize . BW.boringWindows $ maximize
     tabletmodeBSP = renamed [Replace "tabletmodeBSP"]
                   $ noBorders
                   $ windowSwitcherDecorationWithImageButtons shrinkText myTheme (draggingVisualizer myBSP)
-    myOwnLayout = renamed [Replace "myOwnLayout"]
+    myTabletMode = renamed [Replace "myTabletMode"]
                 $ extendedWindowSwitcherDecoration shrinkText (draggingVisualizer myBSP)
 
 -- Allow user to select window to reopen
@@ -702,7 +702,7 @@ myEventHook = focusOnMouseMove
                 defaultServerCommands "swap-right"         = windowSwap R False
                 defaultServerCommands "rotate"             = sendMessage Rotate
                 defaultServerCommands "layout-next"        = sendMessage NextLayout
-                defaultServerCommands "layout-tablet"      = sendMessage $ JumpToLayout "tabletmodeBSP"
+                defaultServerCommands "layout-tablet"      = sendMessage $ JumpToLayout "myTabletMode"
                 defaultServerCommands "layout-normal"      = sendMessage $ JumpToLayout "myBSP"
                 defaultServerCommands "toggle-struts"      = sendMessage ToggleStruts
                 defaultServerCommands "select-to-maximize" = selectMaximizeWindow
