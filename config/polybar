@@ -56,7 +56,7 @@ font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
-modules-left = startmenu windowmenu keyboardToggle xworkspaces
+modules-left = startmenu nextLayout keyboardToggle xworkspaces
 modules-center = 
 modules-right = lightdec backlight lightinc volumedec pulseaudio volumeinc memory cpu battery temperature date
 
@@ -343,6 +343,16 @@ content-background = ${colors.background-alt}
 click-left = jgmenu_run
 click-middle = jgmenu_run
 click-right = jgmenu_run
+
+
+[module/nextLayout]
+type = custom/text
+content = ""
+content-padding = 2
+content-background = ${colors.background-alt}
+click-left = xmonadctl layout-next
+click-middle = xmonadctl layout-next
+click-right = xmonadctl layout-next
 
 [module/windowmenu]
 type = custom/text
