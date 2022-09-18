@@ -358,9 +358,9 @@ type = custom/text
 content = ""
 content-padding = 2
 content-background = ${colors.background-alt}
-click-left = onboard
-click-middle = onboard
-click-right = onboard
+click-left = onboard --layout=de_DE
+click-middle = onboard --layout=de_DE
+click-right = onboard --layout=de_DE
 
 [module/lightinc]
 type = custom/text
