@@ -58,6 +58,11 @@ import XMonad.Layout.Magnifier (magnifier)
 import XMonad.Layout.DecorationAddons (handleScreenCrossing)
 import Control.Monad (unless)
 import Text.Format (format)
+import XMonad.Util.Image (Placement(..))
+import XMonad.Layout.Minimize (minimize)
+import qualified XMonad.Layout.BoringWindows as BW
+import XMonad.Actions.Minimize (withMinimized, maximizeWindow, minimizeWindow)
+import XMonad.Actions.GridSelect (gridselect)
 -- }}}
 
 -- Options
@@ -189,6 +194,7 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   -- {{{
   , ("M-<Backspace>"           , addName "Window: hide" $ withFocused hideWindow *> spawn "notify-send \"hidden a window\"")
   , ("M-S-<Backspace>"         , addName "Window: unhide" $ popOldestHiddenWindow >> myUpdateFocus)
+  , ("M-S-o"                   , addName "Window: unminimize menu" $ selectMaximizeWindow)
   -- }}}
   -- Other stuff
   -- {{{
@@ -291,7 +297,8 @@ myAdditionalKeys config = additionalKeys config
 -- {{{
 myNavigation2DConfig = def { layoutNavigation = [
     ("myBSP", hybridOf sideNavigation lineNavigation ),
-    ("tabletmodeBSP", hybridOf sideNavigation lineNavigation )
+    ("tabletmodeBSP", hybridOf sideNavigation lineNavigation ),
+    ("myOwnLayout", hybridOf sideNavigation lineNavigation )
   ] }
 -- }}}
 
@@ -312,10 +319,10 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
 
 -- My Layouts
 -- {{{
-myLayout = avoidStruts
+myLayout = avoidStruts $ minimize . BW.boringWindows
          $   myBSP
          ||| tabletmodeBSP
-         -- ||| myOwnLayout
+         ||| myOwnLayout
          ||| Full
   where
     -- TODO: add tabs to this layout
@@ -329,30 +336,315 @@ myLayout = avoidStruts
                   $ noBorders
                   $ windowSwitcherDecorationWithImageButtons shrinkText myTheme (draggingVisualizer myBSP)
     myOwnLayout = renamed [Replace "myOwnLayout"]
-                $ extendedWindowSwitcherDecoration shrinkText myTheme (draggingVisualizer myBSP)
+                $ extendedWindowSwitcherDecoration shrinkText (draggingVisualizer myBSP)
+
+-- Allow user to select window to reopen
+-- {{{
+selectMaximizeWindow :: X ()
+selectMaximizeWindow = do
+  -- withMinimized (mapM_ maximizeWindow)
+  withMinimized (\minimizedWindows -> do
+    -- Get the window title of the minimized windows
+    minimizedWindowTitles <- mapM getWinTitle minimizedWindows
+    selectedWin <- gridselect def (zip minimizedWindowTitles minimizedWindows)
+    when (isJust selectedWin) $ maximizeWindow (fromJust selectedWin)
+    return ()
+    )
+  return ()
+  where
+    getWinTitle :: Window -> X String
+    getWinTitle w = do
+      winTitle <- runQuery title w
+      winAppName <- runQuery appName w
+      return $ winTitle ++ " : " ++ winAppName
+
+-- }}}
+
 -- My own extended version of windowSwitcherDecoration
 -- for example, draggina a window to the right edge of the screen should
 -- move it to the next workspace
 -- {{{
+
+extendedWindowSwitcherDecoration :: (Eq a, Shrinker s) => s -> l a -> ModifiedLayout (Decoration ExtendedWindowSwitcherDecoration s) l a
+extendedWindowSwitcherDecoration s = decoration s myOwnTheme EWSD
+
+-- Custom theme
+-- {{{
+
+-- Icons / Menu buttons
+-- {{{
+
+-- support functions / values (for convenience)
+-- {{{
+convertToBool' :: [Int] -> [Bool]
+convertToBool' = map (==1)
+
+convertToBool :: [[Int]] -> [[Bool]]
+convertToBool = map convertToBool'
+
+buttonSize :: Int
+buttonSize = length menuButton
+
+buttonPadding :: Int
+buttonPadding = 15
+
+buttonMargin :: Int
+buttonMargin = 5
+-- }}}
+
+-- {{{
+menuButton :: [[Bool]]
+menuButton = convertToBool
+  [[1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1]]
+-- }}}
+
+-- {{{
+miniButton :: [[Bool]]
+miniButton = convertToBool
+  [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+-- }}}
+
+-- {{{
+maxiButton :: [[Bool]]
+maxiButton = convertToBool
+  [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+   [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1],
+   [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1],
+   [1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1],
+   [1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1],
+   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+   [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+   [0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]
+-- }}}
+
+-- {{{
+closeButton :: [[Bool]]
+closeButton = convertToBool
+  [[1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1],
+   [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1],
+   [1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1],
+   [0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0],
+   [0,0,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,0,0],
+   [0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0],
+   [0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,0,0,0,0],
+   [0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,0,0,0,0,0],
+   [0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0],
+   [0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,0,0,0,0,0],
+   [0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,0,0,0,0],
+   [0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0],
+   [0,0,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,0,0],
+   [0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0],
+   [1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1],
+   [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1],
+   [1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1]]
+-- }}}
+
+-- {{{
+rotateButton :: [[Bool]]
+rotateButton = convertToBool
+  [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0],
+   [0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0],
+   [0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0],
+   [0,0,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1,0],
+   [0,1,0,0,0,1,0,0,0,0,0,0,1,1,1,0,0,0,1,0],
+   [0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0],
+   [0,1,0,0,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0],
+   [0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0],
+   [0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0],
+   [0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0],
+   [0,0,1,0,0,0,1,1,1,1,1,1,1,0,0,0,0,1,0,0],
+   [0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],
+   [0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0],
+   [0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+-- }}}
+
+-- {{{
+swapButton :: [[Bool]]
+swapButton = convertToBool
+  [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0],
+   [0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0],
+   [0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0],
+   [0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0],
+   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+   [0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0],
+   [0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0],
+   [0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0],
+   [0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+-- }}}
+-- }}}
+
+-- Theme
+-- {{{
+myOwnTheme :: Theme
+myOwnTheme = def {
+  activeColor         = "#161616",
+  inactiveColor       = "#0c0c0c",
+  urgentColor         = "#0c0c0c",
+  activeBorderColor   = "#161616",
+  inactiveBorderColor = "#0c0c0c",
+  urgentBorderColor   = "#0c0c0c",
+  activeBorderWidth   = 0,
+  inactiveBorderWidth = 0,
+  urgentBorderWidth   = 3,
+  activeTextColor     = "#fae73b",
+  inactiveTextColor   = "#d9d9d9",
+  urgentTextColor     = "#fa693b",
+  decoHeight          = 30,
+  fontName            = "xft:scientifica:pixelsize=11:antialias=false",
+  windowTitleIcons    = [ (menuButton, CenterLeft buttonMargin)
+                        , (rotateButton, CenterLeft (buttonSize + buttonPadding + buttonMargin))
+                        , (swapButton, CenterLeft ((buttonSize + buttonPadding)*2 + buttonMargin))
+                        , (miniButton, CenterRight ((buttonSize + buttonPadding)*2+buttonMargin))
+                        , (maxiButton, CenterRight (buttonSize + buttonPadding + buttonMargin))
+                        , (closeButton, CenterRight buttonMargin) ]
+}
+-- }}}
+
+-- }}}
+
+-- Custom layout
+-- {{{
 data ExtendedWindowSwitcherDecoration a = EWSD deriving (Show, Read)
 instance Eq a => DecorationStyle ExtendedWindowSwitcherDecoration a where
   describeDeco _ = "ExtendedWindowSwitcherDecoration"
-  decorationCatchClicksHook EWSD mainw dFl dFr = return False
+  -- {{{ 
+  decorationCatchClicksHook EWSD mainw dFl dFr = do
+    handleButtons dFl dFr
+    where
+      -- is the distance from right of the click correlated to the nth button from the right/right?
+      -- left/right depend on the parameter dFs (distance from side)
+      isNthButton :: Int -> Int -> Bool
+      isNthButton dFs n = buttonMargin + n*(buttonSize+buttonPadding) < dFs
+                        && dFs < buttonMargin + (n+1)*(buttonSize+buttonPadding)
+      -- like isNthButton but to check if a right button was clicked
+      isNthRightButton :: Int -> Bool
+      isNthRightButton = isNthButton dFr
+      -- like isNthButton but to check if a left button was clicked
+      isNthLightButton :: Int -> Bool
+      isNthLightButton = isNthButton dFl
+      -- Call this function to handle button clicks and what happens on a button click
+      -- if a button was clicked, return True, else False
+      handleButtons :: Int -> Int -> X Bool
+      handleButtons dFl dFr
+        -- right side
+        -- Close button
+        | isNthRightButton 0 = do
+          kill
+          return True
+        -- Maximize button
+        | isNthRightButton 1 = do
+          spawn "notify-send 'xmonad' 'maximize button clicked'"
+          return True
+        -- Minimize button
+        | isNthRightButton 2 = do
+          withFocused minimizeWindow
+          return True
+        -- left side
+        -- Menu button
+        | isNthLightButton 0 = do
+          spawn "notify-send 'xmonad' 'menu button clicked'"
+          return True
+        -- Rotate button
+        | isNthLightButton 1 = do
+          sendMessage Rotate
+          return True
+        | isNthLightButton 2 = do
+          sendMessage Swap
+          return True
+        -- no button was clicked
+        | otherwise = return False
+  --  }}}
+  -- {{{
   decorationWhileDraggingHook _ ex ey (mainw, r) x y = do
     let rect = Rectangle (x - (fi ex - rect_x r))
                          (y - (fi ey - rect_y r))
                          (rect_width  r)
                          (rect_height r)
-    when (x<10) $
-      spawn $ format "notify-send 'xmonad internal' 'dragging at x: {0} y: {1}'" [show x, show y]
+    -- when (x<10) $
+    --   spawn $ format "notify-send 'xmonad internal' 'dragging at x: {0} y: {1}'" [show x, show y]
     sendMessage $ DraggingWindow mainw rect
+  --  }}}
+  -- {{{
   decorationAfterDraggingHook _ (mainw, r) decoWin = do
     focus mainw
     hasCrossed <- handleScreenCrossing mainw decoWin
     unless hasCrossed $ do
       sendMessage DraggingStopped
       performWindowSwitching mainw
-    where 
+    where
       performWindowSwitching :: Window -> X ()
       performWindowSwitching win =
           withDisplay $ \d -> do
@@ -373,9 +665,8 @@ instance Eq a => DecorationStyle ExtendedWindowSwitcherDecoration a where
                   | x == a    = b
                   | x == b    = a
                   | otherwise = x
-
-extendedWindowSwitcherDecoration :: (Eq a, Shrinker s) => s -> Theme -> l a -> ModifiedLayout (Decoration ExtendedWindowSwitcherDecoration s) l a
-extendedWindowSwitcherDecoration s c = decoration s c EWSD
+  --  }}}
+-- }}}
 -- }}}
 -- }}}
 
@@ -395,16 +686,17 @@ myEventHook = focusOnMouseMove
             <+> serverModeEventHookF "LAYOUT" layoutServerCommands
               where
                 defaultServerCommands :: String -> X ()
-                defaultServerCommands "menu"          = windowMenu
-                defaultServerCommands "swap-up"       = windowSwap U False
-                defaultServerCommands "swap-down"     = windowSwap D False
-                defaultServerCommands "swap-left"     = windowSwap L False
-                defaultServerCommands "swap-right"    = windowSwap R False
-                defaultServerCommands "rotate"        = sendMessage Rotate
-                defaultServerCommands "layout-next"   = sendMessage NextLayout
-                defaultServerCommands "layout-tablet" = sendMessage $ JumpToLayout "tabletmodeBSP"
-                defaultServerCommands "layout-normal" = sendMessage $ JumpToLayout "myBSP"
-                defaultServerCommands "toggle-struts" = sendMessage ToggleStruts
+                defaultServerCommands "menu"               = windowMenu
+                defaultServerCommands "swap-up"            = windowSwap U False
+                defaultServerCommands "swap-down"          = windowSwap D False
+                defaultServerCommands "swap-left"          = windowSwap L False
+                defaultServerCommands "swap-right"         = windowSwap R False
+                defaultServerCommands "rotate"             = sendMessage Rotate
+                defaultServerCommands "layout-next"        = sendMessage NextLayout
+                defaultServerCommands "layout-tablet"      = sendMessage $ JumpToLayout "tabletmodeBSP"
+                defaultServerCommands "layout-normal"      = sendMessage $ JumpToLayout "myBSP"
+                defaultServerCommands "toggle-struts"      = sendMessage ToggleStruts
+                defaultServerCommands "select-to-maximize" = selectMaximizeWindow
                 layoutServerCommands :: String -> X ()
                 layoutServerCommands layout = sendMessage $ JumpToLayout layout
 -- }}}
