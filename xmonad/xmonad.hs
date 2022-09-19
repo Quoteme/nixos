@@ -51,7 +51,7 @@ import XMonad.Layout.Hidden
 import XMonad.Actions.UpdatePointer (updatePointer)
 import XMonad.Layout.Decoration
 import XMonad.Actions.OnScreen (viewOnScreen)
-import XMonad.Actions.DynamicWorkspaces (appendWorkspacePrompt, removeEmptyWorkspace, selectWorkspace)
+import XMonad.Actions.DynamicWorkspaces (appendWorkspacePrompt, removeEmptyWorkspace, selectWorkspace, withNthWorkspace, addWorkspace, removeWorkspace)
 import XMonad.Prompt (amberXPConfig)
 import XMonad.Hooks.Rescreen
 import XMonad.Layout.Magnifier (magnifier)
@@ -74,7 +74,7 @@ myFocusFollowsMouse         = True
 myClickJustFocuses          = True -- clicking to focus passes click to window?
 myBorderWidth               = 3
 myModMask                   = mod4Mask
-myWorkspaces                = ["1","2","3","4","5","6","7","8","9"]
+myWorkspaces                = map show [1..3]
 myNormalBorderColor         = "#0c0c0c"
 myFocusedBorderColor        = "#888888"
 myTheme :: Theme
@@ -230,14 +230,18 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   -- Workspace keys
   -- {{{
   ] ^++^
+  (  [ ("M-"   ++ show n, withNthWorkspace S.greedyView (n-1)) | n <- [0..9] ]
+  ++ [ ("M-S-" ++ show n, withNthWorkspace S.shift (n-1)) | n <- [0..9] ]
+  ++
   [ (modifier ++ nth_key, windows $ function nth_workspace)
       | (nth_key,  nth_workspace) <- zip (map show [1..9]) (workspaces config)
-      , (modifier, function)      <- [ ("M-", S.greedyView)
-                                     , ("M-S-", S.shift)
-                                     , ("M-C-", viewOnScreen 0)
+      , (modifier, function)      <- [  ("M-C-", viewOnScreen 0)
                                      , ("M-M1-", viewOnScreen 1)
+                                     --, ("M-", S.greedyView)
+                                     -- , ("M-S-", S.shift)
                                      ]
   ]
+  )
   -- }}}
   where
     -- Helper functions
@@ -276,15 +280,11 @@ myAdditionalKeys config = additionalKeys config
   -- , ((0                 , xF86XK_Launch1        ), spawn "xdotool key super+r")
   -- Workspaces
 -- selectWindow def >>= (`whenJust` windows . S.focusWindow) >> myUpdateFocus
-  , ((myModMask                 , xK_numbersign       ), selectWorkspace amberXPConfig)
-  , ((myModMask                 , xK_plus       ), appendWorkspacePrompt amberXPConfig)
-  , ((myModMask                 , xK_minus       ), removeEmptyWorkspace)
+  , ((myModMask                 , xK_numbersign ), selectWorkspace amberXPConfig)
+  , ((myModMask .|. shiftMask   , xK_plus       ), appendWorkspacePrompt amberXPConfig)
+  , ((myModMask                 , xK_plus       ), addLastWorkspace)
+  , ((myModMask                 , xK_minus      ), removeLastWorkspace)
   ]
-  -- mod-{y,x,c}, Switch to physical/Xinerama screens 1, 2, or 3
-  -- mod-shift-{y,x,c}, Move client to screen 1, 2, or 3
-  -- [((m, key), screenWorkspace sc >>= flip whenJust (windows . f))
-  --     | (key, sc) <- zip [xK_y, xK_x, xK_c] [0..]
-  --     , (f, m) <- [(S.view, 0), (S.shift, shiftMask)]]
   where
     enableTouchpad :: MonadIO m => m ()
     enableTouchpad =  spawn "xinput --enable \"ELAN1201:00 04F3:3098 Touchpad\""
@@ -294,6 +294,57 @@ myAdditionalKeys config = additionalKeys config
     disableTouchpad =  spawn "xinput --disable \"ELAN1201:00 04F3:3098 Touchpad\""
                     *> spawn "xinput --disable \"AT Translated Set 2 keyboard\""
                     *> spawn "notify-send 'touchpad disabled'"
+
+-- Needed for adding workspaces with automatic names
+-- {{{
+addLastWorkspace :: X ()
+addLastWorkspace = do
+    workspaceLen <- XS.get :: X WorkspaceLength
+    XS.put (workspaceLen + 1)
+    -- spawn $ format "notify-send \"Workspace length increased\" \"now at {0}\"" [show workspaceLen]
+    addWorkspace (show workspaceLen)
+    return ()
+
+removeLastWorkspace :: X ()
+removeLastWorkspace = do
+    workspaceLen <- XS.get :: X WorkspaceLength
+    XS.put (workspaceLen - 1)
+    -- spawn $ format "notify-send \"Workspace length decreased\" \"now at {0}\"" [show workspaceLen]
+    withNthWorkspace S.greedyView (fromIntegral workspaceLen - 1)
+    removeWorkspace
+    return ()
+
+newtype WorkspaceLength = WorkspaceLength Int deriving (Read, Eq, Typeable)
+instance ExtensionClass WorkspaceLength where
+  initialValue = WorkspaceLength (length myWorkspaces)
+instance Show WorkspaceLength where
+  show (WorkspaceLength n) = show n
+instance Num WorkspaceLength where
+  WorkspaceLength a + WorkspaceLength b = WorkspaceLength (a + b)
+  WorkspaceLength a - WorkspaceLength b = WorkspaceLength (a - b)
+  WorkspaceLength a * WorkspaceLength b = WorkspaceLength (a * b)
+  abs (WorkspaceLength a) = WorkspaceLength (abs a)
+  signum (WorkspaceLength a) = WorkspaceLength (signum a)
+  fromInteger = WorkspaceLength . fromInteger
+
+instance Enum WorkspaceLength where
+  toEnum = WorkspaceLength
+  fromEnum (WorkspaceLength n) = n
+
+instance Ord WorkspaceLength where
+  WorkspaceLength a <= WorkspaceLength b = a <= b
+  WorkspaceLength a < WorkspaceLength b = a < b
+  WorkspaceLength a >= WorkspaceLength b = a >= b
+  WorkspaceLength a > WorkspaceLength b = a > b
+
+instance Real WorkspaceLength where
+  toRational (WorkspaceLength a) = toRational a
+
+instance Integral WorkspaceLength where
+  toInteger (WorkspaceLength a) = toInteger a
+  quotRem (WorkspaceLength a) (WorkspaceLength b) = (WorkspaceLength q, WorkspaceLength r)
+    where (q, r) = quotRem a b
+-- }}}
 -- }}}
 
 -- Navigation2DConfig
@@ -691,6 +742,7 @@ myManageHook = placeHook (withGaps (10,10,10,10) (smart (0.5,0.5)))
 myEventHook = focusOnMouseMove
             <+> hintsEventHook
             <+> windowedFullscreenFixEventHook
+            <+> dunstOnTop
             <+> serverModeEventHookF "XMONAD_COMMAND" defaultServerCommands
             <+> serverModeEventHookF "LAYOUT" layoutServerCommands
               where
@@ -706,8 +758,21 @@ myEventHook = focusOnMouseMove
                 defaultServerCommands "layout-normal"      = sendMessage $ JumpToLayout "myBSP"
                 defaultServerCommands "toggle-struts"      = sendMessage ToggleStruts
                 defaultServerCommands "select-to-maximize" = selectMaximizeWindow
+                defaultServerCommands "workspace-add"     = addLastWorkspace
+                defaultServerCommands "workspace-remove"   = removeLastWorkspace
                 layoutServerCommands :: String -> X ()
                 layoutServerCommands layout = sendMessage $ JumpToLayout layout
+                dunstOnTop :: Event -> X All
+                dunstOnTop (AnyEvent {ev_event_type = et}) = do
+                  when (et == focusOut) $ do
+                    spawn "xdotool windowraise `xdotool search --all --name Dunst`"
+                  return $ All True
+                dunstOnTop _ = return $ All True
+-- }}}
+
+--The client events that xmonad is interested in
+-- {{{ 
+myClientMask = focusChangeMask .|. clientMask def
 -- }}}
 
 -- Screen / rander change hooks
@@ -771,7 +836,8 @@ main = getDirectories >>= launch
               layoutHook         = myLayout,
               manageHook         = myManageHook,
               handleEventHook    = myEventHook,
-              startupHook        = myStartupHook
+              startupHook        = myStartupHook,
+              clientMask         = myClientMask
               -- logHook            = myLogHook
           })
 -- }}}
