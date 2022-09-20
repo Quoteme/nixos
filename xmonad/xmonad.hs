@@ -65,6 +65,7 @@ import XMonad.Actions.Minimize (withMinimized, maximizeWindow, minimizeWindow)
 import XMonad.Actions.GridSelect (gridselect)
 import XMonad.Layout.Maximize (maximize, maximizeRestore)
 import Control.Concurrent (threadDelay)
+import System.Process (readProcess)
 -- }}}
 
 -- Options
@@ -299,6 +300,8 @@ myAdditionalKeys config = additionalKeys config
 -- {{{
 addLastWorkspace :: X ()
 addLastWorkspace = do
+    -- maybe use xdotool instead of extensible state?
+    -- workspaceLen <- liftIO $ (\t -> read t :: Int) <$> readProcess "xdotool" ["get_num_desktops"] []
     workspaceLen <- XS.get :: X WorkspaceLength
     XS.put (workspaceLen + 1)
     -- spawn $ format "notify-send \"Workspace length increased\" \"now at {0}\"" [show workspaceLen]
@@ -373,10 +376,10 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
 
 -- My Layouts
 -- {{{
-myLayout = avoidStruts $ minimize . BW.boringWindows $ maximize
+myLayout = avoidStruts 
          $   myBSP
          -- ||| tabletmodeBSP
-         ||| myTabletMode
+         ||| (minimize . BW.boringWindows $ maximize $ myTabletMode)
          ||| Full
   where
     -- TODO: add tabs to this layout
@@ -613,8 +616,8 @@ myOwnTheme = def {
   activeBorderWidth   = 0,
   inactiveBorderWidth = 0,
   urgentBorderWidth   = 3,
-  activeTextColor     = "#fae73b",
-  inactiveTextColor   = "#d9d9d9",
+  activeTextColor     = "#888888",
+  inactiveTextColor   = "#888888",
   urgentTextColor     = "#fa693b",
   decoHeight          = 30,
   fontName            = "xft:scientifica:pixelsize=11:antialias=false",
@@ -795,7 +798,7 @@ myStartupHook = do
    spawnOnce "birdtray"
    spawnOnce "nitrogen --restore &"
    spawnOnce "autoscreenrotation.sh &"
-   spawnOnce "dunst -conf /etc/nixos/config/dunstrc"
+   -- spawnOnce "dunst -conf /etc/nixos/config/dunstrc"
    spawnOnce "polybar top"
    -- spawnOnce "onboard ; xdotool key 199 ; xdotool key 200"
    spawnOnce "nm-applet"

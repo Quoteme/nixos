@@ -411,7 +411,6 @@
               neofetch
               onefetch
               libnotify
-              dunst
               #xmobar-luca
               xmonadctl
               inputs.screenrotate.defaultPackage.x86_64-linux
@@ -565,6 +564,7 @@
           # Before changing this value read the documentation for this option
           # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
           system.stateVersion = "22.05"; # Did you read the comment?
+          # system.nixos.label = pkgs.lib.commitIdFromGitRepo "/etc/nixos/";
         })
         # ╻ ╻┏━┓┏┳┓┏━╸   ┏┳┓┏━┓┏┓╻┏━┓┏━╸┏━╸┏━┓
         # ┣━┫┃ ┃┃┃┃┣╸ ╺━╸┃┃┃┣━┫┃┗┫┣━┫┃╺┓┣╸ ┣┳┛

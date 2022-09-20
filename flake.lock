@@ -1704,11 +1704,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1663352202,
-        "narHash": "sha256-h58ChZdOrHjz2eOnyWQI5pXSMz3yCnoazBHLVwWpTP8=",
+        "lastModified": 1663623947,
+        "narHash": "sha256-Oz5QQpEOuWSTs+O0WyyszZG7wdl5HVReQphv12oQSTA=",
         "owner": "Quoteme",
         "repo": "screenrotate",
-        "rev": "bd0e4cd6463833ec0c9764c5f737aa5aceeb3a86",
+        "rev": "b07fee72654cf6e9b5c3ea68cb52e4a215941375",
         "type": "github"
       },
       "original": {
