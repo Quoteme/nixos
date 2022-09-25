@@ -186,7 +186,6 @@
         "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs",
         "plugin:LuaSnip": "plugin:LuaSnip",
-        "plugin:auto-session": "plugin:auto-session",
         "plugin:barbar.nvim": "plugin:barbar.nvim",
         "plugin:catppuccin": "plugin:catppuccin",
         "plugin:cheatsheet.nvim": "plugin:cheatsheet.nvim",
@@ -265,11 +264,11 @@
         "snippets-shebang": "snippets-shebang"
       },
       "locked": {
-        "lastModified": 1663340993,
-        "narHash": "sha256-EjDh+A2Z+vKS0Ops/HE1mzx1KmICfdQjlK3sgN24/nQ=",
+        "lastModified": 1663888145,
+        "narHash": "sha256-bE4J0pEEB/y5BNyMC0o5Yec2Snp3FQl/23mxxT+obv0=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "7e9358724f18f943432aa541c72d2fc382cf8685",
+        "rev": "068d10a939718bfb2cc51029b7472bb57c80e582",
         "type": "github"
       },
       "original": {
@@ -439,22 +438,6 @@
       "original": {
         "owner": "L3MON4D3",
         "repo": "LuaSnip",
-        "type": "github"
-      }
-    },
-    "plugin:auto-session": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1660145586,
-        "narHash": "sha256-fHqhf7JqDSzCYdognXHwsoRhHDrGRfbQ/Q/SjfOSMlU=",
-        "owner": "rmagatti",
-        "repo": "auto-session",
-        "rev": "9c302e01ebb474f9b19998488060d9f110ef75c5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rmagatti",
-        "repo": "auto-session",
         "type": "github"
       }
     },
