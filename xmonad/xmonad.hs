@@ -186,6 +186,8 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   -- Rotations/Swappings
   -- {{{
   , ("M-r"                     , addName "BSP: rotate" $ myUpdateFocus <> sendMessage Rotate)
+  , ("M-S-r"                   , addName "BSP: rotate left around parent" $ myUpdateFocus <> sendMessage RotateL)
+  , ("M-C-r"                   , addName "BSP: rotate right around parent" $ myUpdateFocus <> sendMessage RotateR)
   , ("M-s"                     , addName "BSP: swap" $ myUpdateFocus <> sendMessage Swap)
   , ("M-n"                     , addName "BSP: focus parent" $ myUpdateFocus <> sendMessage FocusParent)
   , ("M-C-n"                   , addName "BSP: select node" $ sendMessage SelectNode)
@@ -663,6 +665,9 @@ instance Eq a => DecorationStyle ExtendedWindowSwitcherDecoration a where
           return True
         -- Maximize button
         | isNthRightButton 1 = do
+          -- TODO:
+          -- send a key to toggle fullscreen (not maximize) on the window
+          -- this makes tabs and searchbars in webbrowsers disappear
           spawn "notify-send 'xmonad' 'maximize button clicked'"
           return True
         -- Minimize button
