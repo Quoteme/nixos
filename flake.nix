@@ -63,7 +63,7 @@
           myIDEA = pkgs.symlinkJoin {
             name = "myIDEA";
             paths = with pkgs; [
-              jetbrains.idea-community
+              jetbrains.idea-ultimate
               # instead use:
               # https://discourse.nixos.org/t/flutter-run-d-linux-build-process-failed/16552/3
               flutter
@@ -243,6 +243,7 @@
               birdtray
             # Privacy
               veracrypt
+              lesspass-cli
             # # Drawing
               xournalpp
               inkscape
@@ -272,6 +273,7 @@
                 # pkgs.unstable.sage # FIX: This currently is insecure and takes too long to compile :(
                 julia-bin
               # python
+                jetbrains.pycharm-professional
                 poetry
                 ((pkgs.python310.withPackages(ps : with ps; [
                   ipython
@@ -301,6 +303,7 @@
                 gradle
                 myIDEA
               # C
+                jetbrains.clion
                 valgrind
                 gcc
                 check
