@@ -264,11 +264,11 @@
         "snippets-shebang": "snippets-shebang"
       },
       "locked": {
-        "lastModified": 1664388517,
-        "narHash": "sha256-nNMKFcsrgFWZNc9CtF8V8x9JHXGCSOkAue3bYVikT3Y=",
+        "lastModified": 1664518155,
+        "narHash": "sha256-0fGL0AApPl8bjfm6BfmM76TbPLWEyrWrbRY4VGsXX2c=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "98f280157b73c34967f8793c38c046da4a4cdc8a",
+        "rev": "3f69b352200ba3fec0a3909052614493ed1a2df6",
         "type": "github"
       },
       "original": {
