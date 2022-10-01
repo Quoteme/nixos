@@ -60,6 +60,22 @@
             xmonad-extras
             text-format-simple
           ]);
+          myCLion = pkgs.symlinkJoin {
+            name = "myCLion";
+            paths = with pkgs; [
+              jetbrains.clion
+              gnumake
+              check
+              pkg-config
+              myPython
+            ];
+          
+            nativeBuildInputs = [ pkgs.makeWrapper ];
+            postBuild = ''
+              wrapProgram $out/bin/clion \
+                --prefix "$out/bin":PATH
+            '';
+          };
           myIDEA = pkgs.symlinkJoin {
             name = "myIDEA";
             paths = with pkgs; [
@@ -70,6 +86,22 @@
               dart
             ];
           };
+          myPython = ((pkgs.python310.withPackages(ps : with ps; [
+            ipython
+            jupyterlab
+            pandas
+            sympy
+            numpy
+            scipy
+            matplotlib
+            (qiskit.overrideAttrs (prev: {
+              doCheck = false;
+            }))
+            # qiskit optional dependencies
+              pylatexenc
+            # pysimplegui
+            # qiskit
+          ])).override (args: { ignoreCollisions = true; })); # this is for qiskit
         in
         {
           imports = [
@@ -275,22 +307,7 @@
               # python
                 jetbrains.pycharm-professional
                 poetry
-                ((pkgs.python310.withPackages(ps : with ps; [
-                  ipython
-                  jupyterlab
-                  pandas
-                  sympy
-                  numpy
-                  scipy
-                  matplotlib
-                  (qiskit.overrideAttrs (prev: {
-                    doCheck = false;
-                  }))
-                  # qiskit optional dependencies
-                    pylatexenc
-                  # pysimplegui
-                  # qiskit
-                ])).override (args: { ignoreCollisions = true; })) # this is for qiskit
+                myPython
               # Latex
                 pandoc
                 poppler_utils
@@ -303,7 +320,7 @@
                 gradle
                 myIDEA
               # C
-                jetbrains.clion
+                myCLion
                 valgrind
                 gcc
                 check
@@ -428,10 +445,10 @@
               # Wine
                 wineWowPackages.full
                 bottles
-            # FIX: This should be under home.nix
-              pkgs.unstable.eww
               # Hier werde ich wohl lieber ganz selber ein eigenes
               # UI Programm in Flutter schreiben.
+            # stuff that is needed pretty much everywhere
+              myPython
           ];
           programs = {
             # https://github.com/Mic92/nix-ld
