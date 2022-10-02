@@ -34,6 +34,15 @@
   #   userName  = "quoteme";
   #   userEmail = "lucahappel99@gmx.de";
   # };
+  programs.zsh = {
+    enable = true;
+  };
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
   programs.keychain = {
     enable = true;
     enableZshIntegration = true;
