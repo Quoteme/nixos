@@ -321,7 +321,7 @@ removeLastWorkspace = do
 
 newtype WorkspaceLength = WorkspaceLength Int deriving (Read, Eq, Typeable)
 instance ExtensionClass WorkspaceLength where
-  initialValue = WorkspaceLength (length myWorkspaces)
+  initialValue = WorkspaceLength $ 1 + length myWorkspaces
 instance Show WorkspaceLength where
   show (WorkspaceLength n) = show n
 instance Num WorkspaceLength where
