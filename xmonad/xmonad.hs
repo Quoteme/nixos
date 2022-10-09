@@ -66,6 +66,7 @@ import XMonad.Actions.GridSelect (gridselect)
 import XMonad.Layout.Maximize (maximize, maximizeRestore)
 import Control.Concurrent (threadDelay)
 import System.Process (readProcess)
+import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies, kill1)
 -- }}}
 
 -- Options
@@ -201,6 +202,10 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   , ("M-S-<Backspace>"         , addName "Window: unhide" $ popOldestHiddenWindow >> myUpdateFocus)
   , ("M-S-o"                   , addName "Window: unminimize menu" $ selectMaximizeWindow)
   , ("M-C-m"                   , addName "Window: maximize" $ withFocused (sendMessage . maximizeRestore))
+  , ("M-C-m"                   , addName "Window: maximize" $ withFocused (sendMessage . maximizeRestore))
+  , ("M-c"                     , addName "Window: copy to all other workspaces" $ windows copyToAll)
+  , ("M-S-c"                   , addName "Window: delete all other copies" $ killAllOtherCopies)
+  , ("M-C-c"                   , addName "Window: kill current copy of window" $ kill1)
   -- }}}
   -- Other stuff
   -- {{{
