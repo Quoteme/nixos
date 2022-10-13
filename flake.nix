@@ -398,6 +398,7 @@
               gitkraken
               exa
               ripgrep
+              pdfgrep
               fd
               bat
               power-profiles-daemon
@@ -432,7 +433,7 @@
               neofetch
               onefetch
               libnotify
-              #xmobar-luca
+              # xmobar-luca
               xmonadctl
               inputs.screenrotate.defaultPackage.x86_64-linux
               inputs.rescreenapp.defaultPackage.x86_64-linux
@@ -451,6 +452,7 @@
               # UI Programm in Flutter schreiben.
             # stuff that is needed pretty much everywhere
               myPython
+              (haskellPackages.ghcWithPackages myGHCPackages)
           ];
           programs = {
             # https://github.com/Mic92/nix-ld
