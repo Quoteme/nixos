@@ -13,6 +13,7 @@
     screenrotate.url = "github:Quoteme/screenrotate";
     screenrotate.inputs.nixpkgs.follows = "nixpkgs";
     rescreenapp.url = "github:Quoteme/rescreenapp";
+    control_center.url = "github:Quoteme/control_center";
   };
   
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@attrs:
@@ -435,6 +436,7 @@
               xmonadctl
               inputs.screenrotate.defaultPackage.x86_64-linux
               inputs.rescreenapp.defaultPackage.x86_64-linux
+              inputs.control_center.defaultPackage.x86_64-linux
               batsignal
               polkit_gnome
               gnome.gnome-clocks

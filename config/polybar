@@ -58,7 +58,7 @@ font-2 = siji:pixelsize=10;1
 
 modules-left = startmenu nextLayout keyboardToggle xworkspaces workspaceRem workspaceAdd
 modules-center = 
-modules-right = lightdec backlight lightinc volumedec pulseaudio volumeinc memory cpu battery temperature date
+modules-right = control_center memory cpu battery temperature date
 
 tray-position = right
 tray-padding = 2
@@ -412,6 +412,15 @@ type = custom/text
 content = <<
 content-padding = 0
 click-left = pamixer --decrease 5
+
+[module/control_center]
+type = custom/text
+content = ""
+content-padding = 2
+content-background = ${colors.background-alt}
+click-left = toggle_control_center.sh
+click-middle = toggle_control_center.sh
+click-right = toggle_control_center.sh
 
 [settings]
 screenchange-reload = true
