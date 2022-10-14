@@ -19,7 +19,7 @@ import XMonad.Util.EZConfig
 import XMonad.Hooks.DynamicLog (xmobarAction)
 import XMonad.Hooks.EwmhDesktops  -- for some fullscreen events, also for xcomposite in obs.
 import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.Place (placeHook, withGaps, smart)
+import XMonad.Hooks.Place (placeHook, withGaps, smart, underMouse, fixed)
 import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Hooks.ServerMode (serverModeEventHookF)
 import XMonad.Actions.Navigation2D
@@ -67,6 +67,7 @@ import XMonad.Layout.Maximize (maximize, maximizeRestore)
 import Control.Concurrent (threadDelay)
 import System.Process (readProcess)
 import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies, kill1)
+import XMonad.Hooks.ManageHelpers (doRectFloat)
 -- }}}
 
 -- Options
@@ -745,9 +746,9 @@ instance Eq a => DecorationStyle ExtendedWindowSwitcherDecoration a where
 
 -- Manage hooks
 -- {{{
-myManageHook = placeHook (withGaps (10,10,10,10) (smart (0.5,0.5)))
-  <+> composeAll [
-    className =? "Onboard" --> doFloat]
+myManageHook = composeAll [ appName =? "control_center" --> doRectFloat (S.RationalRect 0.65 0.05 0.325 0.3)
+                          , className =? "Onboard" --> doFloat
+                          ]
 -- }}}
 
 -- Event hook
