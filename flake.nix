@@ -442,6 +442,7 @@
               polkit_gnome
               gnome.gnome-clocks
               lightlocker
+              xidlehook
             # emulation
               virt-manager
               virglrenderer
@@ -503,7 +504,7 @@
               promptInit = "autoload -U promptinit && promptinit && prompt fade && setopt prompt_sp";
               shellAliases = {
                 l = "exa";
-                ll = "exa -l";
+                ll = "exa -l --icons";
                 lt = "exa -lT";
                 webcam = "mpv av://v4l2:/dev/video0 --profile=low-latency --untimed";
               };
