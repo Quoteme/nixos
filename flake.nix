@@ -437,6 +437,7 @@
               xmonadctl
               inputs.screenrotate.defaultPackage.x86_64-linux
               inputs.rescreenapp.defaultPackage.x86_64-linux
+              playerctl
               inputs.control_center.defaultPackage.x86_64-linux
               batsignal
               polkit_gnome
