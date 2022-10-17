@@ -11,8 +11,8 @@ xidlehook \
   --not-when-audio \
   `# Dim the screen after 60 seconds, undim if user becomes active` \
   --timer 60 \
-    'xrandr --output "$PRIMARY_DISPLAY" --brightness .1' \
-    'xrandr --output "$PRIMARY_DISPLAY" --brightness 1' \
+    'brightnessctl --save; brightnessctl set 1%' \
+    'brightnessctl --restore' \
   `# Finally, suspend an hour after it locks` \
   --timer 3600 \
     'systemctl suspend' \
