@@ -68,6 +68,7 @@ import Control.Concurrent (threadDelay)
 import System.Process (readProcess)
 import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies, kill1)
 import XMonad.Hooks.ManageHelpers (doRectFloat)
+import XMonad.Layout.Reflect (reflectVert, reflectHoriz)
 -- }}}
 
 -- Options
@@ -392,6 +393,7 @@ myLayout = avoidStruts
   where
     -- TODO: add tabs to this layout
     myBSP = renamed [Replace "myBSP"]
+          $ reflectHoriz
           $ hiddenWindows
           $ layoutHints
           $ smartBorders
