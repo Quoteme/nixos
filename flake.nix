@@ -303,7 +303,7 @@
               devdocs-desktop
               # devdocs-desktop
               # math
-                # pkgs.unstable.sage # FIX: This currently is insecure and takes too long to compile :(
+                sage
                 julia-bin
               # python
                 jetbrains.pycharm-professional
@@ -337,9 +337,9 @@
                 usbutils
                 scrcpy
                 nodePackages.cordova
-              # Flutter
                 android-tools
-                android-studio
+                pkgs.unstable.android-studio
+              # Flutter
                 flutter
                 dart
               # game-dev
