@@ -80,15 +80,16 @@
   };
   services.picom = {
     # disabled for now. Configure multiple monitors someday
-    enable = false;
+    enable = true;
     fade = true;
     fadeDelta = 5;
     fadeExclude = ["window_type *= 'menu'"];
-    inactiveOpacity = "0.9";
+    inactiveOpacity = "0.95";
     opacityRule = [
       "100:name *= 'Netflix'"
       "100:name *= 'Wikipedia'"
       "100:name *= 'Youtube'"
+      "90:name *= 'control_center'"
     ];
   };
   xdg.configFile."onedrive/config".text = ''
