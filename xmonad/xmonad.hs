@@ -393,7 +393,6 @@ myLayout = avoidStruts
   where
     -- TODO: add tabs to this layout
     myBSP = renamed [Replace "myBSP"]
-          $ reflectHoriz
           $ hiddenWindows
           $ layoutHints
           $ smartBorders
