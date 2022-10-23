@@ -1762,11 +1762,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1663623947,
-        "narHash": "sha256-Oz5QQpEOuWSTs+O0WyyszZG7wdl5HVReQphv12oQSTA=",
+        "lastModified": 1666510157,
+        "narHash": "sha256-9gj/lsI4pyij3ML5kJi4SM4ZPuU+Pt7kU2cIj73G2aU=",
         "owner": "Quoteme",
         "repo": "screenrotate",
-        "rev": "b07fee72654cf6e9b5c3ea68cb52e4a215941375",
+        "rev": "935082e6970a78ccb642940eee16fcec260675dd",
         "type": "github"
       },
       "original": {
