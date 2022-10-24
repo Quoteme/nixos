@@ -90,6 +90,7 @@
           myPython = ((pkgs.python310.withPackages(ps : with ps; [
             ipython
             jupyterlab
+            jupyter-lsp
             pandas
             sympy
             numpy
@@ -279,6 +280,7 @@
               lesspass-cli
             # # Drawing
               xournalpp
+              pkgs.unstable.rnote
               inkscape
               gimp
               aseprite
@@ -444,6 +446,8 @@
               gnome.gnome-clocks
               lightlocker
               xidlehook
+            # Storage
+              rclone
             # emulation
               virt-manager
               virglrenderer

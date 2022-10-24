@@ -820,6 +820,7 @@ myStartupHook = do
    spawnOnce "export SSH_AUTH_SOCK"
    spawnOnce "batsignal -b"
    spawnOnce "touchegg &"
+   spawnOnce "rclone --vfs-cache-mode writes mount \"OnedriveHHU\": ~/OneDrive"
    -- spawnOnce "udiskie"
    setWMName "LG3D"
    adjustEventInput
