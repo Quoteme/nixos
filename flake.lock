@@ -240,11 +240,17 @@
         "plugin:catppuccin": "plugin:catppuccin",
         "plugin:cheatsheet.nvim": "plugin:cheatsheet.nvim",
         "plugin:cmp-buffer": "plugin:cmp-buffer",
+        "plugin:cmp-cmdline": "plugin:cmp-cmdline",
+        "plugin:cmp-cmdline-history": "plugin:cmp-cmdline-history",
+        "plugin:cmp-dictionary": "plugin:cmp-dictionary",
         "plugin:cmp-emoji": "plugin:cmp-emoji",
+        "plugin:cmp-greek": "plugin:cmp-greek",
         "plugin:cmp-latex-symbols": "plugin:cmp-latex-symbols",
         "plugin:cmp-nvim-lsp": "plugin:cmp-nvim-lsp",
+        "plugin:cmp-nvim-lsp-document-symbol": "plugin:cmp-nvim-lsp-document-symbol",
         "plugin:cmp-pandoc.nvim": "plugin:cmp-pandoc.nvim",
         "plugin:cmp-path": "plugin:cmp-path",
+        "plugin:cmp-rg": "plugin:cmp-rg",
         "plugin:cmp-spell": "plugin:cmp-spell",
         "plugin:cmp_luasnip": "plugin:cmp_luasnip",
         "plugin:conjure": "plugin:conjure",
@@ -262,6 +268,7 @@
         "plugin:gitsigns.nvim": "plugin:gitsigns.nvim",
         "plugin:indent-blankline.nvim": "plugin:indent-blankline.nvim",
         "plugin:lsp_signature.nvim": "plugin:lsp_signature.nvim",
+        "plugin:lspkind.nvim": "plugin:lspkind.nvim",
         "plugin:marks.nvim": "plugin:marks.nvim",
         "plugin:nabla.nvim": "plugin:nabla.nvim",
         "plugin:neo-tree": "plugin:neo-tree",
@@ -313,11 +320,11 @@
         "snippets-shebang": "snippets-shebang"
       },
       "locked": {
-        "lastModified": 1666283173,
-        "narHash": "sha256-OnMupVIEkMaox2wUL/0DohdWsFhJN72Qx9MQaa/+Wm4=",
+        "lastModified": 1666429254,
+        "narHash": "sha256-ODN5LGJ+7loibg7V68oTHsA+EudD4N9VR60zORbyfRk=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "c35bdef487546e0945fe419d2ee789d8cce74600",
+        "rev": "ab64e9f36f6c4ad04cc4d03eeb72c835454fee40",
         "type": "github"
       },
       "original": {
@@ -570,6 +577,54 @@
         "type": "github"
       }
     },
+    "plugin:cmp-cmdline": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1663329933,
+        "narHash": "sha256-IvMI9wHN1llFLpgMGwm6yr60UJ6gaWBnZaxNHXCDOwI=",
+        "owner": "hrsh7th",
+        "repo": "cmp-cmdline",
+        "rev": "c66c379915d68fb52ad5ad1195cdd4265a95ef1e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hrsh7th",
+        "repo": "cmp-cmdline",
+        "type": "github"
+      }
+    },
+    "plugin:cmp-cmdline-history": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1651653950,
+        "narHash": "sha256-IcruTOCNxYKmbo0St1U+CmrDStASPLe+rTLNU6/2Xew=",
+        "owner": "dmitmel",
+        "repo": "cmp-cmdline-history",
+        "rev": "003573b72d4635ce636234a826fa8c4ba2895ffe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dmitmel",
+        "repo": "cmp-cmdline-history",
+        "type": "github"
+      }
+    },
+    "plugin:cmp-dictionary": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1661806260,
+        "narHash": "sha256-FQpfjAHzTi5G2hIkQww6ffIA4BYjkGgfPdXG4mxXtS4=",
+        "owner": "uga-rosa",
+        "repo": "cmp-dictionary",
+        "rev": "93f3e2cb2e0b4d31cf3a97820daddc4e9933ef01",
+        "type": "github"
+      },
+      "original": {
+        "owner": "uga-rosa",
+        "repo": "cmp-dictionary",
+        "type": "github"
+      }
+    },
     "plugin:cmp-emoji": {
       "flake": false,
       "locked": {
@@ -583,6 +638,22 @@
       "original": {
         "owner": "hrsh7th",
         "repo": "cmp-emoji",
+        "type": "github"
+      }
+    },
+    "plugin:cmp-greek": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1641803129,
+        "narHash": "sha256-CYJ4Px18wXDMw/58InwBDxbcO+94IzNLcwYp6iKJPRE=",
+        "owner": "max397574",
+        "repo": "cmp-greek",
+        "rev": "799110b976f9194055e9d506931ac38171bc6bcd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "max397574",
+        "repo": "cmp-greek",
         "type": "github"
       }
     },
@@ -618,6 +689,22 @@
         "type": "github"
       }
     },
+    "plugin:cmp-nvim-lsp-document-symbol": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1647917976,
+        "narHash": "sha256-NASM5mm4DjLNupVTnhj7rQR8gx0cNrF8vzMg8A1a+co=",
+        "owner": "hrsh7th",
+        "repo": "cmp-nvim-lsp-document-symbol",
+        "rev": "c3f0086ed9882e52e0ae38dd5afa915f69054941",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hrsh7th",
+        "repo": "cmp-nvim-lsp-document-symbol",
+        "type": "github"
+      }
+    },
     "plugin:cmp-pandoc.nvim": {
       "flake": false,
       "locked": {
@@ -647,6 +734,22 @@
       "original": {
         "owner": "hrsh7th",
         "repo": "cmp-path",
+        "type": "github"
+      }
+    },
+    "plugin:cmp-rg": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1662346601,
+        "narHash": "sha256-UojROsV/SsQLUVlqBX6Elb1bq7cx8V/adOxDc3U8Mgo=",
+        "owner": "lukas-reineke",
+        "repo": "cmp-rg",
+        "rev": "1cad8eb315643d0df13c37401c03d7986f891011",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lukas-reineke",
+        "repo": "cmp-rg",
         "type": "github"
       }
     },
@@ -919,6 +1022,22 @@
       "original": {
         "owner": "ray-x",
         "repo": "lsp_signature.nvim",
+        "type": "github"
+      }
+    },
+    "plugin:lspkind.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1663824370,
+        "narHash": "sha256-WwUQ+O2rIfD4yl0GFx70GsZc9nnhS7b2KWfNdaXCLmM=",
+        "owner": "onsails",
+        "repo": "lspkind.nvim",
+        "rev": "c68b3a003483cf382428a43035079f78474cd11e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "onsails",
+        "repo": "lspkind.nvim",
         "type": "github"
       }
     },
@@ -1813,11 +1932,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1655734954,
-        "narHash": "sha256-ubkHUdK8Tgo7b4nmo7osuf4grW0FqE1HfRoaehhQ/lA=",
+        "lastModified": 1666530867,
+        "narHash": "sha256-/JF9y+bUfHbZ2U0Lr3FqcV5EEQDIMnpmaseWh+BHS1E=",
         "owner": "Quoteme",
         "repo": "st-nix",
-        "rev": "06e4750377b1ac0138f3261b92b04f36c0fa75c5",
+        "rev": "f70289b2ee690db53cbd3d5ebcf8e5d5977b0007",
         "type": "github"
       },
       "original": {
