@@ -200,14 +200,23 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
   -- }}}
   -- (Un-)Hiding
   -- {{{
-  , ("M-<Backspace>"           , addName "Window: hide" $ withFocused hideWindow *> spawn "notify-send \"hidden a window\"")
-  , ("M-S-<Backspace>"         , addName "Window: unhide" $ popOldestHiddenWindow >> myUpdateFocus)
-  , ("M-S-o"                   , addName "Window: unminimize menu" $ selectMaximizeWindow)
-  , ("M-C-m"                   , addName "Window: maximize" $ withFocused (sendMessage . maximizeRestore))
-  , ("M-C-m"                   , addName "Window: maximize" $ withFocused (sendMessage . maximizeRestore))
-  , ("M-c"                     , addName "Window: copy to all other workspaces" $ windows copyToAll)
-  , ("M-S-c"                   , addName "Window: delete all other copies" $ killAllOtherCopies)
-  , ("M-C-c"                   , addName "Window: kill current copy of window" $ kill1)
+  , ("M-<Backspace>"           , addName "Window: hide"                         $ withFocused hideWindow *> spawn "notify-send \"hidden a window\"")
+  , ("M-S-<Backspace>"         , addName "Window: unhide"                       $ popOldestHiddenWindow >> myUpdateFocus)
+  , ("M-S-o"                   , addName "Window: unminimize menu"              $ selectMaximizeWindow)
+  , ("M-C-m"                   , addName "Window: maximize"                     $ withFocused (sendMessage . maximizeRestore))
+  , ("M-C-m"                   , addName "Window: maximize"                     $ withFocused (sendMessage . maximizeRestore))
+  , ("M-c"                     , addName "Window: copy to all other workspaces" $ do
+                                                                                  spawn $  "notify-send "
+                                                                                        ++ "'window copied to all workspaces' "
+                                                                                        ++ "'undo by pressing M-S-c\n"
+                                                                                        ++ "do not show on current workspace by pressing M-C-c'"
+                                                                                  windows copyToAll)
+  , ("M-S-c"                   , addName "Window: delete all other copies"      $ do
+                                                                                  killAllOtherCopies
+                                                                                  spawn "notify-send 'deleted all other copies'")
+  , ("M-C-c"                   , addName "Window: kill current copy of window"  $ do
+                                                                                  kill1
+                                                                                  spawn "notify-send 'deleted current copy'")
   -- }}}
   -- Other stuff
   -- {{{
@@ -719,7 +728,6 @@ instance Eq a => DecorationStyle ExtendedWindowSwitcherDecoration a where
           withDisplay $ \d -> do
              root <- asks theRoot
              (_, _, selWin, rx, ry, wx, wy, _) <- io $ queryPointer d root
-             spawn "notify-send 'xmonad internal' 'window switched'"
              ws <- gets windowset
              let allWindows = S.index ws
              -- do a little double check to be sure
