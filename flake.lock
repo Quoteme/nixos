@@ -248,6 +248,7 @@
         "plugin:cmp-latex-symbols": "plugin:cmp-latex-symbols",
         "plugin:cmp-nvim-lsp": "plugin:cmp-nvim-lsp",
         "plugin:cmp-nvim-lsp-document-symbol": "plugin:cmp-nvim-lsp-document-symbol",
+        "plugin:cmp-nvim-lua": "plugin:cmp-nvim-lua",
         "plugin:cmp-pandoc.nvim": "plugin:cmp-pandoc.nvim",
         "plugin:cmp-path": "plugin:cmp-path",
         "plugin:cmp-rg": "plugin:cmp-rg",
@@ -320,11 +321,11 @@
         "snippets-shebang": "snippets-shebang"
       },
       "locked": {
-        "lastModified": 1666429254,
-        "narHash": "sha256-ODN5LGJ+7loibg7V68oTHsA+EudD4N9VR60zORbyfRk=",
+        "lastModified": 1666719815,
+        "narHash": "sha256-SE5ARGBv/K0yjtxMpppVzrq5rtV7uVH0GcRW4A+ZWIQ=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "ab64e9f36f6c4ad04cc4d03eeb72c835454fee40",
+        "rev": "1742f32e3b3f023d90fc97eeaf3fb4b1fd6b3f0c",
         "type": "github"
       },
       "original": {
@@ -702,6 +703,22 @@
       "original": {
         "owner": "hrsh7th",
         "repo": "cmp-nvim-lsp-document-symbol",
+        "type": "github"
+      }
+    },
+    "plugin:cmp-nvim-lua": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1633919304,
+        "narHash": "sha256-/xUfw5adjXu8ySZBBFrLVJ1FCNJzfh79wf+wJsW6sIY=",
+        "owner": "hrsh7th",
+        "repo": "cmp-nvim-lua",
+        "rev": "d276254e7198ab7d00f117e88e223b4bd8c02d21",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hrsh7th",
+        "repo": "cmp-nvim-lua",
         "type": "github"
       }
     },
