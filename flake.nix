@@ -198,7 +198,10 @@
                   };
                 };
               };
-            
+            logind.extraConfig = ''
+              # don’t shutdown when power button is short-pressed
+              HandlePowerKey=ignore
+            '';
             printing.enable = true;
             printing.drivers = with pkgs; [
               gutenprint

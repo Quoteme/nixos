@@ -298,6 +298,7 @@ instance ExtensionClass KeyboardToggleState where
 myAdditionalKeys config = additionalKeys config
   [ ((0                 , xF86XK_TouchpadToggle ), toggleTouchpad)
   , ((0                 , xF86XK_TouchpadOn     ), enableTouchpad)
+  , ((0                 , xF86XK_PowerOff       ), spawn "notify-send 'Poweroff' 'button was pressed'")
   -- Thinkpad X201T keys
   , ((0                 , xF86XK_RotateWindows  ), spawn "screenrotation.sh cycle_left")
   , ((0                 , xF86XK_TaskPane       ), spawn "screenrotation.sh swap")
