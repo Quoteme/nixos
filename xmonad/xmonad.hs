@@ -289,8 +289,14 @@ myKeys config = (subtitle "Custom Keys":) $ mkNamedKeymap config $
 
 -- My additional keybindings
 -- {{{
+-- {{{ 
+-- Additional state needed
+newtype KeyboardToggleState = KeyboardToggleState Bool deriving (Typeable, Read, Show)
+instance ExtensionClass KeyboardToggleState where
+  initialValue = KeyboardToggleState False
+-- }}}
 myAdditionalKeys config = additionalKeys config
-  [ ((0                 , xF86XK_TouchpadToggle ), disableTouchpad)
+  [ ((0                 , xF86XK_TouchpadToggle ), toggleTouchpad)
   , ((0                 , xF86XK_TouchpadOn     ), enableTouchpad)
   -- Thinkpad X201T keys
   , ((0                 , xF86XK_RotateWindows  ), spawn "screenrotation.sh cycle_left")
@@ -305,6 +311,13 @@ myAdditionalKeys config = additionalKeys config
   , ((myModMask                 , xK_minus      ), removeLastWorkspace)
   ]
   where
+    toggleTouchpad :: X ()
+    toggleTouchpad = do
+      KeyboardToggleState state <- XS.get
+      if state
+        then enableTouchpad
+        else disableTouchpad
+      XS.put $ KeyboardToggleState $ not state
     enableTouchpad :: MonadIO m => m ()
     enableTouchpad =  spawn "xinput --enable \"ELAN1201:00 04F3:3098 Touchpad\""
                    *> spawn "xinput --enable \"AT Translated Set 2 keyboard\""
