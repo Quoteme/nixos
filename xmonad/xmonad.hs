@@ -814,11 +814,18 @@ myClientMask = focusChangeMask .|. clientMask def
 
 -- Screen / rander change hooks
 -- {{{
+myAfterRescreenHook :: X ()
+myAfterRescreenHook = do
+  spawn "xinput --map-to-output 'ELAN9008:00 04F3:2C82' eDP"
+  spawn "xinput --map-to-output 'ELAN9008:00 04F3:2C82 Stylus Pen (0)' eDP"
+  spawn "xinput --map-to-output 'ELAN9008:00 04F3:2C82 Stylus Eraser (0)' eDP"
+
 myRandrChangeHook :: X ()
 myRandrChangeHook = do
   spawn "notify-send 'Rescreen' 'screen changed'"
-  spawn "mons -o"
   spawn "xinput --map-to-output 'ELAN9008:00 04F3:2C82' eDP"
+  spawn "xinput --map-to-output 'ELAN9008:00 04F3:2C82 Stylus Pen (0)' eDP"
+  spawn "xinput --map-to-output 'ELAN9008:00 04F3:2C82 Stylus Eraser (0)' eDP"
 -- }}}
 
 -- Startup hook
@@ -856,7 +863,10 @@ main = getDirectories >>= launch
         $ myAdditionalKeys
         $ addDescrKeys ((myModMask, xK_F1), xMessage) myKeys
         $ withNavigation2DConfig myNavigation2DConfig
-        $ rescreenHook def{randrChangeHook = myRandrChangeHook}
+        $ rescreenHook def{
+          randrChangeHook = myRandrChangeHook,
+          afterRescreenHook = myAfterRescreenHook
+        }
         $ def
           {
             -- simple stuff
