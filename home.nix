@@ -81,6 +81,8 @@
   services.picom = {
     # disabled for now. Configure multiple monitors someday
     enable = true;
+    shadow = true;
+    shadowOpacity = "0.8";
     fade = true;
     fadeDelta = 5;
     fadeExclude = ["window_type *= 'menu'"];
