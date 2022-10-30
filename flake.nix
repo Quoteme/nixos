@@ -514,6 +514,8 @@
                 l = "exa";
                 ll = "exa -l --icons";
                 lt = "exa -lT";
+                vs = "vim -S";
+                neovimupdate = "cd /etc/nixos && sudo nix flake lock --update-input neovim-luca && sudo nixos-rebuild switch && notify-send \"updated system\"";
                 webcam = "mpv av://v4l2:/dev/video0 --profile=low-latency --untimed";
               };
             };
