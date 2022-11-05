@@ -255,6 +255,7 @@
         "plugin__cmp-rg": "plugin__cmp-rg",
         "plugin__cmp-spell": "plugin__cmp-spell",
         "plugin__cmp_luasnip": "plugin__cmp_luasnip",
+        "plugin__codewindow.nvim": "plugin__codewindow.nvim",
         "plugin__conjure": "plugin__conjure",
         "plugin__copilot-cmp": "plugin__copilot-cmp",
         "plugin__copilot.lua": "plugin__copilot.lua",
@@ -285,6 +286,7 @@
         "plugin__nvim-lightbulb": "plugin__nvim-lightbulb",
         "plugin__nvim-lspconfig": "plugin__nvim-lspconfig",
         "plugin__nvim-notify": "plugin__nvim-notify",
+        "plugin__nvim-treesitter": "plugin__nvim-treesitter",
         "plugin__nvim-ts-rainbow": "plugin__nvim-ts-rainbow",
         "plugin__nvim-web-devicons": "plugin__nvim-web-devicons",
         "plugin__nvimager": "plugin__nvimager",
@@ -322,11 +324,11 @@
         "snippets-shebang": "snippets-shebang"
       },
       "locked": {
-        "lastModified": 1667134165,
-        "narHash": "sha256-pqiI/255Tg0ueLGEOGWH0bu431ZrIncBA357tZhPgDk=",
+        "lastModified": 1667341119,
+        "narHash": "sha256-UllnntbWcIEuh7KzC6BYvrFx/adPIzJgON0+sdO0gSU=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "c961fb6cbbc9547dbdc99a22885ee34585ecc5cf",
+        "rev": "f19cc73fbc1c4a8194f56c9f8dcadb66f2b1e0e2",
         "type": "github"
       },
       "original": {
@@ -819,6 +821,22 @@
         "type": "github"
       }
     },
+    "plugin__codewindow.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1667194515,
+        "narHash": "sha256-L97RKpjUJ9Fw6Kpw3eY/GF38XmIHsCvtR1MqaMiw61I=",
+        "owner": "gorbit99",
+        "repo": "codewindow.nvim",
+        "rev": "987b394b3c987cb9dd6c07ea57de88a4ce64f7e1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gorbit99",
+        "repo": "codewindow.nvim",
+        "type": "github"
+      }
+    },
     "plugin__conjure": {
       "flake": false,
       "locked": {
@@ -1296,6 +1314,22 @@
       "original": {
         "owner": "rcarriga",
         "repo": "nvim-notify",
+        "type": "github"
+      }
+    },
+    "plugin__nvim-treesitter": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1667339826,
+        "narHash": "sha256-OMTi1rwnCbDotl+izfs6vwbaERlZjwBOMzSWgqJCB+c=",
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter",
+        "rev": "c6992f69d303cee0b43fd59125cb7afb0262d8fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter",
         "type": "github"
       }
     },
