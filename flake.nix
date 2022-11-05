@@ -166,7 +166,7 @@
                   '';
                 };
                 xkbVariant = "nodeadkeys";
-                xkbOptions = "caps:swapescape";
+                xkbOptions = "caps:escape,shift:both_capslock,mod_led,compose:rctrl";
                 updateDbusEnvironment = true;
               # Display Manager
                 displayManager = {
@@ -285,6 +285,7 @@
               xournalpp
               pkgs.unstable.rnote
               inkscape
+              mypaint
               gimp
               aseprite
               (pkgs.unstable.blender.override {
@@ -394,6 +395,7 @@
               imagemagick
               maim
               xclip
+              xcolor
               peek
               killall
               xorg.xkill
