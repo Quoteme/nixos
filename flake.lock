@@ -324,11 +324,11 @@
         "snippets-shebang": "snippets-shebang"
       },
       "locked": {
-        "lastModified": 1667341119,
-        "narHash": "sha256-UllnntbWcIEuh7KzC6BYvrFx/adPIzJgON0+sdO0gSU=",
+        "lastModified": 1667761698,
+        "narHash": "sha256-T8CUTYyg3221t0v2msV/aRlKnGyg4sPsdNgG7bfGUC8=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "f19cc73fbc1c4a8194f56c9f8dcadb66f2b1e0e2",
+        "rev": "4c38ea333428311c2c613e7a3e7ee9520e6bc8c6",
         "type": "github"
       },
       "original": {
@@ -394,11 +394,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1662996720,
-        "narHash": "sha256-XvLQ3SuXnDMJMpM1sv1ifPjBuRytiDYhB12H/BNTjgY=",
+        "lastModified": 1667482890,
+        "narHash": "sha256-pua0jp87iwN7NBY5/ypx0s9L9CG49Ju/NI4wGwurHc4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5f326e2a403e1cebaec378e72ceaf5725983376d",
+        "rev": "a2a777538d971c6b01c6e54af89ddd6567c055e8",
         "type": "github"
       },
       "original": {

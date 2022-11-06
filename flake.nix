@@ -272,8 +272,8 @@
             shell = pkgs.zsh;
             packages = with pkgs; [
             # Internet
-              google-chrome
-              microsoft-edge
+              pkgs.unstable.google-chrome
+              # microsoft-edge
               discord
               transmission-gtk
               thunderbird
@@ -288,9 +288,10 @@
               mypaint
               gimp
               aseprite
-              (pkgs.unstable.blender.override {
-                cudaSupport = true;
-              })
+              blender
+              # (pkgs.unstable.blender.override {
+              #   cudaSupport = true;
+              # })
               krita
             # # Media
               vlc
@@ -444,7 +445,6 @@
               xmonadctl
               inputs.screenrotate.defaultPackage.x86_64-linux
               inputs.rescreenapp.defaultPackage.x86_64-linux
-              playerctl
               inputs.control_center.defaultPackage.x86_64-linux
               batsignal
               polkit_gnome
@@ -542,7 +542,7 @@
 
           # Shell configuration
           environment.variables = {
-            "CHROME_EXECUTABLE" = "${pkgs.google-chrome}/bin/google-chrome-stable";
+            "CHROME_EXECUTABLE" = "${pkgs.unstable.google-chrome}/bin/google-chrome-stable";
             "ACCESSIBILITY_ENABLED" = "1";
             "PAGER" = "nvimpager";
             # FZF - Ripgrep integration
