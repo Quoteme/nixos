@@ -69,6 +69,7 @@ import System.Process (readProcess)
 import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies, kill1)
 import XMonad.Hooks.ManageHelpers (doRectFloat)
 import XMonad.Layout.Reflect (reflectVert, reflectHoriz)
+import XMonad.Actions.CycleWindows (rotUnfocusedUp, rotUnfocusedDown)
 -- }}}
 
 -- Options
@@ -411,9 +412,8 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
 -- {{{
 myLayout = avoidStruts 
          $   myBSP
-         -- ||| tabletmodeBSP
-         ||| (minimize . BW.boringWindows $ maximize $ myTabletMode)
-         ||| Full
+         ||| myTabletMode
+         ||| myFullscreen
   where
     -- TODO: add tabs to this layout
     myBSP = renamed [Replace "myBSP"]
@@ -426,7 +426,14 @@ myLayout = avoidStruts
                   $ noBorders
                   $ windowSwitcherDecorationWithImageButtons shrinkText myTheme (draggingVisualizer myBSP)
     myTabletMode = renamed [Replace "myTabletMode"]
+                $ minimize
+                $ BW.boringWindows
+                $ maximize
                 $ extendedWindowSwitcherDecoration shrinkText (draggingVisualizer myBSP)
+    myFullscreen = renamed [Replace "myFullscreen"]
+                $ noBorders
+                $ maximize
+                $ Full
 
 -- Allow user to select window to reopen
 -- {{{
@@ -783,6 +790,7 @@ myEventHook = focusOnMouseMove
             <+> dunstOnTop
             <+> serverModeEventHookF "XMONAD_COMMAND" defaultServerCommands
             <+> serverModeEventHookF "LAYOUT" layoutServerCommands
+            <+> serverModeEventHookF "WINDOW" windowServerCommands
               where
                 defaultServerCommands :: String -> X ()
                 defaultServerCommands "menu"               = windowMenu
@@ -794,12 +802,24 @@ myEventHook = focusOnMouseMove
                 defaultServerCommands "layout-next"        = sendMessage NextLayout
                 defaultServerCommands "layout-tablet"      = sendMessage $ JumpToLayout "myTabletMode"
                 defaultServerCommands "layout-normal"      = sendMessage $ JumpToLayout "myBSP"
+                defaultServerCommands "layout-get"         = sendMessage ToggleStruts
                 defaultServerCommands "toggle-struts"      = sendMessage ToggleStruts
                 defaultServerCommands "select-to-maximize" = selectMaximizeWindow
-                defaultServerCommands "workspace-add"     = addLastWorkspace
+                defaultServerCommands "workspace-add"      = addLastWorkspace
                 defaultServerCommands "workspace-remove"   = removeLastWorkspace
                 layoutServerCommands :: String -> X ()
                 layoutServerCommands layout = sendMessage $ JumpToLayout layout
+                windowServerCommands :: String -> X ()
+                windowServerCommands "prev" = windows S.focusDown >> updatePointer (0.5, 0.5) (0.0, 0.0)
+                windowServerCommands "next" = windows S.focusUp >> updatePointer (0.5, 0.5) (0.0, 0.0)
+                windowServerCommands "swapPrev" = windows S.swapDown >> updatePointer (0.5, 0.5) (0.0, 0.0)
+                windowServerCommands "swapNext" = windows S.swapUp >> updatePointer (0.5, 0.5) (0.0, 0.0)
+                windowServerCommands "centerMouse" = windows S.focusDown
+                                                  >> updatePointer (0.5, 0.5) (0.0, 0.0)
+                                                  >> windows S.focusUp
+                                                  >> updatePointer (0.5, 0.5) (0.0, 0.0)
+                windowServerCommands "rotate-unfocused-up" = rotUnfocusedUp
+                windowServerCommands "rotate-unfocused-down" = rotUnfocusedDown
                 dunstOnTop :: Event -> X All
                 dunstOnTop (AnyEvent {ev_event_type = et}) = do
                   when (et == focusOut) $ do
