@@ -777,7 +777,7 @@ instance Eq a => DecorationStyle ExtendedWindowSwitcherDecoration a where
 
 -- Manage hooks
 -- {{{
-myManageHook = composeAll [ appName =? "control_center" --> doRectFloat (S.RationalRect 0.65 0.05 0.325 0.4)
+myManageHook = composeAll [ appName =? "control_center" --> doRectFloat (S.RationalRect 0.65 0.05 0.325 0.45)
                           , className =? "Onboard" --> doFloat
                           ]
 -- }}}
