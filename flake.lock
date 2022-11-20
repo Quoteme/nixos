@@ -7,11 +7,11 @@
         "screenrotate": "screenrotate"
       },
       "locked": {
-        "lastModified": 1668635943,
-        "narHash": "sha256-UJ+3t+83orD9V91ovpgZ6YwP9yT8KZ4slAuabIr1Qi0=",
+        "lastModified": 1668977255,
+        "narHash": "sha256-CflBg3w2vzJ+EWLVJ7t93fjxdbgYBLCMxopUGrPJZso=",
         "owner": "Quoteme",
         "repo": "control_center",
-        "rev": "1654fe220faac68ed64b69aef534b6df2c654376",
+        "rev": "3e6301617769df09356d7b9e5fd98882388cf0c6",
         "type": "github"
       },
       "original": {
@@ -326,11 +326,11 @@
         "snippets-shebang": "snippets-shebang"
       },
       "locked": {
-        "lastModified": 1668552480,
-        "narHash": "sha256-g8d62YII5ESAUl8YwG8PMZilhEZwFLS7OkIH1QPPOog=",
+        "lastModified": 1668954285,
+        "narHash": "sha256-o1qyniTIHYtTh9XzFldAJxPWi+PLXW7/mCdtZgFQuw8=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "4f60116372138fb4193bc24aa5a912530d0db2d6",
+        "rev": "299d71803e5d795e20c190f681220a8af6b67060",
         "type": "github"
       },
       "original": {

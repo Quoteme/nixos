@@ -91,7 +91,7 @@
       "100:name *= 'Netflix'"
       "100:name *= 'Wikipedia'"
       "100:name *= 'Youtube'"
-      "90:name *= 'control_center'"
+      "97:name *= 'control_center'"
     ];
   };
   xdg.configFile."onedrive/config".text = ''
