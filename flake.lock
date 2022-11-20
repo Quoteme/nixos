@@ -7,11 +7,11 @@
         "screenrotate": "screenrotate"
       },
       "locked": {
-        "lastModified": 1667649679,
-        "narHash": "sha256-HlWG2hr6Dgd6vMzoO3WJgLxzgalss8Ugw9bWwqJISGc=",
+        "lastModified": 1668635943,
+        "narHash": "sha256-UJ+3t+83orD9V91ovpgZ6YwP9yT8KZ4slAuabIr1Qi0=",
         "owner": "Quoteme",
         "repo": "control_center",
-        "rev": "9741128eb4c1913dce2d32b16cea11cbc71b5f56",
+        "rev": "1654fe220faac68ed64b69aef534b6df2c654376",
         "type": "github"
       },
       "original": {
@@ -263,6 +263,7 @@
         "plugin__dart-vim-plugin": "plugin__dart-vim-plugin",
         "plugin__dartlang-snippets": "plugin__dartlang-snippets",
         "plugin__delimitMate": "plugin__delimitMate",
+        "plugin__dressing.nvim": "plugin__dressing.nvim",
         "plugin__focus.nvim": "plugin__focus.nvim",
         "plugin__fold-cycle.nvim": "plugin__fold-cycle.nvim",
         "plugin__fold-preview.nvim": "plugin__fold-preview.nvim",
@@ -270,6 +271,7 @@
         "plugin__gesture.nvim": "plugin__gesture.nvim",
         "plugin__gitsigns.nvim": "plugin__gitsigns.nvim",
         "plugin__indent-blankline.nvim": "plugin__indent-blankline.nvim",
+        "plugin__legendary.nvim": "plugin__legendary.nvim",
         "plugin__lsp_signature.nvim": "plugin__lsp_signature.nvim",
         "plugin__lspkind.nvim": "plugin__lspkind.nvim",
         "plugin__marks.nvim": "plugin__marks.nvim",
@@ -324,11 +326,11 @@
         "snippets-shebang": "snippets-shebang"
       },
       "locked": {
-        "lastModified": 1667761698,
-        "narHash": "sha256-T8CUTYyg3221t0v2msV/aRlKnGyg4sPsdNgG7bfGUC8=",
+        "lastModified": 1668552480,
+        "narHash": "sha256-g8d62YII5ESAUl8YwG8PMZilhEZwFLS7OkIH1QPPOog=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "4c38ea333428311c2c613e7a3e7ee9520e6bc8c6",
+        "rev": "4f60116372138fb4193bc24aa5a912530d0db2d6",
         "type": "github"
       },
       "original": {
@@ -394,11 +396,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1667482890,
-        "narHash": "sha256-pua0jp87iwN7NBY5/ypx0s9L9CG49Ju/NI4wGwurHc4=",
+        "lastModified": 1668417584,
+        "narHash": "sha256-yeuEyxKPwsm5fIHN49L/syn9g5coxnPp3GsVquhrv5A=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a2a777538d971c6b01c6e54af89ddd6567c055e8",
+        "rev": "013fcdd106823416918004bb684c3c186d3c460f",
         "type": "github"
       },
       "original": {
@@ -536,11 +538,11 @@
     "plugin__catppuccin": {
       "flake": false,
       "locked": {
-        "lastModified": 1666895699,
-        "narHash": "sha256-CUxc2CwRiRXHMfbt7QhYVSdx9HjPbRGIdlgnOn7Bfl0=",
+        "lastModified": 1667749312,
+        "narHash": "sha256-vhKhEXCkmz0KH8LlZzcOvGkvdwp7TtI7ZV7ZxojgnAI=",
         "owner": "catppuccin",
         "repo": "nvim",
-        "rev": "e695645298320e9714d10897aadee3cb5951567a",
+        "rev": "cd676faa020b34e6617398835b5fa3d1c2e8895c",
         "type": "github"
       },
       "original": {
@@ -949,6 +951,22 @@
         "type": "github"
       }
     },
+    "plugin__dressing.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1667963853,
+        "narHash": "sha256-59Kj5CSaoqQIKB5dQzhXTAzaa6H4xeZsPRJ6I7S7n5A=",
+        "owner": "stevearc",
+        "repo": "dressing.nvim",
+        "rev": "8c1500069cafc9cfd93bf5521b17fde060008022",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stevearc",
+        "repo": "dressing.nvim",
+        "type": "github"
+      }
+    },
     "plugin__focus.nvim": {
       "flake": false,
       "locked": {
@@ -1058,6 +1076,22 @@
       "original": {
         "owner": "lukas-reineke",
         "repo": "indent-blankline.nvim",
+        "type": "github"
+      }
+    },
+    "plugin__legendary.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1668017600,
+        "narHash": "sha256-pmyvXptYJHZpa4ISXv7PNnnX3eg0OVE5fVlw0EHAOwU=",
+        "owner": "mrjones2014",
+        "repo": "legendary.nvim",
+        "rev": "7944f15aa84bce9b71db44cdbb81a19a95cb3b45",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mrjones2014",
+        "repo": "legendary.nvim",
         "type": "github"
       }
     },

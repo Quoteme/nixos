@@ -77,14 +77,45 @@
                 --prefix "$out/bin":PATH
             '';
           };
+          myAndroidStudio = pkgs.symlinkJoin {
+            name = "myAndroidStudio";
+            paths = with pkgs; [
+              pkgs.unstable.android-studio
+              pkgs.unstable.flutter.unwrapped
+              # dart
+              gnumake
+              check
+              pkg-config
+              glibc
+              android-tools
+              jdk
+              git
+            ];
+          
+            nativeBuildInputs = [ pkgs.makeWrapper ];
+            postBuild = ''
+              wrapProgram $out/bin/flutter \
+                --prefix PUB_CACHE=/home/luca/.pub-cache:PUB_CACHE \
+                --prefix ANDROID_SDH_ROOT=/home/luca/Dokumente/dev/android/.sdk_files \
+                --prefix ANDROID_HOME=/home/luca/Dokumente/dev/android/.sdk_files \
+                --prefix ANDROID_JAVA_HOME=${pkgs.jdk.home}
+          
+              wrapProgram $out/bin/android-studio \
+                --prefix PUB_CACHE=/home/luca/.pub-cache:PUB_CACHE \
+                --prefix FLUTTER_SDK=${pkgs.unstable.flutter.unwrapped} \
+                --prefix ANDROID_SDH_ROOT=/home/luca/Dokumente/dev/android/.sdk_files \
+                --prefix ANDROID_HOME=/home/luca/Dokumente/dev/android/.sdk_files \
+                --prefix ANDROID_JAVA_HOME=${pkgs.jdk.home}
+            '';
+          };
           myIDEA = pkgs.symlinkJoin {
             name = "myIDEA";
             paths = with pkgs; [
               jetbrains.idea-ultimate
               # instead use:
               # https://discourse.nixos.org/t/flutter-run-d-linux-build-process-failed/16552/3
-              flutter
-              dart
+              # flutter
+              # dart
             ];
           };
           myPython = ((pkgs.python310.withPackages(ps : with ps; [
@@ -350,10 +381,10 @@
                 scrcpy
                 nodePackages.cordova
                 android-tools
-                pkgs.unstable.android-studio
+                myAndroidStudio
               # Flutter
-                flutter
-                dart
+                # flutter
+                # dart
               # game-dev
                 godot
               # UNI HHU ZEUG
