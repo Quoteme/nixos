@@ -233,6 +233,11 @@
             #   lockMessage = "Lulca\'s Laptop";
             # };
           };
+          # Enable flatpak
+          services.flatpak.enable = true;
+          xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+          xdg.portal.enable = true;
+          xdg.portal.gtkUsePortal = true;
           # make qt apps look like gtk
           # https://nixos.org/manual/nixos/stable/index.html#sec-x11-gtk-and-qt-themes
           qt5.enable = true;
@@ -301,7 +306,7 @@
               deadbeef
               sxiv
             # Gaming
-              pkgs.unstable.minecraft
+              # pkgs.unstable.minecraft
             # Productivity
               libreoffice
             # Programming
