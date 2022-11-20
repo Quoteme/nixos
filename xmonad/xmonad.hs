@@ -859,7 +859,7 @@ myStartupHook = do
    spawnOnce "xinput disable \"ThinkPad Extra Buttons\""
    spawnOnce "birdtray"
    spawnOnce "nitrogen --restore &"
-   -- spawnOnce "autoscreenrotation.sh &"
+   spawnOnce "autoscreenrotation.sh &"
    -- spawnOnce "dunst -conf /etc/nixos/config/dunstrc"
    spawnOnce "polybar top"
    -- spawnOnce "onboard ; xdotool key 199 ; xdotool key 200"
