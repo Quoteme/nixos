@@ -84,4 +84,14 @@
     evdev:input:b0003v0B05p19B6*
       KEYBOARD_KEY_ff31007c=f20 # x11 mic-mute
   '';
+
+  # tablet-mode patch
+  boot.kernelPatches = [
+    { name = "asus-rog-flow-x13-tablet-mode";
+      patch = builtins.fetchurl {
+        url = "https://raw.githubusercontent.com/IvanDovgal/asus-rog-flow-x13-tablet-mode/main/support_sw_tablet_mode.patch";
+        sha256 = "sha256:1qk63h1fvcqs6hyrz0djw9gay7ixcfh4rdqvza1x62j0wkrmrkky";
+      };
+    }
+  ];
 }
