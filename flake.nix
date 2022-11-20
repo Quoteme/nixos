@@ -10,8 +10,6 @@
     neovim-luca.url = "github:Quoteme/neovim-luca";
     nix-autobahn.url = "github:Lassulus/nix-autobahn";
     nix-alien.url = "github:thiagokokada/nix-alien";
-    screenrotate.url = "github:Quoteme/screenrotate";
-    screenrotate.inputs.nixpkgs.follows = "nixpkgs";
     rescreenapp.url = "github:Quoteme/rescreenapp";
     control_center.url = "github:Quoteme/control_center";
   };
@@ -479,7 +477,6 @@
               libnotify
               # xmobar-luca
               xmonadctl
-              inputs.screenrotate.defaultPackage.x86_64-linux
               inputs.rescreenapp.defaultPackage.x86_64-linux
               inputs.control_center.defaultPackage.x86_64-linux
               batsignal
