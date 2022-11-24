@@ -111,7 +111,7 @@
           myIDEA = pkgs.symlinkJoin {
             name = "myIDEA";
             paths = with pkgs; [
-              jetbrains.idea-ultimate
+              pkgs.unstable.jetbrains.idea-ultimate
               # instead use:
               # https://discourse.nixos.org/t/flutter-run-d-linux-build-process-failed/16552/3
               # flutter
