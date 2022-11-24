@@ -10,7 +10,7 @@ xidlehook \
   `# Don't lock when there's audio playing` \
   --not-when-audio \
   `# Dim the screen after 60 seconds, undim if user becomes active` \
-  --timer 60 \
+  --timer 180 \
     'brightnessctl --save; brightnessctl set 1%' \
     'brightnessctl --restore' \
   `# Finally, suspend an hour after it locks` \
