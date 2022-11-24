@@ -135,6 +135,9 @@
             # pysimplegui
             # qiskit
           ])).override (args: { ignoreCollisions = true; })); # this is for qiskit
+          nix-ld-so = pkgs.runCommand "ld.so" {} ''
+            ln -s "$(cat '${pkgs.stdenv.cc}/nix-support/dynamic-linker')" $out
+          '';
         in
         {
           imports = [
@@ -584,6 +587,8 @@
             # FZF - Ripgrep integration
             "INITIAL_QUERY" = "";
             "RG_PREFIX"="rg --column --line-number --no-heading --color=always --smart-case ";
+            "NIX_LD_LIBRARY_PATH" = "/run/current-system/sw/share/nix-ld/lib";
+            "NIX_LD" = toString nix-ld-so;
           };
           # environment.sessionVariables = {
           #   PATH = [ 
