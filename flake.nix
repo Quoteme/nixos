@@ -91,19 +91,18 @@
               jdk
               git
             ];
-          
             nativeBuildInputs = [ pkgs.makeWrapper ];
             postBuild = ''
               wrapProgram $out/bin/flutter \
-                --prefix PUB_CACHE=/home/luca/.pub-cache:PUB_CACHE \
-                --prefix ANDROID_SDH_ROOT=/home/luca/Dokumente/dev/android/.sdk_files \
+                --prefix PUB_CACHE=/home/luca/.pub-cache \
+                --prefix ANDROID_SDK_ROOT=/home/luca/Dokumente/dev/android/.sdk_files \
                 --prefix ANDROID_HOME=/home/luca/Dokumente/dev/android/.sdk_files \
                 --prefix ANDROID_JAVA_HOME=${pkgs.jdk.home}
           
               wrapProgram $out/bin/android-studio \
-                --prefix PUB_CACHE=/home/luca/.pub-cache:PUB_CACHE \
+                --prefix PUB_CACHE=/home/luca/.pub-cache \
                 --prefix FLUTTER_SDK=${pkgs.unstable.flutter.unwrapped} \
-                --prefix ANDROID_SDH_ROOT=/home/luca/Dokumente/dev/android/.sdk_files \
+                --prefix ANDROID_SDK_ROOT=/home/luca/Dokumente/dev/android/.sdk_files \
                 --prefix ANDROID_HOME=/home/luca/Dokumente/dev/android/.sdk_files \
                 --prefix ANDROID_JAVA_HOME=${pkgs.jdk.home}
             '';
