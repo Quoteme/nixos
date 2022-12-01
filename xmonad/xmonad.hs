@@ -868,7 +868,7 @@ myStartupHook = do
    spawnOnce "export $(dbus-launch)"
    spawnOnce "eval $(gnome-keyring-daemon --daemonize)"
    spawnOnce "export SSH_AUTH_SOCK"
-   spawnOnce "batsignal -b"
+   spawnOnce "batsignal -b -n BAT0"
    spawnOnce "touchegg &"
    spawnOnce "rclone --vfs-cache-mode writes mount \"OnedriveHHU\": ~/OneDrive"
    -- spawnOnce "udiskie"
