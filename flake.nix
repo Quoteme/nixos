@@ -316,6 +316,9 @@
             # Privacy
               veracrypt
               lesspass-cli
+            # Video-Editing
+              obs-studio
+              kdenlive
             # # Drawing
               xournalpp
               pkgs.unstable.rnote
