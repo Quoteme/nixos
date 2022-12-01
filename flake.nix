@@ -81,7 +81,7 @@
             name = "myAndroidStudio";
             paths = with pkgs; [
               pkgs.unstable.android-studio
-              pkgs.unstable.flutter.unwrapped
+              pkgs.unstable.flutter
               # dart
               gnumake
               check
@@ -583,6 +583,7 @@
             "CHROME_EXECUTABLE" = "${pkgs.unstable.google-chrome}/bin/google-chrome-stable";
             "ACCESSIBILITY_ENABLED" = "1";
             "PAGER" = "nvimpager";
+            "FLUTTER_SDK" = "/home/luca/Dokumente/dev/dart/.sdk_files/flutter/";
             # FZF - Ripgrep integration
             "INITIAL_QUERY" = "";
             "RG_PREFIX"="rg --column --line-number --no-heading --color=always --smart-case ";
