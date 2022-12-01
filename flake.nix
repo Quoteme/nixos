@@ -196,7 +196,7 @@
                   '';
                 };
                 xkbVariant = "nodeadkeys";
-                xkbOptions = "caps:escape,shift:both_capslock,mod_led,compose:rctrl";
+                xkbOptions = "caps:escape,shift:both_capslock,mod_led,compose:rctrl-altgr";
                 updateDbusEnvironment = true;
               # Display Manager
                 displayManager = {
