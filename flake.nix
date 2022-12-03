@@ -43,12 +43,6 @@
         # ┗━╸┗━┛╹ ╹╹  ╹┗━┛┗━┛╹┗╸╹ ╹ ╹ ╹┗━┛╹ ╹╹╹ ╹╹╹ ╹
         ({ config, nixpkgs, ...}@inputs: 
         let
-          xmobar-luca = (pkgs.callPackage (pkgs.fetchFromGitHub {
-            owner = "quoteme";
-            repo = "xmobar-luca";
-            rev = "v1.3";
-            sha256 = "07n05zz8fbddkp35ppay1pzw3rgk56ivph7c5hysp26ivris1mim";
-          }) {} );
           xmonadctl = (pkgs.callPackage (pkgs.fetchFromGitHub {
             owner = "quoteme";
             repo = "xmonadctl";
@@ -479,7 +473,6 @@
               neofetch
               onefetch
               libnotify
-              # xmobar-luca
               xmonadctl
               inputs.screenrotate.defaultPackage.x86_64-linux
               inputs.rescreenapp.defaultPackage.x86_64-linux
