@@ -75,7 +75,7 @@
             name = "myAndroidStudio";
             paths = with pkgs; [
               pkgs.unstable.android-studio
-              pkgs.unstable.flutter
+              # pkgs.unstable.flutter
               # dart
               gnumake
               check
@@ -87,11 +87,11 @@
             ];
             nativeBuildInputs = [ pkgs.makeWrapper ];
             postBuild = ''
-              wrapProgram $out/bin/flutter \
-                --prefix PUB_CACHE=/home/luca/.pub-cache \
-                --prefix ANDROID_SDK_ROOT=/home/luca/.local/lib/arch-id/android-sdk/ \
-                --prefix ANDROID_HOME=/home/luca/.local/lib/arch-id/android-sdk/\
-                --prefix ANDROID_JAVA_HOME=${pkgs.jdk.home}
+              # wrapProgram $out/bin/flutter \
+              #   --prefix PUB_CACHE=/home/luca/.pub-cache \
+              #   --prefix ANDROID_SDK_ROOT=/home/luca/.local/lib/arch-id/android-sdk/ \
+              #   --prefix ANDROID_HOME=/home/luca/.local/lib/arch-id/android-sdk/\
+              #   --prefix ANDROID_JAVA_HOME=${pkgs.jdk.home}
           
               wrapProgram $out/bin/android-studio \
                 --prefix PUB_CACHE=/home/luca/.pub-cache \
@@ -475,7 +475,7 @@
               libnotify
               xmonadctl
               inputs.screenrotate.defaultPackage.x86_64-linux
-              inputs.rescreenapp.defaultPackage.x86_64-linux
+              # inputs.rescreenapp.defaultPackage.x86_64-linux
               inputs.control_center.defaultPackage.x86_64-linux
               batsignal
               polkit_gnome
@@ -491,7 +491,6 @@
                 wineWowPackages.full
                 bottles
               # Hier werde ich wohl lieber ganz selber ein eigenes
-              # UI Programm in Flutter schreiben.
             # stuff that is needed pretty much everywhere
               myPython
               (haskellPackages.ghcWithPackages myGHCPackages)
@@ -573,23 +572,34 @@
 
           # Shell configuration
           environment.variables = {
-            "CHROME_EXECUTABLE" = "${pkgs.unstable.google-chrome}/bin/google-chrome-stable";
-            "ACCESSIBILITY_ENABLED" = "1";
-            "PAGER" = "nvimpager";
-            "FLUTTER_SDK" = "/home/luca/.local/lib/arch-id/flutter";
+            CHROME_EXECUTABLE = "${pkgs.unstable.google-chrome}/bin/google-chrome-stable";
+            ACCESSIBILITY_ENABLED = "1";
+            PAGER = "nvimpager";
             # FZF - Ripgrep integration
-            "INITIAL_QUERY" = "";
-            "RG_PREFIX"="rg --column --line-number --no-heading --color=always --smart-case ";
+            INITIAL_QUERY = "";
+            RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case ";
             # "NIX_LD_LIBRARY_PATH" = "/run/current-system/sw/share/nix-ld/lib";
             # "NIX_LD" = toString nix-ld-so;
-            "NIX_LD_LIBRARY_PATH" = pkgs.lib.makeLibraryPath (config.systemd.packages ++ config.environment.systemPackages);
-            "NIX_LD" = "${pkgs.glibc}/lib/ld-linux-x86-64.so.2";
+            NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath (config.systemd.packages ++ config.environment.systemPackages);
+            NIX_LD = "${pkgs.glibc}/lib/ld-linux-x86-64.so.2";
+            
           };
-          # environment.sessionVariables = {
-          #   PATH = [ 
-          #     "/home/luca/Android/Sdk/cmdline-tools/latest/bin/"
-          #   ];
-          # };
+          environment.sessionVariables = {
+            XDG_CACHE_HOME  = "\${HOME}/.cache";
+            XDG_CONFIG_HOME = "\${HOME}/.config";
+            XDG_LIB_HOME    = "\${HOME}/.local/lib";
+            XDG_BIN_HOME    = "\${HOME}/.local/bin";
+            XDG_DATA_HOME   = "\${HOME}/.local/share";
+
+            FLUTTER_SDK = "\${XDG_LIB_HOME}/arch-id/flutter";
+            ANDROID_SDK_ROOT="\${XDG_LIB_HOME}arch-id/android-sdk/";
+
+            PATH = [
+              "\${XDG_BIN_HOME}"
+              "\${FLUTTER_SDK}/bin"
+              "\${ANDROID_SDK_ROOT}/platform-tools"
+            ];
+          };
           virtualisation = {
             libvirtd = {
               enable = true;
