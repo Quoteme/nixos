@@ -95,15 +95,15 @@
             postBuild = ''
               wrapProgram $out/bin/flutter \
                 --prefix PUB_CACHE=/home/luca/.pub-cache \
-                --prefix ANDROID_SDK_ROOT=/home/luca/Dokumente/dev/android/.sdk_files \
-                --prefix ANDROID_HOME=/home/luca/Dokumente/dev/android/.sdk_files \
+                --prefix ANDROID_SDK_ROOT=/home/luca/.local/lib/arch-id/android-sdk/ \
+                --prefix ANDROID_HOME=/home/luca/.local/lib/arch-id/android-sdk/\
                 --prefix ANDROID_JAVA_HOME=${pkgs.jdk.home}
           
               wrapProgram $out/bin/android-studio \
                 --prefix PUB_CACHE=/home/luca/.pub-cache \
                 --prefix FLUTTER_SDK=${pkgs.unstable.flutter.unwrapped} \
-                --prefix ANDROID_SDK_ROOT=/home/luca/Dokumente/dev/android/.sdk_files \
-                --prefix ANDROID_HOME=/home/luca/Dokumente/dev/android/.sdk_files \
+                --prefix ANDROID_SDK_ROOT=/home/luca/.local/lib/arch-id/android-sdk/ \
+                --prefix ANDROID_HOME=/home/luca/.local/lib/arch-id/android-sdk/ \
                 --prefix ANDROID_JAVA_HOME=${pkgs.jdk.home}
             '';
           };
@@ -583,7 +583,7 @@
             "CHROME_EXECUTABLE" = "${pkgs.unstable.google-chrome}/bin/google-chrome-stable";
             "ACCESSIBILITY_ENABLED" = "1";
             "PAGER" = "nvimpager";
-            "FLUTTER_SDK" = "/home/luca/Dokumente/dev/dart/.sdk_files/flutter/";
+            "FLUTTER_SDK" = "/home/luca/.local/lib/arch-id/flutter";
             # FZF - Ripgrep integration
             "INITIAL_QUERY" = "";
             "RG_PREFIX"="rg --column --line-number --no-heading --color=always --smart-case ";
