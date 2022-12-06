@@ -112,6 +112,8 @@
             ];
           };
           myPython = ((pkgs.python310.withPackages(ps : with ps; [
+            debugpy
+            pytest
             ipython
             jupyterlab
             jupyter-lsp
@@ -404,7 +406,7 @@
             hasklig
             material-icons
             # nerdfonts
-            (nerdfonts.override { fonts = [ "FiraCode" ]; })
+            (pkgs.unstable.nerdfonts.override { fonts = [ "FiraCode" ]; })
           ];
           fonts.fontconfig.defaultFonts.emoji = ["openmoji-color"];
           # List packages installed in system profile. To search, run:
