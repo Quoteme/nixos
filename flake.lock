@@ -2425,11 +2425,11 @@
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1670772471,
-        "narHash": "sha256-+Js5pwzMhefY64e5KOyWOJlyV065orzNObg8nU1DFJE=",
+        "lastModified": 1670772752,
+        "narHash": "sha256-Q6vKbHgSCvFnKX27FX5s8EwbUXZpuKE83lAOClFFwYk=",
         "owner": "Quoteme",
         "repo": "xmonad-workspace-preview",
-        "rev": "d4222252571c35ec79ee1db3ffb9a80f7560b9a2",
+        "rev": "808f36d625cd673ee63f32616c90fb72a4086600",
         "type": "github"
       },
       "original": {
