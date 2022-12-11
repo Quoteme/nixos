@@ -70,6 +70,7 @@ import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies, kill1)
 import XMonad.Hooks.ManageHelpers (doRectFloat)
 import XMonad.Layout.Reflect (reflectVert, reflectHoriz)
 import XMonad.Actions.CycleWindows (rotUnfocusedUp, rotUnfocusedDown)
+import Data.Time.Clock.POSIX (getPOSIXTime, POSIXTime)
 -- }}}
 
 -- Options
@@ -844,6 +845,55 @@ myStartupHook = do
    adjustEventInput
 -- }}}
 
+-- My Log hook
+-- {{{ 
+-- {{{ Thumbnail config
+newtype ThumbnailLastSave = ThumbnailLastSave POSIXTime
+  deriving (Show, Eq)
+instance ExtensionClass ThumbnailLastSave where
+  initialValue = ThumbnailLastSave 0
+
+newtype LastSavedWorkspaceThumbnail = LastSavedWorkspaceThumbnail String
+  deriving (Show, Eq)
+instance ExtensionClass LastSavedWorkspaceThumbnail where
+  initialValue = LastSavedWorkspaceThumbnail "no workspace"
+
+shouldSaveNewThumbnail :: POSIXTime ->  X Bool
+shouldSaveNewThumbnail delay = do
+  -- Delay in seconds
+  ThumbnailLastSave lastSaveTime <- XS.get
+  LastSavedWorkspaceThumbnail lastSavedWorkspace <- XS.get
+  currentWorkspace <- gets (S.tag . S.workspace . S.current . windowset)
+  currentTime <- liftIO getPOSIXTime
+  let shouldSave = currentTime - lastSaveTime > delay || currentWorkspace /= lastSavedWorkspace
+  when shouldSave $ do
+    XS.put $ ThumbnailLastSave currentTime
+    XS.put $ LastSavedWorkspaceThumbnail currentWorkspace
+  return shouldSave
+-- }}}
+
+myLogHook :: X ()
+myLogHook = do
+  thumbnailHook
+  return ()
+  where
+    thumbnailHook :: X ()
+    thumbnailHook = do
+      workspacename <- gets (S.tag . S.workspace . S.current . windowset)
+      createThumbnailIfNeccessary workspacename 10
+      where
+        createThumbnailIfNeccessary :: String -> Int -> X ()
+        createThumbnailIfNeccessary workspaceName quality = do
+          shouldSave <- shouldSaveNewThumbnail 5
+          when shouldSave $ do
+            spawn "notify-send 'Thumbnail' 'Saved'"
+          when shouldSave $ createThumbnail workspaceName quality
+        createThumbnail :: String -> Int -> X ()
+        createThumbnail workspaceName quality = do
+          -- TODO: Write this to ram
+          spawn $ format "import -window root -resize {0}% $XDG_CACHE_HOME/xmonad_workspace_thumbnail-{1}.png" [(show quality), workspaceName]
+-- }}}
+
 -- Main
 -- {{{
 main = getDirectories >>= launch
@@ -874,7 +924,7 @@ main = getDirectories >>= launch
               manageHook         = myManageHook,
               handleEventHook    = myEventHook,
               startupHook        = myStartupHook,
-              clientMask         = myClientMask
-              -- logHook            = myLogHook
+              clientMask         = myClientMask,
+              logHook            = myLogHook
           })
 -- }}}
