@@ -67,10 +67,11 @@ import XMonad.Layout.Maximize (maximize, maximizeRestore)
 import Control.Concurrent (threadDelay)
 import System.Process (readProcess)
 import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies, kill1)
-import XMonad.Hooks.ManageHelpers (doRectFloat)
+import XMonad.Hooks.ManageHelpers (doRectFloat, isDialog, doCenterFloat)
 import XMonad.Layout.Reflect (reflectVert, reflectHoriz)
 import XMonad.Actions.CycleWindows (rotUnfocusedUp, rotUnfocusedDown)
 import Data.Time.Clock.POSIX (getPOSIXTime, POSIXTime)
+import System.Directory (getHomeDirectory, listDirectory, removeFile)
 -- }}}
 
 -- Options
@@ -748,6 +749,7 @@ instance Eq a => DecorationStyle ExtendedWindowSwitcherDecoration a where
 -- {{{
 myManageHook = composeAll [ appName =? "control_center" --> doRectFloat (S.RationalRect 0.65 0.05 0.325 0.45)
                           , className =? "Onboard" --> doFloat
+                          , isDialog --> doCenterFloat
                           ]
 -- }}}
 
@@ -760,6 +762,7 @@ myEventHook = focusOnMouseMove
             <+> serverModeEventHookF "XMONAD_COMMAND" defaultServerCommands
             <+> serverModeEventHookF "LAYOUT" layoutServerCommands
             <+> serverModeEventHookF "WINDOW" windowServerCommands
+            <+> serverModeEventHookF "WORKSPACE" workspaceServerCommands
               where
                 defaultServerCommands :: String -> X ()
                 defaultServerCommands "menu"               = windowMenu
@@ -789,6 +792,9 @@ myEventHook = focusOnMouseMove
                                                   >> updatePointer (0.5, 0.5) (0.0, 0.0)
                 windowServerCommands "rotate-unfocused-up" = rotUnfocusedUp
                 windowServerCommands "rotate-unfocused-down" = rotUnfocusedDown
+                -- | switch to workspace `workspacename`
+                workspaceServerCommands :: String -> X ()
+                workspaceServerCommands workspacename = windows $ S.greedyView workspacename
                 dunstOnTop :: Event -> X All
                 dunstOnTop (AnyEvent {ev_event_type = et}) = do
                   when (et == focusOut) $ do
@@ -842,12 +848,21 @@ myStartupHook = do
    spawnOnce "rclone --vfs-cache-mode writes mount \"OnedriveHHU\": ~/OneDrive"
    -- spawnOnce "udiskie"
    setWMName "LG3D"
+   liftIO removeOldThumbnails
    adjustEventInput
 -- }}}
 
 -- My Log hook
 -- {{{ 
 -- {{{ Thumbnail config
+removeOldThumbnails :: IO ()
+removeOldThumbnails = do
+  home <- getHomeDirectory
+  let thumbDir = home ++ "/.cache/"
+  files <- listDirectory thumbDir
+  let oldFiles = [ f | f <- files, "xmonad_workspace_thumbnail" `isPrefixOf` f ]
+  mapM_ (\f -> removeFile (thumbDir ++ f)) oldFiles
+
 newtype ThumbnailLastSave = ThumbnailLastSave POSIXTime
   deriving (Show, Eq)
 instance ExtensionClass ThumbnailLastSave where
@@ -880,7 +895,7 @@ myLogHook = do
     thumbnailHook :: X ()
     thumbnailHook = do
       workspacename <- gets (S.tag . S.workspace . S.current . windowset)
-      createThumbnailIfNeccessary workspacename 10
+      createThumbnailIfNeccessary workspacename 20
       where
         createThumbnailIfNeccessary :: String -> Int -> X ()
         createThumbnailIfNeccessary workspaceName quality = do
