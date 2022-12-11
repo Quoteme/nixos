@@ -335,7 +335,12 @@ removeLastWorkspace :: X ()
 removeLastWorkspace = do
     workspaceLenString <- runProcessWithInput "xdotool" (["get_num_desktops"]) ""
     let workspaceLen = read workspaceLenString :: Int
-    -- spawn $ format "notify-send \"Workspace length decreased\" \"now at {0}\"" [show workspaceLen]
+    -- remove old thumbnails
+    home <- liftIO getHomeDirectory
+    let thumbDir = home ++ "/.cache/"
+    files <- liftIO $ listDirectory thumbDir
+    let oldFiles = [ f | f <- sort files, "xmonad_workspace_thumbnail" `isPrefixOf` f ]
+    liftIO $ removeFile $ thumbDir ++ last oldFiles
     removeWorkspaceByTag $ show $ workspaceLen
     return ()
 -- }}}
