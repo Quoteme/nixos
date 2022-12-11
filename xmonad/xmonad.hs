@@ -885,8 +885,6 @@ myLogHook = do
         createThumbnailIfNeccessary :: String -> Int -> X ()
         createThumbnailIfNeccessary workspaceName quality = do
           shouldSave <- shouldSaveNewThumbnail 5
-          when shouldSave $ do
-            spawn "notify-send 'Thumbnail' 'Saved'"
           when shouldSave $ createThumbnail workspaceName quality
         createThumbnail :: String -> Int -> X ()
         createThumbnail workspaceName quality = do
