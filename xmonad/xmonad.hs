@@ -14,7 +14,7 @@
 import XMonad
 import XMonad.Prelude
 import XMonad.Util.SpawnOnce
-import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.Run(spawnPipe, runProcessWithInput)
 import XMonad.Util.EZConfig
 import XMonad.Hooks.DynamicLog (xmobarAction)
 import XMonad.Hooks.EwmhDesktops  -- for some fullscreen events, also for xcomposite in obs.
@@ -336,18 +336,18 @@ addLastWorkspace :: X ()
 addLastWorkspace = do
     -- maybe use xdotool instead of extensible state?
     -- workspaceLen <- liftIO $ (\t -> read t :: Int) <$> readProcess "xdotool" ["get_num_desktops"] []
-    workspaceLen <- XS.get :: X WorkspaceLength
-    XS.put (workspaceLen + 1)
+    workspaceLenString <- runProcessWithInput "xdotool" (["get_num_desktops"]) ""
+    let workspaceLen = read workspaceLenString :: Int
     -- spawn $ format "notify-send \"Workspace length increased\" \"now at {0}\"" [show workspaceLen]
-    addWorkspace (show workspaceLen)
+    addWorkspace $ show $ workspaceLen + 1
     return ()
 
 removeLastWorkspace :: X ()
 removeLastWorkspace = do
-    workspaceLen <- XS.get :: X WorkspaceLength
-    XS.put (workspaceLen - 1)
+    workspaceLenString <- runProcessWithInput "xdotool" (["get_num_desktops"]) ""
+    let workspaceLen = read workspaceLenString :: Int
     -- spawn $ format "notify-send \"Workspace length decreased\" \"now at {0}\"" [show workspaceLen]
-    withNthWorkspace S.greedyView (fromIntegral workspaceLen - 1)
+    withNthWorkspace S.greedyView $ workspaceLen - 1
     removeWorkspace
     return ()
 
