@@ -35,6 +35,21 @@
         "type": "github"
       }
     },
+    "flake-utils_10": {
+      "locked": {
+        "lastModified": 1667395993,
+        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "flake-utils_2": {
       "locked": {
         "lastModified": 1659877975,
@@ -514,6 +529,22 @@
         "owner": "nixos",
         "repo": "nixpkgs",
         "rev": "30d3d79b7d3607d56546dd2a6b49e156ba0ec634",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_8": {
+      "locked": {
+        "lastModified": 1670681895,
+        "narHash": "sha256-kZH9DSU36W4fn1z81a/24JCGkU517TcY50VE0RFJ9k4=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "f82f0ec1b70b2879c3f3d9a1015a05c73a90a17c",
         "type": "github"
       },
       "original": {
@@ -2322,7 +2353,8 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "rescreenapp": "rescreenapp",
         "screenrotate": "screenrotate_2",
-        "st-nix": "st-nix"
+        "st-nix": "st-nix",
+        "xmonad-workspace-preview": "xmonad-workspace-preview"
       }
     },
     "screenrotate": {
@@ -2384,6 +2416,25 @@
       "original": {
         "owner": "Quoteme",
         "repo": "st-nix",
+        "type": "github"
+      }
+    },
+    "xmonad-workspace-preview": {
+      "inputs": {
+        "flake-utils": "flake-utils_10",
+        "nixpkgs": "nixpkgs_8"
+      },
+      "locked": {
+        "lastModified": 1670772471,
+        "narHash": "sha256-+Js5pwzMhefY64e5KOyWOJlyV065orzNObg8nU1DFJE=",
+        "owner": "Quoteme",
+        "repo": "xmonad-workspace-preview",
+        "rev": "d4222252571c35ec79ee1db3ffb9a80f7560b9a2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Quoteme",
+        "repo": "xmonad-workspace-preview",
         "type": "github"
       }
     }

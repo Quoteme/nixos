@@ -14,6 +14,7 @@
     screenrotate.inputs.nixpkgs.follows = "nixpkgs";
     rescreenapp.url = "github:Quoteme/rescreenapp";
     control_center.url = "github:Quoteme/control_center";
+    xmonad-workspace-preview.url = "github:Quoteme/xmonad-workspace-preview";
   };
   
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@attrs:
@@ -455,6 +456,7 @@
               # TODO: add this manual to reddit post
               inputs.st-nix.defaultPackage.x86_64-linux
             # Window Manager
+              inputs.xmonad-workspace-preview.defaultPackage.x86_64-linux
               rofi
               rofimoji
               networkmanager_dmenu
