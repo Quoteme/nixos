@@ -1,1 +1,5 @@
 result
+xmonad/.cache
+xmonad/xmonad.errors
+xmonad/.sessions
+.sessions

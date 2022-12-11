@@ -593,6 +593,10 @@
             XDG_BIN_HOME    = "\${HOME}/.local/bin";
             XDG_DATA_HOME   = "\${HOME}/.local/share";
 
+            XMONAD_DATA_DIR = "/etc/nixos/xmonad";
+            XMONAD_CONFIG_DIR = "/etc/nixos/xmonad";
+            XMONAD_CACHE_DIR = "/etc/nixos/xmonad/.cache";
+
             FLUTTER_SDK = "\${XDG_LIB_HOME}/arch-id/flutter";
             ANDROID_SDK_ROOT="\${XDG_LIB_HOME}arch-id/android-sdk/";
 
