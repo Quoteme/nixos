@@ -350,37 +350,6 @@ removeLastWorkspace = do
     withNthWorkspace S.greedyView $ workspaceLen - 1
     removeWorkspace
     return ()
-
-newtype WorkspaceLength = WorkspaceLength Int deriving (Read, Eq, Typeable)
-instance ExtensionClass WorkspaceLength where
-  initialValue = WorkspaceLength $ 1 + length myWorkspaces
-instance Show WorkspaceLength where
-  show (WorkspaceLength n) = show n
-instance Num WorkspaceLength where
-  WorkspaceLength a + WorkspaceLength b = WorkspaceLength (a + b)
-  WorkspaceLength a - WorkspaceLength b = WorkspaceLength (a - b)
-  WorkspaceLength a * WorkspaceLength b = WorkspaceLength (a * b)
-  abs (WorkspaceLength a) = WorkspaceLength (abs a)
-  signum (WorkspaceLength a) = WorkspaceLength (signum a)
-  fromInteger = WorkspaceLength . fromInteger
-
-instance Enum WorkspaceLength where
-  toEnum = WorkspaceLength
-  fromEnum (WorkspaceLength n) = n
-
-instance Ord WorkspaceLength where
-  WorkspaceLength a <= WorkspaceLength b = a <= b
-  WorkspaceLength a < WorkspaceLength b = a < b
-  WorkspaceLength a >= WorkspaceLength b = a >= b
-  WorkspaceLength a > WorkspaceLength b = a > b
-
-instance Real WorkspaceLength where
-  toRational (WorkspaceLength a) = toRational a
-
-instance Integral WorkspaceLength where
-  toInteger (WorkspaceLength a) = toInteger a
-  quotRem (WorkspaceLength a) (WorkspaceLength b) = (WorkspaceLength q, WorkspaceLength r)
-    where (q, r) = quotRem a b
 -- }}}
 -- }}}
 
