@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
 {
-    /* Here goes your home-manager config, eg home.packages = [ pkgs.foo ]; */
   gtk = {
     enable = true;
     iconTheme = {
@@ -28,11 +27,6 @@
   #       config = ./xmonad/xmonad.hs;
   #     };
   #   };
-  # };
-  # programs.git = {
-  #   enable = true;
-  #   userName  = "quoteme";
-  #   userEmail = "lucahappel99@gmx.de";
   # };
   programs.zsh = {
     enable = true;
