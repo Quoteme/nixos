@@ -51,7 +51,7 @@ import XMonad.Layout.Hidden
 import XMonad.Actions.UpdatePointer (updatePointer)
 import XMonad.Layout.Decoration
 import XMonad.Actions.OnScreen (viewOnScreen)
-import XMonad.Actions.DynamicWorkspaces (appendWorkspacePrompt, removeEmptyWorkspace, selectWorkspace, withNthWorkspace, addWorkspace, removeWorkspace)
+import XMonad.Actions.DynamicWorkspaces (appendWorkspacePrompt, removeEmptyWorkspace, selectWorkspace, withNthWorkspace, addWorkspace, removeWorkspace, removeWorkspaceByTag)
 import XMonad.Prompt (amberXPConfig)
 import XMonad.Hooks.Rescreen
 import XMonad.Layout.Magnifier (magnifier)
@@ -347,8 +347,7 @@ removeLastWorkspace = do
     workspaceLenString <- runProcessWithInput "xdotool" (["get_num_desktops"]) ""
     let workspaceLen = read workspaceLenString :: Int
     -- spawn $ format "notify-send \"Workspace length decreased\" \"now at {0}\"" [show workspaceLen]
-    withNthWorkspace S.greedyView $ workspaceLen - 1
-    removeWorkspace
+    removeWorkspaceByTag $ show $ workspaceLen
     return ()
 -- }}}
 -- }}}
