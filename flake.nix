@@ -421,6 +421,7 @@
                 inputs.nix-alien.defaultPackage.x86_64-linux
                 nix-index
                 fzf
+              cobang
               mons
               arandr
               brightnessctl
