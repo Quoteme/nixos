@@ -345,11 +345,11 @@
         "plugin__yuck.vim": "plugin__yuck.vim"
       },
       "locked": {
-        "lastModified": 1670791857,
-        "narHash": "sha256-ZJ6caXjlOKj2cmXi8EbY4hLzDSRgjklm2zi/G6CMDFc=",
+        "lastModified": 1671623991,
+        "narHash": "sha256-39wNEVB4Ru4lF9v8S+GTzuKJc0q/+fC2NPVwLzGZmqE=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "ae00ad8ff06888fbb530cbd216932c4310e7ad1d",
+        "rev": "75240aace6fdd729be0d2e07111c5288bd070c9e",
         "type": "github"
       },
       "original": {

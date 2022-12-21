@@ -158,8 +158,8 @@
             networkmanager.enable = true;
             firewall = {
               allowedUDPPortRanges = [{from=32768; to=61000;}];
-              allowedTCPPortRanges = [{from=8008; to=8009;}];
-              # allowedTCPPorts = [8080];
+              # allowedTCPPortRanges = [{from=8008; to=8009;}];
+              allowedTCPPorts = [8008 8009 27017];
             };
           };
 
