@@ -112,7 +112,7 @@
               # dart
             ];
           };
-          myPython = ((pkgs.python310.withPackages(ps : with ps; [
+          myPython = pkgs.python310.withPackages(ps : with ps; [
             debugpy
             pytest
             ipython
@@ -123,14 +123,7 @@
             numpy
             scipy
             matplotlib
-            (qiskit.overrideAttrs (prev: {
-              doCheck = false;
-            }))
-            # qiskit optional dependencies
-              pylatexenc
-            # pysimplegui
-            # qiskit
-          ])).override (args: { ignoreCollisions = true; })); # this is for qiskit
+          ]);
         in
         {
           imports = [
