@@ -343,7 +343,7 @@
                 julia-bin
               # python
                 jetbrains.pycharm-professional
-                poetry
+                # poetry
                 myPython
               # Latex
                 pandoc
@@ -376,8 +376,15 @@
                 android-tools
                 myAndroidStudio
               # Flutter
+                clang
+                cmake
+                ninja
+                gtk3
                 # flutter
                 # dart
+              # MongoDB / Docker
+                docker-compose
+                mongodb-compass
               # game-dev
                 godot
               # UNI HHU ZEUG
@@ -387,6 +394,7 @@
                   slack
                 # PROPORA
                   mob
+
             ];
           };
           users.defaultUserShell = pkgs.zsh;
