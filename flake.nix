@@ -422,6 +422,7 @@
                 inputs.nix-alien.defaultPackage.x86_64-linux
                 nix-index
                 fzf
+              appimage-run
               cobang
               mons
               arandr
