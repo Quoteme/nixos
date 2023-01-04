@@ -627,8 +627,8 @@ myOwnTheme = def {
   windowTitleIcons    = [ (menuButton, CenterLeft buttonMargin)
                         , (rotateButton, CenterLeft (buttonSize + buttonPadding + buttonMargin))
                         , (swapButton, CenterLeft ((buttonSize + buttonPadding)*2 + buttonMargin))
-                        , (miniButton, CenterRight ((buttonSize + buttonPadding)*2+buttonMargin))
-                        , (maxiButton, CenterRight (buttonSize + buttonPadding + buttonMargin))
+                        -- , (miniButton, CenterRight ((buttonSize + buttonPadding)*2+buttonMargin))
+                        -- , (maxiButton, CenterRight (buttonSize + buttonPadding + buttonMargin))
                         , (closeButton, CenterRight buttonMargin) ]
 }
 -- }}}
@@ -665,16 +665,15 @@ instance Eq a => DecorationStyle ExtendedWindowSwitcherDecoration a where
           kill
           return True
         -- Maximize button
-        | isNthRightButton 1 = do
-          -- TODO:
-          -- send a key to toggle fullscreen (not maximize) on the window
-          -- this makes tabs and searchbars in webbrowsers disappear
-          spawn "notify-send 'xmonad' 'maximize button clicked'"
-          return True
+        -- | isNthRightButton 1 = do
+        --   -- send a key to toggle fullscreen (not maximize) on the window
+        --   -- this makes tabs and searchbars in webbrowsers disappear
+        --   spawn "notify-send 'xmonad' 'maximize button clicked'"
+        --   return True
         -- Minimize button
-        | isNthRightButton 2 = do
-          withFocused minimizeWindow
-          return True
+        -- | isNthRightButton 2 = do
+        --   withFocused minimizeWindow
+        --   return True
         -- left side
         -- Menu button
         | isNthLightButton 0 = do
