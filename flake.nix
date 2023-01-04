@@ -88,15 +88,8 @@
             ];
             nativeBuildInputs = [ pkgs.makeWrapper ];
             postBuild = ''
-              # wrapProgram $out/bin/flutter \
-              #   --prefix PUB_CACHE=/home/luca/.pub-cache \
-              #   --prefix ANDROID_SDK_ROOT=/home/luca/.local/lib/arch-id/android-sdk/ \
-              #   --prefix ANDROID_HOME=/home/luca/.local/lib/arch-id/android-sdk/\
-              #   --prefix ANDROID_JAVA_HOME=${pkgs.jdk.home}
-          
               wrapProgram $out/bin/android-studio \
                 --prefix PUB_CACHE=/home/luca/.pub-cache \
-                --prefix FLUTTER_SDK=${pkgs.unstable.flutter.unwrapped} \
                 --prefix ANDROID_SDK_ROOT=/home/luca/.local/lib/arch-id/android-sdk/ \
                 --prefix ANDROID_HOME=/home/luca/.local/lib/arch-id/android-sdk/ \
                 --prefix ANDROID_JAVA_HOME=${pkgs.jdk.home}
@@ -317,10 +310,9 @@
               mypaint
               gimp
               aseprite
-              blender
-              # (pkgs.unstable.blender.override {
-              #   cudaSupport = true;
-              # })
+              (pkgs.unstable.blender.override {
+                cudaSupport = true;
+              })
               krita
             # # Media
               vlc
