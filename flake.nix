@@ -378,7 +378,7 @@
                 docker-compose
                 mongodb-compass
               # game-dev
-                godot
+                pkgs.unstable.godot
               # UNI HHU ZEUG
                 # konferenzen
                   zoom-us
