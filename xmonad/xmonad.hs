@@ -729,7 +729,7 @@ instance Eq a => DecorationStyle ExtendedWindowSwitcherDecoration a where
   --  }}}
   -- {{{
   -- Only show decoration for currently focused window
-  pureDecoration _ _ ht _ s _ (w, Rectangle x y wh ht') = if isInStack s w && w == S.focus s
+  pureDecoration _ _ ht _ s _ (w, Rectangle x y wh ht') = if isInStack s w && w == S.focus s && ( length (S.up s) /= 0 || length (S.down s) /= 0 )
     then Just $ Rectangle x y wh ht
     else Nothing
   -- }}}
