@@ -239,7 +239,6 @@
             devmon.enable = true;
             gvfs.enable = true;
             tumbler.enable = true;
-            picom.enable = true;
             redshift.enable = true;
             # Lock screen
             # physlock = {
