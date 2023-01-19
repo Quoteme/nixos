@@ -382,6 +382,7 @@
                 mongodb-compass
               # game-dev
                 pkgs.unstable.godot
+                pkgs.unstable.unityhub
               # UNI HHU ZEUG
                 # konferenzen
                   zoom-us
