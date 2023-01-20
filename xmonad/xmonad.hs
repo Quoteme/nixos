@@ -373,7 +373,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
 
 -- My Layouts
 -- {{{
-myLayout = avoidStruts 
+myLayout = avoidStruts
          $   myBSP
          ||| myTabletMode
          ||| myFullscreen
@@ -792,7 +792,10 @@ myEventHook = focusOnMouseMove
                   when (et == focusOut) $ do
                     spawn "xdotool windowraise `xdotool search --all --name Dunst`"
                   return $ All True
-                dunstOnTop _ = return $ All True
+                dunstOnTop (FocusChangeEvent {}) = do
+                  spawn "xdotool windowraise `xdotool search --all --name Dunst`"
+                  return $ All True
+                dunstOnTop ev = return $ All True
 -- }}}
 
 --The client events that xmonad is interested in
