@@ -15,6 +15,7 @@
     rescreenapp.url = "github:Quoteme/rescreenapp";
     control_center.url = "github:Quoteme/control_center";
     xmonad-workspace-preview.url = "github:Quoteme/xmonad-workspace-preview";
+    godot.url = "github:Quoteme/nixos-godot-bin";
   };
   
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@attrs:
@@ -381,7 +382,8 @@
                 docker-compose
                 mongodb-compass
               # game-dev
-                pkgs.unstable.godot
+                inputs.godot.packages.x86_64-linux.godotMono
+                # pkgs.unstable.godot
                 pkgs.unstable.unityhub
               # UNI HHU ZEUG
                 # konferenzen
@@ -430,6 +432,7 @@
               pavucontrol
               imagemagick
               maim
+              flameshot
               xclip
               xcolor
               peek
