@@ -235,6 +235,8 @@
             touchegg.enable = true;
             gnome.gnome-keyring.enable = true;
             gnome.at-spi2-core.enable = true; # Accessibility Bus
+            gnome.gnome-settings-daemon.enable = true; 
+            gnome.gnome-online-accounts.enable = true;
             blueman.enable = true;
             udisks2.enable = true;
             devmon.enable = true;
@@ -414,6 +416,7 @@
           # $ nix search nixpkgs wget
           # TODO: move this into another file
           environment.systemPackages = with pkgs; [
+            gnome.gnome-control-center
             # Small Utilities
               # nix-ld stuff
                 inputs.nix-autobahn.defaultPackage.x86_64-linux
