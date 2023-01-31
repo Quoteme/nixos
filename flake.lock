@@ -502,6 +502,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-old": {
+      "locked": {
+        "lastModified": 1664029467,
+        "narHash": "sha256-ir7JbsLp2mqseCs3qI+Z/pkt+Gh+GfANbYcI5I+Gvnk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "893b6b9f6c4ed0c7efdb84bd300a499a2da9fa51",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixos-22.05",
+        "type": "indirect"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1670083709,
@@ -2712,6 +2727,7 @@
         "nix-alien": "nix-alien",
         "nix-autobahn": "nix-autobahn",
         "nixpkgs": "nixpkgs_6",
+        "nixpkgs-old": "nixpkgs-old",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "rescreenapp": "rescreenapp",
         "screenrotate": "screenrotate_2",

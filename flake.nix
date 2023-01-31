@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    nixpkgs-old.url = "nixpkgs/nixos-22.05";
     home-manager.url = "github:nix-community/home-manager/release-22.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     st-nix.url = "github:Quoteme/st-nix";
@@ -27,12 +28,19 @@
           config.allowUnfree = true;
         };
       };
+      overlay-old = final: prev: {
+        nixpkgs-old = import attrs.nixpkgs-old {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      };
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
         overlays = [
           # TODO: make use of overlay stable
           overlay-unstable
+          overlay-old
         ];
       };
     in {
@@ -134,7 +142,7 @@
           };
 
           boot = {
-            kernelPackages = pkgs.linuxPackages_latest;
+            kernelPackages = pkgs.nixpkgs-old.linuxPackages_latest;
             # windows integration
             supportedFilesystems = [ "ntfs" ];
           };
