@@ -434,6 +434,10 @@
           # TODO: move this into another file
           environment.systemPackages = with pkgs; [
             gnome.gnome-control-center
+            gnome.gnome-calendar
+            gnome.gnome-clocks
+            gnome.gnome-system-monitor
+            pantheon.elementary-camera
             # Small Utilities
               # nix-ld stuff
                 inputs.nix-autobahn.defaultPackage.x86_64-linux
@@ -506,7 +510,6 @@
               inputs.control_center.defaultPackage.x86_64-linux
               batsignal
               polkit_gnome
-              gnome.gnome-clocks
               lightlocker
               xidlehook
             # Storage

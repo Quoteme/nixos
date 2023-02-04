@@ -77,7 +77,7 @@
     enable = true;
     shadow = true;
     shadowOpacity = "0.8";
-    fade = true;
+    fade = false;
     fadeDelta = 5;
     fadeExclude = ["window_type *= 'menu'"];
     inactiveOpacity = "0.95";
