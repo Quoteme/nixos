@@ -14,8 +14,6 @@
     screenrotate.url = "github:Quoteme/screenrotate";
     screenrotate.inputs.nixpkgs.follows = "nixpkgs";
     rescreenapp.url = "github:Quoteme/rescreenapp";
-    control_center.url = "github:Quoteme/control_center";
-    xmonad-workspace-preview.url = "github:Quoteme/xmonad-workspace-preview";
     xmonad-luca.url = "github:Quoteme/xmonad-luca";
     godot.url = "github:Quoteme/nixos-godot-bin";
   };
@@ -54,12 +52,6 @@
         # ┗━╸┗━┛╹ ╹╹  ╹┗━┛┗━┛╹┗╸╹ ╹ ╹ ╹┗━┛╹ ╹╹╹ ╹╹╹ ╹
         ({ config, nixpkgs, ...}@inputs: 
         let
-          xmonadctl = (pkgs.callPackage (pkgs.fetchFromGitHub {
-            owner = "quoteme";
-            repo = "xmonadctl";
-            rev = "v1.0";
-            sha256 = "1bjf3wnxsghfb64jji53m88vpin916yqlg3j0r83kz9k79vqzqxd";
-          }) {} );
           myGHCPackages = (hpkgs: with hpkgs; [
             xmonad
             xmonad-contrib
@@ -205,21 +197,15 @@
                       extraConfig = "keyboard=onboard";
                     };
                   };
-                  defaultSession = "none+xmonad";
+                  defaultSession = "none+xmonad-luca";
                 };
               # Window managers / Desktop managers
                 windowManager = {
-                  xmonad = {
-                    enable = true;
-                    enableContribAndExtras = true;
-                    extraPackages = myGHCPackages;
-                    config = ./xmonad/xmonad.hs;
-                  };
                   session = [
                     {
                       name = "xmonad-luca";
                       start = ''
-                        ${inputs.xmonad-luca.defaultPackage.x86_64-linux}/bin/xmonad-luca
+                        ${inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca-alldeps}/bin/xmonad-luca
                       '';
                     }
                   ];
@@ -433,6 +419,7 @@
           # $ nix search nixpkgs wget
           # TODO: move this into another file
           environment.systemPackages = with pkgs; [
+            inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca-alldeps
             gnome.gnome-control-center
             gnome.gnome-calendar
             gnome.gnome-clocks
@@ -482,7 +469,6 @@
               # TODO: add this manual to reddit post
               inputs.st-nix.defaultPackage.x86_64-linux
             # Window Manager
-              inputs.xmonad-workspace-preview.defaultPackage.x86_64-linux
               rofi
               rofimoji
               networkmanager_dmenu
@@ -504,10 +490,8 @@
               neofetch
               onefetch
               libnotify
-              xmonadctl
               inputs.screenrotate.defaultPackage.x86_64-linux
               # inputs.rescreenapp.defaultPackage.x86_64-linux
-              inputs.control_center.defaultPackage.x86_64-linux
               batsignal
               polkit_gnome
               lightlocker
@@ -557,7 +541,6 @@
                   "docker-compose"
                   "docker-machine"
                   "docker"
-                  "flutter"
                   "lein"
                   "gradle"
                   "poetry"
@@ -565,6 +548,7 @@
                   "vi-mode"
                   "dirhistory"
                   "gpg-agent"
+                  "flutter"
                   "keychain"
                   "zsh-interactive-cd"
                 ];
