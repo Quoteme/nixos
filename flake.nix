@@ -16,6 +16,7 @@
     rescreenapp.url = "github:Quoteme/rescreenapp";
     control_center.url = "github:Quoteme/control_center";
     xmonad-workspace-preview.url = "github:Quoteme/xmonad-workspace-preview";
+    xmonad-luca.url = "github:Quoteme/xmonad-luca";
     godot.url = "github:Quoteme/nixos-godot-bin";
   };
   
@@ -214,6 +215,14 @@
                     extraPackages = myGHCPackages;
                     config = ./xmonad/xmonad.hs;
                   };
+                  session = [
+                    {
+                      name = "xmonad-luca";
+                      start = ''
+                        ${inputs.xmonad-luca.defaultPackage.x86_64-linux}/bin/xmonad-luca
+                      '';
+                    }
+                  ];
                   bspwm = {
                     enable = true;
                     configFile = ./config/bspwmrc;
