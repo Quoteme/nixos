@@ -147,7 +147,7 @@
             firewall = {
               allowedUDPPortRanges = [{from=32768; to=61000;}];
               # allowedTCPPortRanges = [{from=8008; to=8009;}];
-              allowedTCPPorts = [8008 8009 27017];
+              allowedTCPPorts = [8008 8009 8080 27017];
             };
           };
 
@@ -548,7 +548,6 @@
                   "vi-mode"
                   "dirhistory"
                   "gpg-agent"
-                  "flutter"
                   "keychain"
                   "zsh-interactive-cd"
                 ];
