@@ -425,6 +425,7 @@
             gnome.gnome-clocks
             gnome.gnome-system-monitor
             pantheon.elementary-camera
+            pkgs.unstable.distrobox
             # Small Utilities
               # nix-ld stuff
                 inputs.nix-autobahn.defaultPackage.x86_64-linux

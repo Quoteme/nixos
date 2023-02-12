@@ -465,11 +465,11 @@
         "plugin_targets_nvim": "plugin_targets_nvim"
       },
       "locked": {
-        "lastModified": 1676068921,
-        "narHash": "sha256-1cARvn/ul2i56aAxVPvrkAHk8dYm07jsqS12qSFGgsE=",
+        "lastModified": 1676132986,
+        "narHash": "sha256-wD5NaeggcgzqXxst9Cz9fbgSRMsLN66JnYkwiwRkLQo=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "11f655d515d5dfbfbb06f62dfac69e5182c484a6",
+        "rev": "f81550740cee4adba622bf8eb1f192814591882b",
         "type": "github"
       },
       "original": {
@@ -2004,11 +2004,11 @@
     "plugin__nvim-treesitter": {
       "flake": false,
       "locked": {
-        "lastModified": 1675846786,
-        "narHash": "sha256-5QW1CGg0i7lU0J7vGcCPJsDf2dJ52bFlBrXHSDGCIu4=",
+        "lastModified": 1669903687,
+        "narHash": "sha256-wphdERdXyVwyto6xlWWpmLw2X8Mb4laC3+tpFHe0TGA=",
         "owner": "nvim-treesitter",
         "repo": "nvim-treesitter",
-        "rev": "f6df07be122de665fb363476cc3680c90f5bdf05",
+        "rev": "256802258084fcf6c7011dae4c3fbfaaf4b61518",
         "type": "github"
       },
       "original": {
