@@ -313,7 +313,12 @@
               deadbeef
               sxiv
             # Gaming
-              # pkgs.unstable.minecraft
+              (retroarch.override {
+                cores = with libretro; [
+                  mupen64plus
+                  libretro.pcsx2
+                ];
+              })
             # Productivity
               libreoffice
             # Programming
@@ -558,6 +563,7 @@
             java.enable = true;
           };
           # Gaming
+          programs.gamemode.enable = true;
           programs.steam = {
             enable = true;
             remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
