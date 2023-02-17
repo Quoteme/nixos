@@ -16,6 +16,7 @@
     rescreenapp.url = "github:Quoteme/rescreenapp";
     xmonad-luca.url = "github:Quoteme/xmonad-luca";
     godot.url = "github:Quoteme/nixos-godot-bin";
+    hmenke-nixos-modules.url = "github:hmenke/nixos-modules";
   };
   
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@attrs:
@@ -185,20 +186,9 @@
                 xkbOptions = "caps:escape,shift:both_capslock,mod_led,compose:rctrl-altgr";
                 updateDbusEnvironment = true;
               # Display Manager
-                displayManager = {
-                  lightdm = {
-                    enable = true;
-                    greeters.gtk = {
-                      theme.package = pkgs.mojave-gtk-theme;
-                      theme.name = "Mojave-Dark";
-                      iconTheme.name ="Papirus";
-                      iconTheme.package = pkgs.papirus-icon-theme;
-                      indicators = [ "~host" "~spacer" "~clock" "~spacer" "~session" "~language" "~a11y" "~power" ];
-                      extraConfig = "keyboard=onboard";
-                    };
-                  };
-                  defaultSession = "none+xmonad-luca";
-                };
+              displayManager.gdm.enable = true;
+              # Desktop Manager
+              desktopManager.gnome.enable = true;
               # Window managers / Desktop managers
                 windowManager = {
                   session = [
@@ -254,9 +244,7 @@
           };
           # Enable flatpak
           services.flatpak.enable = true;
-          xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
           xdg.portal.enable = true;
-          xdg.portal.gtkUsePortal = true;
           # make qt apps look like gtk
           # https://nixos.org/manual/nixos/stable/index.html#sec-x11-gtk-and-qt-themes
           qt5.enable = true;
@@ -300,8 +288,6 @@
               # microsoft-edge
               discord
               transmission-gtk
-              thunderbird
-              birdtray
             # Privacy
               veracrypt
               lesspass-cli
@@ -420,11 +406,6 @@
           # TODO: move this into another file
           environment.systemPackages = with pkgs; [
             inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca-alldeps
-            gnome.gnome-control-center
-            gnome.gnome-calendar
-            gnome.gnome-clocks
-            gnome.gnome-system-monitor
-            pantheon.elementary-camera
             pkgs.unstable.distrobox
             # Small Utilities
               # nix-ld stuff
@@ -477,13 +458,13 @@
               openvpn
               networkmanager-openvpn
             # File manager
-              cinnamon.nemo
-              pcmanfm-qt
-                # Thumbnailers
-                ffmpegthumbnailer
-                f3d
               gparted
               onboard
+              # TODO: Add swypeGuess
+              # https://git.sr.ht/~earboxer/swipeGuess
+              (pkgs.svkbd.override {
+                layout = "de";
+              })
               jgmenu
               pamixer
               nitrogen
@@ -504,7 +485,7 @@
               virglrenderer
               # Wine
                 wineWowPackages.full
-                bottles
+                pkgs.unstable.bottles
               # Hier werde ich wohl lieber ganz selber ein eigenes
             # stuff that is needed pretty much everywhere
               myPython

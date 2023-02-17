@@ -286,6 +286,21 @@
         "url": "https://raw.githubusercontent.com/godotengine/godot/master/misc/dist/linux/godot.6"
       }
     },
+    "hmenke-nixos-modules": {
+      "locked": {
+        "lastModified": 1676293862,
+        "narHash": "sha256-SlUQj749hpplu2H0d1I+G8mqKeNfEpY665B9mv9SY6U=",
+        "owner": "hmenke",
+        "repo": "nixos-modules",
+        "rev": "f0780adcc2f3d1332d132d41f71f96d9f5c653b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hmenke",
+        "repo": "nixos-modules",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -2784,6 +2799,7 @@
     "root": {
       "inputs": {
         "godot": "godot",
+        "hmenke-nixos-modules": "hmenke-nixos-modules",
         "home-manager": "home-manager",
         "neovim-luca": "neovim-luca",
         "nix-alien": "nix-alien",
