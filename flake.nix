@@ -447,6 +447,7 @@
               pavucontrol
               imagemagick
               maim
+              jq
               flameshot
               xclip
               xcolor
@@ -579,6 +580,25 @@
             # development
             java.enable = true;
           };
+          programs.sway = {
+            enable = true;
+            wrapperFeatures.base = true;
+            wrapperFeatures.gtk = true;
+            extraPackages = with pkgs; [
+              swayidle
+              swaynag-battery
+              swayest-workstyle
+              swaynotificationcenter
+              pkgs.unstable.swaycons
+              swaysettings
+              pkgs.unstable.sov
+              waybar
+            ];
+            extraOptions = [
+              "--unsupported-gpu"
+            ];
+          };
+
           # Gaming
           programs.gamemode.enable = true;
           programs.steam = {
