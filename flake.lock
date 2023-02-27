@@ -391,6 +391,7 @@
         "plugin__gesture_nvim": "plugin__gesture_nvim",
         "plugin__gitsigns_nvim": "plugin__gitsigns_nvim",
         "plugin__gruvbox": "plugin__gruvbox",
+        "plugin__haskell-vim": "plugin__haskell-vim",
         "plugin__indent-blankline_nvim": "plugin__indent-blankline_nvim",
         "plugin__kanagawa.nvim": "plugin__kanagawa.nvim",
         "plugin__latex-snippets": "plugin__latex-snippets",
@@ -451,6 +452,7 @@
         "plugin__snippets-shebang": "plugin__snippets-shebang",
         "plugin__symbols-outline_nvim": "plugin__symbols-outline_nvim",
         "plugin__tabular": "plugin__tabular",
+        "plugin__telescope_hoogle": "plugin__telescope_hoogle",
         "plugin__telescope_nvim": "plugin__telescope_nvim",
         "plugin__todo-comments_nvim": "plugin__todo-comments_nvim",
         "plugin__tokyonight-nvim": "plugin__tokyonight-nvim",
@@ -480,11 +482,11 @@
         "plugin_targets_nvim": "plugin_targets_nvim"
       },
       "locked": {
-        "lastModified": 1676132986,
-        "narHash": "sha256-wD5NaeggcgzqXxst9Cz9fbgSRMsLN66JnYkwiwRkLQo=",
+        "lastModified": 1676879708,
+        "narHash": "sha256-/gFDHgu64YyXZ4tvVBWQImOtsDWgDZ+76XfpP8Q0U24=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "f81550740cee4adba622bf8eb1f192814591882b",
+        "rev": "c9c8640f85a3a133bcf10c72d68ed100c7c6e790",
         "type": "github"
       },
       "original": {
@@ -1357,6 +1359,22 @@
       "original": {
         "owner": "morhetz",
         "repo": "gruvbox",
+        "type": "github"
+      }
+    },
+    "plugin__haskell-vim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1611065650,
+        "narHash": "sha256-4FvqwxaMu3Mznrmt4U5NZlmUAdUIiLpr9fW+kjdwcOA=",
+        "owner": "neovimhaskell",
+        "repo": "haskell-vim",
+        "rev": "f35d02204b4813d1dbe8b0e98cc39701a4b8e15e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "neovimhaskell",
+        "repo": "haskell-vim",
         "type": "github"
       }
     },
@@ -2320,6 +2338,22 @@
         "type": "github"
       }
     },
+    "plugin__telescope_hoogle": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1666874001,
+        "narHash": "sha256-VnhZ6gjwIBFw/qviA1V5azoMTUo7Nbw3xGP1bPkqWN4=",
+        "owner": "luc-tielen",
+        "repo": "telescope_hoogle",
+        "rev": "6322f74655a2773974377a8fc8d170c00f24938f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "luc-tielen",
+        "repo": "telescope_hoogle",
+        "type": "github"
+      }
+    },
     "plugin__telescope_nvim": {
       "flake": false,
       "locked": {
@@ -2907,11 +2941,11 @@
         "xmonad-workspace-preview": "xmonad-workspace-preview"
       },
       "locked": {
-        "lastModified": 1675526051,
-        "narHash": "sha256-5p86akz1VQdsoHXrvDQnVfqOQweu1i57l+gtnPUmKHc=",
+        "lastModified": 1676884133,
+        "narHash": "sha256-NeDUpXyMKXXMAyg3XCVaoyp1khW2jqa36yg4fq1eOPU=",
         "owner": "Quoteme",
         "repo": "xmonad-luca",
-        "rev": "cdda06e9babe3b80c0286b8232737e09f4f3d7f9",
+        "rev": "c9b0c566013737196cea2505b9b296157d5adc3c",
         "type": "github"
       },
       "original": {
