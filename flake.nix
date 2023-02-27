@@ -230,6 +230,8 @@
             gnome.at-spi2-core.enable = true; # Accessibility Bus
             gnome.gnome-settings-daemon.enable = true; 
             gnome.gnome-online-accounts.enable = true;
+            gnome.gnome-browser-connector.enable = true;
+            gnome.evolution-data-server.enable = true;
             blueman.enable = true;
             udisks2.enable = true;
             devmon.enable = true;
@@ -287,6 +289,7 @@
               pkgs.unstable.google-chrome
               # microsoft-edge
               discord
+              whatsapp-for-linux
               transmission-gtk
             # Privacy
               veracrypt
@@ -412,7 +415,21 @@
           environment.systemPackages = with pkgs; [
             inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca-alldeps
             pkgs.unstable.distrobox
+            gnome.gnome-tweaks
+            # themes
+              # Icons
+              gnome.adwaita-icon-theme
+              papirus-icon-theme
+              whitesur-icon-theme
+              # GTK
+              mojave-gtk-theme
+              whitesur-gtk-theme
+              adapta-gtk-theme
+              numix-gtk-theme
+              # Cursor
+              numix-cursor-theme
             # Small Utilities
+              nwg-launchers
               # nix-ld stuff
                 inputs.nix-autobahn.defaultPackage.x86_64-linux
                 inputs.nix-alien.defaultPackage.x86_64-linux
