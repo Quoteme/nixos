@@ -407,6 +407,11 @@
             material-icons
             # nerdfonts
             (pkgs.unstable.nerdfonts.override { fonts = [ "FiraCode" ]; })
+
+            noto-fonts
+            noto-fonts-cjk
+            noto-fonts-emoji
+            liberation_ttf
           ];
           fonts.fontconfig.defaultFonts.emoji = ["openmoji-color"];
           # List packages installed in system profile. To search, run:
