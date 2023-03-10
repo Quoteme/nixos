@@ -421,6 +421,7 @@
             inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca-alldeps
             pkgs.unstable.distrobox
             gnome.gnome-tweaks
+            gnomeExtensions.pop-shell
             # themes
               # Icons
               gnome.adwaita-icon-theme
