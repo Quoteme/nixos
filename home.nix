@@ -290,74 +290,74 @@
   </touchégg>
   '';
   services.network-manager-applet.enable = true;
-  services.dunst = {
-    enable = true;
-    iconTheme = {
-      name = "Papirus";
-      package = pkgs.papirus-icon-theme;
-      size="32x32";
-    };
-    settings = {
-      global = {
-        monitor = 0;
-        follow = "mouse";
-        geometry = "320x5-15+15";
-        indicate_hidden = "yes";
-        shrink = "no";
-        transparency = 0;
-        notification_height = 0;
-        separator_height = 2;
-        padding = 10;
-        horizontal_padding = 10;
-        frame_width = 1;
-        frame_color = "#232323";
-        separator_color = "frame";
-        sort = "yes";
-        idle_threshold = 120;
-        font = "scientifica 8";
-        line_height = 0;
-        markup = "full";
-        format = "<span foreground='#f3f4f5'><b>%s %p</b></span>\n%b";
-        alignment = "left";
-        show_age_threshold = 60;
-        word_wrap = "yes";
-        ellipsize = "middle";
-        ignore_newline = "no";
-        stack_duplicates = true;
-        hide_duplicate_count = false;
-        show_indicators = "yes";
-        icon_position = "left";
-        max_icon_size = 32;
-        sticky_history = "yes";
-        history_length = 20;
-        always_run_script = true;
-        startup_notification = false;
-        verbosity = "mesg";
-        corner_radius = 0;
-        force_xinerama = false;
-        mouse_left_click = "close_current";
-        mouse_middle_click = "do_action";
-        mouse_right_click = "close_all";
-      };
-      urgency_low = {
-        background = "#232323";
-        foreground = "#a8a8a8";
-        timeout = 10;
-      };
-      urgency_normal = {
-        background = "#232323";
-        foreground = "#a8a8a8";
-        timeout = 10;
-      };
-      urgency_critical = {
-        background = "#d64e4e";
-        foreground = "#f0e0e0";
-        frame_color = "#d64e4e";
-        timeout = 0;
-        icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/32x32/status/dialog-warning.svg";
-      };
-    };
-  };
+  # services.dunst = {
+  #   enable = true;
+  #   iconTheme = {
+  #     name = "Papirus";
+  #     package = pkgs.papirus-icon-theme;
+  #     size="32x32";
+  #   };
+  #   settings = {
+  #     global = {
+  #       monitor = 0;
+  #       follow = "mouse";
+  #       geometry = "320x5-15+15";
+  #       indicate_hidden = "yes";
+  #       shrink = "no";
+  #       transparency = 0;
+  #       notification_height = 0;
+  #       separator_height = 2;
+  #       padding = 10;
+  #       horizontal_padding = 10;
+  #       frame_width = 1;
+  #       frame_color = "#232323";
+  #       separator_color = "frame";
+  #       sort = "yes";
+  #       idle_threshold = 120;
+  #       font = "scientifica 8";
+  #       line_height = 0;
+  #       markup = "full";
+  #       format = "<span foreground='#f3f4f5'><b>%s %p</b></span>\n%b";
+  #       alignment = "left";
+  #       show_age_threshold = 60;
+  #       word_wrap = "yes";
+  #       ellipsize = "middle";
+  #       ignore_newline = "no";
+  #       stack_duplicates = true;
+  #       hide_duplicate_count = false;
+  #       show_indicators = "yes";
+  #       icon_position = "left";
+  #       max_icon_size = 32;
+  #       sticky_history = "yes";
+  #       history_length = 20;
+  #       always_run_script = true;
+  #       startup_notification = false;
+  #       verbosity = "mesg";
+  #       corner_radius = 0;
+  #       force_xinerama = false;
+  #       mouse_left_click = "close_current";
+  #       mouse_middle_click = "do_action";
+  #       mouse_right_click = "close_all";
+  #     };
+  #     urgency_low = {
+  #       background = "#232323";
+  #       foreground = "#a8a8a8";
+  #       timeout = 10;
+  #     };
+  #     urgency_normal = {
+  #       background = "#232323";
+  #       foreground = "#a8a8a8";
+  #       timeout = 10;
+  #     };
+  #     urgency_critical = {
+  #       background = "#d64e4e";
+  #       foreground = "#f0e0e0";
+  #       frame_color = "#d64e4e";
+  #       timeout = 0;
+  #       icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/32x32/status/dialog-warning.svg";
+  #     };
+  #   };
+  # };
   services.polybar = {
     enable = true;
     package = pkgs.polybar.override {

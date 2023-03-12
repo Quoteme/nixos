@@ -186,7 +186,20 @@
                 xkbOptions = "caps:escape,shift:both_capslock,mod_led,compose:rctrl-altgr";
                 updateDbusEnvironment = true;
               # Display Manager
-              displayManager.gdm.enable = true;
+              displayManager = {
+                lightdm = {
+                  enable = true;
+                  greeters.gtk = {
+                    theme.package = pkgs.mojave-gtk-theme;
+                    theme.name = "Mojave-Dark";
+                    iconTheme.name ="Papirus";
+                    iconTheme.package = pkgs.papirus-icon-theme;
+                    indicators = [ "~host" "~spacer" "~clock" "~spacer" "~session" "~language" "~a11y" "~power" ];
+                    extraConfig = "keyboard=onboard";
+                  };
+                };
+                defaultSession = "none+xmonad-luca";
+              };
               # Desktop Manager
               desktopManager.gnome.enable = true;
               # Window managers / Desktop managers
@@ -435,7 +448,6 @@
               # Cursor
               numix-cursor-theme
             # Small Utilities
-              nwg-launchers
               # nix-ld stuff
                 inputs.nix-autobahn.defaultPackage.x86_64-linux
                 inputs.nix-alien.defaultPackage.x86_64-linux
@@ -532,7 +544,7 @@
               enableSSHSupport = true;
             };
 
-	    # Password stuff
+            # Password stuff
             seahorse.enable = true;
             ssh.enableAskPassword = true;
 
@@ -585,6 +597,9 @@
 
             # development
             java.enable = true;
+
+            # xfce4-panel
+            xfconf.enable = true;
           };
           programs.sway = {
             enable = true;
@@ -599,6 +614,11 @@
               swaysettings
               pkgs.unstable.sov
               waybar
+              nwg-launchers
+              nwg-wrapper
+              nwg-panel
+              nwg-drawer
+              nwg-menu
             ];
             extraOptions = [
               "--unsupported-gpu"

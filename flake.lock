@@ -2941,11 +2941,11 @@
         "xmonad-workspace-preview": "xmonad-workspace-preview"
       },
       "locked": {
-        "lastModified": 1677762000,
-        "narHash": "sha256-epE0yt0B7L4MVZ+/H5soWaA3j18CrEhr4jWxFzdqFAo=",
+        "lastModified": 1678624361,
+        "narHash": "sha256-VrxbE02cY+sYhqzkgb9AkvsaBTk3X2MFoVQjwEgoGMc=",
         "owner": "Quoteme",
         "repo": "xmonad-luca",
-        "rev": "9aa9d1b3097591385fceb16b4a8503a544f5e70b",
+        "rev": "68a8ad66554f00f4c148107bdfc6a076a99982af",
         "type": "github"
       },
       "original": {
