@@ -5,6 +5,7 @@
     nixpkgs.url = "nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     nixpkgs-old.url = "nixpkgs/nixos-22.05";
+    nur.url = "github:nix-community/NUR";
     home-manager.url = "github:nix-community/home-manager/release-22.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     st-nix.url = "github:Quoteme/st-nix";
@@ -14,6 +15,7 @@
     screenrotate.url = "github:Quoteme/screenrotate";
     screenrotate.inputs.nixpkgs.follows = "nixpkgs";
     rescreenapp.url = "github:Quoteme/rescreenapp";
+    control_center.url = "github:Quoteme/control_center";
     xmonad-luca.url = "github:Quoteme/xmonad-luca";
     godot.url = "github:Quoteme/nixos-godot-bin";
     hmenke-nixos-modules.url = "github:hmenke/nixos-modules";
@@ -133,6 +135,18 @@
               experimental-features = nix-command flakes
               warn-dirty = false
            '';
+           nixPath = [
+              "nixpkgs=${nixpkgs}"
+              "unstable=${nixpkgs-unstable}"
+              "stable=${attrs.nixpkgs-old}"
+              "nur=${attrs.nur}"
+            ];
+            registry = {
+              nixpkgs.flake = nixpkgs;
+              unstable.flake = nixpkgs-unstable;
+              stable.flake = attrs.nixpkgs-old;
+              nur.flake = attrs.nur;
+            };
           };
 
           boot = {
@@ -148,7 +162,7 @@
             firewall = {
               allowedUDPPortRanges = [{from=32768; to=61000;}];
               # allowedTCPPortRanges = [{from=8008; to=8009;}];
-              allowedTCPPorts = [8008 8009 8080 27017];
+              allowedTCPPorts = [80 5000 8000 8008 8009 8080 27017];
             };
           };
 
@@ -304,6 +318,7 @@
               discord
               whatsapp-for-linux
               transmission-gtk
+              thunderbird
             # Privacy
               veracrypt
               lesspass-cli
@@ -339,7 +354,8 @@
               libreoffice
             # Programming
               inputs.neovim-luca.defaultPackage.x86_64-linux
-              vscode-fhs
+              pkgs.unstable.vscode-fhs
+                hlint
               devdocs-desktop
               # devdocs-desktop
               # math
@@ -445,6 +461,7 @@
               whitesur-gtk-theme
               adapta-gtk-theme
               numix-gtk-theme
+              orchis-theme
               # Cursor
               numix-cursor-theme
             # Small Utilities
@@ -454,6 +471,7 @@
                 nix-index
                 fzf
               appimage-run
+              trashy
               cobang
               mons
               arandr
@@ -466,6 +484,7 @@
               imagemagick
               maim
               jq
+              tldr
               flameshot
               xclip
               xcolor
@@ -473,6 +492,7 @@
               killall
               xorg.xkill
               wget
+              meld
               git
               gh
               gitkraken
@@ -491,6 +511,7 @@
               # TODO: add manual how to add nix-flakes as system-programs
               # TODO: add this manual to reddit post
               inputs.st-nix.defaultPackage.x86_64-linux
+              alacritty
             # Window Manager
               rofi
               rofimoji
@@ -515,6 +536,7 @@
               libnotify
               inputs.screenrotate.defaultPackage.x86_64-linux
               # inputs.rescreenapp.defaultPackage.x86_64-linux
+              inputs.control_center.defaultPackage.x86_64-linux
               batsignal
               polkit_gnome
               lightlocker
@@ -595,11 +617,20 @@
             file-roller.enable = true;
             dconf.enable = true;
 
-            # development
-            java.enable = true;
-
             # xfce4-panel
             xfconf.enable = true;
+
+            # security
+            firejail.enable = true;
+          };
+          # development
+          programs.java.enable = true;
+          programs.npm = {
+            enable = true;
+            npmrc = ''
+              prefix = \$HOME/.npm
+              color=true
+            '';
           };
           programs.sway = {
             enable = true;
@@ -636,6 +667,7 @@
 
           # Shell configuration
           environment.variables = {
+            TERMINAL = "st";
             CHROME_EXECUTABLE = "${pkgs.unstable.google-chrome}/bin/google-chrome-stable";
             ACCESSIBILITY_ENABLED = "1";
             PAGER = "nvimpager";
@@ -646,7 +678,6 @@
             # "NIX_LD" = toString nix-ld-so;
             NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath (config.systemd.packages ++ config.environment.systemPackages);
             NIX_LD = "${pkgs.glibc}/lib/ld-linux-x86-64.so.2";
-            
           };
           environment.sessionVariables = {
             XDG_CACHE_HOME  = "\${HOME}/.cache";
@@ -655,9 +686,9 @@
             XDG_BIN_HOME    = "\${HOME}/.local/bin";
             XDG_DATA_HOME   = "\${HOME}/.local/share";
 
-            XMONAD_DATA_DIR = "/etc/nixos/xmonad";
-            XMONAD_CONFIG_DIR = "/etc/nixos/xmonad";
-            XMONAD_CACHE_DIR = "/etc/nixos/xmonad/.cache";
+            # XMONAD_DATA_DIR = "/etc/nixos/xmonad";
+            # XMONAD_CONFIG_DIR = "/etc/nixos/xmonad";
+            # XMONAD_CACHE_DIR = "/etc/nixos/xmonad/.cache";
 
             FLUTTER_SDK = "\${XDG_LIB_HOME}/arch-id/flutter";
             ANDROID_SDK_ROOT="\${XDG_LIB_HOME}arch-id/android-sdk/";
