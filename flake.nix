@@ -733,6 +733,7 @@
                   fprintAuth = true; 
                   sshAgentAuth = true;
                   gnupg.enable = true;
+                  enableGnomeKeyring = true;
                 };
                 lightdm.enableGnomeKeyring = true;
               };
