@@ -737,6 +737,8 @@
               enableExtensionPack = true;
             };
             docker.enable = true;
+            waydroid.enable = true;
+            lxd.enable = true;
           };
           users.extraGroups.vboxusers.members = [ "luca" ];
           security = {
