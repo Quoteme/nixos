@@ -285,10 +285,22 @@
             mediaKeys.enable = true;
           };
           hardware = {
-            pulseaudio.enable = true;
+            pulseaudio = {
+              enable = true;
+              package = pkgs.pulseaudioFull;
+              configFile = pkgs.runCommand "default.pa" {} ''
+                sed 's/module-udev-detect$/module-udev-detect tsched=0/' \
+                ${pkgs.pulseaudio}/etc/pulse/default.pa > $out
+              '';
+            };
             bluetooth = {
               enable = true;
               powerOnBoot = false;
+              settings = {
+                General = {
+                  Enable = "Source,Sink,Media,Socket";
+                };
+              };
             };
           };
           # Define a user account. Don't forget to set a password with ‘passwd’.

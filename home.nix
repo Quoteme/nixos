@@ -366,5 +366,11 @@
     config = ./config/polybar;
     script = "polybar top &";
   };
+  systemd.user.services.mpris-proxy = {
+    Unit.Description = "Mpris proxy";
+    Unit.After = [ "network.target" "sound.target" ];
+    Service.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
+    Install.WantedBy = [ "default.target" ];
+  };
   home.stateVersion = "22.05";
 }
