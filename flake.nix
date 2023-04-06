@@ -384,6 +384,8 @@
                 tex-match
               # Haskell
                 (haskellPackages.ghcWithPackages myGHCPackages)
+              # Lean
+                elan
               # Java
                 jdk
                 gradle
@@ -396,6 +398,14 @@
                 lldb
                 gdb
                 gdbgui
+                conan
+              # C#
+                mono
+                dotnet-sdk
+                dotnetCorePackages.aspnetcore_7_0
+                dotnetCorePackages.sdk_7_0
+                dotnetCorePackages.runtime_7_0
+                unstable.jetbrains.rider
               # Spelling
                 hunspell
                 hunspellDicts.de_DE
