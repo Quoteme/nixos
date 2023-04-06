@@ -721,6 +721,11 @@
               "\${ANDROID_SDK_ROOT}/platform-tools"
             ];
           };
+          environment.gnome.excludePackages = (with pkgs.gnome; [
+            gnome-terminal
+            geary
+            epiphany
+          ]);
           virtualisation = {
             libvirtd = {
               enable = true;
