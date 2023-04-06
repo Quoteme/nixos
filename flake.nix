@@ -280,19 +280,22 @@
           qt5.platformTheme = "gtk2";
           qt5.style = "gtk2";
           # Enable sound.
-          sound = {
+          # sound = {
+          #   enable = true;
+          #   mediaKeys.enable = true;
+          # };
+          # Use Pipewire
+          # rtkit is optional but recommended
+          security.rtkit.enable = true;
+          services.pipewire = {
             enable = true;
-            mediaKeys.enable = true;
+            alsa.enable = true;
+            alsa.support32Bit = true;
+            pulse.enable = true;
+            jack.enable = true;
           };
           hardware = {
-            pulseaudio = {
-              enable = true;
-              package = pkgs.pulseaudioFull;
-              configFile = pkgs.runCommand "default.pa" {} ''
-                sed 's/module-udev-detect$/module-udev-detect tsched=0/' \
-                ${pkgs.pulseaudio}/etc/pulse/default.pa > $out
-              '';
-            };
+            pulseaudio.enable=false;
             bluetooth = {
               enable = true;
               powerOnBoot = false;
