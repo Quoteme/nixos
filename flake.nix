@@ -160,8 +160,8 @@
             hostName = "nixos";
             networkmanager.enable = true;
             firewall = {
-              allowedUDPPortRanges = [{from=32768; to=61000;}];
-              # allowedTCPPortRanges = [{from=8008; to=8009;}];
+              allowedUDPPortRanges = [{from=32768; to=61000;} {from=1714; to=1764;}];
+              allowedTCPPortRanges = [{from=1714; to=1764;}];
               allowedTCPPorts = [80 5000 8000 8008 8009 8080 27017];
             };
           };
@@ -201,18 +201,19 @@
                 updateDbusEnvironment = true;
               # Display Manager
               displayManager = {
-                lightdm = {
-                  enable = true;
-                  greeters.gtk = {
-                    theme.package = pkgs.mojave-gtk-theme;
-                    theme.name = "Mojave-Dark";
-                    iconTheme.name ="Papirus";
-                    iconTheme.package = pkgs.papirus-icon-theme;
-                    indicators = [ "~host" "~spacer" "~clock" "~spacer" "~session" "~language" "~a11y" "~power" ];
-                    extraConfig = "keyboard=onboard";
-                  };
-                };
-                defaultSession = "none+xmonad-luca";
+                gdm.enable = true;
+                # lightdm = {
+                #   enable = true;
+                #   greeters.gtk = {
+                #     theme.package = pkgs.mojave-gtk-theme;
+                #     theme.name = "Mojave-Dark";
+                #     iconTheme.name ="Papirus";
+                #     iconTheme.package = pkgs.papirus-icon-theme;
+                #     indicators = [ "~host" "~spacer" "~clock" "~spacer" "~session" "~language" "~a11y" "~power" ];
+                #     extraConfig = "keyboard=onboard";
+                #   };
+                # };
+                # defaultSession = "none+xmonad-luca";
               };
               # Desktop Manager
               desktopManager.gnome.enable = true;
@@ -252,7 +253,7 @@
             ];
             avahi.enable = true;
             avahi.nssmdns = true;
-            touchegg.enable = true;
+            # touchegg.enable = true;
             gnome.gnome-keyring.enable = true;
             gnome.at-spi2-core.enable = true; # Accessibility Bus
             gnome.gnome-settings-daemon.enable = true; 
@@ -264,7 +265,7 @@
             devmon.enable = true;
             gvfs.enable = true;
             tumbler.enable = true;
-            redshift.enable = true;
+            # redshift.enable = true;
             # Lock screen
             # physlock = {
             #   enable = true;
@@ -476,6 +477,7 @@
             pkgs.unstable.distrobox
             gnome.gnome-tweaks
             gnomeExtensions.pop-shell
+            gnomeExtensions.gsconnect
             # themes
               # Icons
               gnome.adwaita-icon-theme
@@ -495,6 +497,7 @@
                 inputs.nix-alien.defaultPackage.x86_64-linux
                 nix-index
                 fzf
+              lm_sensors
               appimage-run
               trashy
               cobang
@@ -594,6 +597,8 @@
             # Password stuff
             seahorse.enable = true;
             ssh.enableAskPassword = true;
+
+            # kdeconnect.enable = true;
 
             # Shell stuff
             bash.shellInit = "set -o vi";
