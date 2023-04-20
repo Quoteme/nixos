@@ -64,7 +64,7 @@
           myCLion = pkgs.symlinkJoin {
             name = "myCLion";
             paths = with pkgs; [
-              jetbrains.clion
+              pkgs.unstable.jetbrains.clion
               gnumake
               check
               pkg-config
@@ -382,6 +382,7 @@
               # math
                 sage
                 julia-bin
+                unstable.rstudio
               # python
                 jetbrains.pycharm-professional
                 # poetry
@@ -529,7 +530,7 @@
               meld
               git
               gh
-              gitkraken
+              unstable.gitkraken
               exa
               ripgrep
               pdfgrep
@@ -642,6 +643,7 @@
                 lt = "exa -lT";
                 vs = "vim -S";
                 neovimupdate = "cd /etc/nixos && sudo nix flake lock --update-input neovim-luca && sudo nixos-rebuild switch && notify-send \"updated system\"";
+                nvs = "nix shell ~/Dokumente/dev/neovim-luca/#neovimLuca";
                 webcam = "mpv av://v4l2:/dev/video0 --profile=low-latency --untimed";
               };
             };
@@ -672,7 +674,7 @@
             enable = true;
             wrapperFeatures.base = true;
             wrapperFeatures.gtk = true;
-            extraPackages = with pkgs; [
+            extraPackages = with pkgs.unstable; [
               swayidle
               swaynag-battery
               swayest-workstyle
