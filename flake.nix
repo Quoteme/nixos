@@ -272,6 +272,11 @@
             #   lockMessage = "Lulca\'s Laptop";
             # };
           };
+          # Enable OneDrive
+          services.onedrive = {
+            enable = true;
+            package = pkgs.unstable.onedrive;
+          };
           # Enable flatpak
           services.flatpak.enable = true;
           xdg.portal.enable = true;
@@ -478,6 +483,7 @@
             gnome.gnome-tweaks
             gnomeExtensions.pop-shell
             gnomeExtensions.gsconnect
+            unstable.gnomeExtensions.one-drive-resurrect
             # themes
               # Icons
               gnome.adwaita-icon-theme
