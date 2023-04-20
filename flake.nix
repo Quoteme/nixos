@@ -353,7 +353,7 @@
               mypaint
               gimp
               aseprite
-              (pkgs.unstable.blender.override {
+              (pkgs.blender.override {
                 cudaSupport = true;
               })
               krita
