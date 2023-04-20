@@ -92,9 +92,13 @@
     ];
   };
   xdg.configFile."onedrive/config".text = ''
-    sync_dir = "~/OneDrive"
-    skip_dir = "*.git|Videos"
-    skip_file = "*~"
+    sync_dir = "~/Dokumente/Uni"
+  '';
+  xdg.configFile."onedrive/sync_list".text = ''
+    /Dokumente/Uni/anderes
+    /Dokumente/Uni/semester_10
+    /Dokumente/Uni/semester_9
+    /Dokumente/Uni/icon.png
   '';
   xdg.configFile."networkmanager-dmenu/config.ini".text = ''
     [dmenu]
