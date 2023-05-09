@@ -27,16 +27,32 @@
         "screenrotate": "screenrotate_3"
       },
       "locked": {
-        "lastModified": 1679668505,
-        "narHash": "sha256-GtXMxTSPG6wnTKg24BeQkaRLIRXv4FBu7+ZYasq8XBk=",
+        "lastModified": 1680524498,
+        "narHash": "sha256-u0OtcAxzPgQWBjJtgjNeFBnuSnQQaiPZKB5m3YsCji0=",
         "owner": "Quoteme",
         "repo": "control_center",
-        "rev": "3b8c8e8b01db030d4738726856be6d8b30aed597",
+        "rev": "389232f966e7c32a453b9ceaf722bd906a527da2",
         "type": "github"
       },
       "original": {
         "owner": "Quoteme",
         "repo": "control_center",
+        "type": "github"
+      }
+    },
+    "emacs-overlay": {
+      "locked": {
+        "lastModified": 1644575200,
+        "narHash": "sha256-7BaSTzlAI/xndvPIieZSZOB5Nsgtrb7L5HqdGGdVbwg=",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "da2f552d133497abd434006e0cae996c0a282394",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "da2f552d133497abd434006e0cae996c0a282394",
         "type": "github"
       }
     },
@@ -603,11 +619,11 @@
         "plugin_targets_nvim": "plugin_targets_nvim"
       },
       "locked": {
-        "lastModified": 1680171410,
-        "narHash": "sha256-PD8sMyil6AvHV3X4cEAMUqimJbw6btyzW2nyhb9887w=",
+        "lastModified": 1683621417,
+        "narHash": "sha256-PlJiJyNv66fLgD2URAqWweu0frZmlyXWGdQwnhDyoYw=",
         "owner": "Quoteme",
         "repo": "neovim-luca",
-        "rev": "fcc5a898375c71f25c72c4d56e304303284fc102",
+        "rev": "cec88508431bd523bb0d2e74d00619762f435e0b",
         "type": "github"
       },
       "original": {
@@ -704,11 +720,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1677342105,
-        "narHash": "sha256-kv1fpkfCJGb0M+LZaCHFUuIS9kRIwyVgupHu86Y28nc=",
+        "lastModified": 1683408522,
+        "narHash": "sha256-9kcPh6Uxo17a3kK3XCHhcWiV1Yu1kYj22RHiymUhMkU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b1f87ca164a9684404c8829b851c3586c4d9f089",
+        "rev": "897876e4c484f1e8f92009fd11b7d988a121a4e7",
         "type": "github"
       },
       "original": {
@@ -3153,6 +3169,7 @@
     "root": {
       "inputs": {
         "control_center": "control_center",
+        "emacs-overlay": "emacs-overlay",
         "godot": "godot",
         "hmenke-nixos-modules": "hmenke-nixos-modules",
         "home-manager": "home-manager",
@@ -3344,11 +3361,11 @@
         "xmonad-workspace-preview": "xmonad-workspace-preview"
       },
       "locked": {
-        "lastModified": 1680089591,
-        "narHash": "sha256-+kTsXvmgwPCHfaMPDrxm56k6rRN/aXz4M5uoU8O7Ezo=",
+        "lastModified": 1683617708,
+        "narHash": "sha256-sfufuL5Ots0iVX+Jif8b48f+semKSqxGDFVqJXlAD08=",
         "owner": "Quoteme",
         "repo": "xmonad-luca",
-        "rev": "19977081cd43816c3509d99d539f1dc7d3c9c446",
+        "rev": "8ed8d286a100ac5cc3826326c44b60c3cc70d4c6",
         "type": "github"
       },
       "original": {

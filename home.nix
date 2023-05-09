@@ -78,7 +78,7 @@
   services.picom = {
     # disabled for now. Configure multiple monitors someday
     enable = true;
-    shadow = true;
+    shadow = false;
     shadowOpacity = "0.8";
     fade = false;
     fadeDelta = 5;

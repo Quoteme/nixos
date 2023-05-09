@@ -26,6 +26,8 @@
       Restart = "on-failure";
     };
   };
+  powerManagement.powertop.enable = true;
+  systemd.sleep.extraConfig = "HibernateDelaySec=5min";
   # `nixos-generate-config --show-hardware-config` doesn't detect mount options automatically,
    # so to enable compression, you must specify it and other mount options
    # in a persistent configuration
@@ -44,10 +46,17 @@
     };
     enableRedistributableFirmware = true;
   };
+  # AMD settings
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  programs.corectrl.enable = true;
+  services.auto-cpufreq.enable = true;
   # NVIDIA settings
   # FIX: fix this
   hardware.nvidia.modesetting.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.powerManagement.enable = true;
+  hardware.nvidia.powerManagement.finegrained = true;
+  hardware.nvidia.nvidiaPersistenced = true;
   hardware.nvidia.prime = {
     offload.enable = true;
     amdgpuBusId = "PCI:08:00:0";

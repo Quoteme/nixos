@@ -10,6 +10,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     st-nix.url = "github:Quoteme/st-nix";
     neovim-luca.url = "github:Quoteme/neovim-luca";
+    emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
     nix-autobahn.url = "github:Lassulus/nix-autobahn";
     nix-alien.url = "github:thiagokokada/nix-alien";
     screenrotate.url = "github:Quoteme/screenrotate";
@@ -43,6 +44,7 @@
           # TODO: make use of overlay stable
           overlay-unstable
           overlay-old
+          attrs.emacs-overlay.overlay
         ];
       };
     in {
@@ -64,7 +66,7 @@
           myCLion = pkgs.symlinkJoin {
             name = "myCLion";
             paths = with pkgs; [
-              pkgs.unstable.jetbrains.clion
+              jetbrains.clion
               gnumake
               check
               pkg-config
@@ -103,7 +105,7 @@
           myIDEA = pkgs.symlinkJoin {
             name = "myIDEA";
             paths = with pkgs; [
-              pkgs.unstable.jetbrains.idea-ultimate
+              jetbrains.idea-ultimate
               # instead use:
               # https://discourse.nixos.org/t/flutter-run-d-linux-build-process-failed/16552/3
               # flutter
@@ -216,6 +218,11 @@
                 # defaultSession = "none+xmonad-luca";
               };
               # Desktop Manager
+              # desktopManager.phosh = {
+              #   enable = true;
+              #   group = "users";
+              #   user = "luca";
+              # };
               desktopManager.gnome.enable = true;
               # Window managers / Desktop managers
                 windowManager = {
@@ -253,7 +260,7 @@
             ];
             avahi.enable = true;
             avahi.nssmdns = true;
-            # touchegg.enable = true;
+            touchegg.enable = true;
             gnome.gnome-keyring.enable = true;
             gnome.at-spi2-core.enable = true; # Accessibility Bus
             gnome.gnome-settings-daemon.enable = true; 
@@ -375,6 +382,10 @@
               libreoffice
             # Programming
               inputs.neovim-luca.defaultPackage.x86_64-linux
+              unstable.neovim
+              luajit
+              lazygit
+              emacs-gtk
               pkgs.unstable.vscode-fhs
                 hlint
               devdocs-desktop
@@ -394,8 +405,12 @@
                 tex-match
               # Haskell
                 (haskellPackages.ghcWithPackages myGHCPackages)
+              # Rust
+                cargo
+                rustc
               # Lean
                 elan
+                mathlibtools
               # Java
                 jdk
                 gradle
@@ -504,6 +519,8 @@
                 inputs.nix-alien.defaultPackage.x86_64-linux
                 nix-index
                 fzf
+              playerctl
+              pcmanfm
               lm_sensors
               appimage-run
               trashy
@@ -588,6 +605,12 @@
             # stuff that is needed pretty much everywhere
               myPython
               (haskellPackages.ghcWithPackages myGHCPackages)
+              unstable.haskell-language-server
+              unstable.ghc
+              unstable.haskellPackages.haskell-dap
+              unstable.haskellPackages.ghci-dap
+              unstable.haskellPackages.haskell-debug-adapter
+              unstable.cabal-install
           ];
           programs = {
             # https://github.com/Mic92/nix-ld
@@ -605,7 +628,7 @@
             seahorse.enable = true;
             ssh.enableAskPassword = true;
 
-            # kdeconnect.enable = true;
+            kdeconnect.enable = true;
 
             # Shell stuff
             bash.shellInit = "set -o vi";
@@ -643,7 +666,12 @@
                 lt = "exa -lT";
                 vs = "vim -S";
                 neovimupdate = "cd /etc/nixos && sudo nix flake lock --update-input neovim-luca && sudo nixos-rebuild switch && notify-send \"updated system\"";
+                vi = "nvim";
+                vim = "nvim";
                 nvs = "nix shell ~/Dokumente/dev/neovim-luca/#neovimLuca";
+                enw = "emacs -nw";
+                haskellshell = "nix shell unstable\#haskell-language-server unstable\#ghc unstable\#haskellPackages.haskell-dap unstable\#haskellPackages.ghci-dap unstable\#haskellPackages.haskell-debug-adapter unstable\#cabal-install";
+                cppshell = "nix shell unstable\#cmake unstable#gcc unstable#pkg-config";
                 webcam = "mpv av://v4l2:/dev/video0 --profile=low-latency --untimed";
               };
             };
@@ -705,7 +733,7 @@
 
           # Shell configuration
           environment.variables = {
-            TERMINAL = "st";
+            TERMINAL = "alacritty";
             CHROME_EXECUTABLE = "${pkgs.unstable.google-chrome}/bin/google-chrome-stable";
             ACCESSIBILITY_ENABLED = "1";
             PAGER = "nvimpager";
@@ -727,6 +755,8 @@
             # XMONAD_DATA_DIR = "/etc/nixos/xmonad";
             # XMONAD_CONFIG_DIR = "/etc/nixos/xmonad";
             # XMONAD_CACHE_DIR = "/etc/nixos/xmonad/.cache";
+            MOZ_USE_XINPUT2="1";
+
 
             FLUTTER_SDK = "\${XDG_LIB_HOME}/arch-id/flutter";
             ANDROID_SDK_ROOT="\${XDG_LIB_HOME}arch-id/android-sdk/";
@@ -735,6 +765,7 @@
               "\${XDG_BIN_HOME}"
               "\${FLUTTER_SDK}/bin"
               "\${ANDROID_SDK_ROOT}/platform-tools"
+              "\${HOME}/.config/emacs/bin"
             ];
           };
           environment.gnome.excludePackages = (with pkgs.gnome; [
