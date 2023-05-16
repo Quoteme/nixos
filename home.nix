@@ -33,6 +33,13 @@
     initExtra = ''
       transfer(){ if [ $# -eq 0 ];then echo "No arguments specified.\nUsage:\n transfer <file|directory>\n ... | transfer <file_name>">&2;return 1;fi;if tty -s;then file="$1";file_name=$(basename "$file");if [ ! -e "$file" ];then echo "$file: No such file or directory">&2;return 1;fi;if [ -d "$file" ];then file_name="$file_name.zip" ,;(cd "$file"&&zip -r -q - .)|curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null,;else cat "$file"|curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null;fi;else file_name=$1;curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null;fi;}
     '';
+    shellAliases = {
+      # Monti
+      montissh = "ssh mmbs@monti.ai";
+      montikuma = "xdg-open http://localhost:3001 && ssh -L 3001:localhost:3001 mmbs@monti.ai";
+      montiprometheus = "xdg-open http://localhost:9090 && ssh -L 9090:localhost:9090 mmbs@monti.ai";
+      montigrafana = "xdg-open http://localhost:3000 && ssh -L 3000:localhost:3000 mmbs@monti.ai";
+    };
   };
   programs.direnv = {
     enable = true;
@@ -53,9 +60,9 @@
   programs.mpv = {
     enable = true;
     config = {
-      profile     = "gpu-hq";
+      profile = "gpu-hq";
       ytdl-format = "bestvideo+bestaudio";
-      webui-port  = "4000";
+      webui-port = "4000";
       script-opts = "ytdl_hook-ytdl_path=yt-dlp";
     };
     scripts = with pkgs.mpvScripts; [
@@ -71,7 +78,7 @@
     theme = "sidebar";
     extraConfig = {
       modi = "combi";
-      combi-modi ="drun,window,ssh";
+      combi-modi = "drun,window,ssh";
       show-icons = true;
     };
   };
@@ -82,7 +89,7 @@
     shadowOpacity = "0.8";
     fade = false;
     fadeDelta = 5;
-    fadeExclude = ["window_type *= 'menu'"];
+    fadeExclude = [ "window_type *= 'menu'" ];
     inactiveOpacity = "0.95";
     opacityRule = [
       "100:name *= 'Netflix'"
@@ -154,147 +161,147 @@
     color_sep_fg         = #192022 400
   '';
   xdg.configFile."touchegg/touchegg.conf".text = ''
-  <touchégg>
+    <touchégg>
 
-    <settings>
+      <settings>
+        <!--
+          Delay, in milliseconds, since the gesture starts before the animation is displayed.
+          Default: 150ms if this property is not set.
+          Example: Use the MAXIMIZE_RESTORE_WINDOW action. You will notice that no animation is
+          displayed if you complete the action quick enough. This property configures that time.
+        -->
+        <property name="animation_delay">150</property>
+
+        <!--
+          Percentage of the gesture to be completed to apply the action. Set to 0 to execute actions unconditionally.
+          Default: 20% if this property is not set.
+          Example: Use the MAXIMIZE_RESTORE_WINDOW action. You will notice that, even if the
+          animation is displayed, the action is not executed if you did not move your fingers far
+          enough. This property configures the percentage of the gesture that must be reached to
+          execute the action.
+        -->
+        <property name="action_execute_threshold">20</property>
+
+        <!--
+          Global animation colors can be configured to match your system colors using HEX notation:
+
+            <color>909090</color>
+            <borderColor>FFFFFF</borderColor>
+
+          You can also use auto:
+
+            <property name="color">auto</property>
+            <property name="borderColor">auto</property>
+
+          Notice that you can override an specific animation color.
+        -->
+        <property name="color">auto</property>
+        <property name="borderColor">auto</property>
+      </settings>
+
       <!--
-        Delay, in milliseconds, since the gesture starts before the animation is displayed.
-        Default: 150ms if this property is not set.
-        Example: Use the MAXIMIZE_RESTORE_WINDOW action. You will notice that no animation is
-        displayed if you complete the action quick enough. This property configures that time.
+        Configuration for every application.
       -->
-      <property name="animation_delay">150</property>
+      <application name="All">
 
-      <!--
-        Percentage of the gesture to be completed to apply the action. Set to 0 to execute actions unconditionally.
-        Default: 20% if this property is not set.
-        Example: Use the MAXIMIZE_RESTORE_WINDOW action. You will notice that, even if the
-        animation is displayed, the action is not executed if you did not move your fingers far
-        enough. This property configures the percentage of the gesture that must be reached to
-        execute the action.
-      -->
-      <property name="action_execute_threshold">20</property>
+        <gesture type="PINCH" fingers="3" direction="IN">
+          <action type="CLOSE_WINDOW">
+            <animate>true</animate>
+            <color>F84A53</color>
+            <borderColor>F84A53</borderColor>
+          </action>
+        </gesture>
 
-      <!--
-        Global animation colors can be configured to match your system colors using HEX notation:
+        <gesture type="PINCH" fingers="3" direction="OUT">
+          <action type="RUN_COMMAND">
+            <repeat>false</repeat>
+            <command>sleep 0.4 && xmonadctl menu</command>
+            <on>begin</on>
+          </action>
+        </gesture>
 
-          <color>909090</color>
-          <borderColor>FFFFFF</borderColor>
+        <!-- Window Swapping -->
+        <gesture type="SWIPE" fingers="3" direction="UP">
+          <action type="RUN_COMMAND">
+            <repeat>false</repeat>
+            <command>xmonadctl swap-up</command>
+            <on>begin</on>
+          </action>
+        </gesture>
 
-        You can also use auto:
+        <gesture type="SWIPE" fingers="3" direction="DOWN">
+          <action type="RUN_COMMAND">
+            <repeat>false</repeat>
+            <command>xmonadctl swap-down</command>
+            <on>begin</on>
+          </action>
+        </gesture>
 
-          <property name="color">auto</property>
-          <property name="borderColor">auto</property>
+        <gesture type="SWIPE" fingers="3" direction="LEFT">
+          <action type="RUN_COMMAND">
+            <repeat>false</repeat>
+            <command>xmonadctl swap-left</command>
+            <on>begin</on>
+          </action>
+        </gesture>
 
-        Notice that you can override an specific animation color.
-      -->
-      <property name="color">auto</property>
-      <property name="borderColor">auto</property>
-    </settings>
+        <gesture type="SWIPE" fingers="3" direction="RIGHT">
+          <action type="RUN_COMMAND">
+            <repeat>false</repeat>
+            <command>xmonadctl swap-right</command>
+            <on>begin</on>
+          </action>
+        </gesture>
 
-    <!--
-      Configuration for every application.
-    -->
-    <application name="All">
+        <gesture type="TAP" fingers="4">
+          <action type="RUN_COMMAND">
+            <repeat>false</repeat>
+            <command>xmonadctl rotate</command>
+            <on>begin</on>
+          </action>
+        </gesture>
 
-      <gesture type="PINCH" fingers="3" direction="IN">
-        <action type="CLOSE_WINDOW">
-          <animate>true</animate>
-          <color>F84A53</color>
-          <borderColor>F84A53</borderColor>
-        </action>
-      </gesture>
+        <gesture type="SWIPE" fingers="4" direction="LEFT">
+          <action type="CHANGE_DESKTOP">
+            <direction>auto</direction>
+            <animate>true</animate>
+            <animationPosition>auto</animationPosition>
+          </action>
+        </gesture>
 
-      <gesture type="PINCH" fingers="3" direction="OUT">
-        <action type="RUN_COMMAND">
-          <repeat>false</repeat>
-          <command>sleep 0.4 && xmonadctl menu</command>
-          <on>begin</on>
-        </action>
-      </gesture>
+        <gesture type="SWIPE" fingers="4" direction="RIGHT">
+          <action type="CHANGE_DESKTOP">
+            <direction>auto</direction>
+            <animate>true</animate>
+            <animationPosition>auto</animationPosition>
+          </action>
+        </gesture>
 
-      <!-- Window Swapping -->
-      <gesture type="SWIPE" fingers="3" direction="UP">
-        <action type="RUN_COMMAND">
-          <repeat>false</repeat>
-          <command>xmonadctl swap-up</command>
-          <on>begin</on>
-        </action>
-      </gesture>
+      <gesture type="SWIPE" fingers="4" direction="DOWN">
+          <action type="RUN_COMMAND">
+            <repeat>false</repeat>
+            <command>xmonadctl toggle-struts</command>
+            <on>begin</on>
+          </action>
+        </gesture>
 
-      <gesture type="SWIPE" fingers="3" direction="DOWN">
-        <action type="RUN_COMMAND">
-          <repeat>false</repeat>
-          <command>xmonadctl swap-down</command>
-          <on>begin</on>
-        </action>
-      </gesture>
+        <gesture type="TAP" fingers="2">
+          <action type="MOUSE_CLICK">
+            <button>3</button>
+            <on>begin</on>
+          </action>
+        </gesture>
 
-      <gesture type="SWIPE" fingers="3" direction="LEFT">
-        <action type="RUN_COMMAND">
-          <repeat>false</repeat>
-          <command>xmonadctl swap-left</command>
-          <on>begin</on>
-        </action>
-      </gesture>
+        <gesture type="TAP" fingers="3">
+          <action type="MOUSE_CLICK">
+            <button>2</button>
+            <on>begin</on>
+          </action>
+        </gesture>
 
-      <gesture type="SWIPE" fingers="3" direction="RIGHT">
-        <action type="RUN_COMMAND">
-          <repeat>false</repeat>
-          <command>xmonadctl swap-right</command>
-          <on>begin</on>
-        </action>
-      </gesture>
+      </application>
 
-      <gesture type="TAP" fingers="4">
-        <action type="RUN_COMMAND">
-          <repeat>false</repeat>
-          <command>xmonadctl rotate</command>
-          <on>begin</on>
-        </action>
-      </gesture>
-
-      <gesture type="SWIPE" fingers="4" direction="LEFT">
-        <action type="CHANGE_DESKTOP">
-          <direction>auto</direction>
-          <animate>true</animate>
-          <animationPosition>auto</animationPosition>
-        </action>
-      </gesture>
-
-      <gesture type="SWIPE" fingers="4" direction="RIGHT">
-        <action type="CHANGE_DESKTOP">
-          <direction>auto</direction>
-          <animate>true</animate>
-          <animationPosition>auto</animationPosition>
-        </action>
-      </gesture>
-
-    <gesture type="SWIPE" fingers="4" direction="DOWN">
-        <action type="RUN_COMMAND">
-          <repeat>false</repeat>
-          <command>xmonadctl toggle-struts</command>
-          <on>begin</on>
-        </action>
-      </gesture>
-
-      <gesture type="TAP" fingers="2">
-        <action type="MOUSE_CLICK">
-          <button>3</button>
-          <on>begin</on>
-        </action>
-      </gesture>
-
-      <gesture type="TAP" fingers="3">
-        <action type="MOUSE_CLICK">
-          <button>2</button>
-          <on>begin</on>
-        </action>
-      </gesture>
-
-    </application>
-
-  </touchégg>
+    </touchégg>
   '';
   services.network-manager-applet.enable = true;
   # services.dunst = {
