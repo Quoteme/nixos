@@ -46,6 +46,7 @@
           overlay-unstable
           overlay-old
           attrs.emacs-overlay.overlay
+          attrs.nix-vscode-extensions.overlays.default
         ];
       };
     in
@@ -126,6 +127,8 @@
                 numpy
                 scipy
                 matplotlib
+                plotly
+                pipx
               ]);
             in
             {
@@ -145,7 +148,7 @@
                   "unstable=${nixpkgs-unstable}"
                   "stable=${attrs.nixpkgs-old}"
                   "nur=${attrs.nur}"
-                  "vscode=${attrs.nix-vscode-extensions}"
+                  "nix-vscode=${attrs.nix-vscode-extensions}"
                 ];
                 registry = {
                   nixpkgs.flake = nixpkgs;
@@ -284,6 +287,7 @@
                 #   lockMessage = "Lulca\'s Laptop";
                 # };
               };
+              services.clipcat.enable = true;
               # Enable OneDrive
               services.onedrive = {
                 enable = true;
@@ -311,6 +315,19 @@
                 alsa.support32Bit = true;
                 pulse.enable = true;
                 jack.enable = true;
+                config.pipewire-pulse = {
+                  "pulse.cmd" = [
+                    {
+                      "cmd" = "load-module";
+                      "args" = "module-always-sink";
+                      "flags" = [ ];
+                    }
+                    {
+                      "cmd" = "load-module";
+                      "args" = "module-switch-on-connect";
+                    }
+                  ];
+                };
               };
               hardware = {
                 pulseaudio.enable = false;
@@ -349,8 +366,9 @@
                   pkgs.unstable.google-chrome
                   tts
                   # microsoft-edge
-                  discord
-                  whatsapp-for-linux
+                  # discord
+                  # whatsapp-for-linux
+                  unstable.ferdium
                   transmission-gtk
                   thunderbird
                   # Privacy
@@ -392,7 +410,55 @@
                   luajit
                   lazygit
                   emacs-gtk
-                  pkgs.unstable.vscode-fhs
+                  # pkgs.unstable.vscode-fhs
+                  (pkgs.unstable.vscode-with-extensions.override {
+                    vscodeExtensions = with pkgs.vscode-marketplace; [
+                      vscodevim.vim
+                      # haskell
+                      haskell.haskell
+                      phoityne.phoityne-vscode # Haskell GHCi Debug Adapter
+                      # nix
+                      bbenoist.nix
+                      # python
+                      ms-python.python
+                      ms-toolsai.jupyter
+                      # lean
+                      leanprover.lean4
+                      jroesch.lean
+                      hoskinson-ml.lean-chat-vscode
+                      # web
+                      ecmel.vscode-html-css
+                      sissel.shopify-liquid
+                      # bash
+                      rogalmic.bash-debug
+                      mads-hartmann.bash-ide-vscode
+                      # flutter/dart
+                      dart-code.dart-code
+                      dart-code.flutter
+                      # c/c++
+                      ms-vscode.cpptools
+                      ms-vscode.cpptools-themes
+                      twxs.cmake
+                      ms-vscode.cmake-tools
+                      ms-vscode.cpptools-extension-pack
+                      # Remove
+                      ms-vscode-remote.remote-containers
+                      ms-vscode-remote.remote-ssh-edit
+                      ms-vscode.remote-explorer
+                      ms-vscode.remote-server
+                      ms-vscode.remote-repositories
+                      ms-azuretools.vscode-docker
+                      ms-azuretools.vscode-docker
+                      ms-vscode-remote.remote-ssh
+                      # Copilot
+                      github.copilot-labs
+                      pkgs.unstable.vscode-extensions.github.copilot
+                      #
+                      visualstudioexptteam.vscodeintellicode
+                      visualstudioexptteam.vscodeintellicode-completions
+                      visualstudioexptteam.vscodeintellicode-insiders
+                    ];
+                  })
                   hlint
                   devdocs-desktop
                   # devdocs-desktop
@@ -469,8 +535,8 @@
                   # UNI HHU ZEUG
                   # konferenzen
                   zoom-us
-                  teams
-                  slack
+                  # teams
+                  # slack
                   # PROPORA
                   mob
 
@@ -520,6 +586,9 @@
                 # Cursor
                 numix-cursor-theme
                 # Small Utilities
+                # nix
+                nix-du
+                nix-tree
                 # nix-ld stuff
                 inputs.nix-autobahn.defaultPackage.x86_64-linux
                 inputs.nix-alien.defaultPackage.x86_64-linux
@@ -527,6 +596,7 @@
                 fzf
                 playerctl
                 pcmanfm
+                qdirstat
                 lm_sensors
                 appimage-run
                 trashy
@@ -594,7 +664,7 @@
                 libnotify
                 inputs.screenrotate.defaultPackage.x86_64-linux
                 # inputs.rescreenapp.defaultPackage.x86_64-linux
-                inputs.control_center.defaultPackage.x86_64-linux
+                # inputs.control_center.defaultPackage.x86_64-linux
                 batsignal
                 polkit_gnome
                 lightlocker
@@ -617,6 +687,7 @@
                 unstable.haskellPackages.ghci-dap
                 unstable.haskellPackages.haskell-debug-adapter
                 unstable.cabal-install
+                # unstable.stack
               ];
               programs = {
                 # https://github.com/Mic92/nix-ld
@@ -661,6 +732,7 @@
                       "gpg-agent"
                       "keychain"
                       "zsh-interactive-cd"
+                      "flutter"
                     ];
                     theme = "robbyrussell";
                   };
@@ -772,6 +844,7 @@
                   "\${ANDROID_SDK_ROOT}/platform-tools"
                   "\${HOME}/.config/emacs/bin"
                   "\${HOME}/.elan/bin"
+                  "\${HOME}/.local/share/npm/bin"
                 ];
               };
               environment.gnome.excludePackages = (with pkgs.gnome; [
