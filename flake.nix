@@ -561,7 +561,7 @@
                 noto-fonts-emoji
                 liberation_ttf
               ];
-              fonts.fontconfig.defaultFonts.emoji = [ "openmoji-color" ];
+              fonts.fontconfig.defaultFonts.emoji = [ "Noto Color Emoji" "openmoji-color" ];
               # List packages installed in system profile. To search, run:
               # $ nix search nixpkgs wget
               # TODO: move this into another file
