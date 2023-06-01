@@ -2,11 +2,11 @@
   description = "Luca Happels nixos ";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-22.11";
+    nixpkgs.url = "nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     nixpkgs-old.url = "nixpkgs/nixos-22.05";
     nur.url = "github:nix-community/NUR";
-    home-manager.url = "github:nix-community/home-manager/release-22.05";
+    home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     st-nix.url = "github:Quoteme/st-nix";
     neovim-luca.url = "github:Quoteme/neovim-luca";
@@ -298,9 +298,9 @@
               xdg.portal.enable = true;
               # make qt apps look like gtk
               # https://nixos.org/manual/nixos/stable/index.html#sec-x11-gtk-and-qt-themes
-              qt5.enable = true;
-              qt5.platformTheme = "gtk2";
-              qt5.style = "gtk2";
+              qt.enable = true;
+              qt.platformTheme = "gtk2";
+              qt.style = "gtk2";
               # Enable sound.
               # sound = {
               #   enable = true;
@@ -315,19 +315,19 @@
                 alsa.support32Bit = true;
                 pulse.enable = true;
                 jack.enable = true;
-                config.pipewire-pulse = {
-                  "pulse.cmd" = [
-                    {
-                      "cmd" = "load-module";
-                      "args" = "module-always-sink";
-                      "flags" = [ ];
-                    }
-                    {
-                      "cmd" = "load-module";
-                      "args" = "module-switch-on-connect";
-                    }
-                  ];
-                };
+                # config.pipewire-pulse = {
+                #   "pulse.cmd" = [
+                #     {
+                #       "cmd" = "load-module";
+                #       "args" = "module-always-sink";
+                #       "flags" = [ ];
+                #     }
+                #     {
+                #       "cmd" = "load-module";
+                #       "args" = "module-switch-on-connect";
+                #     }
+                #   ];
+                # };
               };
               hardware = {
                 pulseaudio.enable = false;
@@ -692,6 +692,7 @@
               programs = {
                 # https://github.com/Mic92/nix-ld
                 nix-ld.enable = true;
+                # nix-ld.package = pkgs.nixpkgs-old.nix-ld;
 
                 # Some programs need SUID wrappers, can be configured further or are
                 # started in user sessions.
@@ -820,8 +821,8 @@
                 RG_PREFIX = "rg --column --line-number --no-heading --color=always --smart-case ";
                 # "NIX_LD_LIBRARY_PATH" = "/run/current-system/sw/share/nix-ld/lib";
                 # "NIX_LD" = toString nix-ld-so;
-                NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath (config.systemd.packages ++ config.environment.systemPackages);
-                NIX_LD = "${pkgs.glibc}/lib/ld-linux-x86-64.so.2";
+                # NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath (config.systemd.packages ++ config.environment.systemPackages);
+                # NIX_LD = "${pkgs.glibc}/lib/ld-linux-x86-64.so.2";
               };
               environment.sessionVariables = {
                 XDG_CACHE_HOME = "\${HOME}/.cache";

@@ -86,12 +86,12 @@
     # disabled for now. Configure multiple monitors someday
     enable = true;
     shadow = false;
-    shadowOpacity = "0.8";
+    shadowOpacity = 0.8;
     fade = false;
     fadeDelta = 5;
     fadeExclude = [ "window_type *= 'menu'" ];
-    inactiveOpacity = "0.95";
-    opacityRule = [
+    inactiveOpacity = 0.95;
+    opacityRules = [
       "100:name *= 'Netflix'"
       "100:name *= 'Wikipedia'"
       "100:name *= 'Youtube'"
