@@ -254,6 +254,7 @@
                   HandlePowerKey=ignore
                 '';
                 printing.enable = true;
+                printing.browsing = true;
                 printing.drivers = with pkgs; [
                   gutenprint
                   gutenprintBin
@@ -377,6 +378,8 @@
                   # Video-Editing
                   obs-studio
                   kdenlive
+                  glaxnimate
+                  mediainfo
                   # # Drawing
                   xournalpp
                   pkgs.unstable.rnote
@@ -419,15 +422,31 @@
                       phoityne.phoityne-vscode # Haskell GHCi Debug Adapter
                       # nix
                       bbenoist.nix
+                      jnoortheen.nix-ide
+                      mkhl.direnv
+                      arrterian.nix-env-selector
                       # python
                       ms-python.python
                       ms-toolsai.jupyter
+                      donjayamanne.python-environment-manager
+                      # latex
+                      mathematic.vscode-latex
+                      james-yu.latex-workshop
                       # lean
-                      leanprover.lean4
                       jroesch.lean
                       hoskinson-ml.lean-chat-vscode
-                      # web
+                      # web/javascript/typescript/react/svelte
+                      dbaeumer.vscode-eslint
                       ecmel.vscode-html-css
+                      abusaidm.html-snippets
+                      mgmcdermott.vscode-language-babel
+                      ms-vscode.vscode-typescript-next
+                      ms-vscode.js-debug-nightly
+                      sburg.vscode-javascript-booster
+                      dsznajder.es7-react-js-snippets
+                      msjsdiag.vscode-react-native
+                      svelte.svelte-vscode
+                      bradlc.vscode-tailwindcss
                       sissel.shopify-liquid
                       # bash
                       rogalmic.bash-debug
@@ -435,13 +454,22 @@
                       # flutter/dart
                       dart-code.dart-code
                       dart-code.flutter
+                      alexisvt.flutter-snippets
+                      marcelovelasquez.flutter-tree
+                      circlecodesolution.ccs-flutter-color
+                      # Java
+                      redhat.java
+                      vscjava.vscode-java-debug
+                      vscjava.vscode-java-test
+                      vscjava.vscode-java-dependency
                       # c/c++
                       ms-vscode.cpptools
                       ms-vscode.cpptools-themes
                       twxs.cmake
                       ms-vscode.cmake-tools
                       ms-vscode.cpptools-extension-pack
-                      # Remove
+                      vadimcn.vscode-lldb
+                      # Remote
                       ms-vscode-remote.remote-containers
                       ms-vscode-remote.remote-ssh-edit
                       ms-vscode.remote-explorer
@@ -454,9 +482,12 @@
                       github.copilot-labs
                       pkgs.unstable.vscode-extensions.github.copilot
                       #
+                      ms-dotnettools.vscode-dotnet-runtime
+                      ms-dotnettools.vscode-dotnet-pack
                       visualstudioexptteam.vscodeintellicode
                       visualstudioexptteam.vscodeintellicode-completions
                       visualstudioexptteam.vscodeintellicode-insiders
+                      esbenp.prettier-vscode
                     ];
                   })
                   hlint
@@ -466,6 +497,8 @@
                   sage
                   julia-bin
                   unstable.rstudio
+                  # JavaScript/TypeScript
+                  jetbrains.webstorm
                   # python
                   jetbrains.pycharm-professional
                   # poetry
@@ -587,6 +620,7 @@
                 numix-cursor-theme
                 # Small Utilities
                 # nix
+                nixpkgs-fmt
                 nix-du
                 nix-tree
                 # nix-ld stuff
