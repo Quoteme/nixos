@@ -241,6 +241,12 @@
                           ${inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca-alldeps}/bin/xmonad-luca
                         '';
                       }
+                      {
+                        name = "newm";
+                        start = ''
+                          /home/luca/.local/share/newm/result/bin/start-newm
+                        '';
+                      }
                     ];
                     bspwm = {
                       enable = true;
@@ -332,12 +338,14 @@
               };
               hardware = {
                 pulseaudio.enable = false;
+                pulseaudio.extraModules = [ pkgs.pulseaudio-modules-bt ];
                 bluetooth = {
                   enable = true;
                   powerOnBoot = false;
                   settings = {
                     General = {
                       Enable = "Source,Sink,Media,Socket";
+                      Experimental = true;
                     };
                   };
                 };
@@ -433,6 +441,7 @@
                       mathematic.vscode-latex
                       james-yu.latex-workshop
                       # lean
+                      leanprover.lean4
                       jroesch.lean
                       hoskinson-ml.lean-chat-vscode
                       # web/javascript/typescript/react/svelte
@@ -469,6 +478,8 @@
                       ms-vscode.cmake-tools
                       ms-vscode.cpptools-extension-pack
                       vadimcn.vscode-lldb
+                      # org-mode
+                      tootone.org-mode
                       # Remote
                       ms-vscode-remote.remote-containers
                       ms-vscode-remote.remote-ssh-edit
@@ -487,7 +498,9 @@
                       visualstudioexptteam.vscodeintellicode
                       visualstudioexptteam.vscodeintellicode-completions
                       visualstudioexptteam.vscodeintellicode-insiders
+                      jgclark.vscode-todo-highlight
                       esbenp.prettier-vscode
+                      kisstkondoros.vscode-gutter-preview
                     ];
                   })
                   hlint
