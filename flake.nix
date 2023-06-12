@@ -379,6 +379,7 @@
                   # whatsapp-for-linux
                   unstable.ferdium
                   transmission-gtk
+                  birdtray
                   thunderbird
                   # Privacy
                   veracrypt
@@ -427,6 +428,9 @@
                       vscodevim.vim
                       # haskell
                       haskell.haskell
+                      justusadam.language-haskell
+                      visortelle.haskell-spotlight
+                      ucl.haskelly
                       phoityne.phoityne-vscode # Haskell GHCi Debug Adapter
                       # nix
                       bbenoist.nix
@@ -436,7 +440,21 @@
                       # python
                       ms-python.python
                       ms-toolsai.jupyter
+                      ms-toolsai.jupyter-renderers
+                      ms-toolsai.jupyter-keymap
+                      ms-toolsai.vscode-jupyter-cell-tags
+                      ms-toolsai.vscode-jupyter-slideshow
+                      kevinrose.vsc-python-indent
+                      dongli.python-preview
+                      tushortz.python-extended-snippets
+                      littlefoxteam.vscode-python-test-adapter
                       donjayamanne.python-environment-manager
+                      cameron.vscode-pytest
+                      # markdown 
+                      yzhang.markdown-all-in-one
+                      koehlma.markdown-math
+                      davidanson.vscode-markdownlint
+                      bierner.markdown-checkbox
                       # latex
                       mathematic.vscode-latex
                       james-yu.latex-workshop
@@ -446,17 +464,24 @@
                       hoskinson-ml.lean-chat-vscode
                       # web/javascript/typescript/react/svelte
                       dbaeumer.vscode-eslint
+                      dbaeumer.jshint
                       ecmel.vscode-html-css
                       abusaidm.html-snippets
                       mgmcdermott.vscode-language-babel
                       ms-vscode.vscode-typescript-next
                       ms-vscode.js-debug-nightly
+                      ms-vscode.js-debug-companion
+                      msjsdiag.debugger-for-chrome-nightly
                       sburg.vscode-javascript-booster
                       dsznajder.es7-react-js-snippets
                       msjsdiag.vscode-react-native
                       svelte.svelte-vscode
+                      ardenivanov.svelte-intellisense
+                      fivethree.vscode-svelte-snippets
+                      pivaszbs.svelte-autoimport
                       bradlc.vscode-tailwindcss
                       sissel.shopify-liquid
+                      syler.sass-indented
                       # bash
                       rogalmic.bash-debug
                       mads-hartmann.bash-ide-vscode
@@ -465,19 +490,37 @@
                       dart-code.flutter
                       alexisvt.flutter-snippets
                       marcelovelasquez.flutter-tree
+                      localizely.flutter-intl
+                      aksharpatel47.vscode-flutter-helper
+                      nash.awesome-flutter-snippets
                       circlecodesolution.ccs-flutter-color
                       # Java
                       redhat.java
                       vscjava.vscode-java-debug
                       vscjava.vscode-java-test
                       vscjava.vscode-java-dependency
+                      vscjava.vscode-maven
+                      vscjava.vscode-gradle
+                      naco-siren.gradle-language
+                      vscjava.vscode-lombok
+                      # Kotlin
+                      mathiasfrohlich.kotlin
+                      fwcd.kotlin
+                      esafirm.kotlin-formatter
                       # c/c++
                       ms-vscode.cpptools
                       ms-vscode.cpptools-themes
                       twxs.cmake
                       ms-vscode.cmake-tools
                       ms-vscode.cpptools-extension-pack
+                      ms-vscode.makefile-tools
                       vadimcn.vscode-lldb
+                      jeff-hykin.better-cpp-syntax
+                      # SQL
+                      ms-ossdata.vscode-postgresql
+                      # Rust
+                      rust-lang.rust-analyzer
+                      swellaby.vscode-rust-test-adapter
                       # org-mode
                       tootone.org-mode
                       # Remote
@@ -489,10 +532,17 @@
                       ms-azuretools.vscode-docker
                       ms-azuretools.vscode-docker
                       ms-vscode-remote.remote-ssh
+                      # .env
+                      irongeek.vscode-env
+                      ctf0.env-symbol-provider
                       # Copilot
                       github.copilot-labs
                       pkgs.unstable.vscode-extensions.github.copilot
+                      # testing
+                      hbenl.vscode-test-explorer
+                      ms-vscode.test-adapter-converter
                       #
+                      ms-vscode.remote-repositories
                       ms-dotnettools.vscode-dotnet-runtime
                       ms-dotnettools.vscode-dotnet-pack
                       visualstudioexptteam.vscodeintellicode
@@ -501,6 +551,7 @@
                       jgclark.vscode-todo-highlight
                       esbenp.prettier-vscode
                       kisstkondoros.vscode-gutter-preview
+
                     ];
                   })
                   hlint
@@ -526,6 +577,7 @@
                   # Rust
                   cargo
                   rustc
+                  rustup
                   # Lean
                   elan
                   mathlibtools

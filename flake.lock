@@ -27,11 +27,11 @@
         "screenrotate": "screenrotate_3"
       },
       "locked": {
-        "lastModified": 1685615110,
-        "narHash": "sha256-zFYKCF96riFXJIQjXIn+VKbSXTWimuo8Mb7+uYs2D2Y=",
+        "lastModified": 1686512294,
+        "narHash": "sha256-g8fQclm10zjhLfEu4eZzbVwqM/RtngcrMlzOY07H1yg=",
         "owner": "Quoteme",
         "repo": "control_center",
-        "rev": "5b63f1cf5bcfdd3b406a9a697932e1dadeafef60",
+        "rev": "fd39e08b6d543b15e608c06c7b89552dc3558f6b",
         "type": "github"
       },
       "original": {
@@ -3514,11 +3514,11 @@
         "xmonad-workspace-preview": "xmonad-workspace-preview"
       },
       "locked": {
-        "lastModified": 1685615149,
-        "narHash": "sha256-T+5vGKCMAgFaxv/iamm7TVgiOvnBvnUtkPmBGqvPEwQ=",
+        "lastModified": 1686512352,
+        "narHash": "sha256-zzE4Zn0/d9112iw/HLbnaSzeuXAYNS9AboOtwuWXnwM=",
         "owner": "Quoteme",
         "repo": "xmonad-luca",
-        "rev": "bf101597341c453f352e83dd01cf499d25ad2e0d",
+        "rev": "2ec8834f363f8e7775d0ba07764fe91a5dea5f2b",
         "type": "github"
       },
       "original": {

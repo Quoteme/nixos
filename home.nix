@@ -43,7 +43,7 @@
   };
   programs.direnv = {
     enable = true;
-    enableBashIntegration = true;
+    enableBashIntegration = false;
     enableZshIntegration = true;
     nix-direnv.enable = true;
   };
@@ -90,7 +90,7 @@
     fade = false;
     fadeDelta = 5;
     fadeExclude = [ "window_type *= 'menu'" ];
-    inactiveOpacity = 0.95;
+    inactiveOpacity = 1.0;
     opacityRules = [
       "100:name *= 'Netflix'"
       "100:name *= 'Wikipedia'"
