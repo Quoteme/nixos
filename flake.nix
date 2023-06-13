@@ -542,6 +542,7 @@
                       hbenl.vscode-test-explorer
                       ms-vscode.test-adapter-converter
                       #
+                      eamodio.gitlens
                       ms-vscode.remote-repositories
                       ms-dotnettools.vscode-dotnet-runtime
                       ms-dotnettools.vscode-dotnet-pack
