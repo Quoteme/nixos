@@ -236,6 +236,12 @@
                   windowManager = {
                     session = [
                       {
+                        name = "xmonad-home";
+                        start = ''
+                          $HOME/.cache/xmonad/xmonad-x86_64-linux
+                        '';
+                      }
+                      {
                         name = "xmonad-luca";
                         start = ''
                           ${inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca-alldeps}/bin/xmonad-luca
