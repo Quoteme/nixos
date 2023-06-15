@@ -98,6 +98,7 @@
       "97:name *= 'control_center'"
     ];
   };
+  xdg.configFile."xmonad/build".executable = true;
   xdg.configFile."xmonad/build".text = ''
     #!/usr/bin/env bash
 
