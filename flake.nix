@@ -456,6 +456,7 @@
                       littlefoxteam.vscode-python-test-adapter
                       donjayamanne.python-environment-manager
                       cameron.vscode-pytest
+                      ms-python.black-formatter
                       # markdown 
                       yzhang.markdown-all-in-one
                       koehlma.markdown-math
@@ -783,8 +784,8 @@
                 # Wine
                 wineWowPackages.full
                 pkgs.unstable.bottles
-                # Hier werde ich wohl lieber ganz selber ein eigenes
                 # stuff that is needed pretty much everywhere
+                nodePackages.http-server
                 myPython
                 (haskellPackages.ghcWithPackages myGHCPackages)
                 unstable.haskell-language-server
