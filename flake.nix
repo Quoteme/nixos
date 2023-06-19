@@ -406,7 +406,7 @@
                     cudaSupport = true;
                   })
                   krita
-                  # # Media
+                  # Media
                   vlc
                   mpv
                   yt-dlp
@@ -423,6 +423,7 @@
                   # Productivity
                   libreoffice
                   # Programming
+                  dbeaver
                   inputs.neovim-luca.defaultPackage.x86_64-linux
                   unstable.neovim
                   luajit
@@ -470,6 +471,7 @@
                       jroesch.lean
                       hoskinson-ml.lean-chat-vscode
                       # web/javascript/typescript/react/svelte
+                      antfu.vite
                       dbaeumer.vscode-eslint
                       dbaeumer.jshint
                       ecmel.vscode-html-css
@@ -549,6 +551,7 @@
                       hbenl.vscode-test-explorer
                       ms-vscode.test-adapter-converter
                       #
+                      usernamehw.errorlens
                       eamodio.gitlens
                       ms-vscode.remote-repositories
                       ms-dotnettools.vscode-dotnet-runtime
@@ -559,7 +562,8 @@
                       jgclark.vscode-todo-highlight
                       esbenp.prettier-vscode
                       kisstkondoros.vscode-gutter-preview
-
+                      # Icons
+                      pkief.material-icon-theme
                     ];
                   })
                   hlint
@@ -728,6 +732,7 @@
                 xorg.xkill
                 wget
                 meld
+                cookiecutter
                 git
                 gh
                 unstable.gitkraken
