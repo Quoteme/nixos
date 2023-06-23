@@ -458,6 +458,7 @@
                       donjayamanne.python-environment-manager
                       cameron.vscode-pytest
                       ms-python.black-formatter
+                      mgesbert.python-path
                       # markdown 
                       yzhang.markdown-all-in-one
                       koehlma.markdown-math
@@ -890,6 +891,7 @@
                 '';
               };
               programs.sway = {
+                package = pkgs.unstable.swayfx;
                 enable = true;
                 wrapperFeatures.base = true;
                 wrapperFeatures.gtk = true;
