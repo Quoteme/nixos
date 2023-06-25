@@ -890,8 +890,9 @@
                   color=true
                 '';
               };
+              programs.darling.enable = true;
               programs.sway = {
-                package = pkgs.unstable.swayfx;
+                package = pkgs.unstable.sway;
                 enable = true;
                 wrapperFeatures.base = true;
                 wrapperFeatures.gtk = true;
