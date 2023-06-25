@@ -50,6 +50,21 @@
   boot.initrd.kernelModules = [ "amdgpu" ];
   programs.corectrl.enable = true;
   services.auto-cpufreq.enable = true;
+  # supergfxd
+  boot.kernelParams = [ "supergfxd.mode=integrated" ];
+  services.supergfxd = {
+    enable = true;
+    settings = {
+      mode = "Integrated";
+      vfio_enable = false;
+      vfio_save = false;
+      always_reboot = false;
+      no_logind = false;
+      logout_timeout_s = 10;
+      hotplug_type = "Asus";
+    };
+  };
+  systemd.services.supergfxd.path = [ pkgs.kmod pkgs.pciutils ];
   # NVIDIA settings
   # FIX: fix this
   hardware.nvidia.modesetting.enable = true;
