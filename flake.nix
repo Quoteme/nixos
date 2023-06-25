@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-    nixpkgs-old.url = "nixpkgs/nixos-22.05";
+    nixpkgs-old.url = "nixpkgs/nixos-23.05";
     nur.url = "github:nix-community/NUR";
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -159,7 +159,7 @@
               };
 
               boot = {
-                kernelPackages = pkgs.linuxPackages_latest;
+                kernelPackages = pkgs.nixpkgs-old.linuxPackages_latest;
                 # windows integration
                 supportedFilesystems = [ "ntfs" ];
               };
