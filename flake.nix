@@ -342,6 +342,9 @@
                 #   ];
                 # };
               };
+              # Create a drop-in file in `/etc/pipewire/pipewire.conf.d/` to enable
+              # pipewirte-pulse `module-switch-on-connect` and `module-always-sink`.
+              environment.etc."pipewire/pipewire.conf.d/99-bluetooth.conf".source = ./config/99-bluetooth.conf;
               hardware = {
                 pulseaudio.enable = false;
                 pulseaudio.extraModules = [ pkgs.pulseaudio-modules-bt ];
