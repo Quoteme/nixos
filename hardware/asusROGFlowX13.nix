@@ -87,6 +87,11 @@
       esac
     '')
   ];
+  programs.rog-control-center.enable = true;
+  services.asusd = {
+    enable = true;
+    enableUserService = true;
+  }
   services.power-profiles-daemon.enable = true;
   services.acpid.enable = true;
   services.udev.extraHwdb = ''
