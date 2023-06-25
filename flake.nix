@@ -920,7 +920,15 @@
               };
 
               # Gaming
-              programs.gamemode.enable = true;
+              programs.gamemode = {
+                enable = true;
+                settings = {
+                  custom = {
+                    start = "${pkgs.libnotify}/bin/notify-send -u LOW -i input-gaming 'Gamemode started' 'gamemode started'";
+                    end = "${pkgs.libnotify}/bin/notify-send -u LOW -i input-gaming 'Gamemode ended' 'gamemode ended'";
+                  };
+                };
+              };
               programs.steam = {
                 enable = true;
                 remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -941,6 +949,7 @@
                 # "NIX_LD" = toString nix-ld-so;
                 # NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath (config.systemd.packages ++ config.environment.systemPackages);
                 # NIX_LD = "${pkgs.glibc}/lib/ld-linux-x86-64.so.2";
+                GAMEMODERUNEXEC="nvidia-offload";
               };
               environment.sessionVariables = {
                 XDG_CACHE_HOME = "\${HOME}/.cache";
