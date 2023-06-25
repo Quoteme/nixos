@@ -95,12 +95,22 @@
   '';
 
   # tablet-mode patch
-  boot.kernelPatches = [
-    { name = "asus-rog-flow-x13-tablet-mode";
+  # 
+  # Only for Linux 5.19
+  # boot.kernelPatches = [
+  #   { name = "asus-rog-flow-x13-tablet-mode";
+  #     patch = builtins.fetchurl {
+  #       url = "https://raw.githubusercontent.com/IvanDovgal/asus-rog-flow-x13-tablet-mode/main/support_sw_tablet_mode.patch";
+  #       sha256 = "sha256:1qk63h1fvcqs6hyrz0djw9gay7ixcfh4rdqvza1x62j0wkrmrkky";
+  #     };
+  #   }
+  # ];
+  # See: https://github.com/camillemndn/nixos-config/blob/f71c2b099bec17ceb8a894f099791447deac70bf/hardware/asus/gv301qe/default.nix#L46
+  boot.kernelPatches = [{
+      name = "asus-rog-flow-x13-tablet-mode";
       patch = builtins.fetchurl {
-        url = "https://raw.githubusercontent.com/IvanDovgal/asus-rog-flow-x13-tablet-mode/main/support_sw_tablet_mode.patch";
-        sha256 = "sha256:1qk63h1fvcqs6hyrz0djw9gay7ixcfh4rdqvza1x62j0wkrmrkky";
+        url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.1/0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch";
+        sha256 = "sha256:08qw7qq88dy96jxa0f4x33gj2nb4qxa6fh2f25lcl8bgmk00k7l2";
       };
-    }
-  ];
+    }];
 }

@@ -159,7 +159,7 @@
               };
 
               boot = {
-                kernelPackages = pkgs.nixpkgs-old.linuxPackages_latest;
+                kernelPackages = pkgs.linuxPackages_latest;
                 # windows integration
                 supportedFilesystems = [ "ntfs" ];
               };
@@ -978,11 +978,11 @@
                     openGLSupport = true;
                   });
                 };
-                virtualbox.host = {
-                  enable = true;
-                  package = pkgs.virtualboxWithExtpack;
-                  enableExtensionPack = true;
-                };
+                # virtualbox.host = {
+                #   enable = true;
+                #   package = pkgs.virtualboxWithExtpack;
+                #   enableExtensionPack = true;
+                # };
                 docker.enable = true;
                 waydroid.enable = true;
                 lxd.enable = true;
