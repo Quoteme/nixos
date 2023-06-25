@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-    nixpkgs-old.url = "nixpkgs/nixos-22.05";
+    nixpkgs-stable.url = "nixpkgs/nixos-23.05";
     nur.url = "github:nix-community/NUR";
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -33,7 +33,7 @@
         };
       };
       overlay-old = final: prev: {
-        nixpkgs-old = import attrs.nixpkgs-old {
+        nixpkgs-stable = import attrs.nixpkgs-stable {
           inherit system;
           config.allowUnfree = true;
         };
@@ -146,20 +146,20 @@
                 nixPath = [
                   "nixpkgs=${nixpkgs}"
                   "unstable=${nixpkgs-unstable}"
-                  "stable=${attrs.nixpkgs-old}"
+                  "stable=${attrs.nixpkgs-stable}"
                   "nur=${attrs.nur}"
                   "nix-vscode=${attrs.nix-vscode-extensions}"
                 ];
                 registry = {
                   nixpkgs.flake = nixpkgs;
                   unstable.flake = nixpkgs-unstable;
-                  stable.flake = attrs.nixpkgs-old;
+                  stable.flake = attrs.nixpkgs-stable;
                   nur.flake = attrs.nur;
                 };
               };
 
               boot = {
-                kernelPackages = pkgs.nixpkgs-old.linuxPackages_latest;
+                kernelPackages = pkgs.nixpkgs-stable.linuxPackages_latest;
                 # windows integration
                 supportedFilesystems = [ "ntfs" ];
               };
@@ -805,7 +805,7 @@
               programs = {
                 # https://github.com/Mic92/nix-ld
                 nix-ld.enable = true;
-                # nix-ld.package = pkgs.nixpkgs-old.nix-ld;
+                # nix-ld.package = pkgs.nixpkgs-stable.nix-ld;
 
                 # Some programs need SUID wrappers, can be configured further or are
                 # started in user sessions.
@@ -978,11 +978,11 @@
                     openGLSupport = true;
                   });
                 };
-                virtualbox.host = {
-                  enable = true;
-                  package = pkgs.virtualboxWithExtpack;
-                  enableExtensionPack = true;
-                };
+                # virtualbox.host = {
+                #   enable = true;
+                #   package = pkgs.virtualboxWithExtpack;
+                #   enableExtensionPack = true;
+                # };
                 docker.enable = true;
                 waydroid.enable = true;
                 lxd.enable = true;

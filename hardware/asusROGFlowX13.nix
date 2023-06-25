@@ -50,6 +50,21 @@
   boot.initrd.kernelModules = [ "amdgpu" ];
   programs.corectrl.enable = true;
   services.auto-cpufreq.enable = true;
+  # supergfxd
+  boot.kernelParams = [ "supergfxd.mode=integrated" ];
+  services.supergfxd = {
+    enable = true;
+    settings = {
+      mode = "Integrated";
+      vfio_enable = false;
+      vfio_save = false;
+      always_reboot = false;
+      no_logind = false;
+      logout_timeout_s = 10;
+      hotplug_type = "Asus";
+    };
+  };
+  systemd.services.supergfxd.path = [ pkgs.kmod pkgs.pciutils ];
   # NVIDIA settings
   # FIX: fix this
   hardware.nvidia.modesetting.enable = true;
@@ -59,17 +74,11 @@
   hardware.nvidia.nvidiaPersistenced = true;
   hardware.nvidia.prime = {
     offload.enable = true;
+    offload.enableOffloadCmd = true;
     amdgpuBusId = "PCI:08:00:0";
     nvidiaBusId = "PCI:01:00:0";
   };
   environment.systemPackages =  [
-    (pkgs.writeShellScriptBin "nvidia-offload" ''
-      export __NV_PRIME_RENDER_OFFLOAD=1
-      export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-      export __GLX_VENDOR_LIBRARY_NAME=nvidia
-      export __VK_LAYER_NV_optimus=NVIDIA_only
-      exec "$@"
-    '')
     # pkgs.cudatoolkit # TODO: Maybe add this again when there is more internet
     # pkgs.cudaPackages.cuda-samples
     pkgs.pciutils
@@ -87,6 +96,12 @@
       esac
     '')
   ];
+  programs.rog-control-center.enable = true;
+  services.asusd = {
+    enable = true;
+    enableUserService = true;
+    fanCurvesConfig = builtins.readFile ../config/fan_curves.ron;
+  };
   services.power-profiles-daemon.enable = true;
   services.acpid.enable = true;
   services.udev.extraHwdb = ''
@@ -95,12 +110,22 @@
   '';
 
   # tablet-mode patch
-  boot.kernelPatches = [
-    { name = "asus-rog-flow-x13-tablet-mode";
+  # 
+  # Only for Linux 5.19
+  # boot.kernelPatches = [
+  #   { name = "asus-rog-flow-x13-tablet-mode";
+  #     patch = builtins.fetchurl {
+  #       url = "https://raw.githubusercontent.com/IvanDovgal/asus-rog-flow-x13-tablet-mode/main/support_sw_tablet_mode.patch";
+  #       sha256 = "sha256:1qk63h1fvcqs6hyrz0djw9gay7ixcfh4rdqvza1x62j0wkrmrkky";
+  #     };
+  #   }
+  # ];
+  # See: https://github.com/camillemndn/nixos-config/blob/f71c2b099bec17ceb8a894f099791447deac70bf/hardware/asus/gv301qe/default.nix#L46
+  boot.kernelPatches = [{
+      name = "asus-rog-flow-x13-tablet-mode";
       patch = builtins.fetchurl {
-        url = "https://raw.githubusercontent.com/IvanDovgal/asus-rog-flow-x13-tablet-mode/main/support_sw_tablet_mode.patch";
-        sha256 = "sha256:1qk63h1fvcqs6hyrz0djw9gay7ixcfh4rdqvza1x62j0wkrmrkky";
+        url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.1/0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch";
+        sha256 = "sha256:08qw7qq88dy96jxa0f4x33gj2nb4qxa6fh2f25lcl8bgmk00k7l2";
       };
-    }
-  ];
+    }];
 }
