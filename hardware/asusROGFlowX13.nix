@@ -59,17 +59,11 @@
   hardware.nvidia.nvidiaPersistenced = true;
   hardware.nvidia.prime = {
     offload.enable = true;
+    offload.enableOffloadCmd = true;
     amdgpuBusId = "PCI:08:00:0";
     nvidiaBusId = "PCI:01:00:0";
   };
   environment.systemPackages =  [
-    (pkgs.writeShellScriptBin "nvidia-offload" ''
-      export __NV_PRIME_RENDER_OFFLOAD=1
-      export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-      export __GLX_VENDOR_LIBRARY_NAME=nvidia
-      export __VK_LAYER_NV_optimus=NVIDIA_only
-      exec "$@"
-    '')
     # pkgs.cudatoolkit # TODO: Maybe add this again when there is more internet
     # pkgs.cudaPackages.cuda-samples
     pkgs.pciutils
@@ -91,7 +85,8 @@
   services.asusd = {
     enable = true;
     enableUserService = true;
-  }
+    fanCurvesConfig = builtins.readFile ../config/fan_curves.ron;
+  };
   services.power-profiles-daemon.enable = true;
   services.acpid.enable = true;
   services.udev.extraHwdb = ''
