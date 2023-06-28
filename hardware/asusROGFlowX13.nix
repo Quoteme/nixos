@@ -26,7 +26,7 @@
       Restart = "on-failure";
     };
   };
-  powerManagement.powertop.enable = true;
+  # powerManagement.powertop.enable = true;
   systemd.sleep.extraConfig = "HibernateDelaySec=5min";
   # `nixos-generate-config --show-hardware-config` doesn't detect mount options automatically,
    # so to enable compression, you must specify it and other mount options
@@ -78,11 +78,12 @@
     amdgpuBusId = "PCI:08:00:0";
     nvidiaBusId = "PCI:01:00:0";
   };
-  environment.systemPackages =  [
+  environment.systemPackages = with pkgs; [
+    # powertop
     # pkgs.cudatoolkit # TODO: Maybe add this again when there is more internet
     # pkgs.cudaPackages.cuda-samples
-    pkgs.pciutils
-    (pkgs.writeShellScriptBin "powerprofilesctl-cycle" ''
+    pciutils
+    (writeShellScriptBin "powerprofilesctl-cycle" ''
       case $(powerprofilesctl get) in
         power-saver)
           notify-send -a \"changepowerprofile\" -u low -i /etc/nixos/xmonad/icon/powerprofilesctl-balanced.png \"powerprofile: balanced\"
