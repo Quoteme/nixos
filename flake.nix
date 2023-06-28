@@ -398,7 +398,7 @@
                   kdenlive
                   glaxnimate
                   mediainfo
-                  # # Drawing
+                  # Drawing
                   xournalpp
                   pkgs.unstable.rnote
                   inkscape
@@ -416,6 +416,7 @@
                   evince
                   deadbeef
                   sxiv
+                  sony-headphones-client
                   # Gaming
                   (retroarch.override {
                     cores = with libretro; [
@@ -449,6 +450,7 @@
                       arrterian.nix-env-selector
                       # python
                       ms-python.python
+                      ms-python.vscode-pylance
                       ms-toolsai.jupyter
                       ms-toolsai.jupyter-renderers
                       ms-toolsai.jupyter-keymap
@@ -480,6 +482,7 @@
                       dbaeumer.jshint
                       ecmel.vscode-html-css
                       abusaidm.html-snippets
+                      formulahendry.auto-rename-tag
                       mgmcdermott.vscode-language-babel
                       ms-vscode.vscode-typescript-next
                       ms-vscode.js-debug-nightly
@@ -495,6 +498,10 @@
                       bradlc.vscode-tailwindcss
                       sissel.shopify-liquid
                       syler.sass-indented
+                      # R
+                      reditorsupport.r
+                      rdebugger.r-debugger
+                      mikhail-arkhipov.r
                       # bash
                       rogalmic.bash-debug
                       mads-hartmann.bash-ide-vscode
@@ -548,16 +555,24 @@
                       # .env
                       irongeek.vscode-env
                       ctf0.env-symbol-provider
-                      # Copilot
+                      # Copilot / Github
                       github.copilot-labs
                       pkgs.unstable.vscode-extensions.github.copilot
+                      github.remotehub
+                      github.copilot-chat
+                      github.heygithub
+                      github.vscode-codeql
                       # testing
                       hbenl.vscode-test-explorer
                       ms-vscode.test-adapter-converter
+                      # German/English
+                      adamvoss.vscode-languagetool
+                      adamvoss.vscode-languagetool-de
                       #
                       usernamehw.errorlens
                       eamodio.gitlens
                       ms-vscode.remote-repositories
+                      ms-dotnettools.vscode-dotnet-csharp
                       ms-dotnettools.vscode-dotnet-runtime
                       ms-dotnettools.vscode-dotnet-pack
                       visualstudioexptteam.vscodeintellicode
@@ -566,6 +581,9 @@
                       jgclark.vscode-todo-highlight
                       esbenp.prettier-vscode
                       kisstkondoros.vscode-gutter-preview
+                      # Rainbow 
+                      mechatroner.rainbow-csv
+                      oderwat.indent-rainbow
                       # Icons
                       pkief.material-icon-theme
                     ];
@@ -930,6 +948,7 @@
                 };
               };
               programs.steam = {
+                package = pkgs.unstable.steam;
                 enable = true;
                 remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
                 dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
@@ -949,7 +968,7 @@
                 # "NIX_LD" = toString nix-ld-so;
                 # NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath (config.systemd.packages ++ config.environment.systemPackages);
                 # NIX_LD = "${pkgs.glibc}/lib/ld-linux-x86-64.so.2";
-                GAMEMODERUNEXEC="nvidia-offload";
+                GAMEMODERUNEXEC = "nvidia-offload";
               };
               environment.sessionVariables = {
                 XDG_CACHE_HOME = "\${HOME}/.cache";
