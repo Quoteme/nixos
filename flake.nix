@@ -450,6 +450,7 @@
                       arrterian.nix-env-selector
                       # python
                       ms-python.python
+                      # vscode-extensions.ms-python.python
                       ms-python.vscode-pylance
                       ms-toolsai.jupyter
                       ms-toolsai.jupyter-renderers
@@ -559,9 +560,9 @@
                       github.copilot-labs
                       pkgs.unstable.vscode-extensions.github.copilot
                       github.remotehub
-                      github.copilot-chat
-                      github.heygithub
-                      github.vscode-codeql
+                      pkgs.unstable.vscode-extensions.github.copilot-chat
+                      # github.heygithub
+                      # github.vscode-codeql
                       # testing
                       hbenl.vscode-test-explorer
                       ms-vscode.test-adapter-converter
@@ -572,12 +573,13 @@
                       usernamehw.errorlens
                       eamodio.gitlens
                       ms-vscode.remote-repositories
-                      ms-dotnettools.vscode-dotnet-csharp
-                      ms-dotnettools.vscode-dotnet-runtime
+                      ms-dotnettools.csharp
+                      # ms-dotnettools.vscode-dotnet-runtime
                       ms-dotnettools.vscode-dotnet-pack
+                      visualstudioexptteam.intellicode-api-usage-examples
                       visualstudioexptteam.vscodeintellicode
                       visualstudioexptteam.vscodeintellicode-completions
-                      visualstudioexptteam.vscodeintellicode-insiders
+                      # visualstudioexptteam.vscodeintellicode-insiders
                       jgclark.vscode-todo-highlight
                       esbenp.prettier-vscode
                       kisstkondoros.vscode-gutter-preview
@@ -630,7 +632,7 @@
                   conan
                   # C#
                   mono
-                  dotnet-sdk
+                  dotnet-sdk_7
                   dotnetCorePackages.aspnetcore_7_0
                   dotnetCorePackages.sdk_7_0
                   dotnetCorePackages.runtime_7_0
@@ -976,6 +978,8 @@
                 XDG_LIB_HOME = "\${HOME}/.local/lib";
                 XDG_BIN_HOME = "\${HOME}/.local/bin";
                 XDG_DATA_HOME = "\${HOME}/.local/share";
+
+                DOTNET_ROOT = "${pkgs.dotnet-sdk_7}";
 
                 # XMONAD_DATA_DIR = "/etc/nixos/xmonad";
                 # XMONAD_CONFIG_DIR = "/etc/nixos/xmonad";
