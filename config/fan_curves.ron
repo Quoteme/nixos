@@ -26,7 +26,7 @@
         ),
     ),
     quiet: (
-        enabled: true,
+        enabled: false,
         cpu: (
             fan: CPU,
             pwm: (20, 43, 58, 81, 109, 124, 123, 125),

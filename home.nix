@@ -39,6 +39,11 @@
       montikuma = "xdg-open http://localhost:3001 && ssh -L 3001:localhost:3001 mmbs@monti.ai";
       montiprometheus = "xdg-open http://localhost:9090 && ssh -L 9090:localhost:9090 mmbs@monti.ai";
       montigrafana = "xdg-open http://localhost:3000 && ssh -L 3000:localhost:3000 mmbs@monti.ai";
+
+      # system
+      dirsystemflake = "cd /etc/nixos";
+      dircontrolcenter = "cd ~/Dokumente/dev/control_center/";
+      dirxmonadluca = "cd ~/Dokumente/dev/xmonad-luca/";
     };
   };
   programs.direnv = {

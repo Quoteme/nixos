@@ -125,8 +125,11 @@
   boot.kernelPatches = [{
       name = "asus-rog-flow-x13-tablet-mode";
       patch = builtins.fetchurl {
-        url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.1/0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch";
+        url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.3/0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch";
         sha256 = "sha256:08qw7qq88dy96jxa0f4x33gj2nb4qxa6fh2f25lcl8bgmk00k7l2";
       };
     }];
+# Automatically Hybernate when suspended for 3 minutes
+# services.logind.lidSwitch = "suspend-then-hibernate";
+# environment.etc."systemd/sleep.conf".text = "HibernateDelaySec=180";
 }

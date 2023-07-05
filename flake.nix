@@ -126,6 +126,7 @@
                 sympy
                 numpy
                 scipy
+                uritools
                 matplotlib
                 plotly
                 pipx
@@ -271,7 +272,6 @@
                   gutenprint
                   gutenprintBin
                   hplip
-                  hplipWithPlugin
                   samsung-unified-linux-driver
                   splix
                   brlaser
@@ -281,6 +281,7 @@
                 ];
                 avahi.enable = true;
                 avahi.nssmdns = true;
+                avahi.openFirewall = true;
                 touchegg.enable = true;
                 gnome.gnome-keyring.enable = true;
                 gnome.at-spi2-core.enable = true; # Accessibility Bus
@@ -288,6 +289,13 @@
                 gnome.gnome-online-accounts.enable = true;
                 gnome.gnome-browser-connector.enable = true;
                 gnome.evolution-data-server.enable = true;
+                gnome.glib-networking.enable = true;
+                gnome.sushi.enable = true;
+                gnome.tracker.enable = true;
+                gnome.tracker-miners.enable = true;
+                gnome.gnome-online-miners.enable = true;
+                gnome.gnome-user-share.enable = true;
+                gnome.gnome-remote-desktop.enable = true;
                 blueman.enable = true;
                 udisks2.enable = true;
                 devmon.enable = true;
@@ -382,7 +390,11 @@
                 packages = with pkgs; [
                   # Internet
                   pkgs.unstable.google-chrome
-                  tts
+                  (tts.overrideAttrs (new: old: {
+                    propagatedBuildInputs = old.propagatedBuildInputs ++ [ 
+                      pkgs.unstable.espeak-ng 
+                    ];
+                  }))
                   # microsoft-edge
                   # discord
                   # whatsapp-for-linux
@@ -428,8 +440,9 @@
                   libreoffice
                   # Programming
                   dbeaver
-                  inputs.neovim-luca.defaultPackage.x86_64-linux
+                  # inputs.neovim-luca.defaultPackage.x86_64-linux
                   unstable.neovim
+                  rnix-lsp
                   luajit
                   lazygit
                   emacs-gtk
@@ -452,6 +465,10 @@
                       ms-python.python
                       # vscode-extensions.ms-python.python
                       ms-python.vscode-pylance
+                      ms-python.pylint
+                      ms-python.flake8
+                      matangover.mypy
+                      ms-python.mypy-type-checker
                       ms-toolsai.jupyter
                       ms-toolsai.jupyter-renderers
                       ms-toolsai.jupyter-keymap
@@ -465,11 +482,18 @@
                       cameron.vscode-pytest
                       ms-python.black-formatter
                       mgesbert.python-path
+                      ## Flask
+                      wholroyd.jinja
                       # markdown 
                       yzhang.markdown-all-in-one
                       koehlma.markdown-math
                       davidanson.vscode-markdownlint
                       bierner.markdown-checkbox
+                      shd101wyy.markdown-preview-enhanced
+                      ## Quarto
+                      quarto.quarto
+                      # org-mode
+                      tootone.org-mode
                       # latex
                       mathematic.vscode-latex
                       james-yu.latex-workshop
@@ -542,8 +566,6 @@
                       # Rust
                       rust-lang.rust-analyzer
                       swellaby.vscode-rust-test-adapter
-                      # org-mode
-                      tootone.org-mode
                       # Remote
                       ms-vscode-remote.remote-containers
                       ms-vscode-remote.remote-ssh-edit
@@ -583,7 +605,9 @@
                       jgclark.vscode-todo-highlight
                       esbenp.prettier-vscode
                       kisstkondoros.vscode-gutter-preview
-                      # Rainbow 
+                      # code visualization
+                      tintinweb.graphviz-interactive-preview
+                      ## Rainbow 
                       mechatroner.rainbow-csv
                       oderwat.indent-rainbow
                       # Icons
@@ -598,6 +622,7 @@
                   julia-bin
                   unstable.rstudio
                   # JavaScript/TypeScript
+                  nodejs_20
                   jetbrains.webstorm
                   # python
                   jetbrains.pycharm-professional
@@ -605,6 +630,7 @@
                   myPython
                   # Latex
                   pandoc
+                  quarto
                   poppler_utils
                   texlive.combined.scheme-full
                   tex-match
@@ -702,10 +728,15 @@
               environment.systemPackages = with pkgs; [
                 inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca-alldeps
                 pkgs.unstable.distrobox
+                # Gnome
                 gnome.gnome-tweaks
                 gnomeExtensions.pop-shell
                 gnomeExtensions.gsconnect
                 unstable.gnomeExtensions.one-drive-resurrect
+                ffmpegthumbnailer # thumbnails
+                gnome.nautilus-python # enable plugins
+                gst_all_1.gst-libav # thumbnails
+                nautilus-open-any-terminal # terminal-context-entry
                 # themes
                 # Icons
                 gnome.adwaita-icon-theme
@@ -731,6 +762,7 @@
                 fzf
                 playerctl
                 pcmanfm
+                tmsu
                 qdirstat
                 lm_sensors
                 appimage-run
@@ -766,6 +798,7 @@
                 fd
                 bat
                 power-profiles-daemon
+                emote
                 # archiving
                 zip
                 unzip
@@ -919,7 +952,7 @@
                 enable = true;
                 wrapperFeatures.base = true;
                 wrapperFeatures.gtk = true;
-                extraPackages = with pkgs.unstable; [
+                extraPackages = with pkgs; [
                   swayidle
                   swaynag-battery
                   swayest-workstyle
@@ -984,6 +1017,7 @@
                 # XMONAD_DATA_DIR = "/etc/nixos/xmonad";
                 # XMONAD_CONFIG_DIR = "/etc/nixos/xmonad";
                 # XMONAD_CACHE_DIR = "/etc/nixos/xmonad/.cache";
+                # NAUTILUS_4_EXTENSION_DIR = "${config.system.path}/lib/nautilus/extensions-4";
                 MOZ_USE_XINPUT2 = "1";
 
                 FLUTTER_SDK = "\${XDG_LIB_HOME}/arch-id/flutter";
