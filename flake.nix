@@ -38,6 +38,18 @@
           config.allowUnfree = true;
         };
       };
+      overlay-nix-autobahn = final: prev: {
+        nix-autobahn = attrs.nix-autobahn.defaultPackage.x86_64-linux;
+      };
+      overlay-nix-alien = final: prev: {
+        nix-alien = attrs.nix-alien.defaultPackage.x86_64-linux;
+      };
+      overlay-st-nix = final: prev: {
+        st-nix = attrs.st-nix.defaultPackage.x86_64-linux;
+      };
+      overlay-screenrotate = final: prev: {
+        screenrotate = attrs.screenrotate.defaultPackage.x86_64-linux;
+      };
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
@@ -47,6 +59,10 @@
           attrs.emacs-overlay.overlay
           attrs.nix-vscode-extensions.overlays.default
           attrs.godot.overlays.x86_64-linux.default
+          overlay-nix-autobahn
+          overlay-nix-alien
+          overlay-st-nix
+          overlay-screenrotate
         ];
       };
     in
@@ -61,27 +77,7 @@
           # ┗━╸┗━┛╹ ╹╹  ╹┗━┛┗━┛╹┗╸╹ ╹ ╹ ╹┗━┛╹ ╹╹╹ ╹╹╹ ╹
           ({ config, lib, options, nixpkgs, ... }@inputs:
             let
-              myGHCPackages = (hpkgs: with hpkgs; [
-                xmonad
-                xmonad-contrib
-                xmonad-extras
-                text-format-simple
-              ]);
-              myPython = pkgs.python310.withPackages (ps: with ps; [
-                debugpy
-                pytest
-                ipython
-                jupyterlab
-                jupyter-lsp
-                pandas
-                sympy
-                numpy
-                scipy
-                uritools
-                matplotlib
-                plotly
-                pipx
-              ]);
+              
             in
             {
               imports = [
@@ -94,6 +90,7 @@
                 ./modules/hardware/printing.nix
                 ./modules/hardware/audio.nix
                 (import ./modules/users/luca.nix {inherit config lib options pkgs;})
+                (import ./modules/environment/systempackages.nix {inherit config lib options pkgs;})
               ];
 
               nix = {
@@ -153,6 +150,7 @@
               modules.desktop.gnome.enable = true;
               modules.applications.editors.vscode.enable = true;
               modules.users.luca.enable = true;
+              modules.environment.systemPackages.enable = true;
 
               services.clipcat.enable = true;
 
@@ -192,129 +190,7 @@
               # List packages installed in system profile. To search, run:
               # $ nix search nixpkgs wget
               # TODO: move this into another file
-              environment.systemPackages = with pkgs; [
-                pkgs.unstable.distrobox
-                # themes
-                # Icons
-                gnome.adwaita-icon-theme
-                papirus-icon-theme
-                whitesur-icon-theme
-                # GTK
-                mojave-gtk-theme
-                whitesur-gtk-theme
-                adapta-gtk-theme
-                numix-gtk-theme
-                orchis-theme
-                # Cursor
-                numix-cursor-theme
-                # Small Utilities
-                # nix
-                nixpkgs-fmt
-                nix-du
-                nix-tree
-                # nix-ld stuff
-                inputs.nix-autobahn.defaultPackage.x86_64-linux
-                inputs.nix-alien.defaultPackage.x86_64-linux
-                nix-index
-                fzf
-                playerctl
-                pcmanfm
-                tmsu
-                qdirstat
-                lm_sensors
-                appimage-run
-                trashy
-                cobang
-                mons
-                arandr
-                brightnessctl
-                iw
-                ffmpeg
-                linux-router
-                macchanger
-                pavucontrol
-                imagemagick
-                maim
-                jq
-                tldr
-                flameshot
-                xclip
-                xcolor
-                peek
-                killall
-                xorg.xkill
-                wget
-                meld
-                cookiecutter
-                git
-                gh
-                unstable.gitkraken
-                exa
-                ripgrep
-                pdfgrep
-                fd
-                bat
-                power-profiles-daemon
-                emote
-                # archiving
-                zip
-                unzip
-                toilet
-                htop-vim
-                nvimpager
-                # TODO: add manual how to add nix-flakes as system-programs
-                # TODO: add this manual to reddit post
-                inputs.st-nix.defaultPackage.x86_64-linux
-                alacritty
-                # Window Manager
-                rofi
-                rofimoji
-                networkmanager_dmenu
-                networkmanagerapplet
-                openvpn
-                networkmanager-openvpn
-                # File manager
-                gparted
-                onboard
-                # TODO: Add swypeGuess
-                # https://git.sr.ht/~earboxer/swipeGuess
-                (pkgs.svkbd.override {
-                  layout = "de";
-                })
-                jgmenu
-                pamixer
-                nitrogen
-                xdotool
-                neofetch
-                onefetch
-                libnotify
-                inputs.screenrotate.defaultPackage.x86_64-linux
-                # inputs.rescreenapp.defaultPackage.x86_64-linux
-                # inputs.control_center.defaultPackage.x86_64-linux
-                batsignal
-                polkit_gnome
-                lightlocker
-                xidlehook
-                # Storage
-                rclone
-                # emulation
-                virt-manager
-                virglrenderer
-                # Wine
-                wineWowPackages.full
-                pkgs.unstable.bottles
-                # stuff that is needed pretty much everywhere
-                nodePackages.http-server
-                myPython
-                (haskellPackages.ghcWithPackages myGHCPackages)
-                unstable.haskell-language-server
-                unstable.ghc
-                unstable.haskellPackages.haskell-dap
-                unstable.haskellPackages.ghci-dap
-                unstable.haskellPackages.haskell-debug-adapter
-                unstable.cabal-install
-                # unstable.stack
-              ];
+              
               programs = {
                 # https://github.com/Mic92/nix-ld
                 nix-ld.enable = true;
