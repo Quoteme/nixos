@@ -1,14 +1,28 @@
 { config
 , options
 , lib
-, pkgs
+, nixpkgs
 , ...
 }@inputs:
 let
   inherit (builtins) pathExists readFile;
   inherit (lib.modules) mkIf;
-
+  system = "x86_64-linux";
   cfg = config.modules.applications.editors.vscode;
+  overlay-unstable = final: prev: {
+    unstable = import inputs.nixpkgs-unstable {
+      inherit system;
+      config.allowUnfree = true;
+    };
+  };
+  pkgs = import nixpkgs {
+    inherit system;
+    config.allowUnfree = true;
+    overlays = [
+      overlay-unstable
+      inputs.nix-vscode-extensions.overlays.default
+    ];
+  };
 in
 {
   options.modules.applications.editors.vscode =
@@ -22,7 +36,7 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      (pkgs.unstable.vscode-with-extensions.override {
+      (unstable.vscode-with-extensions.override {
         vscodeExtensions = with pkgs.vscode-marketplace; [
           vscodevim.vim
           # haskell
@@ -155,9 +169,9 @@ in
           ctf0.env-symbol-provider
           # Copilot / Github
           github.copilot-labs
-          pkgs.unstable.vscode-extensions.github.copilot
+          unstable.vscode-extensions.github.copilot
           github.remotehub
-          pkgs.unstable.vscode-extensions.github.copilot-chat
+          unstable.vscode-extensions.github.copilot-chat
           github.vscode-pull-request-github
           eamodio.gitlens
           # github.heygithub

@@ -17,8 +17,6 @@ in {
     enable = mkEnableOption "Enable xmonad-luca: a xmonad configuration for Luca";
   };
 
-  # imports = let inherit (inputs) kmonad; in [kmonad.nixosModules.default];
-
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca-alldeps
