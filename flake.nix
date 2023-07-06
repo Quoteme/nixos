@@ -85,6 +85,7 @@
                 ./hardware/asusROGFlowX13.nix
                 ./modules/desktop/xmonad-luca.nix
                 ./modules/desktop/gnome.nix
+                (import ./modules/desktop/sway.nix {inherit config lib options pkgs;})
                 (import ./modules/applications/editors/vscode.nix {inherit config lib options pkgs;})
                 ./modules/hardware/keyboard_de.nix
                 ./modules/hardware/printing.nix
@@ -148,6 +149,7 @@
               modules.hardware.audio.enable = true;
               modules.desktop.xmonad-luca.enable = true;
               modules.desktop.gnome.enable = true;
+              modules.desktop.sway.enable = true;
               modules.applications.editors.vscode.enable = true;
               modules.users.luca.enable = true;
               modules.environment.systemPackages.enable = true;
@@ -280,30 +282,7 @@
                 '';
               };
               programs.darling.enable = true;
-              programs.sway = {
-                package = pkgs.unstable.sway;
-                enable = true;
-                wrapperFeatures.base = true;
-                wrapperFeatures.gtk = true;
-                extraPackages = with pkgs; [
-                  swayidle
-                  swaynag-battery
-                  swayest-workstyle
-                  swaynotificationcenter
-                  pkgs.unstable.swaycons
-                  swaysettings
-                  pkgs.unstable.sov
-                  waybar
-                  nwg-launchers
-                  nwg-wrapper
-                  nwg-panel
-                  nwg-drawer
-                  nwg-menu
-                ];
-                extraOptions = [
-                  "--unsupported-gpu"
-                ];
-              };
+              
 
               # Gaming
               programs.gamemode = {
