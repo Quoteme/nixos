@@ -32,8 +32,8 @@
           config.allowUnfree = true;
         };
       };
-      overlay-old = final: prev: {
-        nixpkgs-stable = import attrs.nixpkgs-stable {
+      overlay-stable = final: prev: {
+        stable = import attrs.nixpkgs-stable {
           inherit system;
           config.allowUnfree = true;
         };
@@ -44,7 +44,7 @@
         overlays = [
           # TODO: make use of overlay stable
           overlay-unstable
-          overlay-old
+          overlay-stable
           attrs.emacs-overlay.overlay
           attrs.nix-vscode-extensions.overlays.default
         ];
@@ -160,7 +160,7 @@
               };
 
               boot = {
-                kernelPackages = pkgs.nixpkgs-stable.linuxPackages_latest;
+                kernelPackages = pkgs.stable.linuxPackages_latest;
                 # windows integration
                 supportedFilesystems = [ "ntfs" ];
               };
@@ -389,7 +389,7 @@
                 shell = pkgs.zsh;
                 packages = with pkgs; [
                   # Internet
-                  pkgs.unstable.google-chrome
+                  pkgs.stable.google-chrome
                   (tts.overrideAttrs (new: old: {
                     propagatedBuildInputs = old.propagatedBuildInputs ++ [ 
                       pkgs.unstable.espeak-ng 
@@ -398,7 +398,7 @@
                   # microsoft-edge
                   # discord
                   # whatsapp-for-linux
-                  unstable.ferdium
+                  ferdium
                   transmission-gtk
                   birdtray
                   thunderbird
@@ -583,6 +583,8 @@
                       pkgs.unstable.vscode-extensions.github.copilot
                       github.remotehub
                       pkgs.unstable.vscode-extensions.github.copilot-chat
+                      github.vscode-pull-request-github
+                      eamodio.gitlens
                       # github.heygithub
                       # github.vscode-codeql
                       # testing
@@ -593,7 +595,6 @@
                       adamvoss.vscode-languagetool-de
                       #
                       usernamehw.errorlens
-                      eamodio.gitlens
                       ms-vscode.remote-repositories
                       ms-dotnettools.csharp
                       # ms-dotnettools.vscode-dotnet-runtime
@@ -663,6 +664,8 @@
                   dotnetCorePackages.sdk_7_0
                   dotnetCorePackages.runtime_7_0
                   unstable.jetbrains.rider
+                  # R
+                  R
                   # Spelling
                   hunspell
                   hunspellDicts.de_DE
@@ -861,7 +864,7 @@
               programs = {
                 # https://github.com/Mic92/nix-ld
                 nix-ld.enable = true;
-                # nix-ld.package = pkgs.nixpkgs-stable.nix-ld;
+                # nix-ld.package = pkgs.stable.nix-ld;
 
                 # Some programs need SUID wrappers, can be configured further or are
                 # started in user sessions.
