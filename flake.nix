@@ -138,6 +138,7 @@
                 ./modules/desktop/xmonad-luca.nix
                 ./modules/desktop/gnome.nix
                 (import ./modules/applications/editors/vscode.nix {inherit config lib options pkgs;})
+                ./modules/hardware/keyboard_de.nix
               ];
 
               nix = {
@@ -195,22 +196,6 @@
               services = {
                 xserver = {
                   enable = true;
-                  # keyboard settings
-                  layout = "de";
-                  extraLayouts.hyper = {
-                    # TODO this does not work :(
-                    description = "Use escape key as Hyper key";
-                    languages = [ ];
-                    symbolsFile = pkgs.writeText "hyper" ''
-                      partial modifier_keys
-                      xkb_symbols "hyper" {
-                      key <ESC> { [Hyper_R] };
-                      modifier_map Mod3 { <HYPR>, Hyper_R };
-                      }
-                    '';
-                  };
-                  xkbVariant = "nodeadkeys";
-                  xkbOptions = "caps:escape,shift:both_capslock,mod_led,compose:rctrl-altgr";
                   updateDbusEnvironment = true;
                   # Window managers / Desktop managers
                   windowManager = {
@@ -263,6 +248,7 @@
                 #   lockMessage = "Lulca\'s Laptop";
                 # };
               };
+              modules.hardware.keyboard-de.enable = true;
               modules.desktop.xmonad-luca.enable = true;
               modules.desktop.gnome.enable = true;
               modules.applications.editors.vscode.enable = true;
