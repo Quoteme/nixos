@@ -42,7 +42,6 @@
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          # TODO: make use of overlay stable
           overlay-unstable
           overlay-stable
           attrs.emacs-overlay.overlay
@@ -137,6 +136,7 @@
                 ./hardware-configuration.nix
                 ./hardware/asusROGFlowX13.nix
                 ./modules/desktop/xmonad-luca.nix
+                ./modules/desktop/gnome.nix
               ];
 
               nix = {
@@ -211,29 +211,6 @@
                   xkbVariant = "nodeadkeys";
                   xkbOptions = "caps:escape,shift:both_capslock,mod_led,compose:rctrl-altgr";
                   updateDbusEnvironment = true;
-                  # Display Manager
-                  displayManager = {
-                    gdm.enable = true;
-                    # lightdm = {
-                    #   enable = true;
-                    #   greeters.gtk = {
-                    #     theme.package = pkgs.mojave-gtk-theme;
-                    #     theme.name = "Mojave-Dark";
-                    #     iconTheme.name ="Papirus";
-                    #     iconTheme.package = pkgs.papirus-icon-theme;
-                    #     indicators = [ "~host" "~spacer" "~clock" "~spacer" "~session" "~language" "~a11y" "~power" ];
-                    #     extraConfig = "keyboard=onboard";
-                    #   };
-                    # };
-                    # defaultSession = "none+xmonad-luca";
-                  };
-                  # Desktop Manager
-                  # desktopManager.phosh = {
-                  #   enable = true;
-                  #   group = "users";
-                  #   user = "luca";
-                  # };
-                  desktopManager.gnome.enable = true;
                   # Window managers / Desktop managers
                   windowManager = {
                     session = [
@@ -272,19 +249,7 @@
                 avahi.nssmdns = true;
                 avahi.openFirewall = true;
                 touchegg.enable = true;
-                gnome.gnome-keyring.enable = true;
-                gnome.at-spi2-core.enable = true; # Accessibility Bus
-                gnome.gnome-settings-daemon.enable = true;
-                gnome.gnome-online-accounts.enable = true;
-                gnome.gnome-browser-connector.enable = true;
-                gnome.evolution-data-server.enable = true;
-                gnome.glib-networking.enable = true;
-                gnome.sushi.enable = true;
-                gnome.tracker.enable = true;
-                gnome.tracker-miners.enable = true;
-                gnome.gnome-online-miners.enable = true;
-                gnome.gnome-user-share.enable = true;
-                gnome.gnome-remote-desktop.enable = true;
+                
                 blueman.enable = true;
                 udisks2.enable = true;
                 devmon.enable = true;
@@ -298,6 +263,7 @@
                 # };
               };
               modules.desktop.xmonad-luca.enable = true;
+              modules.desktop.gnome.enable = true;
               services.clipcat.enable = true;
               # Enable OneDrive
               services.onedrive = {
@@ -720,15 +686,6 @@
               # TODO: move this into another file
               environment.systemPackages = with pkgs; [
                 pkgs.unstable.distrobox
-                # Gnome
-                gnome.gnome-tweaks
-                gnomeExtensions.pop-shell
-                gnomeExtensions.gsconnect
-                unstable.gnomeExtensions.one-drive-resurrect
-                ffmpegthumbnailer # thumbnails
-                gnome.nautilus-python # enable plugins
-                gst_all_1.gst-libav # thumbnails
-                nautilus-open-any-terminal # terminal-context-entry
                 # themes
                 # Icons
                 gnome.adwaita-icon-theme
@@ -1024,11 +981,7 @@
                   "\${HOME}/.local/share/npm/bin"
                 ];
               };
-              environment.gnome.excludePackages = (with pkgs.gnome; [
-                gnome-terminal
-                geary
-                epiphany
-              ]);
+            
               virtualisation = {
                 libvirtd = {
                   enable = true;
