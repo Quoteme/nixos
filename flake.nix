@@ -38,11 +38,6 @@
           config.allowUnfree = true;
         };
       };
-      godot-overlay = final: prev: {
-        godot = attrs.godot.packages.x86_64-linux.godot;
-        godotHeadless = attrs.godot.packages.x86_64-linux.godotHeadless;
-        godotMono = attrs.godot.packages.x86_64-linux.godotMono;
-      };
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
@@ -51,7 +46,7 @@
           overlay-stable
           attrs.emacs-overlay.overlay
           attrs.nix-vscode-extensions.overlays.default
-          godot-overlay
+          attrs.godot.overlays.x86_64-linux.default
         ];
       };
     in
