@@ -430,11 +430,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1686605312,
-        "narHash": "sha256-Oq+12LkOqDZ6BfNV9bqFtLJfr+7hFdgdujBhq9RCzlA=",
+        "lastModified": 1688666705,
+        "narHash": "sha256-QIAAmBCcS3N9TT9fSD5VRUBBh1CJxTrgP3OylnGPHBY=",
         "owner": "Quoteme",
         "repo": "nixos-godot-bin",
-        "rev": "337fdf809c158480814c222fc54f0602af5b5d70",
+        "rev": "a8b980a8160a964cfe03016c9704247a02cfa3a2",
         "type": "github"
       },
       "original": {
