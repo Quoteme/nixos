@@ -21,6 +21,8 @@ in {
     environment.systemPackages = with pkgs; [
       inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca-alldeps
     ];
+    services.xserver.enable = true;
+    services.xserver.updateDbusEnvironment = true;
     services.xserver.windowManager.session = [
       {
         name = "xmonad-home";

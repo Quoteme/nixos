@@ -193,40 +193,6 @@
                 useXkbConfig = true;
               };
 
-              # Enable the X11 windowing system.
-              # TODO clean this up
-              services = {
-                xserver = {
-                  enable = true;
-                  updateDbusEnvironment = true;
-                  # Window managers / Desktop managers
-                  windowManager = {
-                    session = [
-                      {
-                        name = "newm";
-                        start = ''
-                          /home/luca/.local/share/newm/result/bin/start-newm
-                        '';
-                      }
-                    ];
-                    bspwm = {
-                      enable = true;
-                      configFile = ./config/bspwmrc;
-                      sxhkd.configFile = ./config/sxhkdrc;
-                    };
-                  };
-                };
-                logind.extraConfig = ''
-                  # don’t shutdown when power button is short-pressed
-                  HandlePowerKey=ignore
-                '';
-                # redshift.enable = true;
-                # Lock screen
-                # physlock = {
-                #   enable = true;
-                #   lockMessage = "Lulca\'s Laptop";
-                # };
-              };
               modules.hardware.keyboard-de.enable = true;
               modules.hardware.printing.enable = true;
               modules.hardware.audio.enable = true;
@@ -234,6 +200,7 @@
               modules.desktop.gnome.enable = true;
               modules.applications.editors.vscode.enable = true;
               services.clipcat.enable = true;
+
               # Enable OneDrive
               services.onedrive = {
                 enable = true;
