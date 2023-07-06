@@ -23,11 +23,11 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@attrs:
+  outputs = { self, nixpkgs, home-manager, ... }@attrs:
     let
       system = "x86_64-linux";
       overlay-unstable = final: prev: {
-        unstable = import nixpkgs-unstable {
+        unstable = import attrs.nixpkgs-unstable {
           inherit system;
           config.allowUnfree = true;
         };
@@ -58,7 +58,7 @@
           # ┏━╸┏━┓┏┓╻┏━╸╻┏━╸╻ ╻┏━┓┏━┓╺┳╸╻┏━┓┏┓╻ ┏┓╻╻╻ ╻
           # ┃  ┃ ┃┃┗┫┣╸ ┃┃╺┓┃ ┃┣┳┛┣━┫ ┃ ┃┃ ┃┃┗┫ ┃┗┫┃┏╋┛
           # ┗━╸┗━┛╹ ╹╹  ╹┗━┛┗━┛╹┗╸╹ ╹ ╹ ╹┗━┛╹ ╹╹╹ ╹╹╹ ╹
-          ({ config, nixpkgs, ... }@inputs:
+          ({ config, lib, options, nixpkgs, ... }@inputs:
             let
               myGHCPackages = (hpkgs: with hpkgs; [
                 xmonad
@@ -137,7 +137,7 @@
                 ./hardware/asusROGFlowX13.nix
                 ./modules/desktop/xmonad-luca.nix
                 ./modules/desktop/gnome.nix
-                ./modules/applications/editors/vscode.nix
+                (import ./modules/applications/editors/vscode.nix {inherit config lib options pkgs;})
               ];
 
               nix = {
@@ -148,14 +148,14 @@
                 '';
                 nixPath = [
                   "nixpkgs=${nixpkgs}"
-                  "unstable=${nixpkgs-unstable}"
+                  "unstable=${attrs.nixpkgs-unstable}"
                   "stable=${attrs.nixpkgs-stable}"
                   "nur=${attrs.nur}"
                   "nix-vscode=${attrs.nix-vscode-extensions}"
                 ];
                 registry = {
                   nixpkgs.flake = nixpkgs;
-                  unstable.flake = nixpkgs-unstable;
+                  unstable.flake = attrs.nixpkgs-unstable;
                   stable.flake = attrs.nixpkgs-stable;
                   nur.flake = attrs.nur;
                 };

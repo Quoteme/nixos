@@ -1,7 +1,7 @@
 { config
 , options
 , lib
-, nixpkgs
+, pkgs
 , ...
 }@inputs:
 let
@@ -9,20 +9,6 @@ let
   inherit (lib.modules) mkIf;
   system = "x86_64-linux";
   cfg = config.modules.applications.editors.vscode;
-  overlay-unstable = final: prev: {
-    unstable = import inputs.nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
-    };
-  };
-  pkgs = import nixpkgs {
-    inherit system;
-    config.allowUnfree = true;
-    overlays = [
-      overlay-unstable
-      inputs.nix-vscode-extensions.overlays.default
-    ];
-  };
 in
 {
   options.modules.applications.editors.vscode =
