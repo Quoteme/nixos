@@ -136,6 +136,7 @@
               imports = [
                 ./hardware-configuration.nix
                 ./hardware/asusROGFlowX13.nix
+                ./modules/desktop/xmonad-luca.nix
               ];
 
               nix = {
@@ -237,18 +238,6 @@
                   windowManager = {
                     session = [
                       {
-                        name = "xmonad-home";
-                        start = ''
-                          $HOME/.cache/xmonad/xmonad-x86_64-linux
-                        '';
-                      }
-                      {
-                        name = "xmonad-luca";
-                        start = ''
-                          ${inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca-alldeps}/bin/xmonad-luca
-                        '';
-                      }
-                      {
                         name = "newm";
                         start = ''
                           /home/luca/.local/share/newm/result/bin/start-newm
@@ -308,6 +297,7 @@
                 #   lockMessage = "Lulca\'s Laptop";
                 # };
               };
+              modules.desktop.xmonad-luca.enable = true;
               services.clipcat.enable = true;
               # Enable OneDrive
               services.onedrive = {
@@ -729,7 +719,6 @@
               # $ nix search nixpkgs wget
               # TODO: move this into another file
               environment.systemPackages = with pkgs; [
-                inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca-alldeps
                 pkgs.unstable.distrobox
                 # Gnome
                 gnome.gnome-tweaks
