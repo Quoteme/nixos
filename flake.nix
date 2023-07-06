@@ -139,6 +139,7 @@
                 ./modules/desktop/gnome.nix
                 (import ./modules/applications/editors/vscode.nix {inherit config lib options pkgs;})
                 ./modules/hardware/keyboard_de.nix
+                ./modules/hardware/printing.nix
               ];
 
               nix = {
@@ -218,22 +219,6 @@
                   # don’t shutdown when power button is short-pressed
                   HandlePowerKey=ignore
                 '';
-                printing.enable = true;
-                printing.browsing = true;
-                printing.drivers = with pkgs; [
-                  gutenprint
-                  gutenprintBin
-                  hplip
-                  samsung-unified-linux-driver
-                  splix
-                  brlaser
-                  brgenml1lpr
-                  brgenml1cupswrapper
-                  cnijfilter2
-                ];
-                avahi.enable = true;
-                avahi.nssmdns = true;
-                avahi.openFirewall = true;
                 touchegg.enable = true;
                 
                 blueman.enable = true;
@@ -249,6 +234,7 @@
                 # };
               };
               modules.hardware.keyboard-de.enable = true;
+              modules.hardware.printing.enable = true;
               modules.desktop.xmonad-luca.enable = true;
               modules.desktop.gnome.enable = true;
               modules.applications.editors.vscode.enable = true;
