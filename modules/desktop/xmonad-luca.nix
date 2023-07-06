@@ -35,5 +35,12 @@ in {
         '';
       }
     ];
+
+    services.touchegg.enable = true;
+    services.blueman.enable = true;
+    services.udisks2.enable = true;
+    services.devmon.enable = true;
+    services.gvfs.enable = true;
+    services.tumbler.enable = true;
   };
 }

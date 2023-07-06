@@ -219,13 +219,6 @@
                   # don’t shutdown when power button is short-pressed
                   HandlePowerKey=ignore
                 '';
-                touchegg.enable = true;
-                
-                blueman.enable = true;
-                udisks2.enable = true;
-                devmon.enable = true;
-                gvfs.enable = true;
-                tumbler.enable = true;
                 # redshift.enable = true;
                 # Lock screen
                 # physlock = {
