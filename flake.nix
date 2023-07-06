@@ -140,6 +140,7 @@
                 (import ./modules/applications/editors/vscode.nix {inherit config lib options pkgs;})
                 ./modules/hardware/keyboard_de.nix
                 ./modules/hardware/printing.nix
+                ./modules/hardware/audio.nix
               ];
 
               nix = {
@@ -228,6 +229,7 @@
               };
               modules.hardware.keyboard-de.enable = true;
               modules.hardware.printing.enable = true;
+              modules.hardware.audio.enable = true;
               modules.desktop.xmonad-luca.enable = true;
               modules.desktop.gnome.enable = true;
               modules.applications.editors.vscode.enable = true;
@@ -246,50 +248,7 @@
               qt.platformTheme = "gtk2";
               qt.style = "gtk2";
               # Enable sound.
-              # sound = {
-              #   enable = true;
-              #   mediaKeys.enable = true;
-              # };
-              # Use Pipewire
-              # rtkit is optional but recommended
-              security.rtkit.enable = true;
-              services.pipewire = {
-                enable = true;
-                alsa.enable = true;
-                alsa.support32Bit = true;
-                pulse.enable = true;
-                jack.enable = true;
-                # config.pipewire-pulse = {
-                #   "pulse.cmd" = [
-                #     {
-                #       "cmd" = "load-module";
-                #       "args" = "module-always-sink";
-                #       "flags" = [ ];
-                #     }
-                #     {
-                #       "cmd" = "load-module";
-                #       "args" = "module-switch-on-connect";
-                #     }
-                #   ];
-                # };
-              };
-              # Create a drop-in file in `/etc/pipewire/pipewire.conf.d/` to enable
-              # pipewirte-pulse `module-switch-on-connect` and `module-always-sink`.
-              environment.etc."pipewire/pipewire.conf.d/99-bluetooth.conf".source = ./config/99-bluetooth.conf;
-              hardware = {
-                pulseaudio.enable = false;
-                pulseaudio.extraModules = [ pkgs.pulseaudio-modules-bt ];
-                bluetooth = {
-                  enable = true;
-                  powerOnBoot = false;
-                  settings = {
-                    General = {
-                      Enable = "Source,Sink,Media,Socket";
-                      Experimental = true;
-                    };
-                  };
-                };
-              };
+              
               # Define a user account. Don't forget to set a password with ‘passwd’.
               # TODO: set passwort using hashed password
               users.users.root.initialHashedPassword = "";
