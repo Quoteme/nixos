@@ -54,6 +54,8 @@ in
     security.pam.services.gdm = {
       enableGnomeKeyring = true;
       fprintAuth = true;
+      gnupg.enable = true;
+      sshAgentAuth = true;
     };
 
     # make qt apps look like gtk

@@ -85,6 +85,7 @@
                 ./hardware/asusROGFlowX13.nix
                 ./modules/desktop/xmonad-luca.nix
                 ./modules/desktop/gnome.nix
+                ./modules/desktop/kde.nix
                 (import ./modules/desktop/sway.nix {inherit config lib options pkgs;})
                 (import ./modules/applications/editors/vscode.nix {inherit config lib options pkgs;})
                 ./modules/hardware/keyboard_de.nix
@@ -149,6 +150,7 @@
               modules.hardware.audio.enable = true;
               modules.desktop.xmonad-luca.enable = true;
               modules.desktop.gnome.enable = true;
+              modules.desktop.kde.enable = false;
               modules.desktop.sway.enable = true;
               modules.applications.editors.vscode.enable = true;
               modules.users.luca.enable = true;
@@ -377,12 +379,6 @@
                 pam = {
                   # allow user Luca to authenticate using a fingerprint
                   services = {
-                    luca = {
-                      fprintAuth = true;
-                      sshAgentAuth = true;
-                      gnupg.enable = true;
-                      enableGnomeKeyring = true;
-                    };
                     lightdm.enableGnomeKeyring = true;
                   };
                   enableSSHAgentAuth = true;

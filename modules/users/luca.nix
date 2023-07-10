@@ -79,7 +79,7 @@ in
         in
         with pkgs; [
           # Internet
-          pkgs.stable.google-chrome
+          pkgs.unstable.google-chrome-beta
           (tts.overrideAttrs (new: old: {
             propagatedBuildInputs = old.propagatedBuildInputs ++ [
               pkgs.unstable.espeak-ng
