@@ -25,7 +25,7 @@ in
     services.xserver.displayManager.sddm.enable = true;
     services.xserver.desktopManager.plasma5.enable = true;
     programs.dconf.enable = true;
-    kdeconnect.enable = true;
+    programs.kdeconnect.enable = true;
     security.pam.services.sddm.enableKwallet = true;
   };
 }
