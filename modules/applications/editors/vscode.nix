@@ -57,6 +57,9 @@ in
           cameron.vscode-pytest
           ms-python.black-formatter
           mgesbert.python-path
+          ## Mako Python-Templating
+          chaojie.better-mako
+          tommorris.mako
           ## Flask
           wholroyd.jinja
           # markdown 

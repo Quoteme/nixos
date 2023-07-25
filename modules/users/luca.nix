@@ -27,6 +27,7 @@ in
       extraGroups = [
         "networkmanager"
         "storage"
+        "sdcard"
         "video"
         "bluetooth"
         "adbusers"
@@ -91,7 +92,7 @@ in
           ferdium
           transmission-gtk
           birdtray
-          thunderbird
+          unstable.thunderbird
           # Privacy
           veracrypt
           lesspass-cli
@@ -107,7 +108,7 @@ in
           mypaint
           gimp
           aseprite
-          (pkgs.blender.override {
+          (pkgs.unstable.blender.override {
             cudaSupport = true;
           })
           krita
@@ -115,7 +116,7 @@ in
           vlc
           mpv
           yt-dlp
-          evince
+          # evince
           deadbeef
           sxiv
           sony-headphones-client

@@ -28,6 +28,7 @@
   #     };
   #   };
   # };
+  # services.gnome-keyring.enable = true;
   programs.zsh = {
     enable = true;
     initExtra = ''
@@ -61,6 +62,19 @@
     bashrcExtra = ''
       set -o vi
     '';
+    enableCompletion = true;
+    sessionVariables = {
+      VISUAL = "vim";
+      EDITOR = "$VISUAL";
+    };
+  };
+  programs.fzf = {
+    enable = true; 
+    enableBashIntegration = true;
+  };
+  programs.nix-index = {
+    enableBashIntegration = true;
+    enableZshIntegration = true;
   };
   programs.mpv = {
     enable = true;

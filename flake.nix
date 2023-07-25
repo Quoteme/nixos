@@ -237,7 +237,7 @@
                       "vi-mode"
                       "dirhistory"
                       "gpg-agent"
-                      "keychain"
+                      # "keychain"
                       "zsh-interactive-cd"
                       "flutter"
                     ];
@@ -363,7 +363,8 @@
                 #   enableExtensionPack = true;
                 # };
                 docker.enable = true;
-                waydroid.enable = true;
+                docker.enableOnBoot = false;
+                waydroid.enable = false; # temporarily disabled because of system shutdown issues
                 lxd.enable = true;
               };
               security = {
