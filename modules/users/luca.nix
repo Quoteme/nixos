@@ -86,6 +86,8 @@ in
               pkgs.unstable.espeak-ng
             ];
           }))
+          firefox
+          bitwarden
           # microsoft-edge
           # discord
           # whatsapp-for-linux

@@ -149,8 +149,8 @@
               modules.hardware.printing.enable = true;
               modules.hardware.audio.enable = true;
               modules.desktop.xmonad-luca.enable = true;
-              modules.desktop.gnome.enable = true;
-              modules.desktop.kde.enable = false;
+              modules.desktop.gnome.enable = false;
+              modules.desktop.kde.enable = true;
               modules.desktop.sway.enable = true;
               modules.applications.editors.vscode.enable = true;
               modules.users.luca.enable = true;
@@ -209,10 +209,10 @@
                 };
 
                 # Password stuff
-                seahorse.enable = true;
-                ssh.enableAskPassword = true;
+                # seahorse.enable = true;
+                # ssh.enableAskPassword = true;
 
-                kdeconnect.enable = true;
+                #kdeconnect.enable = true;
 
                 # Shell stuff
                 bash.shellInit = "set -o vi";
@@ -364,7 +364,7 @@
                 # };
                 docker.enable = true;
                 docker.enableOnBoot = false;
-                waydroid.enable = false; # temporarily disabled because of system shutdown issues
+                waydroid.enable = true; # temporarily disabled because of system shutdown issues
                 lxd.enable = true;
               };
               security = {

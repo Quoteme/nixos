@@ -27,5 +27,22 @@ in
     programs.dconf.enable = true;
     programs.kdeconnect.enable = true;
     security.pam.services.sddm.enableKwallet = true;
+    environment.systemPackages = with pkgs; [
+      libsForQt5.ark
+      libsForQt5.bismuth
+      libsForQt5.packagekit-qt
+      libsForQt5.discover
+      libsForQt5.kio-gdrive
+      libsForQt5.plasma-integration
+      libsForQt5.plasma-nm
+      libsForQt5.kalendar
+      libsForQt5.accounts-qt
+      libsForQt5.mauikit-accounts
+      libsForQt5.kaccounts-integration
+      libsForQt5.kaccounts-providers
+      # Keyboard
+      maliit-keyboard
+      maliit-framework
+    ];
   };
 }

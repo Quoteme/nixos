@@ -92,6 +92,7 @@ in
         tldr
         flameshot
         xclip
+        wl-clipboard
         xcolor
         peek
         killall
