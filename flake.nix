@@ -77,7 +77,7 @@
           # ┗━╸┗━┛╹ ╹╹  ╹┗━┛┗━┛╹┗╸╹ ╹ ╹ ╹┗━┛╹ ╹╹╹ ╹╹╹ ╹
           ({ config, lib, options, nixpkgs, ... }@inputs:
             let
-              
+
             in
             {
               imports = [
@@ -85,14 +85,14 @@
                 ./hardware/asusROGFlowX13.nix
                 ./modules/desktop/xmonad-luca.nix
                 ./modules/desktop/gnome.nix
-                ./modules/desktop/kde.nix
-                (import ./modules/desktop/sway.nix {inherit config lib options pkgs;})
-                (import ./modules/applications/editors/vscode.nix {inherit config lib options pkgs;})
+                (import ./modules/desktop/kde.nix { inherit config lib options pkgs; })
+                (import ./modules/desktop/sway.nix { inherit config lib options pkgs; })
+                (import ./modules/applications/editors/vscode.nix { inherit config lib options pkgs; })
                 ./modules/hardware/keyboard_de.nix
                 ./modules/hardware/printing.nix
                 ./modules/hardware/audio.nix
-                (import ./modules/users/luca.nix {inherit config lib options pkgs;})
-                (import ./modules/environment/systempackages.nix {inherit config lib options pkgs;})
+                (import ./modules/users/luca.nix { inherit config lib options pkgs; })
+                (import ./modules/environment/systempackages.nix { inherit config lib options pkgs; })
               ];
 
               nix = {
@@ -109,7 +109,17 @@
                   "nix-vscode=${attrs.nix-vscode-extensions}"
                 ];
                 registry = {
-                  nixpkgs.flake = nixpkgs;
+                  # nixpkgs.flake = nixpkgs;
+                  nixpkgs = {
+                    from = {
+                      type = "indirect";
+                      id = "nixpkgs";
+                    };
+                    to = {
+                      type = "path";
+                      path = inputs.nixpkgs.outPath;
+                    };
+                  };
                   unstable.flake = attrs.nixpkgs-unstable;
                   stable.flake = attrs.nixpkgs-stable;
                   nur.flake = attrs.nur;
@@ -151,7 +161,7 @@
               modules.desktop.xmonad-luca.enable = true;
               modules.desktop.gnome.enable = false;
               modules.desktop.kde.enable = true;
-              modules.desktop.sway.enable = true;
+              modules.desktop.sway.enable = false;
               modules.applications.editors.vscode.enable = true;
               modules.users.luca.enable = true;
               modules.environment.systemPackages.enable = true;
@@ -166,7 +176,7 @@
               # Enable flatpak
               services.flatpak.enable = true;
               xdg.portal.enable = true;
-              
+
               # Define a user account. Don't forget to set a password with ‘passwd’.
               # TODO: set passwort using hashed password
               users.users.root.initialHashedPassword = "";
@@ -194,7 +204,7 @@
               # List packages installed in system profile. To search, run:
               # $ nix search nixpkgs wget
               # TODO: move this into another file
-              
+
               programs = {
                 # https://github.com/Mic92/nix-ld
                 nix-ld.enable = true;
@@ -284,7 +294,7 @@
                 '';
               };
               programs.darling.enable = true;
-              
+
 
               # Gaming
               programs.gamemode = {
@@ -346,7 +356,7 @@
                   "\${HOME}/.local/share/npm/bin"
                 ];
               };
-            
+
               virtualisation = {
                 libvirtd = {
                   enable = true;
@@ -364,7 +374,7 @@
                 # };
                 docker.enable = true;
                 docker.enableOnBoot = false;
-                waydroid.enable = true; # temporarily disabled because of system shutdown issues
+                waydroid.enable = false; # temporarily disabled because of system shutdown issues
                 lxd.enable = true;
               };
               security = {

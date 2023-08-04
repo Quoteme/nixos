@@ -40,6 +40,10 @@ in
       libsForQt5.mauikit-accounts
       libsForQt5.kaccounts-integration
       libsForQt5.kaccounts-providers
+      libsForQt5.sddm
+      libsForQt5.sddm-kcm
+      libsForQt5.flatpak-kcm
+      libsForQt5.kcmutils
       # Keyboard
       maliit-keyboard
       maliit-framework

@@ -52,7 +52,13 @@
   programs.corectrl.enable = true;
   services.auto-cpufreq.enable = true;
   # supergfxd
-  boot.kernelParams = [ "supergfxd.mode=integrated" ];
+  boot.kernelParams = [ 
+    "supergfxd.mode=integrated"
+    "nvidia"
+    "nvidia_modeset"
+    "nvidia_uvm"
+    "nvidia_drm"
+  ];
   services.supergfxd = {
     enable = true;
     settings = {
