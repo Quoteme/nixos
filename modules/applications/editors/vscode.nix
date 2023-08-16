@@ -25,6 +25,8 @@ in
       (unstable.vscode-with-extensions.override {
         vscodeExtensions = with pkgs.vscode-marketplace; [
           vscodevim.vim
+          christian-kohler.path-intellisense
+          streetsidesoftware.code-spell-checker
           # haskell
           haskell.haskell
           justusadam.language-haskell
@@ -62,6 +64,9 @@ in
           tommorris.mako
           ## Flask
           wholroyd.jinja
+          # NGINX
+          william-voyek.vscode-nginx
+          ahmadalli.vscode-nginx-conf
           # markdown 
           yzhang.markdown-all-in-one
           koehlma.markdown-math
@@ -101,6 +106,7 @@ in
           bradlc.vscode-tailwindcss
           sissel.shopify-liquid
           syler.sass-indented
+          firefox-devtools.vscode-firefox-debug
           # R
           reditorsupport.r
           rdebugger.r-debugger
@@ -126,6 +132,10 @@ in
           vscjava.vscode-gradle
           naco-siren.gradle-language
           vscjava.vscode-lombok
+          ## Spring
+          vscjava.vscode-spring-initializr
+          vmware.vscode-spring-boot
+          vscjava.vscode-spring-boot-dashboard
           # Kotlin
           mathiasfrohlich.kotlin
           fwcd.kotlin
@@ -141,6 +151,7 @@ in
           jeff-hykin.better-cpp-syntax
           # SQL
           ms-ossdata.vscode-postgresql
+          mongodb.mongodb-vscode
           # Rust
           rust-lang.rust-analyzer
           swellaby.vscode-rust-test-adapter
@@ -163,6 +174,7 @@ in
           unstable.vscode-extensions.github.copilot-chat
           github.vscode-pull-request-github
           eamodio.gitlens
+          donjayamanne.githistory
           # github.heygithub
           # github.vscode-codeql
           # testing
@@ -189,8 +201,9 @@ in
           ## Rainbow 
           mechatroner.rainbow-csv
           oderwat.indent-rainbow
-          # Icons
+          # Icons / Themes
           pkief.material-icon-theme
+          github.github-vscode-theme
         ];
       })
     ];

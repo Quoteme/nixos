@@ -40,6 +40,9 @@ in
         "vboxusers" # maybe use `users.extraGroups.vboxusers.members = [ "luca" ];` 
       ];
       shell = pkgs.zsh;
+      # Web-eID / European Smart-Card support https://nixos.wiki/wiki/Web_eID
+      # pkgs.config.firefox.euwebid = true;
+      # services.pcscd.enable = true;
       packages =
         let
           myClion = pkgs.symlinkJoin {
@@ -86,7 +89,13 @@ in
               pkgs.unstable.espeak-ng
             ];
           }))
-          firefox
+          (firefox.override {
+            cfg = {
+              enablePlasmaBrowserIntegration = true;
+              enableFXCastBridge = true;
+              speechSynthesisSupport = true;
+              };
+          })
           bitwarden
           # microsoft-edge
           # discord
@@ -222,7 +231,8 @@ in
           # slack
           # PROPORA
           mob
-
+          # Hardware
+          miraclecast
         ];
     };
   };

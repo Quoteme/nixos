@@ -40,13 +40,24 @@ in
       libsForQt5.mauikit-accounts
       libsForQt5.kaccounts-integration
       libsForQt5.kaccounts-providers
+      libsForQt5.signond
+      libsForQt5.qoauth
+      libsForQt5.calendarsupport
+      libsForQt5.qtspeech
       libsForQt5.sddm
       libsForQt5.sddm-kcm
       libsForQt5.flatpak-kcm
       libsForQt5.kcmutils
       # Keyboard
+      libsForQt5.qt5.qtvirtualkeyboard
       maliit-keyboard
       maliit-framework
+      # spellcheck
+      aspell
+      aspellDicts.de
+      aspellDicts.en
+      aspellDicts.en-computers
+      aspellDicts.en-science
     ];
   };
 }
