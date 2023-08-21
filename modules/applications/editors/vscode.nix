@@ -22,7 +22,7 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      (unstable.vscode-with-extensions.override {
+      (vscode-with-extensions.override {
         vscodeExtensions = with pkgs.vscode-marketplace; [
           vscodevim.vim
           christian-kohler.path-intellisense
@@ -169,7 +169,7 @@ in
           ctf0.env-symbol-provider
           # Copilot / Github
           github.copilot-labs
-          unstable.vscode-extensions.github.copilot
+          github.copilot
           github.remotehub
           unstable.vscode-extensions.github.copilot-chat
           github.vscode-pull-request-github
