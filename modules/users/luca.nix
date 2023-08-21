@@ -147,7 +147,7 @@ in
           rnix-lsp
           luajit
           lazygit
-          emacs-gtk
+          # emacs-gtk
           hlint
           devdocs-desktop
           # devdocs-desktop
@@ -221,7 +221,7 @@ in
           docker-compose
           mongodb-compass
           # game-dev
-          godotMono
+          # godotMono
           # pkgs.unstable.godot
           pkgs.unstable.unityhub
           # UNI HHU ZEUG
