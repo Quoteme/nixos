@@ -18,6 +18,7 @@
     rescreenapp.url = "github:Quoteme/rescreenapp";
     control_center.url = "github:Quoteme/control_center";
     xmonad-luca.url = "github:Quoteme/xmonad-luca";
+    xmonad-luca.inputs.control_center.follows = "control_center";
     godot.url = "github:Quoteme/nixos-godot-bin";
     hmenke-nixos-modules.url = "github:hmenke/nixos-modules";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
@@ -346,10 +347,13 @@
                 # NIX_LD = "${pkgs.glibc}/lib/ld-linux-x86-64.so.2";
                 GAMEMODERUNEXEC = "nvidia-offload";
               };
-              environment.sessionVariables = {
+              environment.sessionVariables = 
+              let
+                xdg_lib_home = "\${HOME}/.local/lib";
+              in {
                 XDG_CACHE_HOME = "\${HOME}/.cache";
                 XDG_CONFIG_HOME = "\${HOME}/.config";
-                XDG_LIB_HOME = "\${HOME}/.local/lib";
+                XDG_LIB_HOME = xdg_lib_home;
                 XDG_BIN_HOME = "\${HOME}/.local/bin";
                 XDG_DATA_HOME = "\${HOME}/.local/share";
 
@@ -362,16 +366,16 @@
                 MOZ_USE_XINPUT2 = "1";
                 MOZ_ENABLE_WAYLAND = "1";
 
-                FLUTTER_SDK = "\${XDG_LIB_HOME}/arch-id/flutter";
+                FLUTTER_SDK = "${xdg_lib_home}/arch-id/flutter";
 
-                ANDROID_SDK_ROOT = "\${XDG_LIB_HOME}arch-id/android-sdk/";
+                ANDROID_SDK_ROOT = "${xdg_lib_home}/arch-id/android-sdk/";
                 PATH = [
-                  "\${XDG_BIN_HOME}"
-                  "\${FLUTTER_SDK}/bin"
-                  "\${ANDROID_SDK_ROOT}/platform-tools"
-                  "\${HOME}/.config/emacs/bin"
-                  "\${HOME}/.elan/bin"
-                  "\${HOME}/.local/share/npm/bin"
+                  "\$XDG_BIN_HOME"
+                  "\$FLUTTER_SDK/bin"
+                  "\$ANDROID_SDK_ROOT/platform-tools"
+                  "\$HOME/.config/emacs/bin"
+                  "\$HOME/.elan/bin"
+                  "\$HOME/.local/share/npm/bin"
                 ];
               };
 
