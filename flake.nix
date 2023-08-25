@@ -64,6 +64,7 @@
           overlay-nix-alien
           overlay-st-nix
           overlay-screenrotate
+          attrs.nur.overlay
         ];
       };
     in
@@ -193,6 +194,7 @@
               };
               # Enable flatpak
               services.flatpak.enable = true;
+              services.packagekit.enable = true;
               xdg.portal.enable = true;
 
               # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -367,6 +369,8 @@
                 MOZ_ENABLE_WAYLAND = "1";
 
                 FLUTTER_SDK = "${xdg_lib_home}/arch-id/flutter";
+                CARGO_HOME = "\${HOME}/.cargo";
+                RUSTUP_HOME = "\${HOME}/.rustup";
 
                 ANDROID_SDK_ROOT = "${xdg_lib_home}/arch-id/android-sdk/";
                 PATH = [
@@ -376,6 +380,9 @@
                   "\$HOME/.config/emacs/bin"
                   "\$HOME/.elan/bin"
                   "\$HOME/.local/share/npm/bin"
+                  # add rustup and cargo bin paths
+                  "\$CARGO_HOME/bin"
+                  "\$RUSTUP_HOME/toolchains/stable-x86_64-unknown-linux-gnu/bin"
                 ];
               };
 

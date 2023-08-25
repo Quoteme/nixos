@@ -87,7 +87,7 @@
   };
   environment.systemPackages = with pkgs; [
     # powertop
-    # pkgs.cudatoolkit # TODO: Maybe add this again when there is more internet
+    pkgs.cudatoolkit # TODO: Maybe add this again when there is more internet
     # pkgs.cudaPackages.cuda-samples
     pciutils
     (writeShellScriptBin "powerprofilesctl-cycle" ''

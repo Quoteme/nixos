@@ -167,8 +167,8 @@ in
           texlive.combined.scheme-full
           tex-match
           # Rust
-          cargo
-          rustc
+          # cargo
+          # rustc
           rustup
           # Lean
           elan

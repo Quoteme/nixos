@@ -45,6 +45,7 @@ in
           ms-python.pylint
           ms-python.flake8
           matangover.mypy
+          charliermarsh.ruff
           ms-python.mypy-type-checker
           ms-toolsai.jupyter
           ms-toolsai.jupyter-renderers
