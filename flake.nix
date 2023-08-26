@@ -90,6 +90,7 @@
                 (import ./modules/desktop/kde.nix { inherit config lib options pkgs; })
                 (import ./modules/desktop/sway.nix { inherit config lib options pkgs; })
                 (import ./modules/applications/editors/vscode.nix { inherit config lib options pkgs; })
+                ./modules/applications/virtualisation/docker.nix
                 ./modules/hardware/keyboard_de.nix
                 ./modules/hardware/printing.nix
                 ./modules/hardware/audio.nix
@@ -182,6 +183,7 @@
               modules.desktop.kde.enable = true;
               modules.desktop.sway.enable = false;
               modules.applications.editors.vscode.enable = true;
+              modules.applications.virtualisation.docker.enable = true;
               modules.users.luca.enable = true;
               modules.environment.systemPackages.enable = true;
 
@@ -401,8 +403,6 @@
                 #   package = pkgs.virtualboxWithExtpack;
                 #   enableExtensionPack = true;
                 # };
-                docker.enable = true;
-                docker.enableOnBoot = false;
                 waydroid.enable = false; # temporarily disabled because of system shutdown issues
                 lxd.enable = true;
               };
