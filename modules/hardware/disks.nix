@@ -21,7 +21,7 @@ in
     };
 
   config = mkIf cfg.enable {
-    udisks2.enable = true;
+    services.udisks2.enable = true;
     environment.etc."udisks2/rules.d/10-custom-mount.rules".text = ''
       [block_id=="98bf9471-2174-498f-b8d8-9b918a387ec4"]
       mount_options=exec
