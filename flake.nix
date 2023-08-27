@@ -94,6 +94,7 @@
                 ./modules/hardware/keyboard_de.nix
                 ./modules/hardware/printing.nix
                 ./modules/hardware/audio.nix
+                ./modules/hardware/disks.nix
                 (import ./modules/users/luca.nix { inherit config lib options pkgs; })
                 (import ./modules/environment/systempackages.nix { inherit config lib options pkgs; })
               ];
@@ -178,6 +179,7 @@
               modules.hardware.keyboard-de.enable = true;
               modules.hardware.printing.enable = true;
               modules.hardware.audio.enable = true;
+              modules.hardware.disks.enable = true;
               modules.desktop.xmonad-luca.enable = true;
               modules.desktop.gnome.enable = false;
               modules.desktop.kde.enable = true;
