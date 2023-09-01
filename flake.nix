@@ -67,6 +67,10 @@
           attrs.nur.overlay
         ];
       };
+      nur-modules = import attrs.nur {
+        nurpkgs = nixpkgs.legacyPackages.${system};
+        pkgs = nixpkgs.legacyPackages.${system};
+      };
     in
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
@@ -74,13 +78,11 @@
         specialArgs = attrs;
         modules = [
           attrs.nur.nixosModules.nur
+          nur-modules.repos.LuisChDev.modules.nordvpn
           # ┏━╸┏━┓┏┓╻┏━╸╻┏━╸╻ ╻┏━┓┏━┓╺┳╸╻┏━┓┏┓╻ ┏┓╻╻╻ ╻
           # ┃  ┃ ┃┃┗┫┣╸ ┃┃╺┓┃ ┃┣┳┛┣━┫ ┃ ┃┃ ┃┃┗┫ ┃┗┫┃┏╋┛
           # ┗━╸┗━┛╹ ╹╹  ╹┗━┛┗━┛╹┗╸╹ ╹ ╹ ╹┗━┛╹ ╹╹╹ ╹╹╹ ╹
           ({ config, lib, options, nixpkgs, ... }@inputs:
-            let
-
-            in
             {
               imports = [
                 ./hardware-configuration.nix
@@ -97,6 +99,7 @@
                 ./modules/hardware/disks.nix
                 (import ./modules/users/luca.nix { inherit config lib options pkgs; })
                 (import ./modules/environment/systempackages.nix { inherit config lib options pkgs; })
+                (import ./modules/environment/nordvpn.nix { inherit config lib options pkgs; })
               ];
 
               nix = {

@@ -38,6 +38,7 @@ in
         "docker"
         "input"
         "vboxusers" # maybe use `users.extraGroups.vboxusers.members = [ "luca" ];` 
+        "nordvpn"
       ];
       shell = pkgs.zsh;
       # Web-eID / European Smart-Card support https://nixos.wiki/wiki/Web_eID
@@ -265,7 +266,7 @@ in
           # Hardware
           miraclecast
           # VPN
-          config.nur.repos.LuisChDev.nordvpn
+          # config.nur.repos.LuisChDev.nordvpn
         ];
     };
   };
