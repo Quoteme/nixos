@@ -23,6 +23,7 @@ in
   config = mkIf cfg.enable {
     services.xserver.enable = true;
     services.xserver.displayManager.sddm.enable = true;
+    services.xserver.displayManager.sddm.theme = "chili";
     services.xserver.desktopManager.plasma5.enable = true;
     programs.dconf.enable = true;
     programs.kdeconnect.enable = true;
@@ -59,6 +60,8 @@ in
       aspellDicts.en-computers
       aspellDicts.en-science
       config.nur.repos.baduhai.koi
+      # SDDM
+      unstable.sddm-chili-theme
     ];
   };
 }
