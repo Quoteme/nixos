@@ -29,7 +29,7 @@ in
     security.pam.services.sddm.enableKwallet = true;
     environment.systemPackages = with pkgs; [
       libsForQt5.ark
-      libsForQt5.bismuth
+      # libsForQt5.bismuth
       libsForQt5.packagekit-qt
       libsForQt5.discover
       libsForQt5.kio-gdrive
@@ -58,6 +58,7 @@ in
       aspellDicts.en
       aspellDicts.en-computers
       aspellDicts.en-science
+      config.nur.repos.baduhai.koi
     ];
   };
 }

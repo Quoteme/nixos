@@ -94,8 +94,9 @@ in
               enablePlasmaBrowserIntegration = true;
               enableFXCastBridge = true;
               speechSynthesisSupport = true;
-              };
+            };
           })
+          config.nur.repos.xddxdd.deepspeech-gpu
           bitwarden
           # microsoft-edge
           # discord
@@ -158,6 +159,36 @@ in
           # JavaScript/TypeScript
           nodejs_20
           jetbrains.webstorm
+          jetbrains.phpstorm
+          (pkgs.php82.buildEnv {
+            extensions = ({ enabled
+                          , all
+                          }: enabled ++ (with all; [
+              apcu
+              curl
+              gd
+              gmp
+              intl
+              ldap
+              mbstring
+              mysqli
+              pdo_mysql
+              pdo_sqlite
+              readline
+              redis
+              soap
+              sqlite3
+              xdebug
+              xml
+              zip
+            ]));
+            extraConfig = ''
+              xdebug.mode = debug
+              xdebug.start_with_request = yes
+            '';
+          })
+          php82Packages.composer
+          php82Packages.psysh
           # python
           jetbrains.pycharm-professional
           # Latex
@@ -233,6 +264,8 @@ in
           mob
           # Hardware
           miraclecast
+          # VPN
+          config.nur.repos.LuisChDev.nordvpn
         ];
     };
   };

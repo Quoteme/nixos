@@ -33,6 +33,11 @@ in
           visortelle.haskell-spotlight
           ucl.haskelly
           phoityne.phoityne-vscode # Haskell GHCi Debug Adapter
+          # PHP
+          xdebug.php-debug
+          devsense.phptools-vscode
+          bmewburn.vscode-intelephense-client
+          zobo.php-intellisense
           # nix
           bbenoist.nix
           jnoortheen.nix-ide

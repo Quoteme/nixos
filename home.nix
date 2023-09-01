@@ -41,11 +41,25 @@
       montiprometheus = "xdg-open http://localhost:9090 && ssh -L 9090:localhost:9090 mmbs@monti.ai";
       montigrafana = "xdg-open http://localhost:3000 && ssh -L 3000:localhost:3000 mmbs@monti.ai";
 
+      # Steam
+      steammount = ''
+        udisksctl unmount -b /dev/disk/by-uuid/98bf9471-2174-498f-b8d8-9b918a387ec4 &&
+        udisksctl mount -b /dev/disk/by-uuid/98bf9471-2174-498f-b8d8-9b918a387ec4 --options "exec"
+      '';
+
       # system
       dirsystemflake = "cd /etc/nixos";
       dircontrolcenter = "cd ~/Dokumente/dev/control_center/";
       dirxmonadluca = "cd ~/Dokumente/dev/xmonad-luca/";
     };
+    dirHashes = {
+      monti = "~/Dokumente/dev/monti/";
+      montibackend = "~/Dokumente/dev/monti/backend/";
+      nixos = "/etc/nixos/";
+    };
+    cdpath = [ 
+      "~/Dokumente/dev/"
+    ];
   };
   programs.direnv = {
     enable = true;
