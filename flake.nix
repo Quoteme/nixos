@@ -162,8 +162,9 @@
                 networkmanager.enable = true;
                 firewall = {
                   allowedUDPPortRanges = [{ from = 32768; to = 61000; } { from = 1714; to = 1764; }];
+                  allowedUDPPorts = [ 10001 10002 10011 10012 ];
                   allowedTCPPortRanges = [{ from = 1714; to = 1764; }];
-                  allowedTCPPorts = [ 80 5000 8000 8008 8009 8080 27017 ];
+                  allowedTCPPorts = [ 22 24800 25565 80 5000 8000 8008 8009 8080 27017 ];
                 };
               };
 
