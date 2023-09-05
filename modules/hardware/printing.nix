@@ -26,6 +26,13 @@ in
     services.printing.drivers = with pkgs; [
       gutenprint
       gutenprintBin
+      epson_201207w
+      epson-workforce-635-nx625-series
+      epson-escpr2
+      epson-escpr
+      epson-alc1100
+      epson-201401w
+      epson-201106w
       hplip
       samsung-unified-linux-driver
       splix
