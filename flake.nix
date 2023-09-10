@@ -212,6 +212,7 @@
 
               # List fonts installed in system profile
               fonts.fonts = with pkgs; [
+                julia-mono
                 scientifica
                 font-awesome
                 unifont
@@ -409,7 +410,7 @@
                 #   package = pkgs.virtualboxWithExtpack;
                 #   enableExtensionPack = true;
                 # };
-                waydroid.enable = false; # temporarily disabled because of system shutdown issues
+                waydroid.enable = true; # temporarily disabled because of system shutdown issues
                 lxd.enable = true;
               };
               security = {

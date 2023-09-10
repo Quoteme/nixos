@@ -24,6 +24,14 @@ in
     services.xserver.enable = true;
     services.xserver.displayManager.sddm.enable = true;
     services.xserver.displayManager.sddm.theme = "breeze";
+    services.xserver.displayManager.setupCommands = ''
+      loginctl unlock-session 2
+      loginctl unlock-session 3
+      loginctl unlock-session 4
+      loginctl unlock-session 5
+      loginctl unlock-session 6
+      loginctl unlock-session 7
+    '';
     services.xserver.desktopManager.plasma5.enable = true;
     programs.dconf.enable = true;
     programs.kdeconnect.enable = true;
@@ -58,8 +66,10 @@ in
       libsForQt5.sddm-kcm
       libsForQt5.flatpak-kcm
       libsForQt5.kcmutils
+      # Settings
+      wayland-utils
+
       # Keyboard
-      libsForQt5.qt5.qtvirtualkeyboard
       maliit-keyboard
       maliit-framework
       # spellcheck
@@ -71,7 +81,11 @@ in
       config.nur.repos.baduhai.koi
       # SDDM
       # unstable.sddm-chili-theme
+      # Settings
+      wayland-utils
     ];
+    # Settings
+    services.fwupd.enable = true;
     # 
     environment.sessionVariables = {
       QT_QUICK_CONTROLS_STYLE = "org.kde.desktop";

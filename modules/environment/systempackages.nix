@@ -30,6 +30,7 @@ in
           text-format-simple
         ]);
         myPython = pkgs.python310.withPackages (ps: with ps; [
+          pyclip
           debugpy
           pytest
           ipython
