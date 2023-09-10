@@ -87,7 +87,7 @@ in
           pkgs.unstable.google-chrome-beta
           (tts.overrideAttrs (new: old: {
             propagatedBuildInputs = old.propagatedBuildInputs ++ [
-              pkgs.unstable.espeak-ng
+              pkgs.espeak-ng
             ];
           }))
           (firefox.override {

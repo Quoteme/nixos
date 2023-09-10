@@ -15,7 +15,7 @@
     nix-alien.url = "github:thiagokokada/nix-alien";
     screenrotate.url = "github:Quoteme/screenrotate";
     screenrotate.inputs.nixpkgs.follows = "nixpkgs";
-    rescreenapp.url = "github:Quoteme/rescreenapp";
+    # rescreenapp.url = "github:Quoteme/rescreenapp";
     control_center.url = "github:Quoteme/control_center";
     xmonad-luca.url = "github:Quoteme/xmonad-luca";
     xmonad-luca.inputs.control_center.follows = "control_center";
