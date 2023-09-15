@@ -86,7 +86,7 @@
             {
               imports = [
                 ./hardware-configuration.nix
-                ./hardware/asusROGFlowX13.nix
+                (import ./hardware/asusROGFlowX13.nix { inherit config lib options pkgs; })
                 ./modules/desktop/xmonad-luca.nix
                 ./modules/desktop/gnome.nix
                 (import ./modules/desktop/kde.nix { inherit config lib options pkgs; })
@@ -139,6 +139,7 @@
                     #"https://cache.garnix.io"
                     "https://cuda-maintainers.cachix.org"
                     "https://cache.nixos.org/"
+                    "https://lean4.cachix.org/"
                   ];
                   trusted-public-keys = [
                     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
@@ -146,6 +147,7 @@
                     #"cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
                     "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
                     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+                    "lean4.cachix.org-1:mawtxSxcaiWE24xCXXgh3qnvlTkyU7evRRnGeAhD4Wk="
                   ];
                 };
               };
@@ -162,9 +164,9 @@
                 networkmanager.enable = true;
                 firewall = {
                   allowedUDPPortRanges = [{ from = 32768; to = 61000; } { from = 1714; to = 1764; }];
-                  allowedUDPPorts = [ 10001 10002 10011 10012 ];
+                  allowedUDPPorts = [ 51413 10001 10002 10011 10012 ];
                   allowedTCPPortRanges = [{ from = 1714; to = 1764; }];
-                  allowedTCPPorts = [ 22 24800 25565 80 5000 8000 8008 8009 8080 27017 ];
+                  allowedTCPPorts = [ 22 24800 25565 80 5000 8000 8008 8009 8080 27017 51413 ];
                 };
               };
 

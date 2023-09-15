@@ -61,10 +61,10 @@
       turbo = "never";
     };
     charger = {
-      # governor = "performance";
-      governor = "powersave";
-      scaling_min_freq = (MHz 400);
-      scaling_max_freq = (MHz 1800);
+      governor = "performance";
+      # governor = "powersave";
+      # scaling_min_freq = (MHz 400);
+      # scaling_max_freq = (MHz 1800);
       turbo = "auto";
     };
   };
@@ -94,7 +94,10 @@
   # NVIDIA settings
   # FIX: fix this
   hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia.open = true;
+  hardware.nvidia.nvidiaSettings = true;
   services.xserver.videoDrivers = [ "nvidia" ];
+  # hardware.nvidia.package = pkgs.stable.kernelPackages.nvidiaPackages.stable;
   hardware.nvidia.powerManagement.enable = true;
   hardware.nvidia.powerManagement.finegrained = true;
   hardware.nvidia.nvidiaPersistenced = true;
@@ -151,12 +154,12 @@
   # ];
   # See: https://github.com/camillemndn/nixos-config/blob/f71c2b099bec17ceb8a894f099791447deac70bf/hardware/asus/gv301qe/default.nix#L46
   boot.kernelPatches = [{
-      name = "asus-rog-flow-x13-tablet-mode";
-      patch = builtins.fetchurl {
-        url = "https://aur.archlinux.org/cgit/aur.git/plain/0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch?h=linux-flowx13";
-        sha256 = "sha256:1s1zyav5sz5k01av0biwkwl4x20qggj9k27znryz58khdblwxf4j";
-      };
-    }];
+    name = "asus-rog-flow-x13-tablet-mode";
+    patch = builtins.fetchurl {
+      url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.5/0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch";
+      sha256 = "sha256:08qw7qq88dy96jxa0f4x33gj2nb4qxa6fh2f25lcl8bgmk00k7l2";
+    };
+  }];
 # Automatically Hybernate when suspended for 3 minutes
 # services.logind.lidSwitch = "suspend-then-hibernate";
 # environment.etc."systemd/sleep.conf".text = "HibernateDelaySec=180";

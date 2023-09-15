@@ -98,6 +98,7 @@ in
             };
           })
           config.nur.repos.xddxdd.deepspeech-gpu
+          config.nur.repos.wolfangaukang.vdhcoapp
           bitwarden
           # microsoft-edge
           # discord
