@@ -63,7 +63,7 @@ in
           myAndroidStudio = pkgs.symlinkJoin {
             name = "myAndroidStudio";
             paths = with pkgs; [
-              pkgs.unstable.android-studio
+              pkgs.android-studio
               gnumake
               check
               pkg-config
@@ -122,9 +122,9 @@ in
           mypaint
           gimp
           aseprite
-          (pkgs.unstable.blender.override {
-            cudaSupport = true;
-          })
+          # (pkgs.unstable.blender.override {
+          #   cudaSupport = true;
+          # })
           krita
           # Media
           vlc
