@@ -3,7 +3,7 @@
 {
   nixpkgs.config.allowUnfree = true;
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
+  boot.loader.systemd-boot.configurationLimit = 3;
   boot.loader.efi.canTouchEfiVariables = true;
   services = {
     xserver = {
@@ -40,11 +40,6 @@
   };
   hardware = {
     sensor.iio.enable = true;
-    opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-    };
     enableRedistributableFirmware = true;
   };
   # AMD settings
@@ -70,15 +65,15 @@
   #        turbo = "auto";
   #      };
   #    };
-  services.cpupower-gui.enable = true;
+  # services.cpupower-gui.enable = true;
   services.thermald.enable = true;
   # supergfxd
   boot.kernelParams = [
-    "supergfxd.mode=integrated"
-    "nvidia"
-    "nvidia_modeset"
-    "nvidia_uvm"
-    "nvidia_drm"
+    # "supergfxd.mode=integrated"
+    # "nvidia"
+    # "nvidia_modeset"
+    # "nvidia_uvm"
+    # "nvidia_drm"
   ];
   services.supergfxd = {
     enable = true;
@@ -95,21 +90,25 @@
   systemd.services.supergfxd.path = [ pkgs.kmod pkgs.pciutils ];
   # NVIDIA settings
   # FIX: fix this
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;
-  hardware.nvidia.modesetting.enable = true;
-  hardware.nvidia.open = true;
-  hardware.nvidia.nvidiaSettings = true;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
   services.xserver.videoDrivers = [ "nvidia" ];
-  # hardware.nvidia.package = pkgs.stable.kernelPackages.nvidiaPackages.stable;
+  hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.powerManagement.enable = true;
   hardware.nvidia.powerManagement.finegrained = true;
-  hardware.nvidia.nvidiaPersistenced = true;
+  hardware.nvidia.open = true;
+  hardware.nvidia.nvidiaSettings = true;
   hardware.nvidia.prime = {
     offload.enable = true;
     offload.enableOffloadCmd = true;
     amdgpuBusId = "PCI:08:00:0";
     nvidiaBusId = "PCI:01:00:0";
   };
+
   environment.systemPackages = with pkgs; [
     # powertop
     config.boot.kernelPackages.turbostat
