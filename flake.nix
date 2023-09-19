@@ -347,7 +347,9 @@
 
               # Shell configuration
               environment.variables = {
-                TERMINAL = "alacritty";
+                TERMINAL = "kitty";
+                VISUAL = "nvim";
+                EDITOR = "nvim";
                 CHROME_EXECUTABLE = "${pkgs.unstable.google-chrome}/bin/google-chrome-stable";
                 ACCESSIBILITY_ENABLED = "1";
                 PAGER = "nvimpager";
@@ -378,6 +380,9 @@
                 # NAUTILUS_4_EXTENSION_DIR = "${config.system.path}/lib/nautilus/extensions-4";
                 MOZ_USE_XINPUT2 = "1";
                 MOZ_ENABLE_WAYLAND = "1";
+
+                VISUAL = "nvim";
+                EDITOR = "nvim";
 
                 FLUTTER_SDK = "${xdg_lib_home}/arch-id/flutter";
                 CARGO_HOME = "\${HOME}/.cargo";

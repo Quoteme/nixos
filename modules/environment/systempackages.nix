@@ -121,6 +121,7 @@ in
         # TODO: add this manual to reddit post
         # st-nix
         alacritty
+        kitty
         # Window Manager
         rofi
         rofimoji

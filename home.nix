@@ -80,8 +80,8 @@
     '';
     enableCompletion = true;
     sessionVariables = {
-      VISUAL = "vim";
-      EDITOR = "$VISUAL";
+      VISUAL = "nvim";
+      EDITOR = "nvim";
     };
   };
   programs.fzf = {

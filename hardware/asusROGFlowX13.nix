@@ -1,4 +1,4 @@
-{config, lib, pkgs, ...}:
+{ config, lib, pkgs, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -8,12 +8,12 @@
   services = {
     xserver = {
       # Enable different input methods
-        libinput = {
-          enable = true;
-          touchpad.tapping = true;
-          touchpad.naturalScrolling = true;
-        };
-        wacom.enable = true;
+      libinput = {
+        enable = true;
+        touchpad.tapping = true;
+        touchpad.naturalScrolling = true;
+      };
+      wacom.enable = true;
     };
   };
   # power management
@@ -30,14 +30,14 @@
   # powerManagement.powertop.enable = true;
   systemd.sleep.extraConfig = "HibernateDelaySec=5min";
   # `nixos-generate-config --show-hardware-config` doesn't detect mount options automatically,
-   # so to enable compression, you must specify it and other mount options
-   # in a persistent configuration
-   # https://nixos.wiki/wiki/Btrfs
-   fileSystems = {
-     "/".options = [ "compress=zstd" ];
-     "/home".options = [ "compress=zstd" ];
-     "/nix".options = [ "compress=zstd" "noatime" ];
-   };
+  # so to enable compression, you must specify it and other mount options
+  # in a persistent configuration
+  # https://nixos.wiki/wiki/Btrfs
+  fileSystems = {
+    "/".options = [ "compress=zstd" ];
+    "/home".options = [ "compress=zstd" ];
+    "/nix".options = [ "compress=zstd" "noatime" ];
+  };
   hardware = {
     sensor.iio.enable = true;
     opengl = {
@@ -51,27 +51,29 @@
   boot.initrd.kernelModules = [ "amdgpu" ];
   programs.corectrl.enable = true;
   services.auto-cpufreq.enable = true;
-  services.auto-cpufreq.settings = let
-    MHz = x: x * 1000;
-  in {
-    battery = {
-      governor = "powersave";
-      scaling_min_freq = (MHz 400);
-      scaling_max_freq = (MHz 1800);
-      turbo = "never";
-    };
-    charger = {
-      governor = "performance";
-      # governor = "powersave";
-      # scaling_min_freq = (MHz 400);
-      # scaling_max_freq = (MHz 1800);
-      turbo = "auto";
-    };
-  };
+  #  services.auto-cpufreq.settings =
+  #    let
+  #      MHz = x: x * 1000;
+  #    in
+  #    {
+  #      battery = {
+  #        governor = "powersave";
+  #        scaling_min_freq = (MHz 400);
+  #        scaling_max_freq = (MHz 1800);
+  #        turbo = "never";
+  #      };
+  #      charger = {
+  #        governor = "performance";
+  #        # governor = "powersave";
+  #        # scaling_min_freq = (MHz 400);
+  #        # scaling_max_freq = (MHz 1800);
+  #        turbo = "auto";
+  #      };
+  #    };
   services.cpupower-gui.enable = true;
   services.thermald.enable = true;
   # supergfxd
-  boot.kernelParams = [ 
+  boot.kernelParams = [
     "supergfxd.mode=integrated"
     "nvidia"
     "nvidia_modeset"
@@ -81,7 +83,7 @@
   services.supergfxd = {
     enable = true;
     settings = {
-      mode = "Integrated";
+      # mode = "Integrated";
       vfio_enable = true;
       vfio_save = false;
       always_reboot = false;
@@ -112,6 +114,7 @@
     config.boot.kernelPackages.turbostat
     config.boot.kernelPackages.cpupower
     pkgs.cudatoolkit # TODO: Maybe add this again when there is more internet
+    ryzenadj
     # pkgs.cudaPackages.cuda-samples
     pciutils
     (writeShellScriptBin "powerprofilesctl-cycle" ''
@@ -127,12 +130,39 @@
           powerprofilesctl set power-saver;;
       esac
     '')
+    (writeShellScriptBin "asusrog-dgpu-disable" ''
+      echo 1 |sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
+      echo 0 |sudo tee /sys/bus/pci/rescan
+      echo 1 |sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
+      echo "please logout and login again to use integrated graphics"
+    '')
+    (writeShellScriptBin "asusrog-dgpu-enable" ''
+      echo 0 |sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
+      echo 1 |sudo tee /sys/bus/pci/rescan
+      echo 0 |sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
+      echo "please logout and login again to use discrete graphics"
+    '')
+    (writeShellScriptBin "asusrog-goboost" ''
+      (set -x; powerprofilesctl set performance; sudo cpupower frequency-set -g ondemand >&/dev/null;)
+    '')
+    (writeShellScriptBin "asusrog-gonormal" ''
+      (set -x; powerprofilesctl set balanced; sudo cpupower frequency-set -g schedutil >&/dev/null;)
+    '')
+    (writeShellScriptBin "asusrog-gosilent" ''
+      (set -x; powerprofilesctl set power-saver; sudo cpupower frequency-set -g schedutil >&/dev/null;)
+    '')
+    (writeShellScriptBin "asusrog-gosave" ''
+      (set -x; sudo ryzenadj --power-saving >&/dev/null; powerprofilesctl set power-saver; sudo cpupower frequency-set -g conservative >&/dev/null;)
+    '')
+    (writeShellScriptBin "asusrog-monitor-mhz" ''
+      watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"
+    '')
   ];
   programs.rog-control-center.enable = true;
   services.asusd = {
     enable = true;
     enableUserService = true;
-    fanCurvesConfig = builtins.readFile ../config/fan_curves.ron;
+    # fanCurvesConfig = builtins.readFile ../config/fan_curves.ron;
   };
   services.power-profiles-daemon.enable = true;
   services.acpid.enable = true;
@@ -156,11 +186,11 @@
   boot.kernelPatches = [{
     name = "asus-rog-flow-x13-tablet-mode";
     patch = builtins.fetchurl {
-      url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.5/0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch";
-      sha256 = "sha256:08qw7qq88dy96jxa0f4x33gj2nb4qxa6fh2f25lcl8bgmk00k7l2";
+      url = "https://aur.archlinux.org/cgit/aur.git/plain/0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch?h=linux-flowx13";
+      sha256 = "sha256:1s1zyav5sz5k01av0biwkwl4x20qggj9k27znryz58khdblwxf4j";
     };
   }];
-# Automatically Hybernate when suspended for 3 minutes
-# services.logind.lidSwitch = "suspend-then-hibernate";
-# environment.etc."systemd/sleep.conf".text = "HibernateDelaySec=180";
+  # Automatically Hybernate when suspended for 3 minutes
+  # services.logind.lidSwitch = "suspend-then-hibernate";
+  # environment.etc."systemd/sleep.conf".text = "HibernateDelaySec=180";
 }
