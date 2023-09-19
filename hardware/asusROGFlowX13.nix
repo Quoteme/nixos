@@ -95,6 +95,7 @@
   systemd.services.supergfxd.path = [ pkgs.kmod pkgs.pciutils ];
   # NVIDIA settings
   # FIX: fix this
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.open = true;
   hardware.nvidia.nvidiaSettings = true;
