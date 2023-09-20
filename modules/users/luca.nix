@@ -148,6 +148,7 @@ in
           # inputs.neovim-luca.defaultPackage.x86_64-linux
           unstable.neovim
           rnix-lsp
+          nix-output-monitor
           luajit
           lazygit
           # emacs-gtk
