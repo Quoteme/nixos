@@ -38,6 +38,7 @@ in
     security.pam.services.sddm.enableKwallet = true;
     environment.systemPackages = with pkgs; [
       libsForQt5.ark
+      libsForQt5.kamoso
       # libsForQt5.bismuth
       libsForQt5.packagekit-qt
       libsForQt5.discover
