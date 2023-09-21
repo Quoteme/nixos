@@ -39,6 +39,7 @@ in
     environment.systemPackages = with pkgs; [
       libsForQt5.ark
       libsForQt5.kamoso
+      libsForQt5.skanlite
       # libsForQt5.bismuth
       libsForQt5.packagekit-qt
       libsForQt5.discover

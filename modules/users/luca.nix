@@ -117,7 +117,8 @@ in
           mediainfo
           # Drawing
           xournalpp
-          pkgs.unstable.rnote
+          # TODO: flathub rnote seems to be more up to date? Maybe change back to this someday...
+          # pkgs.unstable.rnote
           inkscape
           mypaint
           gimp
