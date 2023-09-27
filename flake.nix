@@ -164,9 +164,9 @@
                 networkmanager.enable = true;
                 firewall = {
                   allowedUDPPortRanges = [{ from = 32768; to = 61000; } { from = 1714; to = 1764; }];
-                  allowedUDPPorts = [ 51413 10001 10002 10011 10012 ];
+                  allowedUDPPorts = [ 51413 10001 10002 10011 10012 5187 ];
                   allowedTCPPortRanges = [{ from = 1714; to = 1764; }];
-                  allowedTCPPorts = [ 22 24800 25565 80 5000 8000 8008 8009 8080 27017 51413 ];
+                  allowedTCPPorts = [ 22 24800 25565 80 5000 8000 8008 8009 8080 27017 51413 5187 ];
                 };
               };
 
@@ -271,13 +271,13 @@
                       "docker-compose"
                       "docker-machine"
                       "docker"
-                      "lein"
+                      # "lein"
                       "gradle"
                       "poetry"
                       "fd"
                       "vi-mode"
                       "dirhistory"
-                      "gpg-agent"
+                      # "gpg-agent"
                       # "keychain"
                       "zsh-interactive-cd"
                       "flutter"
@@ -306,7 +306,6 @@
                 adb.enable = true;
 
                 # Other
-                file-roller.enable = true;
                 dconf.enable = true;
 
                 # xfce4-panel

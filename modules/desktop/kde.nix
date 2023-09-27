@@ -41,6 +41,7 @@ in
       libsForQt5.kamoso
       libsForQt5.skanlite
       # libsForQt5.bismuth
+      unstable.libsForQt5.okular
       libsForQt5.packagekit-qt
       libsForQt5.discover
       libsForQt5.kio-gdrive
@@ -68,6 +69,7 @@ in
       libsForQt5.sddm-kcm
       libsForQt5.flatpak-kcm
       libsForQt5.kcmutils
+      libsForQt5.plasma-vault
       # Settings
       wayland-utils
 

@@ -24,6 +24,8 @@ in
     environment.systemPackages = with pkgs; [
       (unstable.vscode-with-extensions.override {
         vscodeExtensions = with pkgs.vscode-marketplace; [
+          # Language packs
+          ms-ceintl.vscode-language-pack-de
           vscodevim.vim
           christian-kohler.path-intellisense
           streetsidesoftware.code-spell-checker
@@ -175,9 +177,9 @@ in
           ctf0.env-symbol-provider
           # Copilot / Github
           github.copilot-labs
-          vscode-extensions.github.copilot
+          github.copilot
           github.remotehub
-          unstable.vscode-extensions.github.copilot-chat
+          github.copilot-chat
           github.vscode-pull-request-github
           eamodio.gitlens
           donjayamanne.githistory
