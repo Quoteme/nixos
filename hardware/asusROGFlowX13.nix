@@ -110,7 +110,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # powertop
+    powertop
     config.boot.kernelPackages.turbostat
     config.boot.kernelPackages.cpupower
     pkgs.cudatoolkit # TODO: Maybe add this again when there is more internet

@@ -29,6 +29,11 @@ in
           vscodevim.vim
           christian-kohler.path-intellisense
           streetsidesoftware.code-spell-checker
+          streetsidesoftware.code-spell-checker-german
+          adamvoss.vscode-languagetool
+          adamvoss.vscode-languagetool-de
+          adamvoss.vscode-languagetool-en
+          valentjn.vscode-ltex
           # haskell
           haskell.haskell
           justusadam.language-haskell

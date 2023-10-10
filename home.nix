@@ -157,6 +157,7 @@
   '';
   xdg.configFile."onedrive/sync_list".text = ''
     /Dokumente/Uni/anderes
+    /Dokumente/Uni/semester_11
     /Dokumente/Uni/semester_10
     /Dokumente/Uni/semester_9
     /Dokumente/Uni/icon.png

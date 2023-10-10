@@ -110,7 +110,6 @@ in
         fd
         bat
         power-profiles-daemon
-        emote
         # archiving
         zip
         unzip

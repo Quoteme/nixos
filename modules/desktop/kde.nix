@@ -47,6 +47,7 @@ in
       libsForQt5.kio-gdrive
       libsForQt5.plasma-integration
       libsForQt5.plasma-nm
+      libsForQt5.kdepim-runtime
       libsForQt5.akonadi
       libsForQt5.akonadi-mime
       libsForQt5.akonadi-notes
