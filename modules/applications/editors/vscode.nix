@@ -23,6 +23,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       (unstable.vscode-with-extensions.override {
+        vscode = unstable.vscodium;
         vscodeExtensions = with pkgs.vscode-marketplace; [
           # Language packs
           ms-ceintl.vscode-language-pack-de
@@ -128,8 +129,8 @@ in
           rogalmic.bash-debug
           mads-hartmann.bash-ide-vscode
           # flutter/dart
-          dart-code.dart-code
-          dart-code.flutter
+          vscode-extensions.dart-code.dart-code
+          vscode-extensions.dart-code.flutter
           alexisvt.flutter-snippets
           marcelovelasquez.flutter-tree
           localizely.flutter-intl
@@ -186,7 +187,8 @@ in
           github.remotehub
           github.copilot-chat
           github.vscode-pull-request-github
-          eamodio.gitlens
+          # vscode-extensions.eamodio.gitlens
+          vscode-marketplace.eamodio.gitlens
           donjayamanne.githistory
           # github.heygithub
           # github.vscode-codeql
