@@ -42,14 +42,15 @@
       overlay-nix-autobahn = final: prev: {
         nix-autobahn = attrs.nix-autobahn.defaultPackage.x86_64-linux;
       };
-      overlay-nix-alien = final: prev: {
-        nix-alien = attrs.nix-alien.defaultPackage.x86_64-linux;
-      };
       overlay-st-nix = final: prev: {
         st-nix = attrs.st-nix.defaultPackage.x86_64-linux;
       };
       overlay-screenrotate = final: prev: {
         screenrotate = attrs.screenrotate.defaultPackage.x86_64-linux;
+      };
+      overlay-sddm = final: prev: {
+        # use the sddm from overlay-unstable
+        sddm = attrs.unstable.sddm;
       };
       pkgs = import nixpkgs {
         inherit system;
@@ -61,10 +62,11 @@
           attrs.nix-vscode-extensions.overlays.default
           attrs.godot.overlays.x86_64-linux.default
           overlay-nix-autobahn
-          overlay-nix-alien
+          attrs.nix-alien.overlays.default
           overlay-st-nix
           overlay-screenrotate
           attrs.nur.overlay
+          overlay-sddm
         ];
       };
       nur-modules = import attrs.nur {

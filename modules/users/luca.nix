@@ -85,11 +85,11 @@ in
         with pkgs; [
           # Internet
           pkgs.unstable.google-chrome-beta
-          (tts.overrideAttrs (new: old: {
-            propagatedBuildInputs = old.propagatedBuildInputs ++ [
-              pkgs.espeak-ng
-            ];
-          }))
+          # (tts.overrideAttrs (new: old: {
+          #   propagatedBuildInputs = old.propagatedBuildInputs ++ [
+          #     pkgs.espeak-ng
+          #   ];
+          # }))
           (firefox.override {
             cfg = {
               enablePlasmaBrowserIntegration = true;
@@ -256,9 +256,9 @@ in
           docker-compose
           mongodb-compass
           # game-dev
-          # godotMono
+          godotMono
           # pkgs.unstable.godot
-          pkgs.unstable.unityhub
+          # pkgs.unstable.unityhub
           # UNI HHU ZEUG
           # konferenzen
           zoom-us

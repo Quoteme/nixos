@@ -24,6 +24,11 @@ in
     services.xserver.enable = true;
     services.xserver.displayManager.sddm.enable = true;
     services.xserver.displayManager.sddm.theme = "breeze";
+    services.xserver.displayManager.defaultSession = "plasmawayland";
+    services.xserver.displayManager.sddm.settings.General = {
+      DisplayServer = "wayland";
+      GreeterEnvironment = "QT_WAYLAND_SHELL_INTEGRATION=layer-shell";
+    };
     services.xserver.displayManager.setupCommands = ''
       loginctl unlock-session 2
       loginctl unlock-session 3
