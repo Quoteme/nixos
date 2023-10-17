@@ -36,7 +36,7 @@
     '';
     shellAliases = {
       # Monti
-      montissh = "ssh mmbs@monti.ai";
+      montissh = "TERM=xterm-256color ssh mmbs@monti.ai";
       montikuma = "xdg-open http://localhost:3001 && ssh -L 3001:localhost:3001 mmbs@monti.ai";
       montiprometheus = "xdg-open http://localhost:9090 && ssh -L 9090:localhost:9090 mmbs@monti.ai";
       montigrafana = "xdg-open http://localhost:3000 && ssh -L 3000:localhost:3000 mmbs@monti.ai";

@@ -43,6 +43,8 @@ in
     security.pam.services.sddm.enableKwallet = true;
     environment.systemPackages = with pkgs; [
       libsForQt5.ark
+      unrar
+      p7zip
       libsForQt5.kamoso
       libsForQt5.skanlite
       # libsForQt5.bismuth
@@ -69,6 +71,7 @@ in
       libsForQt5.kaccounts-providers
       libsForQt5.signond
       libsForQt5.qoauth
+      libsForQt5.qt5.qtwebengine
       libsForQt5.calendarsupport
       libsForQt5.qtspeech
       libsForQt5.sddm
@@ -80,6 +83,8 @@ in
       wayland-utils
 
       # Keyboard
+      libsForQt5.qt5.qtwayland
+      libsForQt5.qt5.qtvirtualkeyboard
       maliit-keyboard
       maliit-framework
       # spellcheck
@@ -92,7 +97,10 @@ in
       # SDDM
       # unstable.sddm-chili-theme
       # Settings
+      # CLI programs required by Plasma
       wayland-utils
+      linuxquota
+      pciutils
     ];
     # Settings
     services.fwupd.enable = true;
