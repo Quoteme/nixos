@@ -22,25 +22,24 @@ in
 
   config = mkIf cfg.enable {
     services.xserver.enable = true;
+    # SDDM
+    security.pam.services.sddm.enableKwallet = false;
     services.xserver.displayManager.sddm.enable = true;
     services.xserver.displayManager.sddm.theme = "breeze";
-    services.xserver.displayManager.defaultSession = "plasmawayland";
     services.xserver.displayManager.sddm.settings.General = {
       DisplayServer = "wayland";
       GreeterEnvironment = "QT_WAYLAND_SHELL_INTEGRATION=layer-shell";
     };
-    services.xserver.displayManager.setupCommands = ''
-      loginctl unlock-session 2
-      loginctl unlock-session 3
-      loginctl unlock-session 4
-      loginctl unlock-session 5
-      loginctl unlock-session 6
-      loginctl unlock-session 7
-    '';
+    # lightdm
+    # security.pam.services.lightdm.enableKwallet = false;
+    # services.xserver.displayManager.lightdm.enable = true;
+    # services.xserver.displayManager.defaultSession = "plasmawayland";
+    # services.xserver.displayManager.setupCommands = ''
+    #   supergfxctl -m Integrated
+    # '';
     services.xserver.desktopManager.plasma5.enable = true;
     programs.dconf.enable = true;
     programs.kdeconnect.enable = true;
-    security.pam.services.sddm.enableKwallet = true;
     environment.systemPackages = with pkgs; [
       libsForQt5.ark
       unrar
@@ -71,7 +70,6 @@ in
       libsForQt5.kaccounts-providers
       libsForQt5.signond
       libsForQt5.qoauth
-      libsForQt5.qt5.qtwebengine
       libsForQt5.calendarsupport
       libsForQt5.qtspeech
       libsForQt5.sddm
@@ -79,6 +77,7 @@ in
       libsForQt5.flatpak-kcm
       libsForQt5.kcmutils
       libsForQt5.plasma-vault
+      pkgs.unstable.libsForQt5.kscreenlocker
       # Settings
       wayland-utils
 
@@ -101,6 +100,7 @@ in
       wayland-utils
       linuxquota
       pciutils
+      ydotool
     ];
     # Settings
     services.fwupd.enable = true;

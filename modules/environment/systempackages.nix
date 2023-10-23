@@ -59,6 +59,7 @@ in
         adapta-gtk-theme
         numix-gtk-theme
         orchis-theme
+        fluent-gtk-theme
         # Cursor
         numix-cursor-theme
         # Small Utilities

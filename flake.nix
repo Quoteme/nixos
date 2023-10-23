@@ -50,7 +50,7 @@
       };
       overlay-sddm = final: prev: {
         # use the sddm from overlay-unstable
-        sddm = attrs.unstable.sddm;
+        sddm = attrs.nixpkgs-unstable.sddm;
       };
       pkgs = import nixpkgs {
         inherit system;
@@ -363,45 +363,46 @@
                 # NIX_LD = "${pkgs.glibc}/lib/ld-linux-x86-64.so.2";
                 GAMEMODERUNEXEC = "nvidia-offload";
               };
-              environment.sessionVariables = 
-              let
-                xdg_lib_home = "\${HOME}/.local/lib";
-              in {
-                XDG_CACHE_HOME = "\${HOME}/.cache";
-                XDG_CONFIG_HOME = "\${HOME}/.config";
-                XDG_LIB_HOME = xdg_lib_home;
-                XDG_BIN_HOME = "\${HOME}/.local/bin";
-                XDG_DATA_HOME = "\${HOME}/.local/share";
+              environment.sessionVariables =
+                let
+                  xdg_lib_home = "\${HOME}/.local/lib";
+                in
+                {
+                  XDG_CACHE_HOME = "\${HOME}/.cache";
+                  XDG_CONFIG_HOME = "\${HOME}/.config";
+                  XDG_LIB_HOME = xdg_lib_home;
+                  XDG_BIN_HOME = "\${HOME}/.local/bin";
+                  XDG_DATA_HOME = "\${HOME}/.local/share";
 
-                DOTNET_ROOT = "${pkgs.dotnet-sdk_7}";
+                  DOTNET_ROOT = "${pkgs.dotnet-sdk_7}";
 
-                # XMONAD_DATA_DIR = "/etc/nixos/xmonad";
-                # XMONAD_CONFIG_DIR = "/etc/nixos/xmonad";
-                # XMONAD_CACHE_DIR = "/etc/nixos/xmonad/.cache";
-                # NAUTILUS_4_EXTENSION_DIR = "${config.system.path}/lib/nautilus/extensions-4";
-                MOZ_USE_XINPUT2 = "1";
-                MOZ_ENABLE_WAYLAND = "1";
+                  # XMONAD_DATA_DIR = "/etc/nixos/xmonad";
+                  # XMONAD_CONFIG_DIR = "/etc/nixos/xmonad";
+                  # XMONAD_CACHE_DIR = "/etc/nixos/xmonad/.cache";
+                  # NAUTILUS_4_EXTENSION_DIR = "${config.system.path}/lib/nautilus/extensions-4";
+                  MOZ_USE_XINPUT2 = "1";
+                  MOZ_ENABLE_WAYLAND = "1";
 
-                VISUAL = "nvim";
-                EDITOR = "nvim";
+                  VISUAL = "nvim";
+                  EDITOR = "nvim";
 
-                FLUTTER_SDK = "${xdg_lib_home}/arch-id/flutter";
-                CARGO_HOME = "\${HOME}/.cargo";
-                RUSTUP_HOME = "\${HOME}/.rustup";
+                  FLUTTER_SDK = "${xdg_lib_home}/arch-id/flutter";
+                  CARGO_HOME = "\${HOME}/.cargo";
+                  RUSTUP_HOME = "\${HOME}/.rustup";
 
-                ANDROID_SDK_ROOT = "${xdg_lib_home}/arch-id/android-sdk/";
-                PATH = [
-                  "\$XDG_BIN_HOME"
-                  "\$FLUTTER_SDK/bin"
-                  "\$ANDROID_SDK_ROOT/platform-tools"
-                  "\$HOME/.config/emacs/bin"
-                  "\$HOME/.elan/bin"
-                  "\$HOME/.local/share/npm/bin"
-                  # add rustup and cargo bin paths
-                  "\$CARGO_HOME/bin"
-                  "\$RUSTUP_HOME/toolchains/stable-x86_64-unknown-linux-gnu/bin"
-                ];
-              };
+                  ANDROID_SDK_ROOT = "${xdg_lib_home}/arch-id/android-sdk/";
+                  PATH = [
+                    "\$XDG_BIN_HOME"
+                    "\$FLUTTER_SDK/bin"
+                    "\$ANDROID_SDK_ROOT/platform-tools"
+                    "\$HOME/.config/emacs/bin"
+                    "\$HOME/.elan/bin"
+                    "\$HOME/.local/share/npm/bin"
+                    # add rustup and cargo bin paths
+                    "\$CARGO_HOME/bin"
+                    "\$RUSTUP_HOME/toolchains/stable-x86_64-unknown-linux-gnu/bin"
+                  ];
+                };
 
               virtualisation = {
                 libvirtd = {
