@@ -85,6 +85,7 @@ in
         with pkgs; [
           # Internet
           pkgs.unstable.google-chrome-beta
+          pkgs.unstable.microsoft-edge-dev
           # (tts.overrideAttrs (new: old: {
           #   propagatedBuildInputs = old.propagatedBuildInputs ++ [
           #     pkgs.espeak-ng
@@ -97,19 +98,19 @@ in
               speechSynthesisSupport = true;
             };
           })
-          config.nur.repos.xddxdd.deepspeech-gpu
-          config.nur.repos.wolfangaukang.vdhcoapp
+          # config.nur.repos.xddxdd.deepspeech-gpu
+          # config.nur.repos.wolfangaukang.vdhcoapp
           bitwarden
           # microsoft-edge
           # discord
           # whatsapp-for-linux
-          ferdium
+          # ferdium
           transmission-gtk
           birdtray
           unstable.thunderbird
           # Privacy
           veracrypt
-          lesspass-cli
+          # lesspass-cli
           # Video-Editing
           obs-studio
           kdenlive
@@ -120,7 +121,7 @@ in
           # TODO: flathub rnote seems to be more up to date? Maybe change back to this someday...
           # pkgs.unstable.rnote
           inkscape
-          mypaint
+          # mypaint
           gimp
           aseprite
           # (pkgs.unstable.blender.override {
@@ -130,11 +131,11 @@ in
           # Media
           vlc
           mpv
-          yt-dlp
+          # yt-dlp
           # evince
-          deadbeef
-          sxiv
-          sony-headphones-client
+          # deadbeef
+          # sxiv
+          # sony-headphones-client
           # Gaming
           (retroarch.override {
             cores = with libretro; [
@@ -194,7 +195,7 @@ in
           php82Packages.composer
           php82Packages.psysh
           # python
-          jetbrains.pycharm-professional
+          # jetbrains.pycharm-professional
           # Latex
           pandoc
           quarto
@@ -261,16 +262,22 @@ in
           # pkgs.unstable.unityhub
           # UNI HHU ZEUG
           # konferenzen
-          zoom-us
+          # zoom-us
           # teams
           # slack
           # PROPORA
-          mob
+          # mob
           # Hardware
           miraclecast
           # VPN
           # config.nur.repos.LuisChDev.nordvpn
         ];
+    };
+    programs.steam = {
+      package = pkgs.unstable.steam;
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     };
   };
 }

@@ -56,20 +56,20 @@ in
         # GTK
         mojave-gtk-theme
         whitesur-gtk-theme
-        adapta-gtk-theme
-        numix-gtk-theme
-        orchis-theme
-        fluent-gtk-theme
+        # adapta-gtk-theme
+        # numix-gtk-theme
+        # orchis-theme
+        # fluent-gtk-theme
         # Cursor
-        numix-cursor-theme
+        # numix-cursor-theme
         # Small Utilities
         # nix
         nixpkgs-fmt
         nix-du
         nix-tree
         # nix-ld stuff
-        nix-autobahn
-        nix-alien
+        # nix-autobahn
+        # nix-alien
         nix-index
         fzf
         playerctl
@@ -125,13 +125,13 @@ in
         # Window Manager
         rofi
         rofimoji
-        networkmanager_dmenu
+        # networkmanager_dmenu
         networkmanagerapplet
         openvpn
         networkmanager-openvpn
         # File manager
         gparted
-        onboard
+        # onboard
         # TODO: Add swypeGuess
         # https://git.sr.ht/~earboxer/swipeGuess
         (pkgs.svkbd.override {
@@ -148,7 +148,7 @@ in
         # inputs.rescreenapp.defaultPackage.x86_64-linux
         # inputs.control_center.defaultPackage.x86_64-linux
         batsignal
-        polkit_gnome
+        # polkit_gnome
         lightlocker
         xidlehook
         # Storage
@@ -158,7 +158,7 @@ in
         virglrenderer
         # Wine
         wineWowPackages.full
-        pkgs.unstable.bottles
+        # pkgs.unstable.bottles
         # stuff that is needed pretty much everywhere
         nodePackages.http-server
         myPython

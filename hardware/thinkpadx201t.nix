@@ -1,4 +1,4 @@
-{config, lib, pkgs, ...}:
+{ config, lib, pkgs, ... }:
 
 {
   boot = {
@@ -16,12 +16,12 @@
   services = {
     xserver = {
       # Enable different input methods
-        libinput = {
-          enable = true;
-          touchpad.tapping = false;
-          touchpad.naturalScrolling = true;
-        };
-        wacom.enable = true;
+      libinput = {
+        enable = true;
+        touchpad.tapping = false;
+        touchpad.naturalScrolling = true;
+      };
+      wacom.enable = true;
     };
     fprintd = {
       enable = true;

@@ -63,6 +63,8 @@
     };
     cdpath = [
       "~/Dokumente/dev/"
+      "~/Dokumente/Uni/Dokumente/Uni/semester_10/"
+      "~/Dokumente/Uni/Dokumente/Uni/semester_11/"
     ];
   };
   programs.direnv = {
@@ -84,10 +86,8 @@
     '';
     enableCompletion = true;
     sessionVariables = {
-      VISUAL = "
-        nvim ";
-      EDITOR = "
-        nvim ";
+      VISUAL = "nvim";
+      EDITOR = "nvim";
     };
   };
   programs.fzf = {

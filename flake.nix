@@ -11,8 +11,8 @@
     # st-nix.url = "github:Quoteme/st-nix";
     # neovim-luca.url = "github:Quoteme/neovim-luca";
     emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
-    nix-autobahn.url = "github:Lassulus/nix-autobahn";
-    nix-alien.url = "github:thiagokokada/nix-alien";
+    # nix-autobahn.url = "github:Lassulus/nix-autobahn";
+    # nix-alien.url = "github:thiagokokada/nix-alien";
     screenrotate.url = "github:Quoteme/screenrotate";
     screenrotate.inputs.nixpkgs.follows = "nixpkgs";
     # rescreenapp.url = "github:Quoteme/rescreenapp";
@@ -61,8 +61,8 @@
           attrs.emacs-overlay.overlay
           attrs.nix-vscode-extensions.overlays.default
           attrs.godot.overlays.x86_64-linux.default
-          overlay-nix-autobahn
-          attrs.nix-alien.overlays.default
+          # overlay-nix-autobahn
+          # attrs.nix-alien.overlays.default
           overlay-st-nix
           overlay-screenrotate
           attrs.nur.overlay
@@ -102,6 +102,8 @@
                 (import ./modules/users/luca.nix { inherit config lib options pkgs; })
                 (import ./modules/environment/systempackages.nix { inherit config lib options pkgs; })
                 (import ./modules/environment/nordvpn.nix { inherit config lib options pkgs; })
+                (import ./modules/environment/user_shell.nix { inherit config lib options pkgs; })
+                # (pkgs.callPackage ./modules/environment/user_shell.nix { })
               ];
 
               nix = {
@@ -196,8 +198,7 @@
               modules.applications.virtualisation.docker.enable = true;
               modules.users.luca.enable = true;
               modules.environment.systemPackages.enable = true;
-
-              services.clipcat.enable = true;
+              modules.environment.user_shell.enable = true;
 
               # Enable OneDrive
               services.onedrive = {
@@ -251,67 +252,11 @@
                   enableSSHSupport = true;
                 };
 
-                # Password stuff
-                # seahorse.enable = true;
-                # ssh.enableAskPassword = true;
-
-                #kdeconnect.enable = true;
-
-                # Shell stuff
-                bash.shellInit = "set -o vi";
-                zsh = {
-                  enable = true;
-                  syntaxHighlighting = {
-                    enable = true;
-                    highlighters = [ "main" "brackets" ];
-                  };
-                  ohMyZsh = {
-                    enable = true;
-                    plugins = [
-                      "adb"
-                      "cabal"
-                      "docker-compose"
-                      "docker-machine"
-                      "docker"
-                      # "lein"
-                      "gradle"
-                      "poetry"
-                      "fd"
-                      "vi-mode"
-                      "dirhistory"
-                      # "gpg-agent"
-                      # "keychain"
-                      "zsh-interactive-cd"
-                      "flutter"
-                    ];
-                    theme = "robbyrussell";
-                  };
-                  autosuggestions.enable = true;
-                  promptInit = "autoload -U promptinit && promptinit && prompt fade && setopt prompt_sp";
-                  shellAliases = {
-                    l = "exa";
-                    ll = "exa -l --icons";
-                    lt = "exa -lT";
-                    vs = "vim -S";
-                    neovimupdate = "cd /etc/nixos && sudo nix flake lock --update-input neovim-luca && sudo nixos-rebuild switch && notify-send \"updated system\"";
-                    vi = "nvim";
-                    vim = "nvim";
-                    nvs = "nix shell ~/Dokumente/dev/neovim-luca/#neovimLuca";
-                    enw = "emacs -nw";
-                    haskellshell = "nix shell unstable\#haskell-language-server unstable\#ghc unstable\#haskellPackages.haskell-dap unstable\#haskellPackages.ghci-dap unstable\#haskellPackages.haskell-debug-adapter unstable\#cabal-install";
-                    cppshell = "nix shell unstable\#cmake unstable#gcc unstable#pkg-config";
-                    webcam = "mpv av://v4l2:/dev/video0 --profile=low-latency --untimed";
-                  };
-                };
-
                 # Android
                 adb.enable = true;
 
                 # Other
                 dconf.enable = true;
-
-                # xfce4-panel
-                xfconf.enable = true;
 
                 # security
                 firejail.enable = true;
@@ -325,8 +270,6 @@
                   color=true
                 '';
               };
-              programs.darling.enable = true;
-
 
               # Gaming
               programs.gamemode = {
@@ -337,12 +280,6 @@
                     end = "${pkgs.libnotify}/bin/notify-send -u LOW -i input-gaming 'Gamemode ended' 'gamemode ended'";
                   };
                 };
-              };
-              programs.steam = {
-                package = pkgs.unstable.steam;
-                enable = true;
-                remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-                dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
               };
               hardware.steam-hardware.enable = true;
 
@@ -363,6 +300,7 @@
                 # NIX_LD = "${pkgs.glibc}/lib/ld-linux-x86-64.so.2";
                 GAMEMODERUNEXEC = "nvidia-offload";
               };
+              environment.localBinInPath = true;
               environment.sessionVariables =
                 let
                   xdg_lib_home = "\${HOME}/.local/lib";

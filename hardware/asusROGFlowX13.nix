@@ -3,7 +3,7 @@
 {
   nixpkgs.config.allowUnfree = true;
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
+  boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
   services = {
     xserver = {
@@ -95,6 +95,14 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      amdvlk
+      rocm-opencl-icd
+      rocm-opencl-runtime
+    ];
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
+    ];
   };
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.modesetting.enable = true;
@@ -110,6 +118,10 @@
   };
 
   environment.systemPackages = with pkgs; [
+    vulkan-tools
+    vulkan-loader
+    vulkan-headers
+    radeontop
     powertop
     config.boot.kernelPackages.turbostat
     config.boot.kernelPackages.cpupower

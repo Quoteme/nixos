@@ -38,6 +38,11 @@ in
     #   supergfxctl -m Integrated
     # '';
     services.xserver.desktopManager.plasma5.enable = true;
+    xdg.portal.enable = true;
+    xdg.portal.xdgOpenUsePortal = true;
+    xdg.portal.extraPortals = [
+      pkgs.libsForQt5.xdg-desktop-portal-kde
+    ];
     programs.dconf.enable = true;
     programs.kdeconnect.enable = true;
     environment.systemPackages = with pkgs; [
@@ -50,7 +55,10 @@ in
       unstable.libsForQt5.okular
       libsForQt5.packagekit-qt
       libsForQt5.discover
-      libsForQt5.kio-gdrive
+      pkgs.unstable.libsForQt5.kio
+      pkgs.unstable.kio-fuse
+      pkgs.unstable.libsForQt5.kio-gdrive
+      pkgs.unstable.libsForQt5.kio-extras
       libsForQt5.plasma-integration
       libsForQt5.plasma-nm
       libsForQt5.kdepim-runtime
@@ -107,6 +115,7 @@ in
     # 
     environment.sessionVariables = {
       QT_QUICK_CONTROLS_STYLE = "org.kde.desktop";
+      GTK_USE_PORTAL = "1";
     };
   };
 }
