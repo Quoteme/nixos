@@ -84,7 +84,7 @@ in
         in
         with pkgs; [
           # Internet
-          pkgs.unstable.google-chrome-beta
+          google-chrome
           pkgs.unstable.microsoft-edge-dev
           # (tts.overrideAttrs (new: old: {
           #   propagatedBuildInputs = old.propagatedBuildInputs ++ [
@@ -100,7 +100,7 @@ in
           })
           # config.nur.repos.xddxdd.deepspeech-gpu
           # config.nur.repos.wolfangaukang.vdhcoapp
-          bitwarden
+          unstable.bitwarden
           # microsoft-edge
           # discord
           # whatsapp-for-linux
@@ -124,9 +124,9 @@ in
           # mypaint
           gimp
           aseprite
-          # (pkgs.unstable.blender.override {
-          #   cudaSupport = true;
-          # })
+          (pkgs.unstable.blender.override {
+            cudaSupport = true;
+          })
           krita
           # Media
           vlc
@@ -221,7 +221,7 @@ in
           lldb
           gdb
           gdbgui
-          conan
+          # conan
           # C#
           mono
           dotnet-sdk_7

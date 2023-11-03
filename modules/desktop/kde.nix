@@ -116,6 +116,7 @@ in
     environment.sessionVariables = {
       QT_QUICK_CONTROLS_STYLE = "org.kde.desktop";
       GTK_USE_PORTAL = "1";
+      ELECTRON_TRASH = "gio";
     };
   };
 }

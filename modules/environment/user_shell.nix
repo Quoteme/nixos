@@ -54,6 +54,9 @@ in
       # also add `~/.zfunc` to $fpath
       interactiveShellInit = ''
         fpath+=~/.zfunc
+        if [[ -f ~/.zfunc/_flutter ]]; then
+          source ~/.zfunc/_flutter
+        fi
       '';
       shellAliases = {
         l = "exa";

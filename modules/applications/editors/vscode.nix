@@ -23,6 +23,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       ltex-ls
+      pkgs.rPackages.languageserver
       (unstable.vscode-with-extensions.override {
         vscode = unstable.vscodium;
         vscodeExtensions = with pkgs.vscode-marketplace; [
@@ -188,19 +189,19 @@ in
           github.remotehub
           github.copilot-chat
           github.vscode-pull-request-github
-          # vscode-extensions.eamodio.gitlens
-          (vscode-marketplace.eamodio.gitlens.overrideAttrs (old: {
-            # src = vscode-marketplace.eamodio.gitlens.src + "/dist";
-            postInstall = ''
-              # replace all occurences of
-              # "dist/glicons.woff2"
-              # with
-              # "/nix/store/XXXXX-vscode-extensions/share/vscode/extensions" 
-              # in $out/share/vscode/extensions/eamodio.gitlens/package.json
-              #
-              # sed -i 's/"dist\//".\/dist\//g' $out/share/vscode/extensions/eamodio.gitlens/package.json
-            '';
-          }))
+          vscode-extensions.eamodio.gitlens
+          # (vscode-marketplace.eamodio.gitlens.overrideAttrs (old: {
+          #   # src = vscode-marketplace.eamodio.gitlens.src + "/dist";
+          #   postInstall = ''
+          #     # replace all occurences of
+          #     # "dist/glicons.woff2"
+          #     # with
+          #     # "/nix/store/XXXXX-vscode-extensions/share/vscode/extensions"
+          #     # in $out/share/vscode/extensions/eamodio.gitlens/package.json
+          #     #
+          #     # sed -i 's/"dist\//".\/dist\//g' $out/share/vscode/extensions/eamodio.gitlens/package.json
+          #   '';
+          # }))
           donjayamanne.githistory
           # github.heygithub
           # github.vscode-codeql
