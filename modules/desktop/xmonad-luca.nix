@@ -1,25 +1,34 @@
-{
-  config,
-  options,
-  lib,
-  pkgs,
-  ...
-}@inputs: let
+{ config
+, options
+, lib
+, pkgs
+, ...
+}@inputs:
+let
   inherit (builtins) pathExists readFile;
   inherit (lib.modules) mkIf;
 
   cfg = config.modules.desktop.xmonad-luca;
-in {
-  options.modules.desktop.xmonad-luca = let
-    inherit (lib.options) mkEnableOption mkOption;
-    inherit (lib.types) nullOr path;
-  in {
-    enable = mkEnableOption "Enable xmonad-luca: a xmonad configuration for Luca";
-  };
+in
+{
+  options.modules.desktop.xmonad-luca =
+    let
+      inherit (lib.options) mkEnableOption mkOption;
+      inherit (lib.types) nullOr path;
+    in
+    {
+      enable = mkEnableOption "Enable xmonad-luca: a xmonad configuration for Luca";
+    };
 
   config = mkIf cfg.enable {
+    services.gnome.at-spi2-core.enable = true;
     environment.systemPackages = with pkgs; [
       inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca-alldeps
+      onboard
+      jgmenu
+      nitrogen
+      xdotool
+      lightlocker
     ];
     services.xserver.enable = true;
     services.xserver.updateDbusEnvironment = true;
