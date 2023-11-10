@@ -23,7 +23,7 @@ in
   config = mkIf cfg.enable {
     services.xserver.enable = true;
     # SDDM
-    security.pam.services.sddm.enableKwallet = false;
+    security.pam.services.sddm.enableKwallet = true;
     services.xserver.displayManager.sddm.enable = true;
     services.xserver.displayManager.sddm.theme = "breeze";
     services.xserver.displayManager.sddm.settings.General = {

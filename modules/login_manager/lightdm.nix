@@ -25,7 +25,7 @@ in
     security.pam.services.lightdm.enableKwallet = true;
     security.pam.services.lightdm.enableGnomeKeyring = true;
     services.xserver.displayManager.lightdm.enable = true;
-    services.xserver.displayManager.greeters.pantheon.enable = true;
+    services.xserver.displayManager.lightdm.greeters.pantheon.enable = true;
     # Security
     security.pam.services.lightdm.fprintAuth = true;
     security.pam.services.login.fprintAuth = true;

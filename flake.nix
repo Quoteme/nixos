@@ -398,7 +398,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.luca = import ./home.nix;
+            home-manager.users.luca.imports = [ ./home.nix ];
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
           }
