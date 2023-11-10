@@ -22,14 +22,6 @@ in
 
   config = mkIf cfg.enable {
     services.xserver.enable = true;
-    # SDDM
-    security.pam.services.sddm.enableKwallet = false;
-    services.xserver.displayManager.sddm.enable = true;
-    services.xserver.displayManager.sddm.theme = "breeze";
-    services.xserver.displayManager.sddm.settings.General = {
-      DisplayServer = "wayland";
-      GreeterEnvironment = "QT_WAYLAND_SHELL_INTEGRATION=layer-shell";
-    };
     # lightdm
     # security.pam.services.lightdm.enableKwallet = false;
     # services.xserver.displayManager.lightdm.enable = true;
@@ -80,8 +72,6 @@ in
       libsForQt5.qoauth
       libsForQt5.calendarsupport
       libsForQt5.qtspeech
-      libsForQt5.sddm
-      libsForQt5.sddm-kcm
       libsForQt5.flatpak-kcm
       libsForQt5.kcmutils
       libsForQt5.plasma-vault
@@ -101,8 +91,6 @@ in
       aspellDicts.en-computers
       aspellDicts.en-science
       config.nur.repos.baduhai.koi
-      # SDDM
-      # unstable.sddm-chili-theme
       # Settings
       # CLI programs required by Plasma
       wayland-utils
@@ -113,9 +101,7 @@ in
     # Settings
     services.fwupd.enable = true;
     # Security
-    security.pam.services.sddm.fprintAuth = true;
     security.pam.services.kde.fprintAuth = true;
-    security.pam.services.login.fprintAuth = true;
     security.pam.services.sudo.fprintAuth = true;
     #
     environment.sessionVariables = {
