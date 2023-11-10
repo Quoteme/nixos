@@ -112,7 +112,12 @@ in
     ];
     # Settings
     services.fwupd.enable = true;
-    # 
+    # Security
+    security.pam.services.sddm.fprintAuth = true;
+    security.pam.services.kde.fprintAuth = true;
+    security.pam.services.login.fprintAuth = true;
+    security.pam.services.sudo.fprintAuth = true;
+    #
     environment.sessionVariables = {
       QT_QUICK_CONTROLS_STYLE = "org.kde.desktop";
       GTK_USE_PORTAL = "1";
