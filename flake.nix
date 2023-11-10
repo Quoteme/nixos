@@ -93,6 +93,7 @@
                 ./modules/desktop/gnome.nix
                 (import ./modules/desktop/kde.nix { inherit config lib options pkgs; })
                 (import ./modules/login_manager/sddm.nix { inherit config lib options pkgs; })
+                (import ./modules/login_manager/lightdm.nix { inherit config lib options pkgs; })
                 (import ./modules/desktop/sway.nix { inherit config lib options pkgs; })
                 (import ./modules/applications/editors/vscode.nix { inherit config lib options pkgs; })
                 ./modules/applications/virtualisation/docker.nix
@@ -194,7 +195,8 @@
               modules.desktop.xmonad-luca.enable = true;
               modules.desktop.gnome.enable = false;
               modules.desktop.kde.enable = true;
-              modules.desktopManager.sddm.enable = true;
+              modules.desktopManager.sddm.enable = false;
+              modules.desktopManager.lightdm.enable = true;
               modules.desktop.sway.enable = false;
               modules.applications.editors.vscode.enable = true;
               modules.applications.virtualisation.docker.enable = true;
