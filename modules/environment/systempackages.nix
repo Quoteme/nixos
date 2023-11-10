@@ -137,10 +137,7 @@ in
         (pkgs.svkbd.override {
           layout = "de";
         })
-        jgmenu
         pamixer
-        nitrogen
-        xdotool
         neofetch
         onefetch
         libnotify
@@ -149,7 +146,6 @@ in
         # inputs.control_center.defaultPackage.x86_64-linux
         batsignal
         # polkit_gnome
-        lightlocker
         xidlehook
         # Storage
         rclone
