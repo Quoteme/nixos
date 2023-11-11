@@ -16,10 +16,21 @@
     screenrotate.url = "github:Quoteme/screenrotate";
     screenrotate.inputs.nixpkgs.follows = "nixpkgs";
     # rescreenapp.url = "github:Quoteme/rescreenapp";
-    control_center.url = "github:Quoteme/control_center";
-    xmonad-luca.url = "github:Quoteme/xmonad-luca";
-    xmonad-luca.inputs.control_center.follows = "control_center";
-    godot.url = "github:Quoteme/nixos-godot-bin";
+    control_center = {
+      url = "github:Quoteme/control_center";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    xmonad-luca = {
+      url = "github:Quoteme/xmonad-luca";
+      inputs.control_center.follows = "control_center";
+      inputs.screenrotate.follows = "screenrotate";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nix-vscode-extensions.follows = "nix-vscode-extensions";
+    };
+    godot = {
+      url = "github:Quoteme/nixos-godot-bin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hmenke-nixos-modules.url = "github:hmenke/nixos-modules";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
