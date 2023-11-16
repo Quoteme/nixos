@@ -206,8 +206,8 @@
               modules.desktop.xmonad-luca.enable = true;
               modules.desktop.gnome.enable = false;
               modules.desktop.kde.enable = true;
-              modules.desktopManager.sddm.enable = false;
-              modules.desktopManager.lightdm.enable = true;
+              modules.desktopManager.sddm.enable = true;
+              modules.desktopManager.lightdm.enable = false;
               modules.desktop.sway.enable = false;
               modules.applications.editors.vscode.enable = true;
               modules.applications.virtualisation.docker.enable = true;
@@ -216,10 +216,10 @@
               modules.environment.user_shell.enable = true;
 
               # Enable OneDrive
-              services.onedrive = {
-                enable = true;
-                package = pkgs.unstable.onedrive;
-              };
+              # services.onedrive = {
+              #   enable = true;
+              #   package = pkgs.unstable.onedrive;
+              # };
               # Enable flatpak
               services.flatpak.enable = true;
               services.packagekit.enable = true;

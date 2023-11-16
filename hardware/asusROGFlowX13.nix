@@ -27,7 +27,7 @@
       Restart = "on-failure";
     };
   };
-  # powerManagement.powertop.enable = true;
+  powerManagement.powertop.enable = true;
   systemd.sleep.extraConfig = "HibernateDelaySec=5min";
   # `nixos-generate-config --show-hardware-config` doesn't detect mount options automatically,
   # so to enable compression, you must specify it and other mount options
