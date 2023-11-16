@@ -46,6 +46,7 @@ in
         '';
       }
     ];
+    programs.xfconf.enable = true;
 
     # services.touchegg.enable = true;
     # services.blueman.enable = true;

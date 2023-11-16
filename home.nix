@@ -153,7 +153,7 @@
     # build xmonad using nix
     nix build $XMONAD_DEV_DIR -o $HOME/.config/xmonad/result
     # copy the resuslt to where xmonad expects it
-    cp $elseHOME/.config/xmonad/result/bin/xmonad-luca $HOME/.cache/xmonad/xmonad-x86_64-linux
+    cp $HOME/.config/xmonad/result/bin/xmonad-luca $HOME/.cache/xmonad/xmonad-x86_64-linux
     # make the file overwritable, so we can hot-reload xmonad by doing:
     # ```
     # xmonad --recompile
