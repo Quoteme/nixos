@@ -285,7 +285,7 @@
         </gesture>
 
         <!-- Window Swapping -->
-        <gesture type="SWIPE" fingers="3" direction="UP">
+        <gesture type="SWIPE" fingers="4" direction="UP">
           <action type="RUN_COMMAND">
             <repeat>false</repeat>
             <command>xmonadctl swap-up</command>
@@ -293,7 +293,7 @@
           </action>
         </gesture>
 
-        <gesture type="SWIPE" fingers="3" direction="DOWN">
+        <gesture type="SWIPE" fingers="4" direction="DOWN">
           <action type="RUN_COMMAND">
             <repeat>false</repeat>
             <command>xmonadctl swap-down</command>
@@ -301,7 +301,7 @@
           </action>
         </gesture>
 
-        <gesture type="SWIPE" fingers="3" direction="LEFT">
+        <gesture type="SWIPE" fingers="4" direction="LEFT">
           <action type="RUN_COMMAND">
             <repeat>false</repeat>
             <command>xmonadctl swap-left</command>
@@ -309,7 +309,7 @@
           </action>
         </gesture>
 
-        <gesture type="SWIPE" fingers="3" direction="RIGHT">
+        <gesture type="SWIPE" fingers="4" direction="RIGHT">
           <action type="RUN_COMMAND">
             <repeat>false</repeat>
             <command>xmonadctl swap-right</command>
@@ -325,7 +325,7 @@
           </action>
         </gesture>
 
-        <gesture type="SWIPE" fingers="4" direction="LEFT">
+        <gesture type="SWIPE" fingers="3" direction="LEFT">
           <action type="CHANGE_DESKTOP">
             <direction>auto</direction>
             <animate>true</animate>
@@ -333,7 +333,7 @@
           </action>
         </gesture>
 
-        <gesture type="SWIPE" fingers="4" direction="RIGHT">
+        <gesture type="SWIPE" fingers="3" direction="RIGHT">
           <action type="CHANGE_DESKTOP">
             <direction>auto</direction>
             <animate>true</animate>
@@ -341,7 +341,7 @@
           </action>
         </gesture>
 
-      <gesture type="SWIPE" fingers="4" direction="DOWN">
+      <gesture type="SWIPE" fingers="3" direction="DOWN">
           <action type="RUN_COMMAND">
             <repeat>false</repeat>
             <command>xmonadctl toggle-struts</command>

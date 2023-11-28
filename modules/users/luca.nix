@@ -91,6 +91,7 @@ in
           #     pkgs.espeak-ng
           #   ];
           # }))
+          openai-whisper
           (firefox.override {
             cfg = {
               enablePlasmaBrowserIntegration = true;
@@ -137,12 +138,12 @@ in
           # sxiv
           # sony-headphones-client
           # Gaming
-          (retroarch.override {
-            cores = with libretro; [
-              mupen64plus
-              libretro.pcsx2
-            ];
-          })
+          # (retroarch.override {
+          #   cores = with libretro; [
+          #     mupen64plus
+          #     libretro.pcsx2
+          #   ];
+          # })
           # Productivity
           libreoffice
           # Programming

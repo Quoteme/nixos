@@ -21,6 +21,10 @@ in
     };
 
   config = mkIf cfg.enable {
+    services.logind.extraConfig = ''
+      # don’t shutdown when power button is short-pressed
+      HandlePowerKey=ignore
+    '';
     services.gnome.at-spi2-core.enable = true;
     environment.systemPackages = with pkgs; [
       inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca-alldeps
@@ -29,6 +33,7 @@ in
       nitrogen
       xdotool
       lightlocker
+      qt5ct
     ];
     services.xserver.enable = true;
     services.xserver.updateDbusEnvironment = true;
@@ -48,11 +53,16 @@ in
     ];
     programs.xfconf.enable = true;
 
+    services.xserver.displayManager.defaultSession = "none+xmonad-home";
     # services.touchegg.enable = true;
     # services.blueman.enable = true;
     services.udisks2.enable = true;
     services.devmon.enable = true;
     services.gvfs.enable = true;
     services.tumbler.enable = true;
+    services.touchegg.enable = true;
+    # enable wallet
+    services.gnome.gnome-keyring.enable = true;
+    services.blueman.enable = true;
   };
 }

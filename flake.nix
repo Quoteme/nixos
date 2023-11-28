@@ -206,8 +206,8 @@
               modules.desktop.xmonad-luca.enable = true;
               modules.desktop.gnome.enable = false;
               modules.desktop.kde.enable = true;
-              modules.desktopManager.sddm.enable = true;
-              modules.desktopManager.lightdm.enable = false;
+              modules.desktopManager.sddm.enable = false;
+              modules.desktopManager.lightdm.enable = true;
               modules.desktop.sway.enable = false;
               modules.applications.editors.vscode.enable = true;
               modules.applications.virtualisation.docker.enable = true;

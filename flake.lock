@@ -192,6 +192,21 @@
         "type": "github"
       }
     },
+    "flake-utils_9": {
+      "locked": {
+        "lastModified": 1667395993,
+        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "git-ignore-nix": {
       "inputs": {
         "nixpkgs": "nixpkgs_3"
@@ -474,6 +489,22 @@
         "type": "indirect"
       }
     },
+    "nixpkgs_7": {
+      "locked": {
+        "lastModified": 1670681895,
+        "narHash": "sha256-kZH9DSU36W4fn1z81a/24JCGkU517TcY50VE0RFJ9k4=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "f82f0ec1b70b2879c3f3d9a1015a05c73a90a17c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nur": {
       "locked": {
         "lastModified": 1699692816,
@@ -712,22 +743,38 @@
           "screenrotate"
         ],
         "xmonad-contrib": "xmonad-contrib",
-        "xmonad-workspace-preview": [
-          "xmonad-luca",
-          "nixpkgs"
-        ]
+        "xmonad-workspace-preview": "xmonad-workspace-preview"
       },
       "locked": {
-        "lastModified": 1700164324,
-        "narHash": "sha256-nRtI9eEFMErfyxpVL/WUk5d2YdiX7206aOQ7/kk8MSI=",
+        "lastModified": 1700756073,
+        "narHash": "sha256-YbufzDYu7O+clsK3pFo15S0BMaxLmxD4zAv0KjBopuY=",
         "owner": "Quoteme",
         "repo": "xmonad-luca",
-        "rev": "d95253876626b9ee42f40097e14eb91ae97058c7",
+        "rev": "f7717ad13e2b929efa935580f7b7a7fd5b7a1601",
         "type": "github"
       },
       "original": {
         "owner": "Quoteme",
         "repo": "xmonad-luca",
+        "type": "github"
+      }
+    },
+    "xmonad-workspace-preview": {
+      "inputs": {
+        "flake-utils": "flake-utils_9",
+        "nixpkgs": "nixpkgs_7"
+      },
+      "locked": {
+        "lastModified": 1670772752,
+        "narHash": "sha256-Q6vKbHgSCvFnKX27FX5s8EwbUXZpuKE83lAOClFFwYk=",
+        "owner": "Quoteme",
+        "repo": "xmonad-workspace-preview",
+        "rev": "808f36d625cd673ee63f32616c90fb72a4086600",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Quoteme",
+        "repo": "xmonad-workspace-preview",
         "type": "github"
       }
     }
