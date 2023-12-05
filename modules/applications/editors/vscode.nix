@@ -221,7 +221,8 @@ in
           visualstudioexptteam.vscodeintellicode
           visualstudioexptteam.vscodeintellicode-completions
           # visualstudioexptteam.vscodeintellicode-insiders
-          jgclark.vscode-todo-highlight
+          # jgclark.vscode-todo-highlight
+          vscode-extensions.gruntfuggly.todo-tree
           esbenp.prettier-vscode
           kisstkondoros.vscode-gutter-preview
           # code visualization

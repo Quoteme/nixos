@@ -746,11 +746,11 @@
         "xmonad-workspace-preview": "xmonad-workspace-preview"
       },
       "locked": {
-        "lastModified": 1700756073,
-        "narHash": "sha256-YbufzDYu7O+clsK3pFo15S0BMaxLmxD4zAv0KjBopuY=",
+        "lastModified": 1701691506,
+        "narHash": "sha256-PSS+nJAavoRJnltYghQOr4iOpbkXm1Yg1yf7z01ypjQ=",
         "owner": "Quoteme",
         "repo": "xmonad-luca",
-        "rev": "f7717ad13e2b929efa935580f7b7a7fd5b7a1601",
+        "rev": "e7eb8b547f7113df5c4317878625e1e4eb5b3f0a",
         "type": "github"
       },
       "original": {
