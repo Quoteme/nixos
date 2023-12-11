@@ -115,7 +115,8 @@
                 (import ./modules/users/luca.nix { inherit config lib options pkgs; })
                 (import ./modules/environment/systempackages.nix { inherit config lib options pkgs; })
                 (import ./modules/environment/nordvpn.nix { inherit config lib options pkgs; })
-                (import ./modules/environment/user_shell.nix { inherit config lib options pkgs; })
+                (import ./modules/environment/user_shell_zsh.nix { inherit config lib options pkgs; })
+                (import ./modules/environment/user_shell_nushell.nix { inherit config lib options pkgs; })
                 # (pkgs.callPackage ./modules/environment/user_shell.nix { })
               ];
 
@@ -213,7 +214,8 @@
               modules.applications.virtualisation.docker.enable = true;
               modules.users.luca.enable = true;
               modules.environment.systemPackages.enable = true;
-              modules.environment.user_shell.enable = true;
+              modules.environment.user_shell_zsh.enable = true;
+              modules.environment.user_shell_nushell.enable = true;
 
               # Enable OneDrive
               # services.onedrive = {
@@ -228,7 +230,7 @@
               # Define a user account. Don't forget to set a password with ‘passwd’.
               # TODO: set passwort using hashed password
               users.users.root.initialHashedPassword = "";
-              users.defaultUserShell = pkgs.zsh;
+              users.defaultUserShell = pkgs.nushellFull;
 
               # List fonts installed in system profile
               fonts.fonts = with pkgs; [
@@ -386,10 +388,6 @@
                   }
                 ];
                 pam = {
-                  # allow user Luca to authenticate using a fingerprint
-                  services = {
-                    lightdm.enableGnomeKeyring = true;
-                  };
                   enableSSHAgentAuth = true;
                 };
               };

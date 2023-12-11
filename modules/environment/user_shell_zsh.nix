@@ -8,10 +8,10 @@ let
   inherit (builtins) pathExists readFile;
   inherit (lib.modules) mkIf;
 
-  cfg = config.modules.environment.user_shell;
+  cfg = config.modules.environment.user_shell_zsh;
 in
 {
-  options.modules.environment.user_shell =
+  options.modules.environment.user_shell_zsh =
     let
       inherit (lib.options) mkEnableOption mkOption;
       inherit (lib.types) nullOr path;
