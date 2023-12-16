@@ -107,6 +107,7 @@
                 (import ./modules/login_manager/lightdm.nix { inherit config lib options pkgs; })
                 (import ./modules/desktop/sway.nix { inherit config lib options pkgs; })
                 (import ./modules/applications/editors/vscode.nix { inherit config lib options pkgs; })
+                (import ./modules/applications/editors/vscode-fhs.nix { inherit config lib options pkgs; })
                 ./modules/applications/virtualisation/docker.nix
                 ./modules/hardware/keyboard_de.nix
                 ./modules/hardware/printing.nix
@@ -211,6 +212,7 @@
               modules.desktopManager.lightdm.enable = true;
               modules.desktop.sway.enable = false;
               modules.applications.editors.vscode.enable = true;
+              modules.applications.editors.vscode-fhs.enable = true;
               modules.applications.virtualisation.docker.enable = true;
               modules.users.luca.enable = true;
               modules.environment.systemPackages.enable = true;
