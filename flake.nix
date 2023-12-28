@@ -2,11 +2,11 @@
   description = "Luca Happels nixos ";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.05";
+    nixpkgs.url = "nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-23.05";
     nur.url = "github:nix-community/NUR";
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # st-nix.url = "github:Quoteme/st-nix";
     # neovim-luca.url = "github:Quoteme/neovim-luca";
@@ -232,7 +232,7 @@
               # Define a user account. Don't forget to set a password with ‘passwd’.
               # TODO: set passwort using hashed password
               users.users.root.initialHashedPassword = "";
-              users.defaultUserShell = pkgs.nushellFull;
+              users.defaultUserShell = pkgs.zsh;
 
               # List fonts installed in system profile
               fonts.fonts = with pkgs; [

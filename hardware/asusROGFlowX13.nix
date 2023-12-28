@@ -187,6 +187,11 @@
     evdev:input:b0003v0B05p19B6*
       KEYBOARD_KEY_ff31007c=f20 # x11 mic-mute
   '';
+  # We use the following UDEV rule, to allow normal users to change the keyboard backlight by writing its value (0,1,2,3) into:
+  # /devices/pci0000:00/0000:00:08.1/0000:08:00.3/usb1/1-3/1-3:1.0/0003:0B05:19B6.0001/leds/asus::kbd_backlight/brightness
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="leds", KERNEL=="asus::kbd_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys%p/brightness"
+  '';
 
   # tablet-mode patch
   # 

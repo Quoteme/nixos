@@ -38,6 +38,7 @@ in
           adamvoss.vscode-languagetool-en
           valentjn.vscode-ltex
           # haskell
+          mustafahafidi.liquidhaskell-diagnostics
           haskell.haskell
           justusadam.language-haskell
           visortelle.haskell-spotlight

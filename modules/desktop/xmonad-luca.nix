@@ -25,6 +25,7 @@ in
       # don’t shutdown when power button is short-pressed
       HandlePowerKey=ignore
     '';
+    # make xmonad the default window manager
     services.gnome.at-spi2-core.enable = true;
     environment.systemPackages = with pkgs; [
       inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca-alldeps
@@ -64,5 +65,18 @@ in
     # enable wallet
     services.gnome.gnome-keyring.enable = true;
     services.blueman.enable = true;
+    xdg.portal.enable = true;
+    # FIXME: the nixos docs are pretty unhelpful here... Maybe in the future I will understand how to set this correctly?
+    xdg.portal.config.common.default = "*";
+    # xdg.portal.config = {
+    #   "none+xmonad-home" = {
+    #     default = [
+    #       "gtk"
+    #     ];
+    #     "org.freedesktop.impl.portal.Secret" = [
+    #       "gnome-keyring"
+    #     ];
+    #   };
+    # };
   };
 }

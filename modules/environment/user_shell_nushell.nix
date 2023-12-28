@@ -21,6 +21,9 @@ in
     };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.nushellFull ];
+    environment.systemPackages = [
+      pkgs.nushellFull
+      pkgs.carapace
+    ];
   };
 }

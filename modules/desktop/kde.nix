@@ -54,24 +54,12 @@ in
       libsForQt5.plasma-integration
       libsForQt5.plasma-nm
       libsForQt5.kdepim-runtime
-      libsForQt5.akonadi
-      libsForQt5.akonadi-mime
-      libsForQt5.akonadi-notes
-      libsForQt5.akonadiconsole
-      libsForQt5.akonadi-search
-      libsForQt5.akonadi-contacts
-      libsForQt5.akonadi-calendar
-      libsForQt5.akonadi-calendar-tools
-      libsForQt5.akonadi-import-wizard
-      libsForQt5.kalendar
       libsForQt5.accounts-qt
       libsForQt5.mauikit-accounts
       libsForQt5.kaccounts-integration
       libsForQt5.kaccounts-providers
       libsForQt5.signond
       libsForQt5.qoauth
-      libsForQt5.calendarsupport
-      libsForQt5.qtspeech
       libsForQt5.flatpak-kcm
       libsForQt5.kcmutils
       libsForQt5.plasma-vault

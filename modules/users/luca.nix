@@ -40,7 +40,7 @@ in
         "vboxusers" # maybe use `users.extraGroups.vboxusers.members = [ "luca" ];` 
         "nordvpn"
       ];
-      shell = pkgs.zsh;
+      shell = pkgs.nushellFull;
       # Web-eID / European Smart-Card support https://nixos.wiki/wiki/Web_eID
       # pkgs.config.firefox.euwebid = true;
       # services.pcscd.enable = true;
@@ -84,15 +84,15 @@ in
         in
         with pkgs; [
           # Internet
-          google-chrome
+          unstable.google-chrome
           pkgs.unstable.microsoft-edge-dev
           # (tts.overrideAttrs (new: old: {
           #   propagatedBuildInputs = old.propagatedBuildInputs ++ [
           #     pkgs.espeak-ng
           #   ];
           # }))
-          openai-whisper
           (firefox.override {
+            extraNativeMessagingHosts = with pkgs.nur.repos.wolfangaukang; [ vdhcoapp ];
             cfg = {
               enablePlasmaBrowserIntegration = true;
               enableFXCastBridge = true;
@@ -100,8 +100,7 @@ in
             };
           })
           # config.nur.repos.xddxdd.deepspeech-gpu
-          # config.nur.repos.wolfangaukang.vdhcoapp
-          unstable.bitwarden
+          # unstable.bitwarden
           # microsoft-edge
           # discord
           # whatsapp-for-linux
@@ -147,7 +146,7 @@ in
           # Productivity
           libreoffice
           # Programming
-          dbeaver
+          # dbeaver
           # inputs.neovim-luca.defaultPackage.x86_64-linux
           unstable.neovim
           rnix-lsp
@@ -159,42 +158,42 @@ in
           devdocs-desktop
           # devdocs-desktop
           # math
-          sage
-          julia-bin
+          # sage
+          # julia-bin
           unstable.rstudio
           # JavaScript/TypeScript
           nodejs_20
           jetbrains.webstorm
           jetbrains.phpstorm
-          (pkgs.php82.buildEnv {
-            extensions = ({ enabled
-                          , all
-                          }: enabled ++ (with all; [
-              apcu
-              curl
-              gd
-              gmp
-              intl
-              ldap
-              mbstring
-              mysqli
-              pdo_mysql
-              pdo_sqlite
-              readline
-              redis
-              soap
-              sqlite3
-              xdebug
-              xml
-              zip
-            ]));
-            extraConfig = ''
-              xdebug.mode = debug
-              xdebug.start_with_request = yes
-            '';
-          })
-          php82Packages.composer
-          php82Packages.psysh
+          # (pkgs.php82.buildEnv {
+          #   extensions = ({ enabled
+          #                 , all
+          #                 }: enabled ++ (with all; [
+          #     apcu
+          #     curl
+          #     gd
+          #     gmp
+          #     intl
+          #     ldap
+          #     mbstring
+          #     mysqli
+          #     pdo_mysql
+          #     pdo_sqlite
+          #     readline
+          #     redis
+          #     soap
+          #     sqlite3
+          #     xdebug
+          #     xml
+          #     zip
+          #   ]));
+          #   extraConfig = ''
+          #     xdebug.mode = debug
+          #     xdebug.start_with_request = yes
+          #   '';
+          # })
+          # php82Packages.composer
+          # php82Packages.psysh
           # python
           # jetbrains.pycharm-professional
           # Latex
@@ -221,7 +220,6 @@ in
           check
           lldb
           gdb
-          gdbgui
           # conan
           # C#
           mono
@@ -231,7 +229,33 @@ in
           dotnetCorePackages.runtime_7_0
           unstable.jetbrains.rider
           # R
-          R
+          (
+            rWrapper.override {
+              packages = with rPackages; [
+                ggplot2
+                dplyr
+                xts
+                languageserver
+                readr
+                kableExtra
+                dplyr
+                ggplot2
+                magrittr
+                car
+                statsr
+                broom
+                stargazer
+                tidyr
+                gridExtra
+                ggpubr
+                cowplot
+                knitr
+                ellipse
+                lubridate
+                webshot2
+              ];
+            }
+          )
           # Spelling
           hunspell
           hunspellDicts.de_DE

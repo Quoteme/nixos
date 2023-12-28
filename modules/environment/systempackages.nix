@@ -105,8 +105,13 @@ in
         git
         gh
         unstable.gitkraken
-        exa
+        eza
+        # [10 Rust CLI tools for 2022](https://www.youtube.com/watch?v=haitmoSyTls)
         ripgrep
+        delta
+        kondo
+        sd
+        just
         pdfgrep
         fd
         bat
@@ -120,7 +125,7 @@ in
         # TODO: add manual how to add nix-flakes as system-programs
         # TODO: add this manual to reddit post
         # st-nix
-        alacritty
+        # alacritty
         kitty
         # Window Manager
         rofi
