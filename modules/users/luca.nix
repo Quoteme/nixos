@@ -84,8 +84,6 @@ in
         in
         with pkgs; [
           # Internet
-          unstable.google-chrome
-          pkgs.unstable.microsoft-edge-dev
           # (tts.overrideAttrs (new: old: {
           #   propagatedBuildInputs = old.propagatedBuildInputs ++ [
           #     pkgs.espeak-ng
@@ -229,6 +227,7 @@ in
           dotnetCorePackages.runtime_7_0
           unstable.jetbrains.rider
           # R
+          radianWrapper
           (
             rWrapper.override {
               packages = with rPackages; [

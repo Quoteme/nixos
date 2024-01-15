@@ -307,7 +307,6 @@
                 TERMINAL = "kitty";
                 VISUAL = "nvim";
                 EDITOR = "nvim";
-                CHROME_EXECUTABLE = "${pkgs.unstable.google-chrome}/bin/google-chrome-stable";
                 ACCESSIBILITY_ENABLED = "1";
                 PAGER = "nvimpager";
                 # FZF - Ripgrep integration
