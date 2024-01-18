@@ -260,6 +260,7 @@ in
           hunspellDicts.de_DE
           hunspellDicts.en_US
           # Android
+          frida-tools
           libmtp
           usbutils
           scrcpy

@@ -44,6 +44,7 @@ in
           matplotlib
           plotly
           pipx
+          frida-python
         ]);
       in
       with pkgs; [
