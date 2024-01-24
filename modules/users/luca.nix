@@ -261,6 +261,7 @@ in
           hunspellDicts.en_US
           # Android
           frida-tools
+          jadx
           libmtp
           usbutils
           scrcpy

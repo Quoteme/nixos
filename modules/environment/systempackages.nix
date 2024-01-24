@@ -122,6 +122,7 @@ in
         unzip
         toilet
         htop-vim
+        btop
         nvimpager
         # TODO: add manual how to add nix-flakes as system-programs
         # TODO: add this manual to reddit post
