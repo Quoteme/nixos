@@ -262,6 +262,8 @@ in
           # Android
           frida-tools
           jadx
+          quark-engine
+          apktool
           libmtp
           usbutils
           scrcpy
