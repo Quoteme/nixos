@@ -24,6 +24,8 @@ in
     environment.systemPackages = [
       pkgs.nushellFull
       pkgs.carapace
+      pkgs.atuin
+      pkgs.starship
     ];
   };
 }

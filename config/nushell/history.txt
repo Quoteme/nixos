@@ -1,0 +1,1597 @@
+history --clear
+nordvpn c
+nordvpn d
+cd Dokumente/dev/xposed/instagram/
+code .
+nvidia-offload kdenlive
+ffmpeg -i screen-20240118-021746.mp4 -t 115 -c copy screen-20240118-021747.mp4<\n>
+ffmpeg -i screen-20240118-021746.mp4 -t 23 -c copy screen-20240118-021747.mp4<\n>
+flutter pub add flutter_inappwebview
+flutter clean
+flutter pub get
+flutter clean
+flutter pub get
+ffmpeg -i screen-20240118-052429.mp4 -t 16-c copy screen-20240118-052428.mp4<\n>
+ffmpeg -i screen-20240118-052429.mp4 -t 16 -c copy screen-20240118-052428.mp4<\n>
+kdenlive 
+cd Dokumente/gedeon/
+l
+mkdir latex
+cd latex
+code .
+latexmk bachelorarbeit.tex
+picom
+flatpak install flathub org.signal.Signal
+mons -o
+cd Dokumente/dev/MontiBackend/
+cd ..
+cd monti-app/montibackend/
+l
+code .
+cd Dokumente/dev/xposed/instagram/
+code .
+/etc/profiles/per-user/luca/bin/git -C "/home/luca/Dokumente/dev/xposed/instagram" -c "core.editor=code --wait --reuse-window" tag v0.1 cd1bb782d85ab1697acf469859a45b94a376d3e2
+cd Dokumente/dev/xposed/instagram/
+cd assets/
+l
+gimp Instagram_icon.png 
+flutter pub run flutter_launcher_icons
+cd Dokumente/dev/xposed/instagram/
+git status
+git stashh
+git stash
+dart run flutter_native_splash:create<\n>
+cd Dokumente/dev/xposed/BankingFix/
+ll
+ll app/
+cd ..
+cd BankingFixxer/
+ll
+ll app/
+ll app/src/
+ll app/src/main
+ll app/src/main/res/
+ll app/src/main/res/drawable-anydpi/
+cd app/src/main/res/drawable-anydpi/
+flutter pub run flutter_launcher_icons
+flutter build android
+flutter build apk --release
+gimp icon_512.png 
+cd Dokumente/Uni/Dokumente/Uni/semester_11/Modelltheorie/
+l
+code .
+adb shell
+adb shell "/data/local/tmp/frida-server &"
+adb shell
+adb devices
+adb shell
+adb root
+adb shell
+cd Dokumente/dev/xposed
+l
+mkdir frida
+cd frida
+python -m venv .venv
+source .venv/bin/activate
+cd Dokumente/dev/xposed
+l
+cd BankingFixxer/
+l
+cd ..
+cd BankingFix/
+l
+cd tmp
+nix shell nixpkgs
+cd Dokumente/dev/xposed/BankingFixExport/
+l
+code .
+adb shell "/data/local/tmp/frida-server &"
+cd /etc/nixos
+vim flake.nix 
+vim modules/users/luca.nix 
+sudo nixos-rebuild switch
+frida-tools -U -f Instagram -j '*!*onCreateOptionsMenu*/isu'
+frida-trace -U -f Instagram -j '*!*onCreateOptionsMenu*/isu'
+frida-ps -U
+frida-ps -U | nvimpager
+frida-ps -U | grep "instagram"
+frida-trace -U -f com.instagram.android -j '*!*onCreateOptionsMenu*/isu'
+frida-ps -Ua
+frida-trace --help
+frida-trace --help | nvimpager
+frida-trace -U -j '*!*onCreateOptionsMenu*/isu' com.instagram.android
+frida-trace -U -j '*!*onCreateOptionsMenu*/isu' Instagram
+frida-trace -U -j '*!*launchCustomChatSearch*/isu' Instagram
+frida-trace -U -j '*!*A01*/isu' Instagram
+frida-trace --help | nvimpager
+gh copilot suggest "use frida-trace to log all calls to the method called A01 in the class DirectWidgetProvider"
+frida-trace -U -j '*!DirectWidgetProvider!A01*/isu' Instagram<\n>
+frida-trace -U -j '*!DirectWidgetProvider!A01*/i' Instagram<\n>
+frida-trace -U -j '*!DirectWidgetProvider!*/i' Instagram<\n>
+frida-trace -U -j '*DirectWidgetProvider!*/isu' Instagram<\n>
+vim script.js
+frida-trace -U Instagram this_script.js
+vim script.js
+vim script.py
+l
+cd Dokumente/dev/xposed/BankingFixExport/
+l
+cd ..
+l
+cd frida
+l
+mv ~/script.js .
+l
+cat script.js 
+history 
+frida-trace -U -j '*!*p000X.C0HB*/isu' Instagram<\n>
+frida-trace -U -j '*!*C0HB*/isu' Instagram<\n>
+frida-trace -U -j '*DirectWidgetProvider*!*/isu' Instagram<\n>
+frida-trace -U -j '*LauncherActivity*!*/isu' Instagram<\n>
+frida-trace -U -j '*DirectThreadWidgetItem*!*/isu' Instagram
+frida-trace -U -j '*DirectMessageListLinearLayoutManager*!*/isu' Instagram
+frida-trace -U -j '*!*/isu' Instagram
+vim tut.js
+history 
+history | nvimpager
+history | where command ~= "js"
+where --help
+history | where command =~ "js"
+frida-trace -U Instagram tut.js
+frida-trace -Uf Instagram tut.js
+frida-trace -U Instagram tut.js
+vim classes.js
+frida -U -l classes.js -f Instagram --no-pause
+frida -U -l classes.js -f Instagram
+frida -U -l classes.js -f com.android.Instagram
+frida-ps -Ua
+frida -U -l classes.js -f com.instagram.android
+frida -U Instagram
+frida-ps -Ua
+frida -U -l classes.js -p 7803
+frida -U -l classes.js -p 7803 > classes.txt
+ls
+cd Dokumente/dev/xposed/BankingFixExport/
+l
+cd ..
+cd firda
+l
+cd frida/
+l
+cd Dokumente/dev/xposed/BankingFixExport/
+l
+cd app/src/main/res/
+l
+ls **/*.png
+xdg-open **/*.png
+ls **/*.png
+ls **/*.png | where name =~ "mic"
+sxiv **/*.png
+ls **/*.png | where name =~ "mic" | get name
+ls **/*.png | where name =~ "mic" | get name | each { ^sxiv $it }
+ls **/*.png | where name =~ "mic" | get name | each { sxiv $it }
+ls **/*.png | where name =~ "mic" | get name | each { echo $it }
+ls **/*.png | where name =~ "mic" | get name | each { |e|  echo $e }
+ls **/*.png | where name =~ "mic" | get name | each { |e| sxiv $e }
+ls **/*.png | where name =~ "mic" | get name | all { |e| sxiv $e }
+sxiv (ls **/*.png | where name =~ "mic" | get name | str collect '')
+sxiv (ls **/*.png | where name =~ "mic" | get name | str collect)
+sxiv (ls **/*.png | where name =~ "mic" | get name | str )
+ls **/*.png | where name =~ "mic" | get name | str 
+ls **/*.png | where name =~ "mic" | get name 
+ls **/*.png | where name =~ "mic" | get name | trim
+ls **/*.png | where name =~ "mic" | get name
+ls **/*.png | where name =~ "mic" | get name | flatten
+sxiv drawable-xxxhdpi/instagram_microphone_filled_12.png
+sxiv drawable-xxxhdpi/instagram_microphone_off_outline_44.png
+ls **/*.png | where name =~ "mic" | get name | flatten
+sxiv drawable-xxxhdpi/instagram_microphone_outline_44.png
+ll
+cat classes.txt 
+nvim classes.txt 
+history
+frida-trace -U -j '*DirectMessageListLinearLayoutManager*!*/isu' Instagram
+cd Dokumente/dev/xposed/frida
+l
+cat classes.txt 
+nvimclasses.txt 
+nvim classes.txt 
+frida-trace -U -j '*!*X.375*/isu' Instagram
+frida-trace -U -j '*!*375*/isu' Instagram
+frida-trace -U -j '*!*37Y*/isu' Instagram
+frida-trace -U -j '*DirectMessageListLinearLayoutManager*!*/isu' Instagram
+jadx-gui
+xkill
+cd Dokumente/dev/xposed/frida
+cd ..
+ll
+cd BankingFix/
+l
+cd tmp
+frida -U Instagram
+l
+cd Dokumente/dev/xposed/frida
+cat classes.txt 
+frida-trace -U -j '*DirectMessageComments*!*/isu' Instagram
+nvim classes.txt 
+history | where command =~ "txt"
+frida-ps -Ua
+cd Dokumente/dev/xposed/frida
+nvim classes_msg.txt 
+vim classes_msg.js
+vim classes_msg.txt 
+grep 'com.instagram.' classes_msg.txt > filtered.txt<\n>
+zsh
+nvim filtered.txt 
+mv filtered.txt filtered.js
+mv filtered.js filtered.txt
+cd Dokumente/dev/xposed/frida
+cd ..
+cd BankingFixExport/
+cd app/src/main/res/
+ls **/*.png | where name =~ "pano_out" | get name | flatten
+ls **/*.png | where name =~ "instagram_delete_pano_outline_24" | get name | flatten
+ls **/*.png | where name =~ "delete_pano_outline" | get name | flatten
+ls **/*.png | where name =~ "pano_outline" | get name | flatten
+ls **/*.png | where name =~ "delete_pano_outline" | get name | flatten
+ls **/*.png | where name =~ "delete_pano" | get name | flatten
+ls **/*.png | where name =~ "delete" | get name | flatten
+sxiv drawable-xxxhdpi/instagram_delete_outline_16.png
+ls **/*.png | where name =~ "delete" | get name | flatten
+sxiv drawable-xxxhdpi/instagram_delete_outline_16.png
+firefox drawable-xxxhdpi/instagram_delete_outline_16.png
+ls **/*.png | where name =~ "report" | get name | flatten
+firefox drawable-xxxhdpi/instagram_report_outline_44.png
+frida-trace -U -j '*LongPressActionData*!*/isu' Instagram
+cd Dokumente/dev/xposed/frida
+l
+cd Dokumente/dev/xposed/frida
+l
+vim hook_messages.js
+frida-trace -U -j '*LongPressActionData*!*/isu' Instagram
+vim hook_messages.js
+frida -U -l hook_messages.js --no-pause Instagram
+frida -U -l hook_messages.js Instagram
+vim filtered.txt 
+frida -U -l hook_messages.js Instagram
+vim hook_messages.js 
+code .
+vim hook_messages.js
+frida -U -l hook_messages.js Instagram
+nvim filtered.txt 
+frida -U -l hook_messages.js Instagram
+nvim filtered.txt 
+cd Dokumente/dev/xposed/frida
+frida -U -l hook_messages.js Instagram
+frida-trace -U -j '*DirectMsysMixedThreadKey*!*/isu' Instagram
+frida-trace -U -j '*DirectMessageIdentifier*!*/isu' Instagram
+cd ~/
+cd Dokumente/dev/xposed/frida
+l
+mkdir messageIdentifiers
+cd messageIdentifiers/
+l
+frida -U -l hook_messages.js Instagram
+frida-trace -U -j '*DirectThreadsParser*!*/isu' Instagram
+frida-trace -U -j '*CreatorSubscriberThreadInfo*!*/isu' Instagram
+frida-trace -U -j '*DirectThreadsParser$parseThreadsAndMessages$2*!*/isu' Instagram
+cd Dokumente/dev/xposed/instagram/
+l
+code .
+flutter pub run flutter_launcher_icons
+cd Dokumente/dev/xposed/instagram/
+cd assets/
+l
+cd Dokumente/dev/xposed/BankingFixExport/
+cd app/src/main/res/
+ls **/*.png | where name =~ "ic_launcher" | get name | flatten
+ls **/*.png | where name =~ "ic_launcher"
+ls **/*.png | where name =~ "ic"
+ls **/*.png | where name =~ "ic_"
+nvim /home/luca/Dokumente/dev/xposed/BankingFixExport/app/src/main/res/drawable-anydpi-v26/ig_launcher_monochrome.xml
+cp /home/luca/Dokumente/dev/xposed/BankingFixExport/app/src/main/res/drawable-anydpi-v26/ig_launcher_monochrome.xml /home/luca/Dokumente/dev/xposed/instagram/android/app/src/main/res/drawable/
+l
+ls **/*.png | where name =~ "ig_"
+l
+dolphin drawable-anydpi/
+ls **/*.png | where name =~ "ig_"
+nvim drawable-xxhdpi/ig_badge_color_logo.png
+sxiv drawable-xxhdpi/ig_badge_color_logo.png
+sxiv drawable-xxxhdpi/big_cloud.png
+ls **/*.png | where name =~ "ig_"
+sxiv mipmap-xxxhdpi/ig_launcher_background.png
+cp mipmap-xxxhdpi/ig_launcher_background.png ~/Dokumente/dev/xposed/instagram/android/app/src/main/res/mipmap-xxxhdpi/
+cp mipmap-xxxhdpi/ig_launcher_foreground.png ~/Dokumente/dev/xposed/instagram/android/app/src/main/res/mipmap-xxxhdpi/
+flutter clean
+flutter pub get
+flutter build apk --release
+adb root
+cd Dokumente/dev/xposed/instagram/
+code .
+zsh
+xrandr --help
+xrandr --listmonitors
+xrandr --output HDMI-A-0 --scale 1.25x1.25
+xrandr --output HDMI-A-0 --scale 0.75x0.75
+xrandr --output HDMI-A-0 --scale 1x1
+cd Dokumente/dev/xposed/frida/
+l
+frida-trace -U -j '*DirectThreadsParser$parseThreadsAndMessages$2*!*/isu' Instagram
+cd Dokumente/dev/xposed/frida/
+frida-trace -U -j '*com.instagram.model.direct.messageid.DirectMessageIdentifier*!*/isu' Instagram
+cd Dokumente/dev/xposed/frida/
+cd ..
+cd BankingFixExport/
+l
+code .
+frida-trace -U -j '*com.instagram.direct.model.comments.DirectMessageComments*!*/isu' Instagram
+frida-trace -U -j '*com.instagram.direct.model.comments.DirectMessageComment*!*/isu' Instagram
+frida-trace -U -j '*com.instagram.direct.model.comments.DirectMessageComment**!*/isu' Instagram
+frida-trace -U -j '*com.instagram.direct.*!*/isu' Instagram
+frida-trace -U -j '*NotesRepository$fetchNotes$1*!*/isu' Instagram
+frida-trace -U -j '*NotesRepository$fetchNotes$1**!*/isu' Instagram
+frida-trace -U -j '*com.instagram.direct.*!*/isu' Instagram
+frida-trace -U -j '*MessageMetadataViewBindUtil*!*/isu' Instagram
+frida-trace -U -j '*com.instagram.direct.messagethread.messagemetadata.MessageMetadataViewBindUtil*!*/isu' Instagram
+frida-trace -U -j '*com.instagram.direct.messagethread.messagemetadata.*!*/isu' Instagram
+nvim filtered.txt 
+vim hook_messages.js
+code .
+frida-trace -U -j '*com.instagram.direct.model.messaginguser.MessagingUser*!*/isu' Instagram
+frida -U -l hook_messages.js Instagram
+nvim filtered.txt 
+frida-trace -U -j '*com.instagram.direct.inbox.notes.presentation.CFHubViewHolder$1*!*/isu' Instagram
+frida -U -l hook_messages.js Instagram
+nvim filtered.txt 
+frida-trace -U -j '*com.instagram.direct.messagethread.DirectMessageListLinearLayoutManager*!*/isu' Instagram
+frida -U -l hook_messages.js Instagram
+nordvpn c
+adb shell "/data/local/tmp/frida-server &"
+cd Dokumente/dev/xposed/BankingFix/tmp
+l
+frida -U -l hook_messages.js Instagram
+frida-trace -U -j '*!*onAttachedToRecyclerView*/isu' Instagram
+frida-trace -U -j '*messaging*!*/isu' Instagram
+vim hook_append.js
+frida-trace -U -j '*2Li*!*/isu' Instagram
+vim hook_append.js
+frida-trace -U -j '*2Li*!*/isu' Instagram
+nordvpn d
+nordvpn c
+nordvpn d
+nordvpn status
+nordvpn c
+nordvpn status
+frida-trace -U -j '*!*add*/isu' Instagram
+nordvpn d
+frida-trace -U -F -j "*!onClick"
+frida-trace -U -j '*!*onClick*/isu' Instagram
+frida-trace -U -j '*!*onDoubleTap*/isu' Instagram
+frida-trace -U -j 'X.62o!*/isu' Instagram
+frida-trace -U -j 'X.62*!*/isu' Instagram
+frida-trace -U -j 'X.620!*/isu' Instagram
+frida-trace -U -j 'X.62o!*/isu' Instagram
+frida-trace -U -j 'X.620!*/isu' Instagram
+frida-trace -U -j 'X.62o!*/isu' Instagram
+frida-trace -U -j 'X.620!*/isu' Instagram
+frida-trace -U -j 'X.62o!*/isu' Instagram
+adb devices
+adb root
+adb shell "/data/local/tmp/frida-server &"
+frida-ps -Ua
+frida-trace -U -j 'X.62o!*/isu' Instagram
+cd Dokumente/dev/xposed/BankingFix/
+cd tmp
+cd ..
+l
+cd ..
+cd frida/
+l
+code .
+frida-trace -U -j 'X.62o!*/isu' Instagram
+frida -U -l hook_messages.js Instagram
+cd Dokumente/dev/xposed/frida
+frida -U -l hook_messages.js Instagram
+cd Dokumente/dev/xposed/instagram/
+code .
+frida-trace -U -j 'X.62o!*/isu' Instagram
+nordvpn c
+nordvpn d
+nordvpn c
+nordvpn s
+nordvpn status
+flutter pub add shared_preferences: ^2.2.2
+flutter pub add shared_preferences:
+flutter pub add shared_preferences
+ping 8.8.8.8
+nordvpn d
+nordvpn c
+nordvpn d
+flutter build apk --release
+l
+mkdir -p build/obfuscate
+mkdir build/obfuscate
+flutter build apk --release --obfuscate --split-debug-info=build/obfuscate
+history | where command =~ "com.insta"
+cd Dokumente/dev/xposed/instagram/
+code .
+adb devices
+nvim
+flutter build apk --release --obfuscate --split-debug-info=build/obfuscate
+cd Dokumente/dev/xposed/instagram/
+flutter pub run flutter_native_splash:remove
+flutter build apk --release --obfuscate --split-debug-info=build/obfuscate
+dart run flutter_native_splash:create
+cd Dokumente/dev/xposed/instagram/
+cd ..
+l
+cd frida
+l
+adb root
+adb shell "/data/local/tmp/frida-server &"
+frida-trace -U -j '*DirectMessageListLinearLayoutManager*!*/isu' Instagram<\n>
+cd Dokumente/dev/xposed/frida
+jadx-gui
+cd /etc/nixos
+vim
+sudo nixos-rebuild switch
+cd Dokumente/dev/xposed/
+git clone https://github.com/xHookman/IGexperiments.git
+cd IGexperiments/
+code .
+cd Dokumente/dev/xposed/BankingFix/
+cd tmp
+l
+jadx
+cd Dokumente/dev/xposed/frida
+adb root
+adb shell "/data/local/tmp/frida-server &"
+cd Dokumente/dev/xposed/frida
+vim hook_reciclerview.js
+frida -U -l hook_reciclerview.js Instagram
+code .
+cd Dokumente/dev/xposed/BankingFix/
+cd tmp
+l
+frida-trace -U -j '*DirectMessageListLinearLayoutManager*!*/isu' Instagram
+nvim
+l
+cd Dokumente/dev/xmonad-luca/
+cd Dokumente/dev/monti-app/montibackend/
+code .
+/etc/profiles/per-user/luca/bin/git -C "/home/luca/Dokumente/dev/monti-app/montibackend" -c "core.editor=code --wait --reuse-window" branch fix-ssl-monti-hhu-de dev
+cd Dokumente/dev/monti-app/montibackend/
+code .
+nuconfig 
+cd .config/nushell/
+sudo restart_bluetooth.sh 
+cd Dokumente/dev/xposed/instagram/
+l
+cd ..
+cd BankingFix/
+l
+cd Dokumente/dev/xposed/BankingFix/
+l
+cd tmp/
+l
+mkdir out
+apktool --help
+apktool d com.instagram.android_315.0.0.0.20-371501544_minAPI24(armeabi-v7a)(560,640dpi)_apkmirror.com.apk -o out/
+rm -rf out
+apktool d com.instagram.android_315.0.0.0.20-371501544_minAPI24(armeabi-v7a)(560,640dpi)_apkmirror.com.apk -o out/
+l out/
+mkdir a
+mv out/ a
+mv a out
+mv out/out/ out/apktool
+dex2jar --help
+d2j-dex2jar --help
+mkdir out/dex2jar
+cp `com.instagram.android_315.0.0.0.20-371501544_minAPI24(armeabi-v7a)(560,640dpi)_apkmirror.com.apk` out/dex2jar/
+cd out/dex2jar/
+l
+d2j-dex2jar com.instagram.android_315.0.0.0.20-371501544_minAPI24(armeabi-v7a)(560,640dpi)_apkmirror.com.apk
+nix shell nixpkgs#dex2jar
+d2j-dex2jar --help
+d2j-dex2jar  -Xms512m -Xmx4g com.instagram.android_315.0.0.0.20-371501544_minAPI24(armeabi-v7a)(560,640dpi)_apkmirror.com.apk
+cp -r ~/Downloads/dex-tools-v2.4/
+cp -r ~/Downloads/dex-tools-v2.4/ .
+l
+vim dex-tools-v2.4/d2j-dex2jar.sh 
+killall thunderbird
+xkill
+./dex-tools-v2.4/d2j-dex2jar.sh com.instagram.android_315.0.0.0.20-371501544_minAPI24(armeabi-v7a)(560,640dpi)_apkmirror.com.apk
+l
+cp -r dex-tools-v2.4/ out/dex2jar/
+l
+cd out/dex2jar/
+l
+rm `com.instagram.android_315.0.0.0.20-371501544_minAPI24(armeabi-v7a)(560,640dpi)_apkmirror.com-dex2jar.jar`
+./dex-tools-v2.4/d2j-dex2jar.sh Instagram.apk
+nvim summary.txt 
+vim dex-tools-v2.4/d2j-dex2jar.sh 
+rm Instagram-dex2jar.jar
+./dex-tools-v2.4/d2j-dex2jar.sh Instagram.apk
+unzip Instagram-error.zip 
+nvim summary2.txt 
+ls Dokumente/dev/xposed/BankingFixEx/
+l
+cd Dokumente/dev/xposed/BankingFixEx/
+cd Downloads/
+mkdir jadx
+mv jadx-1.4.7.zip jadx
+cd jadx/
+l
+unzip jadx-1.4.7.zip 
+l
+l bin/
+nvim bin/jadx 
+cd ..
+cd BankingFix/
+l
+cd tmp/out/dex2jar/
+l
+dolphin .
+./bin/jadx-gui
+cd ~/Dokumente/dev/xposed/BankingEx/
+l
+code .
+cd /home/luca/Dokumente/dev/xposed/NewFolder/
+nix shell nixpkgs#/home/luca/Dokumente/dev/xposed/NewFolder/
+apktool d com.instagram.android_56.0.0.13.78-119104795_minAPI19(armeabi-v7a)(120,160dpi)_apkmirror.com.apk
+cd Dokumente/dev/monti-app/monti_pro_na_lib/
+ll
+l
+code .
+cd ..
+cd monti_pro_na_lib_ui/
+l
+code .
+cd Dokumente/dev/monti-app/monti_pro_na_lib/
+code .
+cd ..
+cd monti_pro_na_lib_ui/
+code .
+cd lib/src/questions/impl/
+l
+l | get name
+l | get name | join
+l | get name | concat
+l | get name | str join " "
+l | get name | str join
+l | get name | str join "\n"
+flutter pub get
+flutter pub upgrade
+/etc/profiles/per-user/luca/bin/git -C "/home/luca/Dokumente/dev/monti-app/monti_pro_na_lib" -c "core.editor=code --wait --reuse-window" cherry-pick 9dd5a3d0b64f8dc620f7420c7579459055b5090c
+flutter pub get
+flutter pub upgrade
+git pull
+shutdown nonw
+shutdown non
+zsh
+l
+flutter build apk --release --obfuscate --split-debug-info=build/obfuscate
+code .
+cd Dokumente/dev/xposed/instagram/
+l
+cd Dokumente/dev/xposed/instagram/
+vim android/app/src/main/res/values/styles.xml 
+l
+vim android/app/src/main/res/values-night/styles.xml 
+vim android/app/src/main/res/values/styles.xml 
+cd Dokumente/dev/xposed/instagram/
+code .
+cd /etc/nixos
+vim
+btop
+sudo nixos-rebuild switch
+nordvpn c
+cd Dokumente/dev/monti-app/monti_pro_na_lib/
+cd ..
+cd monti_pro_na_lib_ui/
+l
+code .
+flutter pub add bloc
+flutter pub add flutter_bloc
+flutter pub remove bloc
+flutter run
+flutter create example
+flutter create example --platforms="android,linux,ios"
+flutter run
+cd Dokumente/dev/monti-app/monti_pro_na_lib/example/
+code .
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/example/
+code .
+flutter run
+flutter run --help
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+flutter run ./example/
+cd example/
+l
+code .
+cd Dokumente/dev/monti-app/monti_pro_na_lib
+code .
+^flutter pub upgrade
+/etc/profiles/per-user/luca/bin/git -C "/home/luca/Dokumente/dev/monti-app/monti_pro_na_lib_ui" -c "core.editor=code --wait --reuse-window" branch -m bloc add-widgets
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+git push
+flutter pub upgrade
+cd Dokumente/dev/monti-app/montibackend/
+code .
+zsh
+cd Dokumente/dev/monti-app/montibackend/
+./.venv/bin/gunicorn src.plotting.app:server
+nix develop --impure .#venv
+/usr/bin/env /home/luca/Dokumente/dev/monti-app/montibackend/.venv/bin/python /home/luca/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 50357 -- .venv/bin/gunicorn --reload --workers=1 --threads=1 -b\ 0.0.0.0:8001 src.plotting.app:server
+.venv/bin/gunicorn --reload --workers=1 --threads=1 -b\ 0.0.0.0:8001 src.plotting.app:server
+cd Dokumente/dev/monti-app/montibackend/
+.venv/bin/gunicorn --reload --workers=1 --threads=1 -b\ 0.0.0.0:8001 src.plotting.app:server
+.venv/bin/gunicorn --reload --workers=1 --threads=1 -b 0.0.0.0:8001 src.plotting.app:server
+.venv/bin/gunicorn --help
+vim
+nix shell nixpkgs#microsoft-edge
+microsoft-edge 
+nix shell nixpkgs#microsoft-edge --impure
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+code .
+cd Dokumente/dev/monti-app/monti_pro_creator/
+l
+vim flake.nix 
+cp flake.* ../monti_pro_na_lib_ui/
+nix develop
+cd Dokumente/dev/monti-app/monti_pro_creator/
+cd ..
+cd monti_pro_na_lib_ui/
+nix develop
+l
+nvim flake.nix 
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+cd /etc/nixos
+l
+cd modules/desktop/
+l
+cp gnome.nix cosmic.nix
+vim cosmic.nix 
+cd ../..
+l
+vim flake.nix 
+sudo nixos-rebuild switch
+vim flake.nix 
+sudo nixos-rebuild switch
+vim flake.nix 
+sudo nixos-rebuild switch
+vim flake.nix 
+vim modules/desktop/cosmic.nix 
+sudo nixos-rebuild switch
+vim protokoll_24_01_2024.md
+nordvpn c
+nordvpn d
+cd Dokumente/Uni/Dokumente/Uni/semester_11/Modelltheorie/
+l
+code .
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+cd /etc/nixos
+vim 
+sudo nixos-rebuild switch
+npm install -g apk-mitm
+nordvpn d
+nordvpn 
+nordvpn c
+vim
+nordvpn c
+nordvpn d
+nordvpn c
+nordvpn d
+nordvpn c
+cd Dokumente/Uni/Dokumente/Uni/semester_11/Modelltheorie/
+code .
+nordvpn c
+nordvpn d
+quarto render /home/luca/Dokumente/Uni/Dokumente/Uni/semester_11/Modelltheorie/Blatt12.qmd --to pdf
+cd Dokumente/dev/monti-app/
+nuconfig 
+cd monti_pro_na_lib_ui/
+code .
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+cd example/
+code .
+flutter pub upgrade
+cd lib/widgets/
+l | get name | str join "\n"
+cd Dokumente/dev/monti-app/monti_pro_na_lib
+l
+code .
+flutter pub upgrade
+flutter pub add syncfusion_flutter_sliders
+shutdown non
+cd Dokumente/Uni/Dokumente/Uni/semester_11/l2-invarianten/
+l
+vim Übersicht.md
+l
+code .
+quarto preview /home/luca/Dokumente/Uni/Dokumente/Uni/semester_11/l2-invarianten/Übersicht.qmd --no-browser --no-watch-inputs
+quarto preview /home/luca/Dokumente/Uni/Dokumente/Uni/semester_11/l2-invarianten/Übersicht.qmd --no-browser
+shutdown non
+nordvpn c
+nordvpn d
+cd Dokumente/Uni/Dokumente/Uni/semester_11/l2-invarianten/
+l
+cd Dokumente/dev/monti-app/monti_pro_na_lib
+cd ..
+cd monti_pro_na_lib_ui/
+code .
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/example/
+code .
+cd Dokumente/dev/monti-app/monti_pro_na_lib
+code .
+dart pub get<\n>dart run build_runner build --delete-conflicting-outputs
+flutter pub upgrade
+xrandr
+xinput 
+xinput map-to-output 13 eDP
+flutter pub upgrade
+l
+code .
+quarto preview /home/luca/Dokumente/Uni/Dokumente/Uni/semester_11/l2-invarianten/Übersicht.qmd --no-browser
+shutdown non
+nordvpn c
+rm Downloads/v2.0.5.gif
+# This command uses ffprobe (part of the ffmpeg suite) to get the duration of the video in seconds<\n>ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 /home/luca/Downloads/VID_20230914_174327.mp4<\n>
+ffmpeg -i /home/luca/Downloads/VID_20230914_174327.mp4 -b:v 11046k -bufsize 11046k /home/luca/Downloads/VID_20230914_174327_compressed.mp4<\n>
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+code .
+nordvpn d
+nordvpn c
+code .
+mv `Downloads/DALL·E 2024-01-29 02.11.11 - A realistic image of a commercial airplane in flight. The airplane should be depicted soaring through a clear blue sky, with its wings spread wide. Th.png` Dokumente/dev/monti-app/monti_pro_na_lib_ui/assets/connect_pictures_with_text/plane.png
+mv `Downloads/DALL·E 2024-01-29 02.12.16 - A realistic image of a modern public transport bus in Germany, set in an urban environment. The bus should be depicted on a busy street, surrounded by.png` Dokumente/dev/monti-app/monti_pro_na_lib_ui/assets/connect_pictures_with_text/bus.png
+rm Dokumente/dev/monti-app/monti_pro_na_lib_ui/assets/connect_pictures_with_text/bus.webp
+mv `Downloads/DALL·E 2024-01-29 02.14.06 - An image of a natural and average-looking flower, commonly found in everyday gardens. The flower should have a simple yet elegant appearance, with pet.png` Dokumente/dev/monti-app/monti_pro_na_lib_ui/assets/connect_pictures_with_text/flower.png
+mv `Downloads/DALL·E 2024-01-29 02.15.47 - A realistic and modern image of a smartphone, showing a sleek and contemporary design. The smartphone should be depicted in a clear and detailed manne.png` Dokumente/dev/monti-app/monti_pro_na_lib_ui/assets/connect_pictures_with_text/smartphone.png
+mv `Downloads/DALL·E 2024-01-29 02.16.52 - A clear and prominent image of a metal fork, with an emphasis on visibility and detail. The fork should be large and centered in the frame, showcasing.png` Dokumente/dev/monti-app/monti_pro_na_lib_ui/assets/connect_pictures_with_text/fork.png
+mv `Downloads/DALL·E 2024-01-29 02.17.50 - A realistic image of a lamp, displaying a classic and elegant design. The lamp should have a sturdy base, a gracefully curving neck, and a lampshade t.png` Dokumente/dev/monti-app/monti_pro_na_lib_ui/assets/connect_pictures_with_text/lamp.png
+rm `Downloads/DALL·E 2024-01-29 02.18.59 - A realistic image of a doctor wearing a white lab coat and holding a stethoscope. The doctor should appear professional and caring, with the stethosco.png`
+gimp "Downloads/DALL·E 2024-01-29 02.19.53 - A realistic image of a black female doctor wearing a white lab coat and holding a stethoscope. The doctor should appear professional, confident, and c.png" 
+mv Downloads/doctor.png Dokumente/dev/monti-app/monti_pro_na_lib_ui/assets/connect_pictures_with_text/doctor.png
+ls Dokumente/dev/monti-app/monti_pro_na_lib_ui/assets/connect_pictures_with_text/
+mv `Downloads/DALL·E 2024-01-29 02.22.08 - A realistic and detailed image of an apple, showcasing its natural and vibrant appearance. The apple should be ripe and fresh, with a smooth and shiny.png` Dokumente/dev/monti-app/monti_pro_na_lib_ui/assets/connect_pictures_with_text/apple.png
+rm `Downloads/DALL·E 2024-01-29 02.19.53 - A realistic image of a black female doctor wearing a white lab coat and holding a stethoscope. The doctor should appear professional, confident, and c.png`
+cd Dokumente/dev/monti-app/monti_pro_na_lib
+l
+code .
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+cd assets/connect_pictures_with_text/
+l | get name | str join "\n"
+dart run build_runner build --delete-conflicting-outputs
+flutter pub upgrade
+cd Dokumente/Uni/Dokumente/Uni/semester_11/angstat1/
+l
+cd Übungsblätter/
+l
+mkdir 13
+cd 13
+l
+vim Blatt13_LucaHappel_2733498.md
+pandoc Blatt13_LucaHappel_2733498.md Blatt13_LucaHappel_2733498.pdf
+pandoc Blatt13_LucaHappel_2733498.md -o Blatt13_LucaHappel_2733498.pdf
+vim Blatt13_LucaHappel_2733498.md 
+pandoc Blatt13_LucaHappel_2733498.md -o Blatt13_LucaHappel_2733498.pdf
+vim
+vim Blatt13_LucaHappel_2733498.md 
+pandoc Blatt13_LucaHappel_2733498.md -o Blatt13_LucaHappel_2733498.pdf
+shutdown now
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+l
+code .
+cd assets/connect_pictures_with_text/
+l | get name | str join "\n"
+cd Dokumente/dev/monti-app/monti_pro_na_lib
+l
+code .
+cd Dokumente/dev/monti-app/monti_pro_na_lib
+l
+code .
+flutter pub upgrade
+flutter build apk --release 
+cd example/
+l
+cd ..
+cd example/
+flutter build apk --release 
+cd /etc/nixos
+vim
+git status
+git diff modules/users/luca.nix
+git add *
+git commit -m "working version"
+nix flake lock --help
+nix flake lock --update-input nixpkgs
+sudo nixos-rebuild switch
+git stash
+git status
+vim
+sudo nixos-rebuild switch
+nordvpn c
+lxappearance 
+qpwgraph 
+cd /etc/nixos
+vim
+sudo nixos-rebuild switch
+qpwgraph 
+cd Dokumente/dev/monti-app/monti_pro_na_lib
+~
+cd Dokumente/dev/quoteme.github.io/
+l
+code .
+kitten themes
+l
+kitten themes
+l
+vim flake.nix 
+jekyll serve --watch --livereload --host
+nix develop
+blogServe
+nix develop
+blogServe
+nix develop
+l
+cd Dokumente/dev/monti-app/monti_pro_na_lib
+cd ..
+cd monti_pro_na_lib_ui/
+l
+code .
+xinput map-to-output 13 eDP
+xinput --list
+xinput map-to-output 15 eDP
+xinput map-to-output 22 eDP
+xinput map-to-output 24 eDP
+gimp -i -b - ./assets/anatomy_head.png -b '(gimp-quit 0)'
+mkdir assets/anatomy_full_body_selections
+flutter pub get
+cd Dokumente/dev/monti-app/monti
+l
+code .
+htop
+cd Dokumente/dev/monti-app/montibackend/
+code .
+cd Dokumente/dev/monti-app/monti
+code .
+source .venv/bin/activate
+cd Downloads/
+openssl s_client -servername pinning-test.badssl.com -connect pinning-test.badssl.com:443 < /dev/null 2>/dev/null | openssl x509 -noout -fingerprint -sha256
+git stash
+git checkout dev
+git pop
+git stash
+git pull
+cd /etc/nixos
+vim shell.nix
+cd Dokumente/dev/monti-app/
+cd monti
+cd ..
+cd montibackend/
+montissh
+cd Dokumente/dev/MontiBackend/
+cd /etc/nixos
+sudo nix store --optimize
+cd /etc/nixos
+vim
+l
+cd data/
+l
+cd ..
+l
+cd monti-app
+cd montibackend/
+cd ..
+l
+code .
+sudo nixos-rebuild switch
+cd montibackend/
+code .
+cd Dokumente/dev/monti-app/montibackend/src/file_parsing/
+code .
+cd /etc/nixos
+vim shell.nix 
+nix-shell
+cd Dokumente/dev/monti-app/montibackend/src/file_parsing/
+nix-shell
+vim shell.nix 
+cd /etc/nixos
+vim flake.nix 
+sudo nixos-rebuild switch
+cd ~/Dokumente/dev/monti-app/montibackend/
+cd src/file_parsing/
+l
+code .
+php
+whereis php
+php main.php
+cd Dokumente/dev/monti-app/montibackend/src/file_parsing/
+l
+ll
+kitten themes
+ll
+lt
+lt | where name =~ "autoload"
+lt
+l
+lt
+lt | where name =~ "autoload"
+nix shell
+cd /etc/nixos
+vim
+cd ~/Dokumente/dev/monti-app/montibackend/src/file_parsing/
+l
+vim shell.nix 
+cd ~/Dokumente/dev/monti-app/montibackend
+vim
+montissh 
+mkdir wiff
+mv ~/Downloads/*.wiff wiff/
+l
+l wiff/
+cd ~/Dokumente/dev/monti-app/montibackend
+pwd
+l wiff/
+mv wiff src/file_parsing/
+cd src/file_parsing/
+l
+pwd
+l wiff/
+cd Dokumente/dev/monti-app/montibackend/
+l
+lt | where name =~ "manual"
+cd /etc/nixos
+vim
+sudo nixos-rebuild switch
+sudo nix-collect-garbage 
+zsh
+cd Dokumente/dev/monti-app/monti
+l
+code .
+cd Dokumente/dev/monti-app/montibackend/
+code .
+git fetch
+git push
+git push --set-upstream origin add-adherence-reports
+cd Dokumente/dev/monti-app/montibackend/
+rm -rf postgres
+sudo rm -rf postgres
+cd Dokumente/dev/monti-app/montibackend/
+nix develop
+/etc/profiles/per-user/luca/bin/git -C "/home/luca/Dokumente/dev/monti-app/montibackend" -c "core.editor=code --wait --reuse-window" rebase origin/add-adherence-reports
+cd Dokumente/dev/monti-app/montibackend/
+l
+vim cfg/
+cd cfg
+l
+vim user.csv 
+rm user.csv
+vim user.csv 
+cd ..
+montissh 
+l
+cd data/
+source .venv/bin/activate
+l
+python3 ./src/adherence-reports/create_report.py /tmp/lal 924dc488c01d4d1d9ac8d931ca973553
+pip install -r requirements.txt
+vim requirements.txt 
+pip install -r requirements.txt
+vim requirements.txt 
+pip install -r requirements.txt
+pip install -r matplotlib
+pip install matplotlib
+pip install --upgrade matplotlib<\n>
+cd Dokumente/Uni/Dokumente/Uni/semester_11/l2-invarianten/
+l
+cd Übungen/
+l
+code .
+cd Dokumente/Uni/Dokumente/Uni/semester_11/
+rg "\\newcommand"
+rg "\newcommand"
+rg "newcommand"
+quarto preview /home/luca/Dokumente/Uni/Dokumente/Uni/semester_11/l2-invarianten/Übungen/07.qmd --no-browser
+quarto preview /home/luca/Dokumente/Uni/Dokumente/Uni/semester_11/l2-invarianten/Übungen/07.qmd --no-browser --no-watch-inputsF 
+quarto preview /home/luca/Dokumente/Uni/Dokumente/Uni/semester_11/l2-invarianten/Übungen/07.qmd --no-browser
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+l
+code .
+cd Dokumente/dev/monti-app/monti_pro_na_lib
+code .
+flutter pub clean
+flutter  clean
+flutter pub get
+flutter  clean
+flutter pub get
+flutter pub upgrade 
+nordvpn c
+nordvpn d
+sudo nix-collect-garbage -d
+sudo restart_bluetooth.sh 
+xkill
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+l
+code .
+flutter pub add image
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+code .
+ls assets/anatomy_full_body_selections/head.png
+flutter build apk --release 
+cd example/
+flutter build apk --release 
+flutter devices
+cd Dokumente/dev/monti-app/monti
+cd Dokumente/dev/monti-app/monti_pro_na_lib
+code .
+dart run build_runner build --delete-conflicting-outputs
+flutter pub upgrade 
+flutter clean
+flutter pub get
+/etc/profiles/per-user/luca/bin/git -C "/home/luca/Dokumente/dev/monti-app/monti_pro_na_lib" -c "core.editor=code --wait --reuse-window" merge --ff-only origin/distribution
+/etc/profiles/per-user/luca/bin/git -C "/home/luca/Dokumente/dev/monti-app/monti_pro_na_lib" -c "core.editor=code --wait --reuse-window" reset distribution
+/etc/profiles/per-user/luca/bin/git -C "/home/luca/Dokumente/dev/monti-app/monti_pro_na_lib" -c "core.editor=code --wait --reuse-window" reset --hard origin/distribution
+flutter clean
+rm /home/luca/.pub-cache/git/monti_pro_na_lib-1c21f67c677e6941e563d09b861535da0ee7ec70/lib/src/questions/impl/interval_question.dart
+flutter clean
+flutter pub get
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+code .
+kdenlive 
+cd Downloads/
+vim compress.sh
+chmod +x compress.sh 
+l
+l | where name =~ "Vid"
+/home/luca/Downloads/VID_20230409_151907.mp4
+./compress.sh /home/luca/Downloads/VID_20230409_151907.mp4 25 /home/luca/Downloads/VID_20230409_151907_out.mp4
+vim compress.sh
+./compress.sh /home/luca/Downloads/VID_20230409_151907.mp4 25 /home/luca/Downloads/VID_20230409_151907_out.mp4
+zsh
+fr.handbrake.ghb VID_20230409_151907.mp4
+cd Dokumente/dev/monti-app/monti_pro_creator/
+code .
+flutter pub upgrade 
+:q
+code .
+nix develop
+flutter clean && flutter pub get
+flutter clean; flutter pub get
+flutter run -d
+flutter run -d linux
+rog-control-center 
+rog-control-center & disown
+cd Dokumente/Uni/Dokumente/Uni/semester_11/l2-invarianten/
+ö
+l
+code .
+montissh
+montissh
+cd Dokumente/Uni/Dokumente/Uni/semester_11/l2-invarianten/
+l
+code .
+sudo 
+sudo restart_bluetooth.sh 
+zsh
+mkdir lean-l2-invariants
+cd lean-l2-invariants/
+leanpkg init lean-l2-invariants
+elan
+elan update
+lake new --help
+lake new math lean-l2-invariants .
+lake new lean-l2-invariants math
+l
+cd ..
+mv lean-l2-invariants/lean-l2-invariants/* lean-l2-invariants/
+cd lean-l2-invariants/
+l
+rm -rf lean-l2-invariants/
+l
+code .
+lake exe cache get<\n>
+code .
+git init
+cd Dokumente/Uni/Dokumente/Uni/semester_11/l2-invarianten/
+cd lean-l2-invariants/
+code .
+cd Dokumente/dev/monti-app/monti_pro_creator/
+code .
+flutter clean
+flutter pub get
+flutter pub upgrade 
+flutter clean
+flutter pub get
+flutter run -d linux
+vim flake.nix 
+nix develop
+vim flake.nix 
+nix develop
+vim flake.nix 
+nix develop
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+/etc/profiles/per-user/luca/bin/git -C "/home/luca/Dokumente/dev/monti-app/monti_pro_creator" -c "core.editor=code --wait --reuse-window" merge previewpage
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+vim lib/widgets/questions/widgets.dart 
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+l
+cd ..
+mkdir tmp
+cp Dokumente/dev/monti-app/monti_pro_creator/lib/editor/widgets/editor/questions/* tmp/
+l tmp
+cp monti_pro_na_lib_ui/lib/widgets/questions/* ~/Dokumente/dev/monti-app/monti_pro_creator/lib/editor/widgets/editor/questions/
+cp tmp/* Dokumente/dev/monti-app/monti_pro_creator/lib/editor/widgets/editor/questions/
+flutter gen-l10n
+nix shell nixpkgs#picom
+nix run nixpkgs#picom
+cd Videos/
+gh copilot suggest "convert a webm to mp4"
+ffmpeg -i "Peek 2024-02-02 19-43.webm" "Peek 2024-02-02 19-43.mp4" 
+ffmpeg -i "Peek 2024-02-02 19-43.webm" "Peek 2024-02-02 19-43.avi" 
+cd Dokumente/dev/monti-app/monti_pro_creator/
+flutter gen-l10n
+cd Dokumente/dev/monti-app/monti_pro_na_lib/
+code .
+dart run build_runner build --delete-conflicting-outputs
+dart clean
+dart run build_runner build --delete-conflicting-outputs
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+cd Dokumente/dev/monti-app/monti_pro_na_lib
+code .
+code .
+flutter pub upgrade
+cd Dokumente/dev/monti-app/monti_pro_na_lib
+cd ..
+cd monti_pro_na_lib/
+code .
+flutter pub upgrade
+flutter clean
+rm -rf /home/luca/.pub-cache/git/monti_pro_na_lib-e22f04b5c2507c94a003545d72235b5a1d9aa770
+flutter clean
+flutter pub get
+flutter clean
+flutter pub upgrade
+dart pub cache clean
+flutter pub get
+flutter clean
+flutter pub get
+cd ..
+cd monti_pro_na_lib_ui/
+code .
+flutter clean
+flutter pub get 
+rm -rf ~/.pub-cache/
+flutter pub get
+cd Dokumente/dev/monti-app/monti_pro_na_lib
+code .
+flutter pub get
+flutter pub upgrade
+cd ..
+cd monti_pro_creator/
+l
+flutter pub upgrade
+nordvpn c
+cd Dokumente/dev/monti-app/monti_pro_creator/
+nordvpn c
+nordvpn d
+cd Dokumente/dev/monti-app/monti_pro_creator/
+code .
+flutter gen-l10n
+dart pub cache clean
+cd Dokumente/dev/monti-app/monti_pro_na_lib_ui/
+code .
+flutter pub get
+l
+dart pub get
+flutter clean
+flutter pub get
+flutter clean; flutter pub get
+nix develop
+flutter gen-l10n
+cd Dokumente/dev/monti-app/monti_pro_na_lib
+code .
+flutter pub get
+flutter pub upgrade
+montissh
+nordvpn c
+nordvpn d
+ipython
+cd Dokumente/gedeon
+l
+code .
+cd Dokumente/dev/quoteme.github.io/
+l
+code .
+cd Dokumente/dev/quoteme.github.io/
+cd ../../gedeon/
+l
+code .
+quarto render /home/luca/Dokumente/gedeon/plots.qmd --to html
+firefox plots.html 
+gh copilot suggest "create a new quarto project for a blog"
+code .
+quarto create project blog quoteme.github.io
+cd Dokumente/dev/quoteme.github.io/
+l
+code .
+cd Dokumente/dev
+cd top2man/
+cd /etc/nixos
+vim
+nix flake lock --update-input nixpkgs-unstable
+http-server 
+cp favicon.ico quoteme.github.io/
+quarto preview quoteme.github.io
+cd Dokumente/dev/quoteme.github.io/quoteme.github.io/posts/intersect.js/
+l
+wget https://i.imgur.com/aqI995m.png
+mv aqI995m.png thumbnail.jpg
+rm thumbnail.jpg
+mv aqI995m.png thumbnail.png
+cd Dokumente/dev/quoteme.github.io/quoteme.github.io/posts/glider/
+l
+wget https://quoteme.github.io/glider/screenshot.png
+l
+rm image.jpg
+cd Dokumente/dev/quoteme.github.io/quoteme.github.io/
+code .
+quarto preview quoteme.github.io
+cd Dokumente/dev/quoteme.github.io
+l
+cd _posts/
+l
+mkdir posts/bildbesucher
+vim 2020-04-07-BildBesucher.md
+quarto preview
+wget https://i.imgur.com/4qycA29l.png
+mv 4qycA29l.png posts/bildbesucher/thumbnail.png
+l
+vim 2020-04-18-BildBesucher_hat_jetzt_JSDoc-support.md
+wget https://i.imgur.com/SwOWoFr.png
+mv SwOWoFr.png posts/bildbesucher-jsdoc/thumbnail.png
+quarto preview
+quarto check
+cd /etc/nixos
+cd Dokumente/dev/quoteme.github.io
+cp flake.nix quoteme.github.io/
+nix develop
+git init .
+.
+git add flake.nix
+nix develop
+vim flake.nix 
+mv ~/Downloads/thumbnail.png ./posts/new_method_of_counting_dimensions/
+vim 2020-05-22-neue_Art_Dimension_zu_zählen.md
+l
+vim 2020-11-26-voxels_rings_and_modules.md
+vim 2020-12-03-math_meme_proof.md
+vim 2021-10-26-math_meme_proof_finished.md
+l
+cd ..
+cd _posts/
+l
+vim 2022-03-01-elliptic_curves_over_the_field_with_four_elements.md
+vim 2022-05-28-what_are_differential_forms.md
+l
+wget https://quoteme.github.io/res/bachelor-seminar_haskell-aufgaben.png
+l
+mv bachelor-seminar_haskell-aufgaben.png posts/bachelor-seminar-haskell/aufgabe.png
+wget https://quoteme.github.io/res/bachelor-seminar_haskell.png
+mv bachelor-seminar_haskell.png posts/bachelor-seminar-haskell/bachelorarbeit.png
+wget https://i3.ytimg.com/vi/b5qCzC3HnJc/mqdefault.jpg
+mv mqdefault.jpg posts/bachelor-seminar-haskell/thumbnail.jpg
+vim 2023-01-24-bachelor-seminar-programmiersprachen-haskell.md
+vim 2023-05-29-cohomology.md
+cp ../res/assets/Handout.pdf ./posts/surreal_numbers/
+vim 2023-11-13-surreale-zahlen.md
+cd ..
+cd quoteme.github.io/
+ping 8.8.8.8
+cd Dokumente/dev
+git clone https://github.com/quoteme/top2manWebsiteBackground/
+cd top2manWebsiteBackground/
+code .
+http-server 
+cd ..
+rm -rf top2manWebsiteBackground/
+git clone https://github.com/quoteme/top2manWebsiteBackground/ --recursive
+cd top2manWebsiteBackground/
+code .
+nix develop 
+cd ..
+cd Dokumente/dev
+cd top2manWebsiteBackground/
+code .
+http-server 
+cd Dokumente/dev/top2manWebsiteBackground/
+code .
+cd Dokumente/dev/top2manWebsiteBackground/
+nix develop
+cd ..
+l
+cd ..
+cp quoteme.github.io/quoteme.github.io/ quoteme.github.io-new
+cp -r quoteme.github.io/quoteme.github.io/ quoteme.github.io-new
+l
+cd quoteme.github.io/
+l
+rm -rf _*
+l
+rm 404.html Gem*
+l
+rm LICENSE about* apple-touch-icon.png
+l
+rm atom favicon.ico gemset.nix index.html posts.html projects.md
+l
+rm -rf res/ lib js
+l
+rm -rf css
+l
+rm flake.*
+l
+rm atom
+l
+rm atom.xml
+l
+l -a
+mr -rf .jekyll-cache/ .bundle/
+rm -rf .jekyll-cache/ .bundle/
+l
+l -a
+mv quoteme.github.io/* .
+l
+ls quoteme.github.io/
+rm -rf quoteme.github.io/
+l
+code .
+quarto --help
+quarto publish
+l
+quarto render
+cd _site/
+http-server 
+cd ..
+vim flake.nix 
+rm -rf _site/
+nix build 
+nix build --impure
+quarto publish
+quarto preview --port 8080
+wget https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Universelle_%C3%9Cberlagerung_2.0.png/220px-Universelle_%C3%9Cberlagerung_2.0.png
+mv 220px-Universelle_Überlagerung_2.0.png posts/l2-invariants/universal_cover.png
+cd Dokumente/dev/quoteme.github.io
+quarto preview --port 8080
+arandr 
+nvidia-offload stream
+nvidia-offload st#eam
+nvidia-offload steam
+cd Dokumente/dev/xmonad-luca/
+vim
+xmonad --recompile
+cd Dokumente/dev/monti-app/monti_pro_creator/
+sudo restart_bluetooth.sh 
+flutter gen-l10n
+http-server 
+flutter gen-l10n
+xkill
+sudo restart_bluetooth.sh 
+killall thunderbird
+cd Dokumente/dev/quoteme.github.io
+code .
+cd Dokumente/dev/quoteme.github.io
+quarto preview --port 8080
+kdenlive 
+nvidia-offload kdenlive 
+cd Downloads/
+ffmpeg -i IMG_0212.mp4 -t 60 -c copy lala_versprechen1.mp4<\n>
+ffmpeg -i IMG_0212.mp4 -ss 60 -c copy lala_versprechen2.mp4<\n>
+cd Dokumente/dev/quoteme.github.io
+l
+cd Dokumente/dev/quoteme.github.io
+code .
+cd Dokumente/dev/quoteme.github.io
+git push
+quarto publish
+cd Dokumente/dev/quoteme.github.io
+quarto publish
+cd Dokumente/dev/quoteme.github.io
+code .
+quarto publish
+quarto preview --port 8080
+wget https://avatars.githubusercontent.com/u/6796009?v=4
+mv 6796009?v=4 favicon.png
+quarto preview --port 8080
+quarto publish
+cd Dokumente/dev/monti-app/montibackend/
+code .
+cd Dokumente/dev/monti-app/montibackend/
+source .venv/bin/activate
+zsh
+cd Dokumente/dev/monti-app/montibackend/
+vim Protokoll.md
+git push
+dolphon --help
+dolphin --help
+dolphin --daemon
+cd /etc/nixos
+vim
+sudo nixos-rebuild switch
+vim flake.nix 
+l
+l scripts/
+cd scripts/
+vim autohibernate.sh
+chmod +x autohibernate.sh 
+./autohibernate.sh
+upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | grep -o '[0-9]*'
+grep -qi 'online' /sys/class/power_supply/AC/online
+grep -qi 'online' /sys/class/power_supply/AC0/online
+grep -qi 'online' /sys/class/power_supply/AC0
+ls /sys/class/power_supply/AC
+ls /sys/class/power_supply/AC0
+grep -qi 'online' /sys/class/power_supply/AC0
+grep -qi 'online' /sys/class/power_supply/AC0/online
+grep -qi 'online' /sys/class/power_supply/BAT0/online
+/ ys/class/power_supply/BAT0/online
+ls /sys/class/power_supply/BAT0/online
+ls /sys/class/power_supply/BAT0/
+cat /sys/class/power_supply/BAT0/cycle_count 
+ls /sys/class/power_supply/BAT0/status
+cat /sys/class/power_supply/BAT0/status
+ls /sys/class/power_supply/BAT0/status
+cat /sys/class/power_supply/BAT0/status
+grep -qi 'Charging' /sys/class/power_supply/BAT0/status 
+grep -qi 'Charging' /sys/class/power_supply/BAT0/status
+grep --help
+grep --help | less
+grep -q 'Charging' /sys/class/power_supply/BAT0/status
+grep 'Charging' /sys/class/power_supply/BAT0/status
+grep -q 'Charging' /sys/class/power_supply/BAT0/status
+vim ./autohibernate.sh 
+cd /etc/nixos
+cd Dokumente/dev/quoteme.github.io
+l
+code .
+whereis com.google.Chrome 
+ls ~/.local/share/flatpak/exports/share/
+quarto preview --help
+/etc/profiles/per-user/luca/bin/git -C "/home/luca/Dokumente/dev/quoteme.github.io" -c "core.editor=code --wait --reuse-window" merge quarto
+git checkout master
+git reset --hard 72659f4cf18e51e048e938e7fc87d9c0728202c7
+quarto preview --port 8080 --no-browser
+rm -rf .quarto/
+git pull
+git fetch
+cd Dokumente/dev/quoteme.github.io
+sudo nixos-rebuild switch
+vim 
+cd /etc/nixos
+vim 
+quarto preview --port 8080 --no-browser
+cd /etc/nixos
+sudo nixos-rebuild switch
+vim
+cd Downloads/
+l
+ll
+gh copilot suggest "cut the first 3 seconds away from an mp4 video using ffmpeg"
+ffmpeg -i IMG_0278.mp4 -ss 00:00:03 -codec copy lala_schicken.mp4
+mpv lala_schicken.mp4 
+mpv IMG_0278.mp4 
+ffmpeg -i IMG_0278.mp4 -ss 00:00:02 -codec copy lala_schicken.mp4
+mpv lala_schicken.mp4 
+rm lala_schicken.mp4
+cd /etc/nixos
+cd scripts/
+cd Dokumente/dev/quoteme.github.io
+quarto publish
+quarto preview --port 8080 --no-browser
+smartctl -a /dev/sdb
+sudo smartctl -a /dev/sdb
+gh copilot suggest "tell me how i can repair my ssd using linux commands. the ssd is mounted on dev/sdb"
+fsck /dev/sdb
+smartctl -a /dev/sdc
+sudo smartctl -a /dev/sdc
+gh copilot suggest "how can I copy the output from a command to my cli on linux?"
+sudo smartctl -a /dev/sdc |  xclip -selection c
+sudo smartctl -a /dev/sdc | less
+quarto publish
+nordvpn c
+cd /etc/nixos
+vim
+nordvpn d
+cd Dokumente/dev/monti-app/montibackend/
+code .
+git pull
+killall firefox 
+xkill
+xinfo
+reboot
+nordvpn c
+shutdown now
+cd Dokumente/dev
+rm -rf quoteme.github.io-new/
+cd quoteme.github.io/
+code .
+quarto preview --port 8080 --no-browser
+quarto publish
+xfce4-panel 
+nordvpn c
+cd Dokumente/dev/quoteme.github.io
+nix shell nixpkgs#compton
+konto .
+kondo .
+nix shell nixpkgs#kondo
+cd /etc/nixos
+vim
+quarto preview --port 8080 --no-browser
+quarto publish
+nordvpn c
+nordvpn d
+nordvpn c
+cd Dokumente/dev/quoteme.github.io
+quarto preview
+cd Dokumente/Uni/Dokumente/Uni/semester_11/l2-invarianten/
+killall xidlehook 
+cd Dokumente/
+l
+vim .pmpass.txt
+lsusb
+nordvpn c
+cd Dok
+cd Dokumente/
+cd Dokumente/dev/quoteme.github.io
+code .
+quarto preview --port 8080 --no-browser
+quarto publish
+l
+gimp posts/bildbesucher/thumbnail.png 
+quarto publish
+nordvpn d
+killall xfce4-*
+killall xfce4-notifyd-config 
+killall xfce4-notifyd
+xfce4-panel 
+xfce4-panel --help
+cd Dokumente/dev/xmonad-luca/
+rg xfce4-panel
+xfce4-panel --disable-wm-check
+pueue
+tldr pueue 
+pueue xfce4-panel --disable-wm-check
+pueue xfce4-panel --disable-wm-checks
+pueue xfce4-panel --disable-wm-check
+nix shell nixpkgs#pueue
+cd Dokumente/
+l
+cd Gedichte/
+l
+vim 2024.02.11.md
+l
+cd Dokumente/dev/quoteme.github.io
+nordvpn c
+cd Dokumente/dev/quoteme.github.io
+code .
+cd Dokumente/dev/quoteme.github.io
+cd /etc/nixos
+vim
+cd /etc/nixos
+cd scripts/
+l
+zenity --warning --text="Battery low: $BATTERY_LEVEL% remaining. The system will hibernate in one minute unless plugged in." --title="Low Battery Warning" --timeout=60
+zenity --warning --text="Battery low: $BATTERY_LEVEL% remaining. The system will hibernate in one minute unless plugged in." --title="Low Battery Warning" 
+nix shell nixpkgs#zenity
+cd /etc/nixos
+rg rstudio
+rg unstable
+sudo nixos-rebuild switch
+cd Dokumente/dev/quoteme.github.io
+systemctl status home-manager-luca.service
+cd /etc/nixos
+cd .config/nushell/
+l
+cd /etc/nixos
+l
+l config/

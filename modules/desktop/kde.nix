@@ -47,10 +47,10 @@ in
       unstable.libsForQt5.okular
       libsForQt5.packagekit-qt
       libsForQt5.discover
-      pkgs.unstable.libsForQt5.kio
-      pkgs.unstable.kio-fuse
-      pkgs.unstable.libsForQt5.kio-gdrive
-      pkgs.unstable.libsForQt5.kio-extras
+      libsForQt5.kio
+      kio-fuse
+      libsForQt5.kio-gdrive
+      libsForQt5.kio-extras
       libsForQt5.plasma-integration
       libsForQt5.plasma-nm
       libsForQt5.kdepim-runtime

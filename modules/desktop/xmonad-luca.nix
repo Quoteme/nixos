@@ -35,6 +35,8 @@ in
       xdotool
       lightlocker
       qt5ct
+      gnome.zenity
+      picom
     ];
     services.xserver.enable = true;
     services.xserver.updateDbusEnvironment = true;
