@@ -89,7 +89,7 @@ in
           #     pkgs.espeak-ng
           #   ];
           # }))
-          (firefox.override {
+          (unstable.firefox.override {
             extraNativeMessagingHosts = with pkgs.nur.repos.wolfangaukang; [ vdhcoapp ];
             cfg = {
               enablePlasmaBrowserIntegration = true;
@@ -135,6 +135,7 @@ in
           # sxiv
           # sony-headphones-client
           # Gaming
+          xboxdrv
           # (retroarch.override {
           #   cores = with libretro; [
           #     mupen64plus
@@ -307,5 +308,7 @@ in
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     };
+    # hardware.xpadneo.enable = true;
+    # hardware.xone.enable = true;
   };
 }

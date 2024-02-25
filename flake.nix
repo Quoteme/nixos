@@ -6,7 +6,8 @@
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-23.05";
     nur.url = "github:nix-community/NUR";
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    # home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # st-nix.url = "github:Quoteme/st-nix";
     # neovim-luca.url = "github:Quoteme/neovim-luca";
@@ -213,7 +214,7 @@
               modules.desktopManager.sddm.enable = false;
               modules.desktopManager.lightdm.enable = true;
               modules.desktop.sway.enable = false;
-              modules.applications.editors.vscode.enable = true;
+              modules.applications.editors.vscode.enable = false;
               modules.applications.editors.vscode-fhs.enable = true;
               modules.applications.virtualisation.docker.enable = true;
               modules.users.luca.enable = true;
@@ -318,6 +319,7 @@
                 # "NIX_LD" = toString nix-ld-so;
                 # NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath (config.systemd.packages ++ config.environment.systemPackages);
                 # NIX_LD = "${pkgs.glibc}/lib/ld-linux-x86-64.so.2";
+                CHROME_EXECUTABLE = "/var/lib/flatpak/app/com.google.Chrome/x86_64/stable/active/export/bin/com.google.Chrome";
                 GAMEMODERUNEXEC = "nvidia-offload";
               };
               environment.localBinInPath = true;

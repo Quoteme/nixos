@@ -26,6 +26,7 @@ in
     #   mediaKeys.enable = true;
     # };
     # Use Pipewire
+    environment.systemPackages = [ pkgs.qpwgraph ];
     # rtkit is optional but recommended
     security.rtkit.enable = true;
     services.pipewire = {

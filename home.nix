@@ -94,8 +94,35 @@
     enable = true;
     enableBashIntegration = true;
   };
+  programs.nushell = {
+    enable = true;
+    configFile.source = ./config/nushell/config.nu;
+    envFile.source = ./config/nushell/env.nu;
+    shellAliases = {
+      cd = "z";
+    };
+  };
+  xdg.configFile."nushell-plugins/plugin.nu".source = ./config/nushell/plugin.nu;
+  xdg.configFile."nushell/completion.nu".source = ./config/nushell/completion.nu;
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
+  };
+  programs.yazi = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
+  };
   programs.carapace.enable = true;
   programs.carapace.enableNushellIntegration = true;
+  programs.starship.enableNushellIntegration = true;
+  programs.direnv.enableNushellIntegration = true;
+  programs.atuin.enable = true;
+  programs.atuin.enableNushellIntegration = true;
+  programs.atuin.enableZshIntegration = true;
   programs.starship = {
     enable = true;
     settings = {
@@ -449,7 +476,7 @@
   #   };
   # };
   services.polybar = {
-    enable = true;
+    enable = false;
     package = pkgs.polybar.override {
       pulseSupport = true;
     };
