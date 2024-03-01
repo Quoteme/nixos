@@ -2,8 +2,7 @@
   description = "Luca Happels nixos ";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-23.05";
     nur.url = "github:nix-community/NUR";
     # home-manager.url = "github:nix-community/home-manager/release-23.11";
@@ -39,20 +38,11 @@
   outputs = { self, nixpkgs, home-manager, ... }@attrs:
     let
       system = "x86_64-linux";
-      overlay-unstable = final: prev: {
-        unstable = import attrs.nixpkgs-unstable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-      };
       overlay-stable = final: prev: {
         stable = import attrs.nixpkgs-stable {
           inherit system;
           config.allowUnfree = true;
         };
-      };
-      overlay-nix-autobahn = final: prev: {
-        nix-autobahn = attrs.nix-autobahn.defaultPackage.x86_64-linux;
       };
       overlay-st-nix = final: prev: {
         st-nix = attrs.st-nix.defaultPackage.x86_64-linux;
@@ -60,19 +50,10 @@
       overlay-screenrotate = final: prev: {
         screenrotate = attrs.screenrotate.defaultPackage.x86_64-linux;
       };
-      overlay-sddm = final: prev: {
-        # use the sddm from overlay-unstable
-        sddm = attrs.nixpkgs-unstable.sddm;
-      };
-      overlay-plasma6 = final: prev: {
-        # add the `services.xserver.desktopManager.plasma6.enable` option from nixpkgs-unstable to the stable nixpkgs
-        services.xserver.desktopManager.plasma6.enable = attrs.nixpkgs-unstable.services.xserver.desktopManager.plasma6.enable;
-      };
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          overlay-unstable
           overlay-stable
           attrs.emacs-overlay.overlay
           attrs.nix-vscode-extensions.overlays.default
@@ -82,8 +63,6 @@
           overlay-st-nix
           overlay-screenrotate
           attrs.nur.overlay
-          overlay-sddm
-          overlay-plasma6
         ];
       };
       nur-modules = import attrs.nur {
@@ -129,14 +108,13 @@
               ];
 
               nix = {
-                package = pkgs.unstable.nix;
+                package = pkgs.nix;
                 extraOptions = ''
                   experimental-features = nix-command flakes
                   warn-dirty = false
                 '';
                 nixPath = [
                   "nixpkgs=${nixpkgs}"
-                  "unstable=${attrs.nixpkgs-unstable}"
                   "stable=${attrs.nixpkgs-stable}"
                   "nur=${attrs.nur}"
                   "nix-vscode=${attrs.nix-vscode-extensions}"
@@ -153,7 +131,6 @@
                       path = inputs.nixpkgs.outPath;
                     };
                   };
-                  unstable.flake = attrs.nixpkgs-unstable;
                   stable.flake = attrs.nixpkgs-stable;
                   nur.flake = attrs.nur;
                 };
@@ -230,7 +207,7 @@
               # Enable OneDrive
               # services.onedrive = {
               #   enable = true;
-              #   package = pkgs.unstable.onedrive;
+              #   package = pkgs.onedrive;
               # };
               # Enable flatpak
               services.flatpak.enable = true;
@@ -254,7 +231,7 @@
                 hasklig
                 material-icons
                 # nerdfonts
-                (pkgs.unstable.nerdfonts.override { fonts = [ "FiraCode" ]; })
+                (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
 
                 noto-fonts
                 noto-fonts-cjk

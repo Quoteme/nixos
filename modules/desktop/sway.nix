@@ -22,7 +22,7 @@ in
 
   config = mkIf cfg.enable {
     programs.sway = {
-      package = pkgs.unstable.sway;
+      package = pkgs.sway;
       enable = true;
       wrapperFeatures.base = true;
       wrapperFeatures.gtk = true;
@@ -31,9 +31,9 @@ in
         swaynag-battery
         swayest-workstyle
         swaynotificationcenter
-        pkgs.unstable.swaycons
+        swaycons
         swaysettings
-        pkgs.unstable.sov
+        sov
         waybar
         nwg-launchers
         nwg-wrapper

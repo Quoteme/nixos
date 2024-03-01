@@ -21,7 +21,7 @@ in
     };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs.unstable; [
+    environment.systemPackages = with pkgs; [
       cosmic-applibrary
       cosmic-applets
       cosmic-bg
@@ -45,11 +45,11 @@ in
     # COSMIC portal doesn't support everything yet
 
     xdg.portal.enable = true;
-    xdg.portal.extraPortals = with pkgs.unstable; [ xdg-desktop-portal-cosmic xdg-desktop-portal-gtk ];
+    xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-cosmic xdg-desktop-portal-gtk ];
     xdg.portal.config.common.default = "*";
 
     # session files for display manager and systemd
-    services.xserver.displayManager.sessionPackages = with pkgs.unstable; [ cosmic-session ];
-    systemd.packages = with pkgs.unstable; [ cosmic-session ];
+    services.xserver.displayManager.sessionPackages = with pkgs; [ cosmic-session ];
+    systemd.packages = with pkgs; [ cosmic-session ];
   };
 }

@@ -29,7 +29,7 @@ in
     # services.xserver.displayManager.setupCommands = ''
     #   supergfxctl -m Integrated
     # '';
-    services.xserver.desktopManager.plasma5.enable = true;
+    services.xserver.desktopManager.plasma6.enable = true;
     xdg.portal.enable = true;
     xdg.portal.xdgOpenUsePortal = true;
     xdg.portal.extraPortals = [
@@ -44,7 +44,7 @@ in
       libsForQt5.kamoso
       libsForQt5.skanlite
       # libsForQt5.bismuth
-      unstable.libsForQt5.okular
+      libsForQt5.okular
       libsForQt5.packagekit-qt
       libsForQt5.discover
       libsForQt5.kio
@@ -63,7 +63,7 @@ in
       libsForQt5.flatpak-kcm
       libsForQt5.kcmutils
       libsForQt5.plasma-vault
-      pkgs.unstable.libsForQt5.kscreenlocker
+      libsForQt5.kscreenlocker
       # Settings
       wayland-utils
 

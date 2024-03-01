@@ -89,7 +89,7 @@ in
           #     pkgs.espeak-ng
           #   ];
           # }))
-          (unstable.firefox.override {
+          (firefox.override {
             extraNativeMessagingHosts = with pkgs.nur.repos.wolfangaukang; [ vdhcoapp ];
             cfg = {
               enablePlasmaBrowserIntegration = true;
@@ -98,14 +98,14 @@ in
             };
           })
           # config.nur.repos.xddxdd.deepspeech-gpu
-          # unstable.bitwarden
+          # bitwarden
           # microsoft-edge
           # discord
           # whatsapp-for-linux
           # ferdium
           transmission-gtk
           birdtray
-          unstable.thunderbird
+          thunderbird
           # Privacy
           veracrypt
           # lesspass-cli
@@ -117,12 +117,12 @@ in
           # Drawing
           xournalpp
           # TODO: flathub rnote seems to be more up to date? Maybe change back to this someday...
-          # pkgs.unstable.rnote
+          # pkgs.rnote
           inkscape
           # mypaint
           gimp
           aseprite
-          # (pkgs.unstable.blender.override {
+          # (pkgs.blender.override {
           #   cudaSupport = true;
           # })
           krita
@@ -147,7 +147,7 @@ in
           # Programming
           # dbeaver
           # inputs.neovim-luca.defaultPackage.x86_64-linux
-          unstable.neovim
+          neovim
           rnix-lsp
           nix-output-monitor
           luajit
@@ -159,7 +159,7 @@ in
           # math
           # sage
           # julia-bin
-          unstable.rstudio
+          rstudio
           # JavaScript/TypeScript
           nodejs_20
           jetbrains.webstorm
@@ -226,7 +226,7 @@ in
           dotnetCorePackages.aspnetcore_7_0
           dotnetCorePackages.sdk_7_0
           dotnetCorePackages.runtime_7_0
-          unstable.jetbrains.rider
+          jetbrains.rider
           # R
           radianWrapper
           (
@@ -287,8 +287,8 @@ in
           mongodb-compass
           # game-dev
           godotMono
-          # pkgs.unstable.godot
-          # pkgs.unstable.unityhub
+          # pkgs.godot
+          # pkgs.unityhub
           # UNI HHU ZEUG
           # konferenzen
           # zoom-us
@@ -303,7 +303,7 @@ in
         ];
     };
     programs.steam = {
-      package = pkgs.unstable.steam;
+      package = pkgs.steam;
       enable = true;
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
