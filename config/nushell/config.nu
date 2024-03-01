@@ -777,6 +777,21 @@ alias nuconfig = vim ~/.config/nushell/config.nu
 def montissh [] {
     TERM=xterm-256color ssh mmbs@monti.ai
 }
+def montikuma [] {
+    xdg-open http://localhost:3001
+    ssh -L 3001:localhost:3001 
+}
+def montiprometheus [] {
+    xdg-open http://localhost:9090
+    ssh -L 9090:localhost:9090 
+}
+def montigrafana [] {
+    xdg-open http://localhost:3000
+    ssh -L 3000:localhost:3000 
+}
+def montipostgres [] {
+    ssh -L 5432:localhost:5432 mmbs@monti.ai
+}
 # plugins
 register ~/.cargo/bin/nu_plugin_highlight
 use ~/.cache/starship/init.nu
