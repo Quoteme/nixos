@@ -48,9 +48,9 @@ in
         ]);
       in
       with pkgs; [
-        pkgs.unstable.distrobox
+        distrobox
         # themes
-        # Icons
+        # Icon
         gnome.adwaita-icon-theme
         papirus-icon-theme
         whitesur-icon-theme
@@ -105,7 +105,7 @@ in
         cookiecutter
         git
         gh
-        unstable.gitkraken
+        gitkraken
         eza
         # [10 Rust CLI tools for 2022](https://www.youtube.com/watch?v=haitmoSyTls)
         ripgrep
@@ -114,7 +114,7 @@ in
         sd
         just
         pdfgrep
-        fd
+        f
         bat
         power-profiles-daemon
         # archiving
@@ -161,18 +161,17 @@ in
         virglrenderer
         # Wine
         wineWowPackages.full
-        # pkgs.unstable.bottles
+        # bottles
         # stuff that is needed pretty much everywhere
         nodePackages.http-server
         myPython
         (haskellPackages.ghcWithPackages myGHCPackages)
-        unstable.haskell-language-server
-        unstable.ghc
-        unstable.haskellPackages.haskell-dap
-        unstable.haskellPackages.ghci-dap
-        unstable.haskellPackages.haskell-debug-adapter
-        unstable.cabal-install
-        # unstable.stack
+        haskell-language-server
+        ghc
+        haskellPackages.haskell-dap
+        haskellPackages.ghci-dap
+        haskellPackages.haskell-debug-adapter
+        cabal-install
       ];
   };
 }

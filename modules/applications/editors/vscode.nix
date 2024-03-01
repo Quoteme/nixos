@@ -25,7 +25,7 @@ in
       ltex-ls
       pkgs.rPackages.languageserver
       (unstable.vscode-with-extensions.override {
-        vscode = unstable.vscodium;
+        vscode = vscodium;
         vscodeExtensions = with pkgs.vscode-marketplace; [
           # Language packs
           ms-ceintl.vscode-language-pack-de
