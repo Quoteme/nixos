@@ -114,7 +114,7 @@ in
         sd
         just
         pdfgrep
-        f
+        fd
         bat
         power-profiles-daemon
         # archiving
