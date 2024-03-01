@@ -64,6 +64,10 @@
         # use the sddm from overlay-unstable
         sddm = attrs.nixpkgs-unstable.sddm;
       };
+      overlay-plasma6 = final: prev: {
+        # add the `services.xserver.desktopManager.plasma6.enable` option from nixpkgs-unstable to the stable nixpkgs
+        services.xserver.desktopManager.plasma6.enable = attrs.nixpkgs-unstable.services.xserver.desktopManager.plasma6.enable;
+      };
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
@@ -79,6 +83,7 @@
           overlay-screenrotate
           attrs.nur.overlay
           overlay-sddm
+          overlay-plasma6
         ];
       };
       nur-modules = import attrs.nur {
