@@ -32,43 +32,42 @@ in
     xdg.portal.enable = true;
     xdg.portal.xdgOpenUsePortal = true;
     xdg.portal.extraPortals = [
-      pkgs.libsForQt5.xdg-desktop-portal-kde
+      pkgs.kdePackages.xdg-desktop-portal-kde
     ];
     programs.dconf.enable = true;
     programs.kdeconnect.enable = true;
     environment.systemPackages = with pkgs; [
-      libsForQt5.ark
+      kdePackages.ark
       unrar
       p7zip
-      libsForQt5.kamoso
-      libsForQt5.skanlite
-      # libsForQt5.bismuth
-      libsForQt5.okular
-      libsForQt5.packagekit-qt
-      libsForQt5.discover
-      libsForQt5.kio
+      kdePackages.kamoso
+      kdePackages.skanlite
+      kdePackages.okular
+      kdePackages.packagekit-qt
+      kdePackages.discover
+      kdePackages.kio
       kio-fuse
-      libsForQt5.kio-gdrive
-      libsForQt5.kio-extras
-      libsForQt5.plasma-integration
-      libsForQt5.plasma-nm
-      libsForQt5.kdepim-runtime
-      libsForQt5.accounts-qt
-      libsForQt5.mauikit-accounts
-      libsForQt5.kaccounts-integration
-      libsForQt5.kaccounts-providers
-      libsForQt5.signond
-      libsForQt5.qoauth
-      libsForQt5.flatpak-kcm
-      libsForQt5.kcmutils
-      libsForQt5.plasma-vault
-      libsForQt5.kscreenlocker
+      kdePackages.kio-gdrive
+      kdePackages.kio-extras
+      kdePackages.plasma-integration
+      kdePackages.plasma-nm
+      kdePackages.kdepim-runtime
+      kdePackages.accounts-qt
+      kdePackages.mauikit-accounts
+      kdePackages.kaccounts-integration
+      kdePackages.kaccounts-providers
+      kdePackages.signond
+      kdePackages.qoauth
+      kdePackages.flatpak-kcm
+      kdePackages.kcmutils
+      kdePackages.plasma-vault
+      kdePackages.kscreenlocker
       # Settings
       wayland-utils
 
       # Keyboard
-      libsForQt5.qt5.qtwayland
-      libsForQt5.qt5.qtvirtualkeyboard
+      kdePackages.qt5.qtwayland
+      kdePackages.qt5.qtvirtualkeyboard
       maliit-keyboard
       maliit-framework
       # spellcheck
