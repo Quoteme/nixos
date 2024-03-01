@@ -35,26 +35,19 @@ in
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
-      # config.pipewire-pulse = {
-      #   "pulse.cmd" = [
-      #     {
-      #       "cmd" = "load-module";
-      #       "args" = "module-always-sink";
-      #       "flags" = [ ];
-      #     }
-      #     {
-      #       "cmd" = "load-module";
-      #       "args" = "module-switch-on-connect";
-      #     }
-      #   ];
-      # };
     };
     # Create a drop-in file in `/etc/pipewire/pipewire.conf.d/` to enable
     # pipewirte-pulse `module-switch-on-connect` and `module-always-sink`.
-    environment.etc."pipewire/pipewire.conf.d/99-bluetooth.conf".source = ./audio-config/99-bluetooth.conf;
     hardware = {
       pulseaudio.enable = false;
       pulseaudio.extraModules = [ pkgs.pulseaudio-modules-bt ];
+      pulseaudio.extraConfig = ''
+        load-module module-bluetooth-policy auto_switch=2
+        load-module module-bluetooth-discover
+        load-module module-bluetooth-policy
+        load-module module-switch-on-connect
+        load-module module-switch-on-port-available
+      '';
       bluetooth = {
         enable = true;
         powerOnBoot = false;

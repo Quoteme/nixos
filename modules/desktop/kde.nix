@@ -23,7 +23,6 @@ in
   config = mkIf cfg.enable {
     services.xserver.enable = true;
     # lightdm
-    # security.pam.services.lightdm.enableKwallet = false;
     # services.xserver.displayManager.lightdm.enable = true;
     # services.xserver.displayManager.defaultSession = "plasmawayland";
     # services.xserver.displayManager.setupCommands = ''
@@ -89,9 +88,6 @@ in
     # Settings
     services.fwupd.enable = true;
     # Security
-    security.pam.services.kde.enableKwallet = false;
-    security.pam.services.kwallet.enableKwallet = false;
-    # security.pam.services.login.kwallet.enable = false;
     security.pam.services.kde.fprintAuth = true;
     security.pam.services.sudo.fprintAuth = true;
     #
