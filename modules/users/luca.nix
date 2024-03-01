@@ -122,9 +122,9 @@ in
           # mypaint
           gimp
           aseprite
-          (pkgs.unstable.blender.override {
-            cudaSupport = true;
-          })
+          # (pkgs.unstable.blender.override {
+          #   cudaSupport = true;
+          # })
           krita
           # Media
           vlc

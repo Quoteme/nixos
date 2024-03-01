@@ -102,6 +102,44 @@
       cd = "z";
     };
   };
+  # programs.git = {
+  #   enable = true;
+  #   userName = "Luca Leon Happel";
+  #   userEmail = "luca.happel@hhu.de";
+  #   config = ''
+  #     [user]
+  #       email = luca.happel@hhu.de
+  #       name = Luca Leon Happel
+  #       signingKey = ""
+  #     [credential "https://github.com"]
+  #       helper = 
+  #       helper = !/run/current-system/sw/bin/gh auth git-credential
+  #     [credential "https://gist.github.com"]
+  #       helper = 
+  #       helper = !/run/current-system/sw/bin/gh auth git-credential
+  #     [gpg]
+  #       program = gpg
+  #       format = openpgp
+  #     [commit]
+  #       gpgSign = false
+  #     [tag]
+  #       forceSignAnnotated = false
+  #     [safe]
+  #       directory = /opt/flutter
+  #       directory = /etc/nixos
+  #     [credential]
+  #       helper = /run/current-system/sw/bin/gh auth git-credential
+  #     [merge]
+  #       tool = neovim
+  #     [gpg "ssh"]
+  #       program = ssh-keygen
+  #       allowedSignersFile = ""
+  #   '';
+  #   delta.enable = true;
+  #   lfs.enable = true;
+  #   git-cliff.enable = true;
+  # };
+  programs.gitui.enable = true;
   xdg.configFile."nushell-plugins/plugin.nu".source = ./config/nushell/plugin.nu;
   xdg.configFile."nushell/completion.nu".source = ./config/nushell/completion.nu;
   programs.zoxide = {

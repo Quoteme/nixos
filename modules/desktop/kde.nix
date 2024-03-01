@@ -90,6 +90,8 @@ in
     services.fwupd.enable = true;
     # Security
     security.pam.services.kde.enableKwallet = false;
+    security.pam.services.kwallet.enableKwallet = false;
+    # security.pam.services.login.kwallet.enable = false;
     security.pam.services.kde.fprintAuth = true;
     security.pam.services.sudo.fprintAuth = true;
     #
