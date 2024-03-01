@@ -21,11 +21,10 @@ in
     };
 
   config = mkIf cfg.enable {
-    services.xserver.layout = "de";
-    services.xserver.xkbVariant = "nodeadkeys";
-    services.xserver.xkbOptions = "caps:escape,shift:both_capslock,mod_led,compose:rctrl-altgr";
-
-    services.xserver.extraLayouts.hyper = {
+    services.xserver.xkb.layout = "de";
+    services.xserver.xkb.variant = "nodeadkeys";
+    services.xserver.xkb.options = "caps:escape,shift:both_capslock,mod_led,compose:rctrl-altgr";
+    services.xserver.xkb.extraLayouts.hyper = {
       # TODO this does not work :(
       description = "Use escape key as Hyper key";
       languages = [ ];
