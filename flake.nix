@@ -220,7 +220,7 @@
               users.defaultUserShell = pkgs.zsh;
 
               # List fonts installed in system profile
-              fonts.fonts = with pkgs; [
+              fonts.packages = with pkgs; [
                 julia-mono
                 scientifica
                 font-awesome
