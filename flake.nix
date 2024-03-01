@@ -341,7 +341,7 @@
                   # XMONAD_CACHE_DIR = "/etc/nixos/xmonad/.cache";
                   # NAUTILUS_4_EXTENSION_DIR = "${config.system.path}/lib/nautilus/extensions-4";
                   MOZ_USE_XINPUT2 = "1";
-                  MOZ_ENABLE_WAYLAND = "1";
+                  MOZ_ENABLE_WAYLAND = "0";
 
                   VISUAL = "nvim";
                   EDITOR = "nvim";
