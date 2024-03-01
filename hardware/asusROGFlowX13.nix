@@ -205,13 +205,22 @@
   #   }
   # ];
   # See: https://github.com/camillemndn/nixos-config/blob/f71c2b099bec17ceb8a894f099791447deac70bf/hardware/asus/gv301qe/default.nix#L46
+  # boot.kernelPatches = [{
+  #   name = "asus-rog-flow-x13-tablet-mode";
+  #   patch = builtins.fetchurl {
+  #     # url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.5/0001-HID-amd_sfh-Add-support-ior-tablet-mode-switch-senso.patch";
+  #     # sha256 = "sha256:08qw7qq88dy96jxa0f4x33gj2nb4qxa6fh2f25lcl8bgmk00k7l2";
+  #     url = "https://aur.archlinux.org/cgit/aur.git/plain/0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch?h=linux-flowx13";
+  #     sha256 = "sha256:1s1zyav5sz5k01av0biwkwl4x20qggj9k27znryz58khdblwxf4j";
+  #   };
+  # }];
   boot.kernelPatches = [{
     name = "asus-rog-flow-x13-tablet-mode";
     patch = builtins.fetchurl {
       # url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.5/0001-HID-amd_sfh-Add-support-ior-tablet-mode-switch-senso.patch";
       # sha256 = "sha256:08qw7qq88dy96jxa0f4x33gj2nb4qxa6fh2f25lcl8bgmk00k7l2";
-      url = "https://aur.archlinux.org/cgit/aur.git/plain/0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch?h=linux-flowx13";
-      sha256 = "sha256:1s1zyav5sz5k01av0biwkwl4x20qggj9k27znryz58khdblwxf4j";
+      url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.6/0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch?ref_type=heads";
+      sha256 = "sha256:011b4q0v8mkfrv96d4bvg8fd5dg6y5q38w20qmf196hsx35r13sh";
     };
   }];
   # Automatically Hybernate when suspended for 3 minutes
