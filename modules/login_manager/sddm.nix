@@ -23,16 +23,18 @@ in
   config = mkIf cfg.enable {
     services.xserver.enable = true;
     # SDDM
-    security.pam.services.sddm.enableKwallet = true;
+    security.pam.services.sddm.kwallet.enable = true;
     services.xserver.displayManager.sddm.enable = true;
-    services.xserver.displayManager.sddm.theme = "breeze";
-    services.xserver.displayManager.sddm.settings.General = {
-      DisplayServer = "wayland";
-      GreeterEnvironment = "QT_WAYLAND_SHELL_INTEGRATION=layer-shell";
-    };
+    services.xserver.displayManager.sddm.package = lib.mkForce pkgs.kdePackages.sddm;
+    services.xserver.displayManager.sddm.wayland.enable = true;
     environment.systemPackages = with pkgs; [
-      libsForQt5.sddm
-      libsForQt5.sddm-kcm
+      kdePackages.sddm
+      kdePackages.sddm-kcm
+      kdePackages.plasma5support
+      kdePackages.kirigami
+      kdePackages.qt5compat
+      kdePackages.breeze
+      kdePackages.ksvg
     ];
     # Security
     security.pam.services.sddm.fprintAuth = true;

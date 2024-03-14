@@ -89,14 +89,15 @@ in
           #     pkgs.espeak-ng
           #   ];
           # }))
-          (firefox.override {
-            extraNativeMessagingHosts = with pkgs.nur.repos.wolfangaukang; [ vdhcoapp ];
-            cfg = {
-              enablePlasmaBrowserIntegration = true;
-              enableFXCastBridge = true;
-              speechSynthesisSupport = true;
-            };
-          })
+          firefox
+          # (firefox.override {
+          #   extraNativeMessagingHosts = with pkgs.nur.repos.wolfangaukang; [ vdhcoapp ];
+          #   cfg = {
+          #     enablePlasmaBrowserIntegration = true;
+          #     enableFXCastBridge = true;
+          #     speechSynthesisSupport = true;
+          #   };
+          # })
           # config.nur.repos.xddxdd.deepspeech-gpu
           # bitwarden
           # microsoft-edge
