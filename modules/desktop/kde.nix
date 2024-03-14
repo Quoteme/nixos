@@ -40,7 +40,9 @@ in
       kdePackages.ark
       unrar
       p7zip
-      kdePackages.kamoso
+      libsForQt5.kamoso
+      # TODO: switch over to qt6 version ASAP
+      # kdePackages.kamoso
       kdePackages.skanlite
       kdePackages.okular
       kdePackages.packagekit-qt
@@ -53,11 +55,10 @@ in
       kdePackages.plasma-nm
       kdePackages.kdepim-runtime
       kdePackages.accounts-qt
-      kdePackages.mauikit-accounts
       kdePackages.kaccounts-integration
       kdePackages.kaccounts-providers
       kdePackages.signond
-      kdePackages.qoauth
+      kdePackages.signon-kwallet-extension
       kdePackages.flatpak-kcm
       kdePackages.kcmutils
       kdePackages.plasma-vault
@@ -66,8 +67,6 @@ in
       wayland-utils
 
       # Keyboard
-      kdePackages.qt5.qtwayland
-      kdePackages.qt5.qtvirtualkeyboard
       maliit-keyboard
       maliit-framework
       # spellcheck
@@ -89,6 +88,7 @@ in
     # Security
     security.pam.services.kde.fprintAuth = true;
     security.pam.services.sudo.fprintAuth = true;
+    services.gsignond.enable = true;
     #
     environment.sessionVariables = {
       QT_QUICK_CONTROLS_STYLE = "org.kde.desktop";

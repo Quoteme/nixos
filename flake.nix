@@ -191,7 +191,7 @@
               modules.hardware.disks.enable = true;
               modules.desktop.xmonad-luca.enable = true;
               modules.desktop.gnome.enable = false;
-              modules.desktop.cosmic.enable = false;
+              modules.desktop.cosmic.enable = true;
               modules.desktop.kde.enable = true;
               modules.desktopManager.sddm.enable = false;
               modules.desktopManager.lightdm.enable = true;

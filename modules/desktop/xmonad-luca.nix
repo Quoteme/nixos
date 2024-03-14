@@ -62,11 +62,11 @@ in
     services.udisks2.enable = true;
     services.devmon.enable = true;
     services.gvfs.enable = true;
-    services.tumbler.enable = true;
-    services.touchegg.enable = true;
+    # services.tumbler.enable = true;
+    # services.touchegg.enable = true;
     # enable wallet
-    services.gnome.gnome-keyring.enable = true;
-    services.blueman.enable = true;
+    # services.gnome.gnome-keyring.enable = true;
+    # services.blueman.enable = true;
     xdg.portal.enable = true;
     # FIXME: the nixos docs are pretty unhelpful here... Maybe in the future I will understand how to set this correctly?
     xdg.portal.config.common.default = "*";
