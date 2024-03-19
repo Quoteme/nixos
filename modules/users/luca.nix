@@ -149,7 +149,7 @@ in
           # dbeaver
           # inputs.neovim-luca.defaultPackage.x86_64-linux
           neovim
-          rnix-lsp
+          # rnix-lsp
           nix-output-monitor
           luajit
           lazygit
