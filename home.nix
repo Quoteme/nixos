@@ -100,6 +100,8 @@
     envFile.source = ./config/nushell/env.nu;
     shellAliases = {
       cd = "z";
+      ghcs = "gh copilot suggest";
+      ghce = "gh copilot explain";
     };
   };
   # programs.git = {
