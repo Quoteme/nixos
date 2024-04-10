@@ -287,7 +287,8 @@ in
           docker-compose
           mongodb-compass
           # game-dev
-          godotMono
+          # godotMono
+          godot_4
           # pkgs.godot
           # pkgs.unityhub
           # UNI HHU ZEUG

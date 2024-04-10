@@ -80,7 +80,6 @@ in
         lm_sensors
         appimage-run
         trashy
-        cobang
         mons
         arandr
         brightnessctl
@@ -101,7 +100,6 @@ in
         killall
         xorg.xkill
         wget
-        meld
         cookiecutter
         git
         gh

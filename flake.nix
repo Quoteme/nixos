@@ -27,10 +27,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nix-vscode-extensions.follows = "nix-vscode-extensions";
     };
-    godot = {
-      url = "github:Quoteme/nixos-godot-bin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # godot = {
+    #   url = "github:Quoteme/nixos-godot-bin";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     hmenke-nixos-modules.url = "github:hmenke/nixos-modules";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
@@ -57,7 +57,7 @@
           overlay-stable
           attrs.emacs-overlay.overlay
           attrs.nix-vscode-extensions.overlays.default
-          attrs.godot.overlays.x86_64-linux.default
+          # attrs.godot.overlays.x86_64-linux.default
           # overlay-nix-autobahn
           # attrs.nix-alien.overlays.default
           overlay-st-nix
@@ -349,7 +349,7 @@
               virtualisation = {
                 libvirtd = {
                   enable = true;
-                  qemu.package = (pkgs.qemu_full.override {
+                  qemu.package = (pkgs.stable.qemu_full.override {
                     gtkSupport = true;
                     sdlSupport = true;
                     virglSupport = true;
