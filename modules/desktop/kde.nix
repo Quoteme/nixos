@@ -28,7 +28,7 @@ in
     # services.xserver.displayManager.setupCommands = ''
     #   supergfxctl -m Integrated
     # '';
-    services.xserver.desktopManager.plasma6.enable = true;
+    services.desktopManager.plasma6.enable = true;
     xdg.portal.enable = true;
     xdg.portal.xdgOpenUsePortal = true;
     xdg.portal.extraPortals = [
@@ -75,7 +75,8 @@ in
       aspellDicts.en
       aspellDicts.en-computers
       aspellDicts.en-science
-      config.nur.repos.baduhai.koi
+      # TODO: enable this
+      # config.nur.repos.baduhai.koi
       # Settings
       # CLI programs required by Plasma
       wayland-utils

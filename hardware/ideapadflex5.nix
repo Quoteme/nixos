@@ -1,22 +1,22 @@
-{config, lib, pkgs, ...}:
+{ config, lib, pkgs, ... }:
 
 {
   boot = {
-    initrd.kernelModules = ["amdgpu"];
-    kernelModules = ["kvm-amd"];
+    initrd.kernelModules = [ "amdgpu" ];
+    kernelModules = [ "kvm-amd" ];
     extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
   };
   services = {
     xserver = {
       # Drivers
-        videoDrivers = ["amdgpu"];
+      videoDrivers = [ "amdgpu" ];
       # Enable different input methods
-        libinput = {
-          enable = true;
-          touchpad.tapping = true;
-          touchpad.naturalScrolling = true;
-        };
-        wacom.enable = true;
+      libinput = {
+        enable = true;
+        touchpad.tapping = true;
+        touchpad.naturalScrolling = true;
+      };
+      wacom.enable = true;
     };
     fprintd = {
       enable = true;

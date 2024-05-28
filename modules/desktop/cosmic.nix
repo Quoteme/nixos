@@ -49,7 +49,7 @@ in
     xdg.portal.config.common.default = "*";
 
     # session files for display manager and systemd
-    services.xserver.displayManager.sessionPackages = with pkgs; [ cosmic-session ];
+    services.displayManager.sessionPackages = with pkgs; [ cosmic-session ];
     systemd.packages = with pkgs; [ cosmic-session ];
   };
 }
