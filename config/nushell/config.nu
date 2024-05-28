@@ -792,6 +792,15 @@ def montigrafana [] {
 def montipostgres [] {
     ssh -L 5432:localhost:5432 mmbs@monti.ai
 }
+def --env yy [...args] {
+	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+	yazi ...$args --cwd-file $tmp
+	let cwd = (open $tmp)
+	if $cwd != "" and $cwd != $env.PWD {
+		cd $cwd
+	}
+	rm -fp $tmp
+}
 # plugins
 register ~/.cargo/bin/nu_plugin_highlight
 use ~/.cache/starship/init.nu

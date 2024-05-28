@@ -6,13 +6,13 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
   services = {
+    # Enable different input methods
+    libinput = {
+      enable = true;
+      touchpad.tapping = true;
+      touchpad.naturalScrolling = true;
+    };
     xserver = {
-      # Enable different input methods
-      libinput = {
-        enable = true;
-        touchpad.tapping = true;
-        touchpad.naturalScrolling = true;
-      };
       wacom.enable = true;
     };
   };

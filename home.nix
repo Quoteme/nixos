@@ -55,6 +55,9 @@
         cd ~/Dokumente/dev/control_center/";
       dirxmonadluca = "
         cd ~/Dokumente/dev/xmonad-luca/";
+
+      # shortcuts
+      o = "xdg-open";
     };
     dirHashes = {
       monti = "~/Dokumente/dev/monti/";
@@ -100,10 +103,36 @@
     envFile.source = ./config/nushell/env.nu;
     shellAliases = {
       cd = "z";
+      python-enter-venv = "sh -i -c 'source .venv/bin/activate ; nu'";
+      y = "yazi";
+      fm = "yazi";
+      o = "xdg-open";
       ghcs = "gh copilot suggest";
+      suggest = "gh copilot suggest";
+      help-suggest = "gh copilot suggest";
       ghce = "gh copilot explain";
+      explain = "gh copilot explain";
+      help-explain = "gh copilot explain";
     };
   };
+  programs.readline = {
+    enable = true;
+    variables = {
+      # see https://www.man7.org/linux/man-pages/man3/readline.3.html
+      editing-mode = "vi";
+      keymap = "vi";
+      completion-ignore-case = "on";
+      show-all-if-ambiguous = "on";
+    };
+  };
+  # ipython vim bindings
+  home.file.".ipython/profile_default/ipython_config.py".text = ''
+    c.TerminalInteractiveShell.editing_mode = 'vi'
+  '';
+  # ghci vim bindings
+  home.file.".haskeline".text = ''
+    editMode: Vi
+  '';
   # programs.git = {
   #   enable = true;
   #   userName = "Luca Leon Happel";
