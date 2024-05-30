@@ -232,7 +232,13 @@
   specialisation = {
     on-the-go.configuration = {
       system.nixos.tags = [ "on-the-go" ];
+      services.xserver.videoDrivers = lib.mkForce [ "amdgpu" ];
+      hardware.nvidia.modesetting.enable = lib.mkForce false;
+      hardware.nvidia.powerManagement.enable = lib.mkForce false;
+      hardware.nvidia.powerManagement.finegrained = lib.mkForce false;
+      hardware.nvidia.nvidiaSettings = lib.mkForce false;
       hardware.nvidia.prime.offload.enable = lib.mkForce false;
+      hardware.nvidia.prime.offload.enableOffloadCmd = lib.mkForce false;
     };
   };
 }
