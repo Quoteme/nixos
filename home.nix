@@ -171,6 +171,7 @@
   #   git-cliff.enable = true;
   # };
   programs.gitui.enable = true;
+  xdg.configFile."nushell-plugins/plugin.nu".source = ./config/nushell/plugin.nu;
   xdg.configFile."nushell/completion.nu".source = ./config/nushell/completion.nu;
   programs.zoxide = {
     enable = true;
