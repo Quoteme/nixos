@@ -232,7 +232,7 @@
   specialisation = {
     on-the-go.configuration = {
       system.nixos.tags = [ "on-the-go" ];
-      hardware.nvidiaOptimus.disable = lib.mkForce true;
+      hardware.nvidia.prime.offload.enable = lib.mkForce false;
     };
   };
 }
