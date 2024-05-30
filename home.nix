@@ -171,7 +171,6 @@
   #   git-cliff.enable = true;
   # };
   programs.gitui.enable = true;
-  xdg.configFile."nushell-plugins/plugin.nu".source = ./config/nushell/plugin.nu;
   xdg.configFile."nushell/completion.nu".source = ./config/nushell/completion.nu;
   programs.zoxide = {
     enable = true;
@@ -192,6 +191,9 @@
   programs.atuin.enable = true;
   programs.atuin.enableNushellIntegration = true;
   programs.atuin.enableZshIntegration = true;
+  programs.atuin.settings = {
+    keymap_mode = "auto";
+  };
   programs.starship = {
     enable = true;
     settings = {

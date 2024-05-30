@@ -121,7 +121,7 @@ in
         toilet
         htop-vim
         btop
-        nvimpager
+        stable.nvimpager
         # TODO: add manual how to add nix-flakes as system-programs
         # TODO: add this manual to reddit post
         # st-nix
