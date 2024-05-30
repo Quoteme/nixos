@@ -227,4 +227,18 @@
   # Automatically Hybernate when suspended for 3 minutes
   # services.logind.lidSwitch = "suspend-then-hibernate";
   # environment.etc."systemd/sleep.conf".text = "HibernateDelaySec=180";
+
+  # Add an on-the-go configuration, which disables the nvidia graphics card completely
+  specialisation = {
+    on-the-go.configuration = {
+      system.nixos.tags = [ "on-the-go" ];
+      services.xserver.videoDrivers = lib.mkForce [ "amdgpu" ];
+      hardware.nvidia.modesetting.enable = lib.mkForce false;
+      hardware.nvidia.powerManagement.enable = lib.mkForce false;
+      hardware.nvidia.powerManagement.finegrained = lib.mkForce false;
+      hardware.nvidia.nvidiaSettings = lib.mkForce false;
+      hardware.nvidia.prime.offload.enable = lib.mkForce false;
+      hardware.nvidia.prime.offload.enableOffloadCmd = lib.mkForce false;
+    };
+  };
 }
