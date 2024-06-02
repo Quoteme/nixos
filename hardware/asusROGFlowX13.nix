@@ -2,8 +2,13 @@
 
 {
   nixpkgs.config.allowUnfree = true;
-  boot.loader.systemd-boot.enable = true;
+  # Secure boot
+  boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.systemd-boot.configurationLimit = 5;
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/etc/secureboot";
+  };
   boot.loader.efi.canTouchEfiVariables = true;
   services = {
     # Enable different input methods
