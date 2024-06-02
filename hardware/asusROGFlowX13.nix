@@ -43,7 +43,7 @@
     enableRedistributableFirmware = true;
   };
   # AMD settings
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.initrd.kernelModules = [ "amdgpu" "kvm-amd" ];
   programs.corectrl.enable = true;
   services.auto-cpufreq.enable = true;
   #  services.auto-cpufreq.settings =
@@ -68,13 +68,6 @@
   # services.cpupower-gui.enable = true;
   services.thermald.enable = true;
   # supergfxd
-  boot.kernelParams = [
-    # "supergfxd.mode=integrated"
-    # "nvidia"
-    # "nvidia_modeset"
-    # "nvidia_uvm"
-    # "nvidia_drm"
-  ];
   services.supergfxd = {
     enable = true;
     settings = {
@@ -239,6 +232,36 @@
       hardware.nvidia.nvidiaSettings = lib.mkForce false;
       hardware.nvidia.prime.offload.enable = lib.mkForce false;
       hardware.nvidia.prime.offload.enableOffloadCmd = lib.mkForce false;
+    };
+    supergfxd-integrated.configuration = {
+      system.nixos.tags = [ "supergfxd-integrated" ];
+      boot.kernelParams = [
+        "supergfxd.mode=Integrated"
+      ];
+      services.supergfxd = {
+        enable = lib.mkForce true;
+        settings.mode = lib.mkForce "Integrated";
+      };
+    };
+    supergfxd-hybrid.configuration = {
+      system.nixos.tags = [ "supergfxd-hybrid" ];
+      boot.kernelParams = [
+        "supergfxd.mode=Hybrid"
+      ];
+      services.supergfxd = {
+        enable = lib.mkForce true;
+        settings.mode = lib.mkForce "Hybrid";
+      };
+    };
+    supergfxd-vfio.configuration = {
+      system.nixos.tags = [ "supergfxd-vfio" ];
+      boot.kernelParams = [
+        "supergfxd.mode=VFIO"
+      ];
+      services.supergfxd = {
+        enable = lib.mkForce true;
+        settings.mode = lib.mkForce "VFIO";
+      };
     };
   };
 }
