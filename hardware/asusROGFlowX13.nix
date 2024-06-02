@@ -112,6 +112,9 @@
   };
 
   environment.systemPackages = with pkgs; [
+    # Secure boot
+    sbctl
+    # NVIDIA
     vulkan-tools
     vulkan-loader
     vulkan-headers
