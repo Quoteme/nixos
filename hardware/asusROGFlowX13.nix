@@ -241,35 +241,35 @@
       hardware.nvidia.prime.offload.enable = lib.mkForce false;
       hardware.nvidia.prime.offload.enableOffloadCmd = lib.mkForce false;
     };
-    supergfxd-integrated.configuration = {
-      system.nixos.tags = [ "supergfxd-integrated" ];
-      boot.kernelParams = [
-        "supergfxd.mode=Integrated"
-      ];
-      services.supergfxd = {
-        enable = lib.mkForce true;
-        settings.mode = lib.mkForce "Integrated";
-      };
-    };
-    supergfxd-hybrid.configuration = {
-      system.nixos.tags = [ "supergfxd-hybrid" ];
-      boot.kernelParams = [
-        "supergfxd.mode=Hybrid"
-      ];
-      services.supergfxd = {
-        enable = lib.mkForce true;
-        settings.mode = lib.mkForce "Hybrid";
-      };
-    };
-    supergfxd-vfio.configuration = {
-      system.nixos.tags = [ "supergfxd-vfio" ];
-      boot.kernelParams = [
-        "supergfxd.mode=VFIO"
-      ];
-      services.supergfxd = {
-        enable = lib.mkForce true;
-        settings.mode = lib.mkForce "VFIO";
-      };
-    };
+    # supergfxd-integrated.configuration = {
+    #   system.nixos.tags = [ "supergfxd-integrated" ];
+    #   boot.kernelParams = [
+    #     "supergfxd.mode=Integrated"
+    #   ];
+    #   services.supergfxd = {
+    #     enable = lib.mkForce true;
+    #     settings.mode = lib.mkForce "Integrated";
+    #   };
+    # };
+    # supergfxd-hybrid.configuration = {
+    #   system.nixos.tags = [ "supergfxd-hybrid" ];
+    #   boot.kernelParams = [
+    #     "supergfxd.mode=Hybrid"
+    #   ];
+    #   services.supergfxd = {
+    #     enable = lib.mkForce true;
+    #     settings.mode = lib.mkForce "Hybrid";
+    #   };
+    # };
+    # supergfxd-vfio.configuration = {
+    #   system.nixos.tags = [ "supergfxd-vfio" ];
+    #   boot.kernelParams = [
+    #     "supergfxd.mode=VFIO"
+    #   ];
+    #   services.supergfxd = {
+    #     enable = lib.mkForce true;
+    #     settings.mode = lib.mkForce "VFIO";
+    #   };
+    # };
   };
 }
