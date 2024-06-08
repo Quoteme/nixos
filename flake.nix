@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "nixpkgs/nixos-24.05";
     nur.url = "github:nix-community/NUR";
     # home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.url = "github:nix-community/home-manager";
@@ -33,9 +33,13 @@
     # };
     hmenke-nixos-modules.url = "github:hmenke/nixos-modules";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.3.0";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@attrs:
+  outputs = { self, nixpkgs, home-manager, lanzaboote, ... }@attrs:
     let
       system = "x86_64-linux";
       overlay-stable = final: prev: {
@@ -77,6 +81,7 @@
         modules = [
           attrs.nur.nixosModules.nur
           nur-modules.repos.LuisChDev.modules.nordvpn
+          lanzaboote.nixosModules.lanzaboote
           # ┏━╸┏━┓┏┓╻┏━╸╻┏━╸╻ ╻┏━┓┏━┓╺┳╸╻┏━┓┏┓╻ ┏┓╻╻╻ ╻
           # ┃  ┃ ┃┃┗┫┣╸ ┃┃╺┓┃ ┃┣┳┛┣━┫ ┃ ┃┃ ┃┃┗┫ ┃┗┫┃┏╋┛
           # ┗━╸┗━┛╹ ╹╹  ╹┗━┛┗━┛╹┗╸╹ ╹ ╹ ╹┗━┛╹ ╹╹╹ ╹╹╹ ╹
@@ -156,7 +161,7 @@
               };
 
               boot = {
-                kernelPackages = pkgs.stable.linuxPackages_6_6;
+                kernelPackages = pkgs.stable.linuxPackages_6_9;
                 # windows integration
                 supportedFilesystems = [ "ntfs" ];
               };

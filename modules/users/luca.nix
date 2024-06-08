@@ -40,7 +40,7 @@ in
         "vboxusers" # maybe use `users.extraGroups.vboxusers.members = [ "luca" ];` 
         "nordvpn"
       ];
-      shell = pkgs.nushellFull;
+      shell = pkgs.nushell;
       # Web-eID / European Smart-Card support https://nixos.wiki/wiki/Web_eID
       # pkgs.config.firefox.euwebid = true;
       # services.pcscd.enable = true;
@@ -161,7 +161,7 @@ in
           # math
           # sage
           # julia-bin
-          rstudio
+          # rstudio
           # JavaScript/TypeScript
           nodejs_20
           jetbrains.webstorm
