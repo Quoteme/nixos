@@ -98,6 +98,7 @@
                 (import ./modules/hardware/laptop/asusROGFlowX13.nix { inherit config lib options pkgs; })
                 ./modules/desktop/xmonad-luca.nix
                 ./modules/desktop/gnome.nix
+                (import ./modules/fonts.nix { inherit config lib options pkgs; })
                 (import ./modules/desktop/cosmic.nix { inherit config lib options pkgs; })
                 (import ./modules/desktop/kde.nix { inherit config lib options pkgs; })
                 (import ./modules/login_manager/sddm.nix { inherit config lib options pkgs; })
@@ -184,26 +185,6 @@
               users.users.root.initialHashedPassword = "";
               users.defaultUserShell = pkgs.zsh;
 
-              # List fonts installed in system profile
-              fonts.packages = with pkgs; [
-                julia-mono
-                scientifica
-                font-awesome
-                unifont
-                siji
-                openmoji-color
-                fira-code
-                hasklig
-                material-icons
-                # nerdfonts
-                (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
-
-                noto-fonts
-                noto-fonts-cjk
-                noto-fonts-emoji
-                liberation_ttf
-              ];
-              fonts.fontconfig.defaultFonts.emoji = [ "Noto Color Emoji" "openmoji-color" ];
               # List packages installed in system profile. To search, run:
               # $ nix search nixpkgs wget
               # TODO: move this into another file
