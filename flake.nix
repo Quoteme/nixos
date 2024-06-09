@@ -95,7 +95,7 @@
                   nur = inputs.nur;
                   inherit config lib options pkgs inputs;
                 })
-                (import ./hardware/asusROGFlowX13.nix { inherit config lib options pkgs; })
+                (import ./modules/hardware/laptop/asusROGFlowX13.nix { inherit config lib options pkgs; })
                 ./modules/desktop/xmonad-luca.nix
                 ./modules/desktop/gnome.nix
                 (import ./modules/desktop/cosmic.nix { inherit config lib options pkgs; })
@@ -148,6 +148,7 @@
                 useXkbConfig = true;
               };
 
+              modules.hardware.laptop.asus-rog-flow-x13.enable = true;
               modules.hardware.keyboard-de.enable = true;
               modules.hardware.printing.enable = true;
               modules.hardware.audio.enable = true;

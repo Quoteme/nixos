@@ -63,7 +63,10 @@
       };
     };
 
-    programs.nh.enable = true;
+    programs.nh = {
+      enable = true;
+      flake = /etc/nixos;
+    };
     environment.systemPackages = with pkgs; [
       nix-output-monitor
       nixpkgs-fmt
