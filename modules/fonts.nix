@@ -17,22 +17,25 @@
   config = lib.modules.mkIf config.modules.fonts.enable {
     # List fonts installed in system profile
     fonts.packages = with pkgs; [
-      julia-mono
-      scientifica
-      font-awesome
-      unifont
-      siji
-      openmoji-color
-      fira-code
-      hasklig
-      material-icons
       # nerdfonts
-      (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
-
+      (pkgs.nerdfonts.override {
+        fonts = [
+          "FiraCode"
+          "Monaspace"
+          "Hasklig"
+        ];
+      })
+      font-awesome
+      julia-mono
+      liberation_ttf
+      material-icons
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-      liberation_ttf
+      openmoji-color
+      scientifica
+      siji
+      unifont
     ];
     fonts.fontconfig.defaultFonts.emoji = [ "Noto Color Emoji" "openmoji-color" ];
   };
