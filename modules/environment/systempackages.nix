@@ -64,14 +64,7 @@ in
         # Cursor
         # numix-cursor-theme
         # Small Utilities
-        # nix
-        nixpkgs-fmt
-        nix-du
-        nix-tree
         # nix-ld stuff
-        # nix-autobahn
-        # nix-alien
-        nix-index
         fzf
         playerctl
         pcmanfm

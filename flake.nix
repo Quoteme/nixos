@@ -89,6 +89,12 @@
             {
               imports = [
                 ./hardware-configuration.nix
+                (import ./modules/applications/nix-extras.nix {
+                  nixpkgs = nixpkgs;
+                  nixpkgs-stable = inputs.nixpkgs-stable;
+                  nur = inputs.nur;
+                  inherit config lib options pkgs inputs;
+                })
                 (import ./hardware/asusROGFlowX13.nix { inherit config lib options pkgs; })
                 ./modules/desktop/xmonad-luca.nix
                 ./modules/desktop/gnome.nix
@@ -111,54 +117,6 @@
                 (import ./modules/environment/user_shell_nushell.nix { inherit config lib options pkgs; })
                 # (pkgs.callPackage ./modules/environment/user_shell.nix { })
               ];
-
-              nix = {
-                package = pkgs.nix;
-                extraOptions = ''
-                  experimental-features = nix-command flakes
-                  warn-dirty = false
-                '';
-                nixPath = [
-                  "nixpkgs=${nixpkgs}"
-                  "stable=${attrs.nixpkgs-stable}"
-                  "nur=${attrs.nur}"
-                  "nix-vscode=${attrs.nix-vscode-extensions}"
-                ];
-                registry = {
-                  # nixpkgs.flake = nixpkgs;
-                  nixpkgs = {
-                    from = {
-                      type = "indirect";
-                      id = "nixpkgs";
-                    };
-                    to = {
-                      type = "path";
-                      path = inputs.nixpkgs.outPath;
-                    };
-                  };
-                  stable.flake = attrs.nixpkgs-stable;
-                  nur.flake = attrs.nur;
-                };
-                settings = {
-                  auto-optimise-store = true;
-                  substituters = [
-                    "https://nix-community.cachix.org/"
-                    "https://gvolpe-nixos.cachix.org"
-                    #"https://cache.garnix.io"
-                    "https://cuda-maintainers.cachix.org"
-                    "https://cache.nixos.org/"
-                    "https://lean4.cachix.org/"
-                  ];
-                  trusted-public-keys = [
-                    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-                    "gvolpe-nixos.cachix.org-1:0MPlBIMwYmrNqoEaYTox15Ds2t1+3R+6Ycj0hZWMcL0="
-                    #"cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-                    "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
-                    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-                    "lean4.cachix.org-1:mawtxSxcaiWE24xCXXgh3qnvlTkyU7evRRnGeAhD4Wk="
-                  ];
-                };
-              };
 
               boot = {
                 kernelPackages = pkgs.stable.linuxPackages_6_9;
@@ -204,6 +162,7 @@
               modules.applications.editors.vscode.enable = false;
               modules.applications.editors.vscode-fhs.enable = true;
               modules.applications.virtualisation.docker.enable = true;
+              modules.applications.nix-extras.enable = true;
               modules.users.luca.enable = true;
               modules.environment.systemPackages.enable = true;
               modules.environment.user_shell_zsh.enable = true;
@@ -249,10 +208,6 @@
               # TODO: move this into another file
 
               programs = {
-                # https://github.com/Mic92/nix-ld
-                nix-ld.enable = true;
-                # nix-ld.package = pkgs.stable.nix-ld;
-
                 # Some programs need SUID wrappers, can be configured further or are
                 # started in user sessions.
                 mtr.enable = true;

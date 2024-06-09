@@ -106,7 +106,7 @@
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.powerManagement.enable = true;
   hardware.nvidia.powerManagement.finegrained = true;
-  # TODO: Find out if using the open source kenel module means we are using Nouveau
+  # TODO: Find out if using the open source kernel module means we are using Nouveau
   hardware.nvidia.open = false;
   hardware.nvidia.nvidiaSettings = true;
   hardware.nvidia.prime = {
@@ -263,7 +263,7 @@
     #   };
     # }
   ];
-  # Automatically Hybernate when suspended for 3 minutes
+  # Automatically iibernate when suspended for 3 minutes
   # services.logind.lidSwitch = "suspend-then-hibernate";
   # environment.etc."systemd/sleep.conf".text = "HibernateDelaySec=180";
 
@@ -271,6 +271,7 @@
   specialisation = {
     on-the-go.configuration = {
       system.nixos.tags = [ "on-the-go" ];
+      environment.etc."specialisation".text = "on-the-go"; # extra text for nix-helper
       services.xserver.videoDrivers = lib.mkForce [ "amdgpu" ];
       hardware.nvidia.modesetting.enable = lib.mkForce false;
       hardware.nvidia.powerManagement.enable = lib.mkForce false;
@@ -281,6 +282,7 @@
     };
     # supergfxd-integrated.configuration = {
     #   system.nixos.tags = [ "supergfxd-integrated" ];
+    #   environment.etc."specialisation".text = "supergfxd-integrated"; # extra text for nix-helper
     #   boot.kernelParams = [
     #     "supergfxd.mode=Integrated"
     #   ];
@@ -291,6 +293,7 @@
     # };
     # supergfxd-hybrid.configuration = {
     #   system.nixos.tags = [ "supergfxd-hybrid" ];
+    #   environment.etc."specialisation".text = "supergfxd-hybrid"; # extra text for nix-helper
     #   boot.kernelParams = [
     #     "supergfxd.mode=Hybrid"
     #   ];
@@ -301,6 +304,7 @@
     # };
     # supergfxd-vfio.configuration = {
     #   system.nixos.tags = [ "supergfxd-vfio" ];
+    #   environment.etc."specialisation".text = "supergfxd-vfio"; # extra text for nix-helper
     #   boot.kernelParams = [
     #     "supergfxd.mode=VFIO"
     #   ];
