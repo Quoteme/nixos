@@ -205,10 +205,6 @@
       };
     };
   };
-  programs.nix-index = {
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-  };
   programs.mpv = {
     enable = true;
     config = {

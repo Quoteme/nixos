@@ -26,5 +26,8 @@ in
     virtualisation.docker.enableNvidia = true;
     virtualisation.docker.storageDriver = "btrfs";
     users.users.luca.extraGroups = [ "docker" ];
+    environment.systemPackages = with pkgs; [
+      docker-compose
+    ];
   };
 }

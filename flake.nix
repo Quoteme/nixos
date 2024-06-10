@@ -89,9 +89,16 @@
             {
               imports = [
                 ./hardware-configuration.nix
-                (import ./hardware/asusROGFlowX13.nix { inherit config lib options pkgs; })
+                (import ./modules/applications/nix-extras.nix {
+                  nixpkgs = nixpkgs;
+                  nixpkgs-stable = inputs.nixpkgs-stable;
+                  nur = inputs.nur;
+                  inherit config lib options pkgs inputs;
+                })
+                (import ./modules/hardware/laptop/asusROGFlowX13.nix { inherit config lib options pkgs; })
                 ./modules/desktop/xmonad-luca.nix
                 ./modules/desktop/gnome.nix
+                (import ./modules/fonts.nix { inherit config lib options pkgs; })
                 (import ./modules/desktop/cosmic.nix { inherit config lib options pkgs; })
                 (import ./modules/desktop/kde.nix { inherit config lib options pkgs; })
                 (import ./modules/login_manager/sddm.nix { inherit config lib options pkgs; })
@@ -99,6 +106,7 @@
                 (import ./modules/desktop/sway.nix { inherit config lib options pkgs; })
                 (import ./modules/applications/editors/vscode.nix { inherit config lib options pkgs; })
                 (import ./modules/applications/editors/vscode-fhs.nix { inherit config lib options pkgs; })
+                (import ./modules/applications/gaming/steam.nix { inherit config lib options pkgs; })
                 ./modules/applications/virtualisation/docker.nix
                 ./modules/hardware/keyboard_de.nix
                 ./modules/hardware/printing.nix
@@ -111,54 +119,6 @@
                 (import ./modules/environment/user_shell_nushell.nix { inherit config lib options pkgs; })
                 # (pkgs.callPackage ./modules/environment/user_shell.nix { })
               ];
-
-              nix = {
-                package = pkgs.nix;
-                extraOptions = ''
-                  experimental-features = nix-command flakes
-                  warn-dirty = false
-                '';
-                nixPath = [
-                  "nixpkgs=${nixpkgs}"
-                  "stable=${attrs.nixpkgs-stable}"
-                  "nur=${attrs.nur}"
-                  "nix-vscode=${attrs.nix-vscode-extensions}"
-                ];
-                registry = {
-                  # nixpkgs.flake = nixpkgs;
-                  nixpkgs = {
-                    from = {
-                      type = "indirect";
-                      id = "nixpkgs";
-                    };
-                    to = {
-                      type = "path";
-                      path = inputs.nixpkgs.outPath;
-                    };
-                  };
-                  stable.flake = attrs.nixpkgs-stable;
-                  nur.flake = attrs.nur;
-                };
-                settings = {
-                  auto-optimise-store = true;
-                  substituters = [
-                    "https://nix-community.cachix.org/"
-                    "https://gvolpe-nixos.cachix.org"
-                    #"https://cache.garnix.io"
-                    "https://cuda-maintainers.cachix.org"
-                    "https://cache.nixos.org/"
-                    "https://lean4.cachix.org/"
-                  ];
-                  trusted-public-keys = [
-                    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-                    "gvolpe-nixos.cachix.org-1:0MPlBIMwYmrNqoEaYTox15Ds2t1+3R+6Ycj0hZWMcL0="
-                    #"cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-                    "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
-                    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-                    "lean4.cachix.org-1:mawtxSxcaiWE24xCXXgh3qnvlTkyU7evRRnGeAhD4Wk="
-                  ];
-                };
-              };
 
               boot = {
                 kernelPackages = pkgs.stable.linuxPackages_6_9;
@@ -190,6 +150,7 @@
                 useXkbConfig = true;
               };
 
+              modules.hardware.laptop.asus-rog-flow-x13.enable = true;
               modules.hardware.keyboard-de.enable = true;
               modules.hardware.printing.enable = true;
               modules.hardware.audio.enable = true;
@@ -203,7 +164,9 @@
               modules.desktop.sway.enable = false;
               modules.applications.editors.vscode.enable = false;
               modules.applications.editors.vscode-fhs.enable = true;
+              modules.applications.gaming.steam.enable = true;
               modules.applications.virtualisation.docker.enable = true;
+              modules.applications.nix-extras.enable = true;
               modules.users.luca.enable = true;
               modules.environment.systemPackages.enable = true;
               modules.environment.user_shell_zsh.enable = true;
@@ -224,35 +187,11 @@
               users.users.root.initialHashedPassword = "";
               users.defaultUserShell = pkgs.zsh;
 
-              # List fonts installed in system profile
-              fonts.packages = with pkgs; [
-                julia-mono
-                scientifica
-                font-awesome
-                unifont
-                siji
-                openmoji-color
-                fira-code
-                hasklig
-                material-icons
-                # nerdfonts
-                (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
-
-                noto-fonts
-                noto-fonts-cjk
-                noto-fonts-emoji
-                liberation_ttf
-              ];
-              fonts.fontconfig.defaultFonts.emoji = [ "Noto Color Emoji" "openmoji-color" ];
               # List packages installed in system profile. To search, run:
               # $ nix search nixpkgs wget
               # TODO: move this into another file
 
               programs = {
-                # https://github.com/Mic92/nix-ld
-                nix-ld.enable = true;
-                # nix-ld.package = pkgs.stable.nix-ld;
-
                 # Some programs need SUID wrappers, can be configured further or are
                 # started in user sessions.
                 mtr.enable = true;
@@ -279,18 +218,6 @@
                   color=true
                 '';
               };
-
-              # Gaming
-              programs.gamemode = {
-                enable = true;
-                settings = {
-                  custom = {
-                    start = "${pkgs.libnotify}/bin/notify-send -u LOW -i input-gaming 'Gamemode started' 'gamemode started'";
-                    end = "${pkgs.libnotify}/bin/notify-send -u LOW -i input-gaming 'Gamemode ended' 'gamemode ended'";
-                  };
-                };
-              };
-              hardware.steam-hardware.enable = true;
 
               # Shell configuration
               environment.variables = {
