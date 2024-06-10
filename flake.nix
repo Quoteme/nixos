@@ -106,6 +106,7 @@
                 (import ./modules/desktop/sway.nix { inherit config lib options pkgs; })
                 (import ./modules/applications/editors/vscode.nix { inherit config lib options pkgs; })
                 (import ./modules/applications/editors/vscode-fhs.nix { inherit config lib options pkgs; })
+                (import ./modules/applications/gaming/steam.nix { inherit config lib options pkgs; })
                 ./modules/applications/virtualisation/docker.nix
                 ./modules/hardware/keyboard_de.nix
                 ./modules/hardware/printing.nix
@@ -163,6 +164,7 @@
               modules.desktop.sway.enable = false;
               modules.applications.editors.vscode.enable = false;
               modules.applications.editors.vscode-fhs.enable = true;
+              modules.applications.gaming.steam.enable = true;
               modules.applications.virtualisation.docker.enable = true;
               modules.applications.nix-extras.enable = true;
               modules.users.luca.enable = true;
@@ -216,18 +218,6 @@
                   color=true
                 '';
               };
-
-              # Gaming
-              programs.gamemode = {
-                enable = true;
-                settings = {
-                  custom = {
-                    start = "${pkgs.libnotify}/bin/notify-send -u LOW -i input-gaming 'Gamemode started' 'gamemode started'";
-                    end = "${pkgs.libnotify}/bin/notify-send -u LOW -i input-gaming 'Gamemode ended' 'gamemode ended'";
-                  };
-                };
-              };
-              hardware.steam-hardware.enable = true;
 
               # Shell configuration
               environment.variables = {

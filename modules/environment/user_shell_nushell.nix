@@ -21,11 +21,11 @@ in
     };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [
-      pkgs.nushellFull
-      pkgs.carapace
-      pkgs.atuin
-      pkgs.starship
+    environment.systemPackages = with pkgs; [
+      nushell
+      carapace
+      atuin
+      starship
     ];
   };
 }
