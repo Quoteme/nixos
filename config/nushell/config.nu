@@ -828,6 +828,7 @@ def --env yy [...args] {
 	}
 	rm -fp $tmp
 }
+alias y = yy
 # plugins
 plugin add ~/.cargo/bin/nu_plugin_highlight
 plugin use highlight

@@ -67,7 +67,6 @@ in
         # nix-ld stuff
         fzf
         playerctl
-        pcmanfm
         tmsu
         qdirstat
         lm_sensors

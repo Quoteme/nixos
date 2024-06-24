@@ -95,29 +95,29 @@
                   nur = inputs.nur;
                   inherit config lib options pkgs inputs;
                 })
-                (import ./modules/hardware/laptop/asusROGFlowX13.nix { inherit config lib options pkgs; })
-                ./modules/desktop/xmonad-luca.nix
-                ./modules/desktop/gnome.nix
-                (import ./modules/fonts.nix { inherit config lib options pkgs; })
+                # (pkgs.callPackage ./modules/environment/user_shell.nix { })
+                (import ./modules/applications/editors/vscode-fhs.nix { inherit config lib options pkgs; })
+                (import ./modules/applications/editors/vscode.nix { inherit config lib options pkgs; })
+                (import ./modules/applications/gaming/steam.nix { inherit config lib options pkgs; })
                 (import ./modules/desktop/cosmic.nix { inherit config lib options pkgs; })
                 (import ./modules/desktop/kde.nix { inherit config lib options pkgs; })
-                (import ./modules/login_manager/sddm.nix { inherit config lib options pkgs; })
-                (import ./modules/login_manager/lightdm.nix { inherit config lib options pkgs; })
                 (import ./modules/desktop/sway.nix { inherit config lib options pkgs; })
-                (import ./modules/applications/editors/vscode.nix { inherit config lib options pkgs; })
-                (import ./modules/applications/editors/vscode-fhs.nix { inherit config lib options pkgs; })
-                (import ./modules/applications/gaming/steam.nix { inherit config lib options pkgs; })
+                (import ./modules/environment/nordvpn.nix { inherit config lib options pkgs; })
+                (import ./modules/environment/systempackages.nix { inherit config lib options pkgs; })
+                (import ./modules/environment/user_shell_nushell.nix { inherit config lib options pkgs; })
+                (import ./modules/environment/user_shell_zsh.nix { inherit config lib options pkgs; })
+                (import ./modules/fonts.nix { inherit config lib options pkgs; })
+                (import ./modules/hardware/laptop/asusROGFlowX13.nix { inherit config lib options pkgs; })
+                (import ./modules/login_manager/lightdm.nix { inherit config lib options pkgs; })
+                (import ./modules/login_manager/sddm.nix { inherit config lib options pkgs; })
+                (import ./modules/users/luca.nix { inherit config lib options pkgs; })
                 ./modules/applications/virtualisation/docker.nix
-                ./modules/hardware/keyboard_de.nix
-                ./modules/hardware/printing.nix
+                ./modules/desktop/gnome.nix
+                ./modules/desktop/xmonad-luca.nix
                 ./modules/hardware/audio.nix
                 ./modules/hardware/disks.nix
-                (import ./modules/users/luca.nix { inherit config lib options pkgs; })
-                (import ./modules/environment/systempackages.nix { inherit config lib options pkgs; })
-                (import ./modules/environment/nordvpn.nix { inherit config lib options pkgs; })
-                (import ./modules/environment/user_shell_zsh.nix { inherit config lib options pkgs; })
-                (import ./modules/environment/user_shell_nushell.nix { inherit config lib options pkgs; })
-                # (pkgs.callPackage ./modules/environment/user_shell.nix { })
+                ./modules/hardware/keyboard_de.nix
+                ./modules/hardware/printing.nix
               ];
 
               boot = {
@@ -150,27 +150,28 @@
                 useXkbConfig = true;
               };
 
-              modules.hardware.laptop.asus-rog-flow-x13.enable = true;
-              modules.hardware.keyboard-de.enable = true;
-              modules.hardware.printing.enable = true;
+              modules.applications.editors.vscode-fhs.enable = true;
+              modules.applications.editors.vscode.enable = false;
+              modules.applications.gaming.steam.enable = true;
+              modules.applications.nix-extras.enable = true;
+              modules.applications.virtualisation.docker.enable = true;
+              modules.desktop.cosmic.enable = true;
+              modules.desktop.gnome.enable = false;
+              modules.desktop.kde.enable = true;
+              modules.desktop.sway.enable = true;
+              modules.desktop.xmonad-luca.enable = true;
+              modules.desktopManager.lightdm.enable = true;
+              modules.desktopManager.sddm.enable = false;
+              modules.environment.systemPackages.enable = true;
+              modules.environment.user_shell_nushell.enable = true;
+              modules.environment.user_shell_zsh.enable = true;
+              modules.fonts.enable = true;
               modules.hardware.audio.enable = true;
               modules.hardware.disks.enable = true;
-              modules.desktop.xmonad-luca.enable = true;
-              modules.desktop.gnome.enable = false;
-              modules.desktop.cosmic.enable = true;
-              modules.desktop.kde.enable = true;
-              modules.desktopManager.sddm.enable = false;
-              modules.desktopManager.lightdm.enable = true;
-              modules.desktop.sway.enable = false;
-              modules.applications.editors.vscode.enable = false;
-              modules.applications.editors.vscode-fhs.enable = true;
-              modules.applications.gaming.steam.enable = true;
-              modules.applications.virtualisation.docker.enable = true;
-              modules.applications.nix-extras.enable = true;
+              modules.hardware.keyboard-de.enable = true;
+              modules.hardware.laptop.asus-rog-flow-x13.enable = true;
+              modules.hardware.printing.enable = true;
               modules.users.luca.enable = true;
-              modules.environment.systemPackages.enable = true;
-              modules.environment.user_shell_zsh.enable = true;
-              modules.environment.user_shell_nushell.enable = true;
 
               # Enable OneDrive
               # services.onedrive = {
@@ -237,46 +238,42 @@
                 GAMEMODERUNEXEC = "nvidia-offload";
               };
               environment.localBinInPath = true;
-              environment.sessionVariables =
-                let
-                  xdg_lib_home = "\${HOME}/.local/lib";
-                in
-                {
-                  XDG_CACHE_HOME = "\${HOME}/.cache";
-                  XDG_CONFIG_HOME = "\${HOME}/.config";
-                  XDG_LIB_HOME = xdg_lib_home;
-                  XDG_BIN_HOME = "\${HOME}/.local/bin";
-                  XDG_DATA_HOME = "\${HOME}/.local/share";
+              environment.sessionVariables = {
+                XDG_BIN_HOME = "\${HOME}/.local/bin";
+                XDG_CACHE_HOME = "\${HOME}/.cache";
+                XDG_CONFIG_HOME = "\${HOME}/.config";
+                XDG_DATA_HOME = "\${HOME}/.local/share";
+                XDG_LIB_HOME = "\${HOME}/.local/lib";
 
-                  DOTNET_ROOT = "${pkgs.dotnet-sdk_7}";
+                DOTNET_ROOT = "${pkgs.dotnet-sdk_7}";
 
-                  # XMONAD_DATA_DIR = "/etc/nixos/xmonad";
-                  # XMONAD_CONFIG_DIR = "/etc/nixos/xmonad";
-                  # XMONAD_CACHE_DIR = "/etc/nixos/xmonad/.cache";
-                  # NAUTILUS_4_EXTENSION_DIR = "${config.system.path}/lib/nautilus/extensions-4";
-                  MOZ_USE_XINPUT2 = "1";
-                  MOZ_ENABLE_WAYLAND = "0";
+                # XMONAD_DATA_DIR = "/etc/nixos/xmonad";
+                # XMONAD_CONFIG_DIR = "/etc/nixos/xmonad";
+                # XMONAD_CACHE_DIR = "/etc/nixos/xmonad/.cache";
+                # NAUTILUS_4_EXTENSION_DIR = "${config.system.path}/lib/nautilus/extensions-4";
+                MOZ_USE_XINPUT2 = "1";
+                MOZ_ENABLE_WAYLAND = "0";
 
-                  VISUAL = "nvim";
-                  EDITOR = "nvim";
+                VISUAL = "nvim";
+                EDITOR = "nvim";
 
-                  FLUTTER_SDK = "${xdg_lib_home}/arch-id/flutter";
-                  CARGO_HOME = "\${HOME}/.cargo";
-                  RUSTUP_HOME = "\${HOME}/.rustup";
+                CARGO_HOME = "\${HOME}/.cargo";
+                RUSTUP_HOME = "\${HOME}/.rustup";
 
-                  ANDROID_SDK_ROOT = "${xdg_lib_home}/arch-id/android-sdk/";
-                  PATH = [
-                    "\$XDG_BIN_HOME"
-                    "\$FLUTTER_SDK/bin"
-                    "\$ANDROID_SDK_ROOT/platform-tools"
-                    "\$HOME/.config/emacs/bin"
-                    "\$HOME/.elan/bin"
-                    "\$HOME/.local/share/npm/bin"
-                    # add rustup and cargo bin paths
-                    "\$CARGO_HOME/bin"
-                    "\$RUSTUP_HOME/toolchains/stable-x86_64-unknown-linux-gnu/bin"
-                  ];
-                };
+                # FLUTTER_SDK = "${xdg_lib_home}/arch-id/flutter";
+                # ANDROID_SDK_ROOT = "${xdg_lib_home}/arch-id/android-sdk/";
+                PATH = [
+                  "\$XDG_BIN_HOME"
+                  "\$FLUTTER_SDK/bin"
+                  # "\$ANDROID_SDK_ROOT/platform-tools"
+                  "\$HOME/.config/emacs/bin"
+                  "\$HOME/.elan/bin"
+                  "\$HOME/.local/share/npm/bin"
+                  # add rustup and cargo bin paths
+                  "\$CARGO_HOME/bin"
+                  "\$RUSTUP_HOME/toolchains/stable-x86_64-unknown-linux-gnu/bin"
+                ];
+              };
 
               virtualisation = {
                 libvirtd = {

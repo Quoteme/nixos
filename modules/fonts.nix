@@ -18,7 +18,7 @@
     # List fonts installed in system profile
     fonts.packages = with pkgs; [
       # nerdfonts
-      (pkgs.nerdfonts.override {
+      (nerdfonts.override {
         fonts = [
           "FiraCode"
           "Monaspace"

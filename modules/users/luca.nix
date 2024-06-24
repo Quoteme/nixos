@@ -63,7 +63,6 @@ in
         krita
         # Media
         vlc
-        mpv
         yt-dlp
         # Gaming
         xboxdrv

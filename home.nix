@@ -103,16 +103,18 @@
     envFile.source = ./config/nushell/env.nu;
     shellAliases = {
       cd = "z";
-      python-enter-venv = "sh -i -c 'source .venv/bin/activate ; nu'";
-      y = "yazi";
-      fm = "yazi";
-      o = "xdg-open";
-      ghcs = "gh copilot suggest";
-      suggest = "gh copilot suggest";
-      help-suggest = "gh copilot suggest";
-      ghce = "gh copilot explain";
       explain = "gh copilot explain";
+      fm = "yazi";
+      ghce = "gh copilot explain";
+      ghcs = "gh copilot suggest";
       help-explain = "gh copilot explain";
+      help-suggest = "gh copilot suggest";
+      lg = "lazygit";
+      o = "xdg-open";
+      python-enter-venv = "sh -i -c 'source .venv/bin/activate ; nu'";
+      suggest = "gh copilot suggest";
+      v = "nvim";
+      y = "yazi";
     };
   };
   programs.readline = {
@@ -208,19 +210,20 @@
   programs.mpv = {
     enable = true;
     config = {
-      profile = "
-        gpu-hq ";
-      ytdl-format = "
-        bestvideo + bestaudio ";
+      profile = " gpu-hq ";
+      ytdl-format = " bestvideo + bestaudio ";
       webui-port = " 4000 ";
-      script-opts = "
-        ytdl_hook-ytdl_path=yt-dlp";
+      script-opts = " ytdl_hook-ytdl_path=yt-dlp";
+      osc = " no ";
+      border = " no ";
     };
     scripts = with pkgs.mpvScripts; [
+      sponsorblock
       mpris
       mpv-playlistmanager
-      thumbnail
+      thumbfast
       simple-mpv-webui
+      modernx
     ];
   };
   programs.rofi = {
