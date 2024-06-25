@@ -74,6 +74,7 @@
     enable = true;
     enableBashIntegration = false;
     enableZshIntegration = true;
+    enableNushellIntegration = true;
     nix-direnv.enable = true;
   };
   programs.keychain = {
@@ -187,18 +188,25 @@
     enableZshIntegration = true;
     enableNushellIntegration = true;
   };
-  programs.carapace.enable = true;
-  programs.carapace.enableNushellIntegration = true;
-  programs.starship.enableNushellIntegration = true;
-  programs.direnv.enableNushellIntegration = true;
-  programs.atuin.enable = true;
-  programs.atuin.enableNushellIntegration = true;
-  programs.atuin.enableZshIntegration = true;
+  programs.carapace = {
+    enable = true;
+    enableNushellIntegration = true;
+    enableZshIntegration = true;
+  };
+  programs.atuin = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
+  };
   programs.atuin.settings = {
     keymap_mode = "auto";
   };
   programs.starship = {
     enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
     settings = {
       add_newline = true;
       character = {
