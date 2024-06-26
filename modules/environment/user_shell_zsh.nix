@@ -59,19 +59,21 @@ in
         fi
       '';
       shellAliases = {
+        cat = "bat";
+        cppshell = "nix shell unstable\#cmake unstable#gcc unstable#pkg-config";
+        enw = "emacs -nw";
+        haskellshell = "nix shell unstable\#haskell-language-server unstable\#ghc unstable\#haskellPackages.haskell-dap unstable\#haskellPackages.ghci-dap unstable\#haskellPackages.haskell-debug-adapter unstable\#cabal-install";
         l = "eza";
         ll = "eza -l --icons";
         lt = "eza -lT";
-        vs = "vim -S";
         neovimupdate = "cd /etc/nixos && sudo nix flake lock --update-input neovim-luca && sudo nixos-rebuild switch && notify-send \"updated system\"";
+        nvs = "nix shell ~/Dokumente/dev/neovim-luca/#neovimLuca";
+        v = "nvim";
         vi = "nvim";
         vim = "nvim";
-        cat = "bat";
-        nvs = "nix shell ~/Dokumente/dev/neovim-luca/#neovimLuca";
-        enw = "emacs -nw";
-        haskellshell = "nix shell unstable\#haskell-language-server unstable\#ghc unstable\#haskellPackages.haskell-dap unstable\#haskellPackages.ghci-dap unstable\#haskellPackages.haskell-debug-adapter unstable\#cabal-install";
-        cppshell = "nix shell unstable\#cmake unstable#gcc unstable#pkg-config";
+        vs = "vim -S";
         webcam = "mpv av://v4l2:/dev/video0 --profile=low-latency --untimed";
+        y = "yazi";
       };
     };
   };

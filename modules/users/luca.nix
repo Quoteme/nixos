@@ -40,7 +40,7 @@ in
         "vboxusers" # maybe use `users.extraGroups.vboxusers.members = [ "luca" ];` 
         "nordvpn"
       ];
-      shell = pkgs.nushell;
+      shell = pkgs.zsh;
       packages = with pkgs; [
         # Internet
         firefox
