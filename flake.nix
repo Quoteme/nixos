@@ -158,7 +158,7 @@
               modules.desktop.cosmic.enable = true;
               modules.desktop.gnome.enable = false;
               modules.desktop.kde.enable = true;
-              modules.desktop.sway.enable = true;
+              modules.desktop.sway.enable = false;
               modules.desktop.xmonad-luca.enable = true;
               modules.desktopManager.lightdm.enable = true;
               modules.desktopManager.sddm.enable = false;
