@@ -63,7 +63,7 @@
     # AMD settings
     boot.initrd.kernelModules = [ "kvm-amd" ];
     programs.corectrl.enable = true;
-    services.auto-cpufreq.enable = true;
+    # services.auto-cpufreq.enable = true;
     #  services.auto-cpufreq.settings =
     #    let
     #      MHz = x: x * 1000;
@@ -104,7 +104,7 @@
     hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
     hardware.opengl = {
       enable = true;
-      driSupport = true;
+      # driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs.stable; [
         amdvlk
@@ -209,35 +209,7 @@
     '';
 
     # tablet-mode patch
-    # 
-    # Only for Linux 5.19
-    # boot.kernelPatches = [
-    #   { name = "asus-rog-flow-x13-tablet-mode";
-    #     patch = builtins.fetchurl {
-    #       url = "https://raw.githubusercontent.com/IvanDovgal/asus-rog-flow-x13-tablet-mode/main/support_sw_tablet_mode.patch";
-    #       sha256 = "sha256:1qk63h1fvcqs6hyrz0djw9gay7ixcfh4rdqvza1x62j0wkrmrkky";
-    #     };
-    #   }
-    # ];
     # See: https://github.com/camillemndn/nixos-config/blob/f71c2b099bec17ceb8a894f099791447deac70bf/hardware/asus/gv301qe/default.nix#L46
-    # boot.kernelPatches = [{
-    #   name = "asus-rog-flow-x13-tablet-mode";
-    #   patch = builtins.fetchurl {
-    #     # url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.5/0001-HID-amd_sfh-Add-support-ior-tablet-mode-switch-senso.patch";
-    #     # sha256 = "sha256:08qw7qq88dy96jxa0f4x33gj2nb4qxa6fh2f25lcl8bgmk00k7l2";
-    #     url = "https://aur.archlinux.org/cgit/aur.git/plain/0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch?h=linux-flowx13";
-    #     sha256 = "sha256:1s1zyav5sz5k01av0biwkwl4x20qggj9k27znryz58khdblwxf4j";
-    #   };
-    # }];
-    # boot.kernelPatches = [{
-    #   name = "asus-rog-flow-x13-tablet-mode";
-    #   patch = builtins.fetchurl {
-    #     # url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.5/0001-HID-amd_sfh-Add-support-ior-tablet-mode-switch-senso.patch";
-    #     # sha256 = "sha256:08qw7qq88dy96jxa0f4x33gj2nb4qxa6fh2f25lcl8bgmk00k7l2";
-    #     url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.6/0001-HID-amd_sfh-Add-support-for-tablet-mode-switch-senso.patch?ref_type=heads";
-    #     sha256 = "sha256:011b4q0v8mkfrv96d4bvg8fd5dg6y5q38w20qmf196hsx35r13sh";
-    #   };
-    # }];
     boot.kernelPatches = [
       {
         name = "asus-rog-flow-x13-tablet-mode";
@@ -248,33 +220,6 @@
           sha256 = "sha256:011b4q0v8mkfrv96d4bvg8fd5dg6y5q38w20qmf196hsx35r13sh";
         };
       }
-      # {
-      #   name = "asus-linux-dgpu-total-graphics-power-control";
-      #   patch = builtins.fetchurl {
-      #     # url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.5/0001-HID-amd_sfh-Add-support-ior-tablet-mode-switch-senso.patch";
-      #     # sha256 = "sha256:08qw7qq88dy96jxa0f4x33gj2nb4qxa6fh2f25lcl8bgmk00k7l2";
-      #     url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.9/0005-asus-bios-add-dgpu-tgp-control.patch?ref_type=heads";
-      #     sha256 = "sha256:1iml4fjk63l40m42ca2v6vfr87w82w9s1x42vhz5vfajs6a6azfc";
-      #   };
-      # }
-      # {
-      #   name = "asus-linux-apu-mem-patch";
-      #   patch = builtins.fetchurl {
-      #     # url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.5/0001-HID-amd_sfh-Add-support-ior-tablet-mode-switch-senso.patch";
-      #     # sha256 = "sha256:08qw7qq88dy96jxa0f4x33gj2nb4qxa6fh2f25lcl8bgmk00k7l2";
-      #     url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.9/0006-asus-bios-add-apu-mem.patch?ref_type=heads";
-      #     sha256 = "sha256:0xjms4pc7ch2676bwjnpmic6v9z8gsdvgf77swyg8m9cq8d2ysjv";
-      #   };
-      # }
-      # {
-      #   name = "asus-linux-core-count";
-      #   patch = builtins.fetchurl {
-      #     # url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.5/0001-HID-amd_sfh-Add-support-ior-tablet-mode-switch-senso.patch";
-      #     # sha256 = "sha256:08qw7qq88dy96jxa0f4x33gj2nb4qxa6fh2f25lcl8bgmk00k7l2";
-      #     url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.9/0007-asus-bios-add-core-count-control.patch?ref_type=heads";
-      #     sha256 = "sha256:10qxjvnjfxdqahy1cb8gchb1rz3lqngxszygkddd4s3616zjalvg";
-      #   };
-      # }
     ];
     # Automatically iibernate when suspended for 3 minutes
     # services.logind.lidSwitch = "suspend-then-hibernate";
