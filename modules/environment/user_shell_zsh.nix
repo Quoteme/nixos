@@ -33,19 +33,21 @@ in
         plugins = [
           "adb"
           "cabal"
+          "dirhistory"
+          "docker"
+          "cabal"
           "docker-compose"
           "docker-machine"
-          "docker"
-          # "lein"
-          "gradle"
-          # "poetry"
           "fd"
-          "vi-mode"
-          "dirhistory"
-          # "gpg-agent"
-          # "keychain"
-          "zsh-interactive-cd"
           "flutter"
+          "fzf"
+          "gh"
+          "gradle"
+          "lein"
+          "poetry"
+          "vi-mode"
+          "zoxide"
+          "zsh-interactive-cd"
         ];
         theme = "robbyrussell";
       };
@@ -64,6 +66,7 @@ in
         enw = "emacs -nw";
         haskellshell = "nix shell unstable\#haskell-language-server unstable\#ghc unstable\#haskellPackages.haskell-dap unstable\#haskellPackages.ghci-dap unstable\#haskellPackages.haskell-debug-adapter unstable\#cabal-install";
         l = "eza";
+        lg = "lazygit";
         ll = "eza -l --icons";
         lt = "eza -lT";
         neovimupdate = "cd /etc/nixos && sudo nix flake lock --update-input neovim-luca && sudo nixos-rebuild switch && notify-send \"updated system\"";

@@ -44,7 +44,6 @@ in
       packages = with pkgs; [
         # Internet
         firefox
-        opendrop # NOTE: share files between devices
         transmission-gtk # NOTE: torrent client
         birdtray # NOTE: Thunderbird tray icon
         thunderbird # NOTE: Email client
