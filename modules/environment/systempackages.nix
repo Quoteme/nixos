@@ -53,7 +53,6 @@ in
         fzf
         playerctl
         tmsu
-        qdirstat
         lm_sensors
         appimage-run
         trashy
@@ -69,18 +68,13 @@ in
         maim
         jq
         tldr
-        flameshot
-        xclip
         wl-clipboard
         xcolor
-        peek
         killall
         xorg.xkill
         wget
-        cookiecutter
         git
         gh
-        gitkraken
         eza
         # [10 Rust CLI tools for 2022](https://www.youtube.com/watch?v=haitmoSyTls)
         ripgrep
@@ -108,17 +102,12 @@ in
         rofi
         rofimoji
         # networkmanager_dmenu
-        networkmanagerapplet
         openvpn
         networkmanager-openvpn
         # File manager
-        gparted
         # onboard
         # TODO: Add swypeGuess
         # https://git.sr.ht/~earboxer/swipeGuess
-        (pkgs.svkbd.override {
-          layout = "de";
-        })
         pamixer
         neofetch
         onefetch
