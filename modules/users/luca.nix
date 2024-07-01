@@ -43,36 +43,19 @@ in
       shell = pkgs.zsh;
       packages = with pkgs; [
         # Internet
-        firefox
-        transmission-gtk # NOTE: torrent client
-        birdtray # NOTE: Thunderbird tray icon
-        thunderbird # NOTE: Email client
-        # Privacy
-        veracrypt
+        birdtray
+        thunderbird
         # Video-Editing
-        obs-studio
-        kdenlive
-        glaxnimate
         mediainfo
-        # Drawing
-        xournalpp
-        inkscape
-        gimp
-        aseprite
-        krita
         # Media
-        vlc
         yt-dlp
         # Gaming
         xboxdrv
-        # Productivity
-        libreoffice
         # Programming
         neovim
         luajit
         lazygit
         hlint
-        devdocs-desktop
         # JavaScript/TypeScript
         nodejs_20
         # Latex
@@ -80,13 +63,11 @@ in
         quarto
         poppler_utils
         texlive.combined.scheme-full
-        tex-match
         # Rust
         # cargo
         # rustc
         rustup
         # Java
-        jetbrains.idea-ultimate
         jdk
         gradle
         # Spelling
@@ -95,9 +76,6 @@ in
         hunspellDicts.en_US
         # Android
         frida-tools
-        jadx
-        quark-engine
-        apktool
         libmtp
         usbutils
         scrcpy
@@ -106,11 +84,6 @@ in
           #!/usr/bin/env bash
           adb exec-out screenrecord --output-format=h264 - | ${pkgs.ffmpeg-full}/bin/ffplay -framerate 60 -probesize 32 -sync video  -
         '')
-        # MongoDB
-        mongodb-compass
-        # game-dev
-        # godotMono
-        godot_4
         # Hardware
         miraclecast
       ];
