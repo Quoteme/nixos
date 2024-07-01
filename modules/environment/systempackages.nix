@@ -49,22 +49,7 @@ in
       in
       with pkgs; [
         distrobox
-        # themes
-        # Icon
-        gnome.adwaita-icon-theme
-        papirus-icon-theme
-        whitesur-icon-theme
-        # GTK
-        mojave-gtk-theme
-        whitesur-gtk-theme
-        # adapta-gtk-theme
-        # numix-gtk-theme
-        # orchis-theme
-        # fluent-gtk-theme
-        # Cursor
-        # numix-cursor-theme
-        # Small Utilities
-        # nix-ld stuff
+        devbox
         fzf
         playerctl
         tmsu
