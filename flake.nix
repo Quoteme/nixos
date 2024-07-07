@@ -155,7 +155,7 @@
               modules.applications.gaming.steam.enable = true;
               modules.applications.nix-extras.enable = true;
               modules.applications.virtualisation.docker.enable = true;
-              modules.desktop.cosmic.enable = true;
+              modules.desktop.cosmic.enable = false;
               modules.desktop.gnome.enable = false;
               modules.desktop.kde.enable = true;
               modules.desktop.sway.enable = false;
@@ -230,10 +230,6 @@
                 # FZF - Ripgrep integration
                 INITIAL_QUERY = "";
                 RG_PREFIX = "rg --column --line-number --no-heading --color=always --smart-case ";
-                # "NIX_LD_LIBRARY_PATH" = "/run/current-system/sw/share/nix-ld/lib";
-                # "NIX_LD" = toString nix-ld-so;
-                # NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath (config.systemd.packages ++ config.environment.systemPackages);
-                # NIX_LD = "${pkgs.glibc}/lib/ld-linux-x86-64.so.2";
                 CHROME_EXECUTABLE = "/var/lib/flatpak/app/com.google.Chrome/x86_64/stable/active/export/bin/com.google.Chrome";
                 GAMEMODERUNEXEC = "nvidia-offload";
               };
