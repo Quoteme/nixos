@@ -115,7 +115,6 @@
       python-enter-venv = "sh -i -c 'source .venv/bin/activate ; nu'";
       suggest = "gh copilot suggest";
       v = "nvim";
-      y = "yazi";
     };
   };
   programs.readline = {
