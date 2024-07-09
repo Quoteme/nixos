@@ -80,6 +80,18 @@
     #   enableZshIntegration = true;
     # };
     # https://github.com/Mic92/nix-ld
-    programs.nix-ld.enable = true;
+    programs.nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        gcc.cc
+        glibc
+        icu
+        libGL
+        openssl
+        stdenv.cc.cc
+        xorg.libX11
+        zlib
+      ];
+    };
   };
 }
