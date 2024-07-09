@@ -89,7 +89,7 @@
     services.supergfxd = {
       enable = true;
       settings = {
-        # mode = "Integrated";
+        mode = "Integrated";
         vfio_enable = true;
         vfio_save = false;
         always_reboot = false;
