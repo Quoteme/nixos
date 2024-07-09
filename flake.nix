@@ -5,9 +5,10 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-24.05";
     nur.url = "github:nix-community/NUR";
-    # home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     # st-nix.url = "github:Quoteme/st-nix";
     # neovim-luca.url = "github:Quoteme/neovim-luca";
     emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
@@ -39,7 +40,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, ... }@attrs:
+  outputs = { self, nixpkgs, home-manager, nix-index-database, lanzaboote, ... }@attrs:
     let
       system = "x86_64-linux";
       overlay-stable = final: prev: {
@@ -319,10 +320,17 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.luca.imports = [ ./home.nix ];
+            home-manager.users.luca.imports = [
+              nix-index-database.hmModules.nix-index
+              { programs.nix-index-database.comma.enable = true; }
+              ./home.nix
+            ];
             home-manager.backupFileExtension = "backup";
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
+            home-manager.extraSpecialArgs = {
+              inherit attrs;
+            };
           }
         ];
       };
