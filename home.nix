@@ -243,7 +243,7 @@
       show-icons = true;
     };
   };
-  programs.syncthing = {
+  services.syncthing = {
     enable = true;
     tray = {
       enable = true;
