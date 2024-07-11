@@ -243,6 +243,12 @@
       show-icons = true;
     };
   };
+  services.syncthing = {
+    enable = true;
+    tray = {
+      enable = true;
+    };
+  };
   services.picom = {
     # disabled for now. Configure multiple monitors someday
     enable = false;
