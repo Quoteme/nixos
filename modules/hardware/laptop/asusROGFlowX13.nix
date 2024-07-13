@@ -186,6 +186,11 @@
       '')
     ];
     programs.rog-control-center.enable = true;
+    # Start the fingerprint driver at boot
+    systemd.services.fprintd = {
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig.Type = "simple";
+    };
     services.fprintd = {
       enable = true;
       # tod.enable = true;
