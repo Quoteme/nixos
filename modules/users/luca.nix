@@ -59,6 +59,7 @@ in
         # JavaScript/TypeScript
         nodejs_20
         # Latex
+        typst
         pandoc
         quarto
         poppler_utils
