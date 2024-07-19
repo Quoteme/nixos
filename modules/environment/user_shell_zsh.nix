@@ -67,8 +67,8 @@ in
         haskellshell = "nix shell unstable\#haskell-language-server unstable\#ghc unstable\#haskellPackages.haskell-dap unstable\#haskellPackages.ghci-dap unstable\#haskellPackages.haskell-debug-adapter unstable\#cabal-install";
         l = "eza";
         lg = "lazygit";
-        ll = "eza -l --icons";
-        lt = "eza -lT";
+        ll = "eza --long --icons --color --hyperlink";
+        lt = "eza --long --tree --icons --color --hyperlink";
         neovimupdate = "cd /etc/nixos && sudo nix flake lock --update-input neovim-luca && sudo nixos-rebuild switch && notify-send \"updated system\"";
         nvs = "nix shell ~/Dokumente/dev/neovim-luca/#neovimLuca";
         v = "nvim";
