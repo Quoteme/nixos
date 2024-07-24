@@ -54,6 +54,7 @@ in
         # Programming
         neovim
         luajit
+        luajitPackages.luarocks
         lazygit
         hlint
         # JavaScript/TypeScript
