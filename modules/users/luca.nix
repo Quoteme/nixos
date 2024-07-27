@@ -2,6 +2,7 @@
 , options
 , lib
 , pkgs
+, attrs
 , ...
 }@inputs:
 let
@@ -42,6 +43,7 @@ in
       ];
       shell = pkgs.zsh;
       packages = with pkgs; [
+        attrs.emoji-board.defaultPackage.x86_64-linux
         # Internet
         birdtray
         thunderbird
