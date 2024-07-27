@@ -11,6 +11,10 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     # st-nix.url = "github:Quoteme/st-nix";
     # neovim-luca.url = "github:Quoteme/neovim-luca";
+    emoji-board = {
+      url = "github:Quoteme/emoji-board";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
     # nix-autobahn.url = "github:Lassulus/nix-autobahn";
     # nix-alien.url = "github:thiagokokada/nix-alien";
@@ -111,7 +115,7 @@
                 (import ./modules/hardware/laptop/asusROGFlowX13.nix { inherit config lib options pkgs; })
                 (import ./modules/login_manager/lightdm.nix { inherit config lib options pkgs; })
                 (import ./modules/login_manager/sddm.nix { inherit config lib options pkgs; })
-                (import ./modules/users/luca.nix { inherit config lib options pkgs; })
+                (import ./modules/users/luca.nix { inherit config lib options pkgs attrs; })
                 ./modules/applications/virtualisation/docker.nix
                 ./modules/desktop/gnome.nix
                 ./modules/desktop/xmonad-luca.nix
