@@ -65,7 +65,12 @@
 
     programs.nh = {
       enable = true;
-      flake = /etc/nixos;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/etc/nixos";
+    };
+    environment.variables = {
+      FLAKE = lib.mkForce "/etc/nixos";
     };
     environment.systemPackages = with pkgs; [
       nix-output-monitor
