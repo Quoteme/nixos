@@ -48,13 +48,13 @@
         udisksctl mount -b /dev/disk/by-uuid/98bf9471-2174-498f-b8d8-9b918a387ec4 --options " exec "
       '';
 
-      # system
-      dirsystemflake = "
-        cd /etc/nixos ";
-      dircontrolcenter = "
-        cd ~/Dokumente/dev/control_center/";
-      dirxmonadluca = "
-        cd ~/Dokumente/dev/xmonad-luca/";
+      l = "eza";
+      lg = "lazygit";
+      ll = "eza --long --icons --color --hyperlink";
+      lt = "eza --long --tree --icons --color --hyperlink";
+      v = "nvim";
+      vi = "nvim";
+      vim = "nvim";
 
       # shortcuts
       o = "xdg-open";
@@ -65,9 +65,11 @@
       nixos = "/etc/nixos/";
     };
     cdpath = [
+      "/etc/nixos/"
       "~/Dokumente/dev/"
-      "~/Dokumente/Uni/Dokumente/Uni/semester_10/"
-      "~/Dokumente/Uni/Dokumente/Uni/semester_11/"
+      "~/Dokumente/Uni/semester_10/"
+      "~/Dokumente/Uni/semester_11/"
+      "~/Dokumente/Uni/semester_11/"
     ];
   };
   programs.direnv = {
