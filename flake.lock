@@ -79,11 +79,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1722089382,
-        "narHash": "sha256-pEhiHHoFrMd42aw3VWCGrF/fsKpK5asuZIenITyGBoY=",
+        "lastModified": 1722113453,
+        "narHash": "sha256-b1R+aBmoT+VTbci0TJYQ+NMSEh19tudRWQTj3T/joYc=",
         "owner": "Quoteme",
         "repo": "emoji-board",
-        "rev": "a1a5e8396c95efa69d8dedbd1b86712adef383b6",
+        "rev": "80b150a69443ceb3973eaf0a964f064dfd57f08b",
         "type": "github"
       },
       "original": {
