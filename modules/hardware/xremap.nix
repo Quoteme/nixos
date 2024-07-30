@@ -7,30 +7,47 @@
     serviceMode = "user";
     userName = "luca";
   };
+
   services.xremap.config.modmap = [
     {
       name = "Better Vim bindings";
       remap = {
         "CAPSLOCK" = {
-          held = "BACKSLASH";
+          held = "KEY_FINANCE";
           alone = "ESC";
           alone_timeout_millis = 500;
         };
-        "LEFTCTRL" = {
+        "LEFTALT" = {
           held = "LEFTCTRL";
-          alone = "SLASH";
+          alone = "KEY_CONNECT";
           alone_timeout_millis = 500;
         };
-        "LEFTALT" = {
+        "LEFTCTRL" = {
           held = "LEFTALT";
-          alone = "LEFTBRACE";
+          alone = "KEY_SPORT";
           alone_timeout_millis = 1000;
         };
-        "RIGHTALT" = {
-          held = "RIGHTALT";
-          alone = "RIGHTBRACE";
+        "RIGHTCTRL" = {
+          held = "RIGHTCTRL";
+          alone = "KEY_SHOP";
           alone_timeout_millis = 1000;
         };
+      };
+    }
+  ];
+
+  services.xremap.config.keymap = [
+    {
+      name = "Better Vim bindings";
+      remap = {
+        # slash key "/"
+        "KEY_CONNECT" = "SHIFT-7";
+        # backslash key "\"
+        "KEY_FINANCE" = "RIGHTALT-MINUS";
+        # Open square brace key "["
+        "KEY_SPORT" = "RIGHTALT-8";
+        # Close square brace key "]"
+        "KEY_SHOP" = "RIGHTALT-9";
       };
     }
   ];
