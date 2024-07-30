@@ -17,6 +17,11 @@
           alone = "ESC";
           alone_timeout_millis = 500;
         };
+        "FN" = {
+          held = "FN";
+          alone = "KEY_FINANCE";
+          alone_timeout_millis = 500;
+        };
         "LEFTALT" = {
           held = "LEFTALT";
           alone = "KEY_CONNECT";
@@ -25,12 +30,12 @@
         "LEFTCTRL" = {
           held = "LEFTCTRL";
           alone = "KEY_SPORT";
-          alone_timeout_millis = 1000;
+          alone_timeout_millis = 500;
         };
         "RIGHTCTRL" = {
           held = "RIGHTCTRL";
           alone = "KEY_SHOP";
-          alone_timeout_millis = 1000;
+          alone_timeout_millis = 500;
         };
       };
     }
