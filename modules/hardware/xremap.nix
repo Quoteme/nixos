@@ -18,12 +18,12 @@
           alone_timeout_millis = 500;
         };
         "LEFTALT" = {
-          held = "LEFTCTRL";
+          held = "LEFTALT";
           alone = "KEY_CONNECT";
           alone_timeout_millis = 500;
         };
         "LEFTCTRL" = {
-          held = "LEFTALT";
+          held = "LEFTCTRL";
           alone = "KEY_SPORT";
           alone_timeout_millis = 1000;
         };
