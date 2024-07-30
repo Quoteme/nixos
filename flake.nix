@@ -42,9 +42,10 @@
       url = "github:nix-community/lanzaboote/v0.3.0";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
+    xremap-flake.url = "github:xremap/nix-flake";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-index-database, lanzaboote, ... }@attrs:
+  outputs = { self, nixpkgs, home-manager, nix-index-database, lanzaboote, xremap-flake, ... }@attrs:
     let
       system = "x86_64-linux";
       overlay-stable = final: prev: {
@@ -116,6 +117,7 @@
                 (import ./modules/login_manager/lightdm.nix { inherit config lib options pkgs; })
                 (import ./modules/login_manager/sddm.nix { inherit config lib options pkgs; })
                 (import ./modules/users/luca.nix { inherit config lib options pkgs attrs; })
+                (import ./modules/hardware/xremap.nix { inherit config lib options pkgs attrs; })
                 ./modules/applications/virtualisation/docker.nix
                 ./modules/desktop/gnome.nix
                 ./modules/desktop/xmonad-luca.nix
