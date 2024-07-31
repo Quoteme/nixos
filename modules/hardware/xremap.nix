@@ -12,11 +12,12 @@
     {
       name = "Better Vim bindings";
       remap = {
-        "CAPSLOCK" = {
-          held = "KEY_FINANCE";
-          alone = "ESC";
-          alone_timeout_millis = 500;
-        };
+        # "CAPSLOCK" = {
+        #   held = "KEY_FINANCE";
+        #   alone = "ESC";
+        #   alone_timeout_millis = 500;
+        # };
+        "CAPSLOCK" = "ESC";
         "FN" = {
           held = "FN";
           alone = "KEY_FINANCE";
