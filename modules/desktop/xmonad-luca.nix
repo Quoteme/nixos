@@ -27,17 +27,6 @@ in
     '';
     # make xmonad the default window manager
     services.gnome.at-spi2-core.enable = true;
-    environment.systemPackages = with pkgs; [
-      inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca-alldeps
-      onboard
-      jgmenu
-      nitrogen
-      xdotool
-      lightlocker
-      qt5ct
-      gnome.zenity
-      picom
-    ];
     services.xserver.enable = true;
     services.xserver.updateDbusEnvironment = true;
     services.xserver.windowManager.session = [
@@ -50,7 +39,7 @@ in
       {
         name = "xmonad-luca";
         start = ''
-          ${inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca-alldeps}/bin/xmonad-luca
+          ${inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca}/bin/xmonad-luca
         '';
       }
     ];

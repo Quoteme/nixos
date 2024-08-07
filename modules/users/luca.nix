@@ -55,6 +55,7 @@ in
         xboxdrv
         # Programming
         neovim
+        manix
         luajit
         luajitPackages.luarocks
         lazygit

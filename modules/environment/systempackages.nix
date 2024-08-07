@@ -70,6 +70,7 @@ in
         tldr
         wl-clipboard
         xcolor
+        xclip
         killall
         xorg.xkill
         wget

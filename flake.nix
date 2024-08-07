@@ -162,7 +162,7 @@
               modules.applications.gaming.steam.enable = true;
               modules.applications.nix-extras.enable = true;
               modules.applications.virtualisation.docker.enable = true;
-              modules.desktop.cosmic.enable = false;
+              modules.desktop.cosmic.enable = true;
               modules.desktop.gnome.enable = false;
               modules.desktop.kde.enable = true;
               modules.desktop.sway.enable = false;
