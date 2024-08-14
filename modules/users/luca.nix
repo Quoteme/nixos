@@ -55,6 +55,8 @@ in
         xboxdrv
         # Programming
         neovim
+        neocmakelsp
+        cmake-lint
         manix
         luajit
         luajitPackages.luarocks
