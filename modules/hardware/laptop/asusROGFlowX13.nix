@@ -101,7 +101,7 @@
     systemd.services.supergfxd.path = [ pkgs.kmod pkgs.pciutils ];
     # NVIDIA settings
     # FIX: fix this
-    hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+    hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
     hardware.opengl = {
       enable = true;
       # driSupport = true;
