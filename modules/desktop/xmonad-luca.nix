@@ -29,17 +29,18 @@ in
     services.gnome.at-spi2-core.enable = true;
     services.xserver.enable = true;
     services.xserver.updateDbusEnvironment = true;
+    services.xserver.displayManager.sx.enable = true;
     services.xserver.windowManager.session = [
       {
         name = "xmonad-home";
         start = ''
-          $HOME/.cache/xmonad/xmonad-x86_64-linux
+          sx $HOME/.cache/xmonad/xmonad-x86_64-linux
         '';
       }
       {
         name = "xmonad-luca";
         start = ''
-          ${inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca}/bin/xmonad-luca
+          sx ${inputs.xmonad-luca.packages.x86_64-linux.xmonad-luca}/bin/xmonad-luca
         '';
       }
     ];
