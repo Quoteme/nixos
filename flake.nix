@@ -115,6 +115,7 @@
                 (import ./modules/fonts.nix { inherit config lib options pkgs; })
                 (import ./modules/hardware/laptop/asusROGFlowX13.nix { inherit config lib options pkgs; })
                 (import ./modules/login_manager/lightdm.nix { inherit config lib options pkgs; })
+                (import ./modules/login_manager/greetd.nix { inherit config lib options pkgs; })
                 (import ./modules/login_manager/sddm.nix { inherit config lib options pkgs; })
                 (import ./modules/users/luca.nix { inherit config lib options pkgs attrs; })
                 (import ./modules/hardware/xremap.nix { inherit config lib options pkgs attrs; })
@@ -167,8 +168,9 @@
               modules.desktop.kde.enable = true;
               modules.desktop.sway.enable = false;
               modules.desktop.xmonad-luca.enable = true;
-              modules.desktopManager.lightdm.enable = true;
+              modules.desktopManager.lightdm.enable = false;
               modules.desktopManager.sddm.enable = false;
+              modules.loginManager.greetd.enable = true;
               modules.environment.systemPackages.enable = true;
               modules.environment.user_shell_nushell.enable = true;
               modules.environment.user_shell_zsh.enable = true;
