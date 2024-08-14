@@ -120,7 +120,7 @@
     hardware.nvidia.powerManagement.enable = true;
     hardware.nvidia.powerManagement.finegrained = true;
     # TODO: Find out if using the open source kernel module means we are using Nouveau
-    hardware.nvidia.open = false;
+    hardware.nvidia.open = true;
     hardware.nvidia.nvidiaSettings = true;
     hardware.nvidia.prime = {
       offload.enable = true;
