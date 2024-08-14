@@ -22,10 +22,11 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      cosmic-applibrary
       cosmic-applets
+      cosmic-applibrary
       cosmic-bg
       cosmic-comp
+      cosmic-design-demo
       cosmic-edit
       cosmic-files
       cosmic-greeter
@@ -34,10 +35,14 @@ in
       cosmic-notifications
       cosmic-osd
       cosmic-panel
+      cosmic-protocols
       cosmic-randr
       cosmic-screenshot
+      cosmic-session
       cosmic-settings
       cosmic-settings-daemon
+      cosmic-store
+      cosmic-tasks
       cosmic-term
       cosmic-workspaces-epoch
     ];
