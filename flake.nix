@@ -326,6 +326,7 @@
           # ╹ ╹┗━┛╹ ╹┗━╸   ╹ ╹╹ ╹╹ ╹╹ ╹┗━┛┗━╸╹┗╸
           home-manager.nixosModules.home-manager
           {
+            home-manager.backupFileExtension = "backup";
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.luca.imports = [
@@ -333,7 +334,6 @@
               { programs.nix-index-database.comma.enable = true; }
               ./home.nix
             ];
-            home-manager.backupFileExtension = "backup";
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
             home-manager.extraSpecialArgs = {
