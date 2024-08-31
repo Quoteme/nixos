@@ -30,12 +30,7 @@
       inputs.control_center.follows = "control_center";
       inputs.screenrotate.follows = "screenrotate";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nix-vscode-extensions.follows = "nix-vscode-extensions";
     };
-    # godot = {
-    #   url = "github:Quoteme/nixos-godot-bin";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     hmenke-nixos-modules.url = "github:hmenke/nixos-modules";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     lanzaboote = {
@@ -88,6 +83,7 @@
           attrs.nur.nixosModules.nur
           nur-modules.repos.LuisChDev.modules.nordvpn
           lanzaboote.nixosModules.lanzaboote
+          home-manager.nixosModules.home-manager
           # ┏━╸┏━┓┏┓╻┏━╸╻┏━╸╻ ╻┏━┓┏━┓╺┳╸╻┏━┓┏┓╻ ┏┓╻╻╻ ╻
           # ┃  ┃ ┃┃┗┫┣╸ ┃┃╺┓┃ ┃┣┳┛┣━┫ ┃ ┃┃ ┃┃┗┫ ┃┗┫┃┏╋┛
           # ┗━╸┗━┛╹ ╹╹  ╹┗━┛┗━┛╹┗╸╹ ╹ ╹ ╹┗━┛╹ ╹╹╹ ╹╹╹ ╹
@@ -324,7 +320,6 @@
           # ╻ ╻┏━┓┏┳┓┏━╸   ┏┳┓┏━┓┏┓╻┏━┓┏━╸┏━╸┏━┓
           # ┣━┫┃ ┃┃┃┃┣╸ ╺━╸┃┃┃┣━┫┃┗┫┣━┫┃╺┓┣╸ ┣┳┛
           # ╹ ╹┗━┛╹ ╹┗━╸   ╹ ╹╹ ╹╹ ╹╹ ╹┗━┛┗━╸╹┗╸
-          home-manager.nixosModules.home-manager
           {
             home-manager.backupFileExtension = "backup";
             home-manager.useGlobalPkgs = true;

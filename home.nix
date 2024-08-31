@@ -135,6 +135,7 @@
   '';
   # ghci vim bindings
   home.file.".ghci".text = ''
+    import Data.Function
     :set prompt "\ESC[1;34m%s\n\ESC[0;34mλ> \ESC[m"
   '';
   home.file.".haskeline".text = ''
