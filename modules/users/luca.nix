@@ -22,6 +22,8 @@ in
     };
 
   config = mkIf cfg.enable {
+    programs.zsh.enable = true;
+    users.users.luca.shell = pkgs.zsh;
     users.users.luca = {
       initialHashedPassword = "$6$W62LDzjtggxhhOiJ$KKM1yuHOrEr3Mz4MSstUGBtlpEF2AHR8bAzFeaqo2l.rrka/phKnzbKbyM5HX955d9et2NnV2fOr9LnDCgB5M1";
       isNormalUser = true;
@@ -41,7 +43,6 @@ in
         "vboxusers" # maybe use `users.extraGroups.vboxusers.members = [ "luca" ];` 
         "nordvpn"
       ];
-      shell = pkgs.zsh;
       packages = with pkgs; [
         attrs.emoji-board.defaultPackage.x86_64-linux
         # Internet
