@@ -23,28 +23,15 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages =
       let
-        myGHCPackages = (hpkgs: with hpkgs; [
-          xmonad
-          xmonad-contrib
-          xmonad-extras
-          text-format-simple
-        ]);
-        myPython = pkgs.python311.withPackages (ps: with ps; [
-          pyclip
-          debugpy
+        myPython = pkgs.python312.withPackages (ps: with ps; [
           pytest
+          debugpy
           ipython
-          jupyterlab
-          jupyter-lsp
           pandas
-          sympy
           numpy
           scipy
-          uritools
           matplotlib
           plotly
-          pipx
-          frida-python
         ]);
       in
       with pkgs; [
@@ -135,12 +122,13 @@ in
           export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
           exec ${pkgs.python3}/bin/python "$@"
         '')
-        (haskellPackages.ghcWithPackages myGHCPackages)
+        (haskellPackages.ghcWithPackages (hpkgs: with hpkgs; [
+          text-format-simple
+          haskell-dap
+          ghci-dap
+          haskell-debug-adapter
+        ]))
         haskell-language-server
-        ghc
-        haskellPackages.haskell-dap
-        haskellPackages.ghci-dap
-        haskellPackages.haskell-debug-adapter
         cabal-install
       ];
   };

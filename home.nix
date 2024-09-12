@@ -37,11 +37,10 @@
     shellAliases = {
       # Monti
       montissh = "TERM=xterm-256color ssh mmbs@monti.hhu.de";
-      montikuma = "xdg-open http://localhost:3001 && ssh -L 3001:localhost:3001 mmbs@monti.ai";
-      montiprometheus = "xdg-open http://localhost:9090 && ssh -L 9090:localhost:9090 mmbs@monti.ai";
-      montigrafana = "xdg-open http://localhost:3000 && ssh -L 3000:localhost:3000 mmbs@monti.ai";
-      # make montis postgres port available on localhost:5432
-      montipostgres = "ssh -L 5432:localhost:5432 mmbs@monti.ai";
+      montikuma = "xdg-open http://localhost:3001 && ssh -L 3001:localhost:3001 mmbs@monti.hhu.de";
+      montiprometheus = "xdg-open http://localhost:9090 && ssh -L 9090:localhost:9090 mmbs@monti.hhu.de";
+      montigrafana = "xdg-open http://localhost:3000 && ssh -L 3000:localhost:3000 mmbs@monti.hhu.de";
+      montipostgres = "ssh -L 5432:localhost:5432 mmbs@monti.hhu.de";
       # Steam
       steammount = ''
         udisksctl unmount -b /dev/disk/by-uuid/98bf9471-2174-498f-b8d8-9b918a387ec4 &&
@@ -55,22 +54,20 @@
       v = "nvim";
       vi = "nvim";
       vim = "nvim";
-
-      # shortcuts
       o = "xdg-open";
     };
-    dirHashes = {
-      monti = "~/Dokumente/dev/monti/";
-      montibackend = "~/Dokumente/dev/monti/backend/";
-      nixos = "/etc/nixos/";
+    zplug = {
+      enable = true;
+      plugins = [
+        { name = "zsh-users/zsh-autosuggestions"; }
+        { name = "dracula/zsh"; tags = [ as:theme depth:1 ]; }
+        { name = "plugins/dirhistory"; tags = [ from:oh-my-zsh depth:1 ]; }
+        { name = "jeffreytse/zsh-vi-mode"; tags = [ depth:1 ]; }
+        { name = "plugins/zoxide"; tags = [ from:oh-my-zsh depth:1 ]; }
+        { name = "plugins/flutter"; tags = [ from:oh-my-zsh depth:1 ]; }
+        { name = "plugins/fd"; tags = [ from:oh-my-zsh depth:1 ]; }
+      ];
     };
-    cdpath = [
-      "/etc/nixos/"
-      "~/Dokumente/dev/"
-      "~/Dokumente/Uni/semester_10/"
-      "~/Dokumente/Uni/semester_11/"
-      "~/Dokumente/Uni/semester_11/"
-    ];
   };
   programs.direnv = {
     enable = true;

@@ -15,6 +15,7 @@
       url = "github:Quoteme/emoji-board";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
     # nix-autobahn.url = "github:Lassulus/nix-autobahn";
     # nix-alien.url = "github:thiagokokada/nix-alien";
@@ -61,6 +62,7 @@
         overlays = [
           overlay-stable
           attrs.emacs-overlay.overlay
+          attrs.neovim-nightly-overlay.overlays.default
           attrs.nix-vscode-extensions.overlays.default
           # attrs.godot.overlays.x86_64-linux.default
           # overlay-nix-autobahn
@@ -97,7 +99,6 @@
                   nur = inputs.nur;
                   inherit config lib options pkgs inputs;
                 })
-                # (pkgs.callPackage ./modules/environment/user_shell.nix { })
                 (import ./modules/applications/editors/vscode-fhs.nix { inherit config lib options pkgs; })
                 (import ./modules/applications/editors/vscode.nix { inherit config lib options pkgs; })
                 (import ./modules/applications/gaming/steam.nix { inherit config lib options pkgs; })
@@ -107,7 +108,6 @@
                 (import ./modules/environment/nordvpn.nix { inherit config lib options pkgs; })
                 (import ./modules/environment/systempackages.nix { inherit config lib options pkgs; })
                 (import ./modules/environment/user_shell_nushell.nix { inherit config lib options pkgs; })
-                (import ./modules/environment/user_shell_zsh.nix { inherit config lib options pkgs; })
                 (import ./modules/fonts.nix { inherit config lib options pkgs; })
                 (import ./modules/hardware/laptop/asusROGFlowX13.nix { inherit config lib options pkgs; })
                 (import ./modules/login_manager/lightdm.nix { inherit config lib options pkgs; })
@@ -159,7 +159,7 @@
               modules.applications.gaming.steam.enable = true;
               modules.applications.nix-extras.enable = true;
               modules.applications.virtualisation.docker.enable = true;
-              modules.desktop.cosmic.enable = true;
+              modules.desktop.cosmic.enable = false;
               modules.desktop.gnome.enable = false;
               modules.desktop.kde.enable = true;
               modules.desktop.sway.enable = false;
@@ -169,7 +169,6 @@
               modules.loginManager.greetd.enable = true;
               modules.environment.systemPackages.enable = true;
               modules.environment.user_shell_nushell.enable = true;
-              modules.environment.user_shell_zsh.enable = true;
               modules.fonts.enable = true;
               modules.hardware.audio.enable = true;
               modules.hardware.disks.enable = true;
