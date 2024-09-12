@@ -55,14 +55,6 @@ in
         # Gaming
         xboxdrv
         # Programming
-        neovim
-        neocmakelsp
-        cmake-lint
-        manix
-        luajit
-        luajitPackages.luarocks
-        lazygit
-        hlint
         # JavaScript/TypeScript
         nodejs_20
         # Latex

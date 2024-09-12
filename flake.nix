@@ -10,12 +10,10 @@
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     # st-nix.url = "github:Quoteme/st-nix";
-    # neovim-luca.url = "github:Quoteme/neovim-luca";
     emoji-board = {
       url = "github:Quoteme/emoji-board";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
     # nix-autobahn.url = "github:Lassulus/nix-autobahn";
     # nix-alien.url = "github:thiagokokada/nix-alien";
@@ -62,7 +60,6 @@
         overlays = [
           overlay-stable
           attrs.emacs-overlay.overlay
-          attrs.neovim-nightly-overlay.overlays.default
           attrs.nix-vscode-extensions.overlays.default
           # attrs.godot.overlays.x86_64-linux.default
           # overlay-nix-autobahn

@@ -1,34 +1,5 @@
 { config, pkgs, attrs, ... }:
 {
-  # gtk = {
-  #   enable = true;
-  #   iconTheme = {
-  #     name ="Papirus";
-  #     package = pkgs.papirus-icon-theme;
-  #   };
-  #   # theme = {
-  #   #   name = "Mojave-Dark";
-  #   #   package = pkgs.mojave-gtk-theme;
-  #   # };
-  #   gtk3.extraConfig = {gtk-application-prefer-dark-theme = 1;};
-  #   gtk4.extraConfig = {gtk-application-prefer-dark-theme = 1;};
-  # };
-  # xsession = {
-  #   enable = true;
-  #   windowManager = {
-  #     xmonad = {
-  #       enable = true;
-  #       enableContribAndExtras = true;
-  #       extraPackages = hpkgs: with hpkgs; [
-  #         xmonad
-  #         xmonad-contrib
-  #         xmonad-extras
-  #       ];
-  #       config = ./xmonad/xmonad.hs;
-  #     };
-  #   };
-  # };
-  # services.gnome-keyring.enable = true;
   programs.zsh = {
     enable = true;
     initExtra = ''
@@ -68,6 +39,21 @@
         { name = "plugins/fd"; tags = [ from:oh-my-zsh depth:1 ]; }
       ];
     };
+  };
+  programs.lazygit.enable = true;
+  programs.neovim = {
+    enable = true;
+    extraPackages = with pkgs; [
+      neocmakelsp
+      cmake-lint
+      manix
+      luajit
+      luajitPackages.luarocks
+      lazygit
+      hlint
+    ];
+    vimAlias = true;
+    vimdiffAlias = true;
   };
   programs.direnv = {
     enable = true;
