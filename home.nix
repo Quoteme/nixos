@@ -1,5 +1,206 @@
 { config, pkgs, attrs, ... }:
 {
+  home.file.".ghci".text = ''
+    import Data.Function
+    :set prompt "\ESC[1;34m%s\n\ESC[0;34mλ> \ESC[m"
+  '';
+  home.file.".haskeline".text = ''
+    editMode: Vi
+  '';
+  home.file.".ipython/profile_default/ipython_config.py".text = ''
+    c.TerminalInteractiveShell.editing_mode = 'vi'
+  '';
+  home.stateVersion = "22.05";
+  programs.atuin = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
+  };
+  programs.atuin.settings = {
+    keymap_mode = "auto";
+  };
+  programs.bash = {
+    enable = true;
+    bashrcExtra = ''
+      set -o vi
+      bind -m vi-command 'Control-l: clear-screen'
+      bind -m vi-insert 'Control-l: clear-screen'
+    '';
+    enableCompletion = true;
+    sessionVariables = {
+      VISUAL = "nvim";
+      EDITOR = "nvim";
+    };
+  };
+  programs.carapace = {
+    enable = true;
+    enableNushellIntegration = true;
+    enableZshIntegration = true;
+  };
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = false;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
+    nix-direnv.enable = true;
+  };
+  # ipython vim bindings
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+  # ghci vim bindings
+  programs.gitui.enable = true;
+  programs.keychain = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+  # programs.git = {
+  #   enable = true;
+  #   userName = "Luca Leon Happel";
+  #   userEmail = "luca.happel@hhu.de";
+  #   config = ''
+  #     [user]
+  #       email = luca.happel@hhu.de
+  #       name = Luca Leon Happel
+  #       signingKey = ""
+  #     [credential "https://github.com"]
+  #       helper = 
+  #       helper = !/run/current-system/sw/bin/gh auth git-credential
+  #     [credential "https://gist.github.com"]
+  #       helper = 
+  #       helper = !/run/current-system/sw/bin/gh auth git-credential
+  #     [gpg]
+  #       program = gpg
+  #       format = openpgp
+  #     [commit]
+  #       gpgSign = false
+  #     [tag]
+  #       forceSignAnnotated = false
+  #     [safe]
+  #       directory = /opt/flutter
+  #       directory = /etc/nixos
+  #     [credential]
+  #       helper = /run/current-system/sw/bin/gh auth git-credential
+  #     [merge]
+  #       tool = neovim
+  #     [gpg "ssh"]
+  #       program = ssh-keygen
+  #       allowedSignersFile = ""
+  #   '';
+  #   delta.enable = true;
+  #   lfs.enable = true;
+  #   git-cliff.enable = true;
+  # };
+  programs.lazygit.enable = true;
+  programs.mpv = {
+    enable = true;
+    config = {
+      profile = " gpu-hq ";
+      ytdl-format = " bestvideo + bestaudio ";
+      webui-port = " 4000 ";
+      script-opts = " ytdl_hook-ytdl_path=yt-dlp";
+      osc = " no ";
+      border = " no ";
+    };
+    scripts = with pkgs.mpvScripts; [
+      sponsorblock
+      mpris
+      mpv-playlistmanager
+      thumbfast
+      simple-mpv-webui
+      modernx
+    ];
+  };
+  programs.neovim = {
+    enable = true;
+    extraLuaPackages = luaPkgs: with luaPkgs; [
+      luarocks
+    ];
+    extraPython3Packages = pyPkgs: with pyPkgs; [
+      pylatexenc
+    ];
+    extraPackages = with pkgs; [
+      lua-language-server
+      cmake-lint
+      hlint
+      lazygit
+      luajit
+      manix
+      neocmakelsp
+      tree-sitter
+    ];
+    plugins = with pkgs; [
+      vimPlugins.neotest-haskell
+    ];
+    vimAlias = true;
+    vimdiffAlias = true;
+  };
+  programs.nushell = {
+    enable = true;
+    configFile.source = ./config/nushell/config.nu;
+    envFile.source = ./config/nushell/env.nu;
+    shellAliases = {
+      cd = "z";
+      explain = "gh copilot explain";
+      fm = "yazi";
+      ghce = "gh copilot explain";
+      ghcs = "gh copilot suggest";
+      help-explain = "gh copilot explain";
+      help-suggest = "gh copilot suggest";
+      lg = "lazygit";
+      o = "xdg-open";
+      python-enter-venv = "sh -i -c 'source .venv/bin/activate ; nu'";
+      suggest = "gh copilot suggest";
+      v = "nvim";
+    };
+  };
+  programs.readline = {
+    enable = true;
+    variables = {
+      # see https://www.man7.org/linux/man-pages/man3/readline.3.html
+      editing-mode = "vi";
+      keymap = "vi";
+      completion-ignore-case = "on";
+      show-all-if-ambiguous = "on";
+    };
+  };
+  programs.rofi = {
+    enable = true;
+    font = "scientifica, Gohu GohuFont, Siji 8";
+    theme = "sidebar";
+    extraConfig = {
+      modi = "combi";
+      combi-modi = "drun,window,ssh";
+      show-icons = true;
+    };
+  };
+  programs.starship = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
+    settings = {
+      add_newline = true;
+      character = {
+        success_symbol = "[➜](bold green)";
+        error_symbol = "[➜](bold red)";
+      };
+    };
+  };
+  programs.yazi = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
+  };
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
+  };
   programs.zsh = {
     enable = true;
     initExtra = ''
@@ -40,204 +241,6 @@
       ];
     };
   };
-  programs.lazygit.enable = true;
-  programs.neovim = {
-    enable = true;
-    extraPackages = with pkgs; [
-      neocmakelsp
-      cmake-lint
-      manix
-      luajit
-      luajitPackages.luarocks
-      lazygit
-      hlint
-    ];
-    vimAlias = true;
-    vimdiffAlias = true;
-  };
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = false;
-    enableZshIntegration = true;
-    enableNushellIntegration = true;
-    nix-direnv.enable = true;
-  };
-  programs.keychain = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-  programs.bash = {
-    enable = true;
-    bashrcExtra = ''
-      set -o vi
-      bind -m vi-command 'Control-l: clear-screen'
-      bind -m vi-insert 'Control-l: clear-screen'
-    '';
-    enableCompletion = true;
-    sessionVariables = {
-      VISUAL = "nvim";
-      EDITOR = "nvim";
-    };
-  };
-  programs.fzf = {
-    enable = true;
-    enableBashIntegration = true;
-  };
-  programs.nushell = {
-    enable = true;
-    configFile.source = ./config/nushell/config.nu;
-    envFile.source = ./config/nushell/env.nu;
-    shellAliases = {
-      cd = "z";
-      explain = "gh copilot explain";
-      fm = "yazi";
-      ghce = "gh copilot explain";
-      ghcs = "gh copilot suggest";
-      help-explain = "gh copilot explain";
-      help-suggest = "gh copilot suggest";
-      lg = "lazygit";
-      o = "xdg-open";
-      python-enter-venv = "sh -i -c 'source .venv/bin/activate ; nu'";
-      suggest = "gh copilot suggest";
-      v = "nvim";
-    };
-  };
-  programs.readline = {
-    enable = true;
-    variables = {
-      # see https://www.man7.org/linux/man-pages/man3/readline.3.html
-      editing-mode = "vi";
-      keymap = "vi";
-      completion-ignore-case = "on";
-      show-all-if-ambiguous = "on";
-    };
-  };
-  # ipython vim bindings
-  home.file.".ipython/profile_default/ipython_config.py".text = ''
-    c.TerminalInteractiveShell.editing_mode = 'vi'
-  '';
-  # ghci vim bindings
-  home.file.".ghci".text = ''
-    import Data.Function
-    :set prompt "\ESC[1;34m%s\n\ESC[0;34mλ> \ESC[m"
-  '';
-  home.file.".haskeline".text = ''
-    editMode: Vi
-  '';
-  # programs.git = {
-  #   enable = true;
-  #   userName = "Luca Leon Happel";
-  #   userEmail = "luca.happel@hhu.de";
-  #   config = ''
-  #     [user]
-  #       email = luca.happel@hhu.de
-  #       name = Luca Leon Happel
-  #       signingKey = ""
-  #     [credential "https://github.com"]
-  #       helper = 
-  #       helper = !/run/current-system/sw/bin/gh auth git-credential
-  #     [credential "https://gist.github.com"]
-  #       helper = 
-  #       helper = !/run/current-system/sw/bin/gh auth git-credential
-  #     [gpg]
-  #       program = gpg
-  #       format = openpgp
-  #     [commit]
-  #       gpgSign = false
-  #     [tag]
-  #       forceSignAnnotated = false
-  #     [safe]
-  #       directory = /opt/flutter
-  #       directory = /etc/nixos
-  #     [credential]
-  #       helper = /run/current-system/sw/bin/gh auth git-credential
-  #     [merge]
-  #       tool = neovim
-  #     [gpg "ssh"]
-  #       program = ssh-keygen
-  #       allowedSignersFile = ""
-  #   '';
-  #   delta.enable = true;
-  #   lfs.enable = true;
-  #   git-cliff.enable = true;
-  # };
-  programs.gitui.enable = true;
-  xdg.configFile."nushell-plugins/plugin.nu".source = ./config/nushell/plugin.nu;
-  xdg.configFile."nushell/completion.nu".source = ./config/nushell/completion.nu;
-  programs.zoxide = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableNushellIntegration = true;
-  };
-  programs.yazi = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableNushellIntegration = true;
-  };
-  programs.carapace = {
-    enable = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
-  };
-  programs.atuin = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableNushellIntegration = true;
-  };
-  programs.atuin.settings = {
-    keymap_mode = "auto";
-  };
-  programs.starship = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableNushellIntegration = true;
-    settings = {
-      add_newline = true;
-      character = {
-        success_symbol = "[➜](bold green)";
-        error_symbol = "[➜](bold red)";
-      };
-    };
-  };
-  programs.mpv = {
-    enable = true;
-    config = {
-      profile = " gpu-hq ";
-      ytdl-format = " bestvideo + bestaudio ";
-      webui-port = " 4000 ";
-      script-opts = " ytdl_hook-ytdl_path=yt-dlp";
-      osc = " no ";
-      border = " no ";
-    };
-    scripts = with pkgs.mpvScripts; [
-      sponsorblock
-      mpris
-      mpv-playlistmanager
-      thumbfast
-      simple-mpv-webui
-      modernx
-    ];
-  };
-  programs.rofi = {
-    enable = true;
-    font = "scientifica, Gohu GohuFont, Siji 8";
-    theme = "sidebar";
-    extraConfig = {
-      modi = "combi";
-      combi-modi = "drun,window,ssh";
-      show-icons = true;
-    };
-  };
-  services.syncthing = {
-    enable = true;
-    tray = {
-      enable = true;
-    };
-  };
   services.picom = {
     # disabled for now. Configure multiple monitors someday
     enable = false;
@@ -254,45 +257,26 @@
       "97:name *= 'control_center'"
     ];
   };
-  xdg.configFile."xmonad/build".executable = true;
-  xdg.configFile."xmonad/build".text = ''
-    #!/usr/bin/env bash
-
-    export XMONAD_DEV_DIR=$HOME/Dokumente/dev/xmonad-luca
-
-    # create the directory where the xmonad-dev binary will be stored
-    mkdir -p $HOME/.cache/xmonad/
-    # build xmonad using nix
-    nix build $XMONAD_DEV_DIR -o $HOME/.config/xmonad/result
-    # copy the resuslt to where xmonad expects it
-    cp $HOME/.config/xmonad/result/bin/xmonad-luca $HOME/.cache/xmonad/xmonad-x86_64-linux
-    # make the file overwritable, so we can hot-reload xmonad by doing:
-    # ```
-    # xmonad --recompile
-    # ```
-    # followed by <kbd>Mod</kbd>+<kbd>Shift</kbd>+<kbd>Delete</kbd>
-    chmod +w $HOME/.cache/xmonad/xmonad-x86_64-linux
-  '';
-  xdg.configFile."onedrive/config".text = ''
-    sync_dir = "~/Dokumente/Uni"
-  '';
-  xdg.configFile."onedrive/sync_list".text = ''
-    /Dokumente/Uni/anderes
-    /Dokumente/Uni/semester_11
-    /Dokumente/Uni/semester_10
-    /Dokumente/Uni/semester_9
-    /Dokumente/Uni/icon.png
-  '';
-  xdg.configFile."networkmanager-dmenu/config.ini".text = ''
-    [dmenu]
-    dmenu_command = rofi
-    wifi_chars = ▂▄▆█
-  '';
-  xdg.configFile."jgmenu/prepend.csv".text = ''
-    Screenshot,flameshot gui,flameshot
-    File Manager,nemo,system-file-manager
-    ^sep()
-  '';
+  services.polybar = {
+    enable = false;
+    package = pkgs.polybar.override {
+      pulseSupport = true;
+    };
+    config = ./config/polybar;
+    script = "polybar top &";
+  };
+  services.syncthing = {
+    enable = true;
+    tray = {
+      enable = true;
+    };
+  };
+  systemd.user.services.mpris-proxy = {
+    Unit.Description = "Mpris proxy";
+    Unit.After = [ "network.target" "sound.target" ];
+    Service.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
+    Install.WantedBy = [ "default.target" ];
+  };
   xdg.configFile."jgmenu/append.csv".text = ''
     ^sep()
     Exit,^checkout(exit),system-shutdown
@@ -336,6 +320,97 @@
     color_sel_fg         = #c5c8c9 100
     color_sep_fg         = #192022 400
   '';
+  xdg.configFile."jgmenu/prepend.csv".text = ''
+    Screenshot,flameshot gui,flameshot
+    File Manager,nemo,system-file-manager
+    ^sep()
+  '';
+  xdg.configFile."networkmanager-dmenu/config.ini".text = ''
+    [dmenu]
+    dmenu_command = rofi
+    wifi_chars = ▂▄▆█
+  '';
+  xdg.configFile."nushell-plugins/plugin.nu".source = ./config/nushell/plugin.nu;
+  xdg.configFile."nushell/completion.nu".source = ./config/nushell/completion.nu;
+  xdg.configFile."onedrive/config".text = ''
+    sync_dir = "~/Dokumente/Uni"
+  '';
+  xdg.configFile."onedrive/sync_list".text = ''
+    /Dokumente/Uni/anderes
+    /Dokumente/Uni/semester_11
+    /Dokumente/Uni/semester_10
+    /Dokumente/Uni/semester_9
+    /Dokumente/Uni/icon.png
+  '';
+  # services.network-manager-applet.enable = true;
+  # services.dunst = {
+  #   enable = true;
+  #   iconTheme = {
+  #     name = "Papirus";
+  #     package = pkgs.papirus-icon-theme;
+  #     size="32x32";
+  #   };
+  #   settings = {
+  #     global = {
+  #       monitor = 0;
+  #       follow = "mouse";
+  #       geometry = "320x5-15+15";
+  #       indicate_hidden = "yes";
+  #       shrink = "no";
+  #       transparency = 0;
+  #       notification_height = 0;
+  #       separator_height = 2;
+  #       padding = 10;
+  #       horizontal_padding = 10;
+  #       frame_width = 1;
+  #       frame_color = "#232323";
+  #       separator_color = "frame";
+  #       sort = "yes";
+  #       idle_threshold = 120;
+  #       font = "scientifica 8";
+  #       line_height = 0;
+  #       markup = "full";
+  #       format = "<span foreground='#f3f4f5'><b>%s %p</b></span>\n%b";
+  #       alignment = "left";
+  #       show_age_threshold = 60;
+  #       word_wrap = "yes";
+  #       ellipsize = "middle";
+  #       ignore_newline = "no";
+  #       stack_duplicates = true;
+  #       hide_duplicate_count = false;
+  #       show_indicators = "yes";
+  #       icon_position = "left";
+  #       max_icon_size = 32;
+  #       sticky_history = "yes";
+  #       history_length = 20;
+  #       always_run_script = true;
+  #       startup_notification = false;
+  #       verbosity = "mesg";
+  #       corner_radius = 0;
+  #       force_xinerama = false;
+  #       mouse_left_click = "close_current";
+  #       mouse_middle_click = "do_action";
+  #       mouse_right_click = "close_all";
+  #     };
+  #     urgency_low = {
+  #       background = "#232323";
+  #       foreground = "#a8a8a8";
+  #       timeout = 10;
+  #     };
+  #     urgency_normal = {
+  #       background = "#232323";
+  #       foreground = "#a8a8a8";
+  #       timeout = 10;
+  #     };
+  #     urgency_critical = {
+  #       background = "#d64e4e";
+  #       foreground = "#f0e0e0";
+  #       frame_color = "#d64e4e";
+  #       timeout = 0;
+  #       icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/32x32/status/dialog-warning.svg";
+  #     };
+  #   };
+  # };
   xdg.configFile."touchegg/touchegg.conf".text = ''
     <touchégg>
 
@@ -479,88 +554,23 @@
 
     </touchégg>
   '';
-  # services.network-manager-applet.enable = true;
-  # services.dunst = {
-  #   enable = true;
-  #   iconTheme = {
-  #     name = "Papirus";
-  #     package = pkgs.papirus-icon-theme;
-  #     size="32x32";
-  #   };
-  #   settings = {
-  #     global = {
-  #       monitor = 0;
-  #       follow = "mouse";
-  #       geometry = "320x5-15+15";
-  #       indicate_hidden = "yes";
-  #       shrink = "no";
-  #       transparency = 0;
-  #       notification_height = 0;
-  #       separator_height = 2;
-  #       padding = 10;
-  #       horizontal_padding = 10;
-  #       frame_width = 1;
-  #       frame_color = "#232323";
-  #       separator_color = "frame";
-  #       sort = "yes";
-  #       idle_threshold = 120;
-  #       font = "scientifica 8";
-  #       line_height = 0;
-  #       markup = "full";
-  #       format = "<span foreground='#f3f4f5'><b>%s %p</b></span>\n%b";
-  #       alignment = "left";
-  #       show_age_threshold = 60;
-  #       word_wrap = "yes";
-  #       ellipsize = "middle";
-  #       ignore_newline = "no";
-  #       stack_duplicates = true;
-  #       hide_duplicate_count = false;
-  #       show_indicators = "yes";
-  #       icon_position = "left";
-  #       max_icon_size = 32;
-  #       sticky_history = "yes";
-  #       history_length = 20;
-  #       always_run_script = true;
-  #       startup_notification = false;
-  #       verbosity = "mesg";
-  #       corner_radius = 0;
-  #       force_xinerama = false;
-  #       mouse_left_click = "close_current";
-  #       mouse_middle_click = "do_action";
-  #       mouse_right_click = "close_all";
-  #     };
-  #     urgency_low = {
-  #       background = "#232323";
-  #       foreground = "#a8a8a8";
-  #       timeout = 10;
-  #     };
-  #     urgency_normal = {
-  #       background = "#232323";
-  #       foreground = "#a8a8a8";
-  #       timeout = 10;
-  #     };
-  #     urgency_critical = {
-  #       background = "#d64e4e";
-  #       foreground = "#f0e0e0";
-  #       frame_color = "#d64e4e";
-  #       timeout = 0;
-  #       icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/32x32/status/dialog-warning.svg";
-  #     };
-  #   };
-  # };
-  services.polybar = {
-    enable = false;
-    package = pkgs.polybar.override {
-      pulseSupport = true;
-    };
-    config = ./config/polybar;
-    script = "polybar top &";
-  };
-  systemd.user.services.mpris-proxy = {
-    Unit.Description = "Mpris proxy";
-    Unit.After = [ "network.target" "sound.target" ];
-    Service.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
-    Install.WantedBy = [ "default.target" ];
-  };
-  home.stateVersion = "22.05";
+  xdg.configFile."xmonad/build".executable = true;
+  xdg.configFile."xmonad/build".text = ''
+    #!/usr/bin/env bash
+
+    export XMONAD_DEV_DIR=$HOME/Dokumente/dev/xmonad-luca
+
+    # create the directory where the xmonad-dev binary will be stored
+    mkdir -p $HOME/.cache/xmonad/
+    # build xmonad using nix
+    nix build $XMONAD_DEV_DIR -o $HOME/.config/xmonad/result
+    # copy the resuslt to where xmonad expects it
+    cp $HOME/.config/xmonad/result/bin/xmonad-luca $HOME/.cache/xmonad/xmonad-x86_64-linux
+    # make the file overwritable, so we can hot-reload xmonad by doing:
+    # ```
+    # xmonad --recompile
+    # ```
+    # followed by <kbd>Mod</kbd>+<kbd>Shift</kbd>+<kbd>Delete</kbd>
+    chmod +w $HOME/.cache/xmonad/xmonad-x86_64-linux
+  '';
 }
