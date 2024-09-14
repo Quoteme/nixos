@@ -32,6 +32,7 @@ in
           scipy
           matplotlib
           plotly
+          pipx
         ]);
       in
       with pkgs; [
