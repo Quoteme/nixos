@@ -101,7 +101,7 @@
     systemd.services.supergfxd.path = [ pkgs.kmod pkgs.pciutils ];
     # NVIDIA settings
     # FIX: fix this
-    hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
+    hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
     hardware.opengl = {
       enable = true;
       # driSupport = true;
@@ -221,7 +221,7 @@
         patch = builtins.fetchurl {
           # url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.5/0001-HID-amd_sfh-Add-support-ior-tablet-mode-switch-senso.patch";
           # sha256 = "sha256:08qw7qq88dy96jxa0f4x33gj2nb4qxa6fh2f25lcl8bgmk00k7l2";
-          url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.9/amd-tablet-sfh.patch?ref_type=heads";
+          url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.10/amd-tablet-sfh.patch?ref_type=heads";
           sha256 = "sha256:011b4q0v8mkfrv96d4bvg8fd5dg6y5q38w20qmf196hsx35r13sh";
         };
       }
