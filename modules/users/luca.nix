@@ -1,31 +1,21 @@
-{ config
-, options
-, lib
-, pkgs
-, attrs
-, ...
-}@inputs:
+{ config, options, lib, pkgs, attrs, ... }@inputs:
 let
   inherit (builtins) pathExists readFile;
   inherit (lib.modules) mkIf;
 
   cfg = config.modules.users.luca;
-in
-{
-  options.modules.users.luca =
-    let
-      inherit (lib.options) mkEnableOption mkOption;
-      inherit (lib.types) nullOr path;
-    in
-    {
-      enable = mkEnableOption "Enable the user 'luca'";
-    };
+in {
+  options.modules.users.luca = let
+    inherit (lib.options) mkEnableOption mkOption;
+    inherit (lib.types) nullOr path;
+  in { enable = mkEnableOption "Enable the user 'luca'"; };
 
   config = mkIf cfg.enable {
     programs.zsh.enable = true;
     users.users.luca.shell = pkgs.zsh;
     users.users.luca = {
-      initialHashedPassword = "$6$W62LDzjtggxhhOiJ$KKM1yuHOrEr3Mz4MSstUGBtlpEF2AHR8bAzFeaqo2l.rrka/phKnzbKbyM5HX955d9et2NnV2fOr9LnDCgB5M1";
+      initialHashedPassword =
+        "$6$W62LDzjtggxhhOiJ$KKM1yuHOrEr3Mz4MSstUGBtlpEF2AHR8bAzFeaqo2l.rrka/phKnzbKbyM5HX955d9et2NnV2fOr9LnDCgB5M1";
       isNormalUser = true;
       extraGroups = [
         "networkmanager"
@@ -40,12 +30,14 @@ in
         "libvirt"
         "docker"
         "input"
-        "vboxusers" # maybe use `users.extraGroups.vboxusers.members = [ "luca" ];` 
+        "vboxusers" # maybe use `users.extraGroups.vboxusers.members = [ "luca" ];`
         "nordvpn"
       ];
       packages = with pkgs; [
         attrs.emoji-board.defaultPackage.x86_64-linux
+        nixd
         # Internet
+        bitwarden-cli
         birdtray
         thunderbird
         # Video-Editing

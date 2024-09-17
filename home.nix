@@ -1,5 +1,4 @@
-{ config, pkgs, attrs, ... }:
-{
+{ config, pkgs, attrs, ... }: {
   home.file.".ghci".text = ''
     import Data.Function
     :set prompt "\ESC[1;34m%s\n\ESC[0;34mλ> \ESC[m"
@@ -17,9 +16,7 @@
     enableZshIntegration = true;
     enableNushellIntegration = true;
   };
-  programs.atuin.settings = {
-    keymap_mode = "auto";
-  };
+  programs.atuin.settings = { keymap_mode = "auto"; };
   programs.bash = {
     enable = true;
     bashrcExtra = ''
@@ -56,43 +53,6 @@
     enable = true;
     enableZshIntegration = true;
   };
-  # programs.git = {
-  #   enable = true;
-  #   userName = "Luca Leon Happel";
-  #   userEmail = "luca.happel@hhu.de";
-  #   config = ''
-  #     [user]
-  #       email = luca.happel@hhu.de
-  #       name = Luca Leon Happel
-  #       signingKey = ""
-  #     [credential "https://github.com"]
-  #       helper = 
-  #       helper = !/run/current-system/sw/bin/gh auth git-credential
-  #     [credential "https://gist.github.com"]
-  #       helper = 
-  #       helper = !/run/current-system/sw/bin/gh auth git-credential
-  #     [gpg]
-  #       program = gpg
-  #       format = openpgp
-  #     [commit]
-  #       gpgSign = false
-  #     [tag]
-  #       forceSignAnnotated = false
-  #     [safe]
-  #       directory = /opt/flutter
-  #       directory = /etc/nixos
-  #     [credential]
-  #       helper = /run/current-system/sw/bin/gh auth git-credential
-  #     [merge]
-  #       tool = neovim
-  #     [gpg "ssh"]
-  #       program = ssh-keygen
-  #       allowedSignersFile = ""
-  #   '';
-  #   delta.enable = true;
-  #   lfs.enable = true;
-  #   git-cliff.enable = true;
-  # };
   programs.lazygit.enable = true;
   programs.mpv = {
     enable = true;
@@ -115,25 +75,24 @@
   };
   programs.neovim = {
     enable = true;
-    extraLuaPackages = luaPkgs: with luaPkgs; [
-      luarocks
-    ];
-    extraPython3Packages = pyPkgs: with pyPkgs; [
-      pylatexenc
-    ];
+    extraLuaPackages = luaPkgs: with luaPkgs; [ luarocks magick ];
+    extraPython3Packages = pyPkgs: with pyPkgs; [ pylatexenc ];
     extraPackages = with pkgs; [
-      lua-language-server
+      clang
       cmake-lint
       hlint
+      imagemagick
       lazygit
+      lua-language-server
       luajit
       manix
       neocmakelsp
+      nixfmt-classic
+      poppler_utils
+      tectonic
       tree-sitter
     ];
-    plugins = with pkgs; [
-      vimPlugins.neotest-haskell
-    ];
+    plugins = with pkgs; [ vimPlugins.neotest-haskell ];
     vimAlias = true;
     vimdiffAlias = true;
   };
@@ -209,9 +168,12 @@
     shellAliases = {
       # Monti
       montissh = "TERM=xterm-256color ssh mmbs@monti.hhu.de";
-      montikuma = "xdg-open http://localhost:3001 && ssh -L 3001:localhost:3001 mmbs@monti.hhu.de";
-      montiprometheus = "xdg-open http://localhost:9090 && ssh -L 9090:localhost:9090 mmbs@monti.hhu.de";
-      montigrafana = "xdg-open http://localhost:3000 && ssh -L 3000:localhost:3000 mmbs@monti.hhu.de";
+      montikuma =
+        "xdg-open http://localhost:3001 && ssh -L 3001:localhost:3001 mmbs@monti.hhu.de";
+      montiprometheus =
+        "xdg-open http://localhost:9090 && ssh -L 9090:localhost:9090 mmbs@monti.hhu.de";
+      montigrafana =
+        "xdg-open http://localhost:3000 && ssh -L 3000:localhost:3000 mmbs@monti.hhu.de";
       montipostgres = "ssh -L 5432:localhost:5432 mmbs@monti.hhu.de";
       # Steam
       steammount = ''
@@ -232,12 +194,30 @@
       enable = true;
       plugins = [
         { name = "zsh-users/zsh-autosuggestions"; }
-        { name = "dracula/zsh"; tags = [ as:theme depth:1 ]; }
-        { name = "plugins/dirhistory"; tags = [ from:oh-my-zsh depth:1 ]; }
-        { name = "jeffreytse/zsh-vi-mode"; tags = [ depth:1 ]; }
-        { name = "plugins/zoxide"; tags = [ from:oh-my-zsh depth:1 ]; }
-        { name = "plugins/flutter"; tags = [ from:oh-my-zsh depth:1 ]; }
-        { name = "plugins/fd"; tags = [ from:oh-my-zsh depth:1 ]; }
+        {
+          name = "dracula/zsh";
+          tags = [ "as:theme" "depth:1" ];
+        }
+        {
+          name = "plugins/dirhistory";
+          tags = [ "from:oh-my-zsh" "depth:1" ];
+        }
+        {
+          name = "jeffreytse/zsh-vi-mode";
+          tags = [ "depth:1" ];
+        }
+        {
+          name = "plugins/zoxide";
+          tags = [ "from:oh-my-zsh" "depth:1" ];
+        }
+        {
+          name = "plugins/flutter";
+          tags = [ "from:oh-my-zsh" "depth:1" ];
+        }
+        {
+          name = "plugins/fd";
+          tags = [ "from:oh-my-zsh" "depth:1" ];
+        }
       ];
     };
   };
@@ -259,17 +239,13 @@
   };
   services.polybar = {
     enable = false;
-    package = pkgs.polybar.override {
-      pulseSupport = true;
-    };
+    package = pkgs.polybar.override { pulseSupport = true; };
     config = ./config/polybar;
     script = "polybar top &";
   };
   services.syncthing = {
     enable = true;
-    tray = {
-      enable = true;
-    };
+    tray = { enable = true; };
   };
   systemd.user.services.mpris-proxy = {
     Unit.Description = "Mpris proxy";
@@ -277,283 +253,15 @@
     Service.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
     Install.WantedBy = [ "default.target" ];
   };
-  xdg.configFile."jgmenu/append.csv".text = ''
-    ^sep()
-    Exit,^checkout(exit),system-shutdown
-    ^tag(exit)
-    Reboot,systemctl -i reboot,system-reboot
-    Log-Out,xdotool super+del,system-log-out
-    Suspend,systemctl -i suspend,system-suspend
-    Hibernate,systemctl hibernate,system-suspend-hibernate
-    Poweroff,systemctl -i poweroff,system-shutdown
-  '';
-  xdg.configFile."jgmenu/jgmenurc".text = ''
-    stay_alive           = 1
-    tint2_look           = 0
-    position_mode        = fixed
-    terminal_exec        = st
-    terminal_args        = -e
-    menu_width           = 200
-    menu_padding_top     = 10
-    menu_padding_right   = 2
-    menu_padding_bottom  = 5
-    menu_padding_left    = 2
-    menu_radius          = 0
-    menu_border          = 1
-    menu_halign          = left
-    menu_valign          = top
-    menu_margin_y a      = 20
-    sub_hover_action     = 1
-    item_margin_y        = 5
-    item_height          = 30
-    item_padding_x       = 8
-    item_radius          = 0
-    item_border          = 0
-    sep_height           = 5
-    font                 = Ubuntu 12px
-    icon_size            = 24
-    color_menu_bg        = #0b0f10 100
-    color_norm_bg        = #0b0f10 0
-    color_norm_fg        = #c5c8c9 100
-    color_menu_border	   = #0b0f10 100
-    color_sel_bg         = #192022 100
-    color_sel_fg         = #c5c8c9 100
-    color_sep_fg         = #192022 400
-  '';
-  xdg.configFile."jgmenu/prepend.csv".text = ''
-    Screenshot,flameshot gui,flameshot
-    File Manager,nemo,system-file-manager
-    ^sep()
-  '';
   xdg.configFile."networkmanager-dmenu/config.ini".text = ''
     [dmenu]
     dmenu_command = rofi
     wifi_chars = ▂▄▆█
   '';
-  xdg.configFile."nushell-plugins/plugin.nu".source = ./config/nushell/plugin.nu;
-  xdg.configFile."nushell/completion.nu".source = ./config/nushell/completion.nu;
-  xdg.configFile."onedrive/config".text = ''
-    sync_dir = "~/Dokumente/Uni"
-  '';
-  xdg.configFile."onedrive/sync_list".text = ''
-    /Dokumente/Uni/anderes
-    /Dokumente/Uni/semester_11
-    /Dokumente/Uni/semester_10
-    /Dokumente/Uni/semester_9
-    /Dokumente/Uni/icon.png
-  '';
-  # services.network-manager-applet.enable = true;
-  # services.dunst = {
-  #   enable = true;
-  #   iconTheme = {
-  #     name = "Papirus";
-  #     package = pkgs.papirus-icon-theme;
-  #     size="32x32";
-  #   };
-  #   settings = {
-  #     global = {
-  #       monitor = 0;
-  #       follow = "mouse";
-  #       geometry = "320x5-15+15";
-  #       indicate_hidden = "yes";
-  #       shrink = "no";
-  #       transparency = 0;
-  #       notification_height = 0;
-  #       separator_height = 2;
-  #       padding = 10;
-  #       horizontal_padding = 10;
-  #       frame_width = 1;
-  #       frame_color = "#232323";
-  #       separator_color = "frame";
-  #       sort = "yes";
-  #       idle_threshold = 120;
-  #       font = "scientifica 8";
-  #       line_height = 0;
-  #       markup = "full";
-  #       format = "<span foreground='#f3f4f5'><b>%s %p</b></span>\n%b";
-  #       alignment = "left";
-  #       show_age_threshold = 60;
-  #       word_wrap = "yes";
-  #       ellipsize = "middle";
-  #       ignore_newline = "no";
-  #       stack_duplicates = true;
-  #       hide_duplicate_count = false;
-  #       show_indicators = "yes";
-  #       icon_position = "left";
-  #       max_icon_size = 32;
-  #       sticky_history = "yes";
-  #       history_length = 20;
-  #       always_run_script = true;
-  #       startup_notification = false;
-  #       verbosity = "mesg";
-  #       corner_radius = 0;
-  #       force_xinerama = false;
-  #       mouse_left_click = "close_current";
-  #       mouse_middle_click = "do_action";
-  #       mouse_right_click = "close_all";
-  #     };
-  #     urgency_low = {
-  #       background = "#232323";
-  #       foreground = "#a8a8a8";
-  #       timeout = 10;
-  #     };
-  #     urgency_normal = {
-  #       background = "#232323";
-  #       foreground = "#a8a8a8";
-  #       timeout = 10;
-  #     };
-  #     urgency_critical = {
-  #       background = "#d64e4e";
-  #       foreground = "#f0e0e0";
-  #       frame_color = "#d64e4e";
-  #       timeout = 0;
-  #       icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/32x32/status/dialog-warning.svg";
-  #     };
-  #   };
-  # };
-  xdg.configFile."touchegg/touchegg.conf".text = ''
-    <touchégg>
-
-      <settings>
-        <!--
-          Delay, in milliseconds, since the gesture starts before the animation is displayed.
-          Default: 150ms if this property is not set.
-          Example: Use the MAXIMIZE_RESTORE_WINDOW action. You will notice that no animation is
-          displayed if you complete the action quick enough. This property configures that time.
-        -->
-        <property name="animation_delay">150</property>
-
-        <!--
-          Percentage of the gesture to be completed to apply the action. Set to 0 to execute actions unconditionally.
-          Default: 20% if this property is not set.
-          Example: Use the MAXIMIZE_RESTORE_WINDOW action. You will notice that, even if the
-          animation is displayed, the action is not executed if you did not move your fingers far
-          enough. This property configures the percentage of the gesture that must be reached to
-          execute the action.
-        -->
-        <property name="action_execute_threshold">20</property>
-
-        <!--
-          Global animation colors can be configured to match your system colors using HEX notation:
-
-            <color>909090</color>
-            <borderColor>FFFFFF</borderColor>
-
-          You can also use auto:
-
-            <property name="color">auto</property>
-            <property name="borderColor">auto</property>
-
-          Notice that you can override an specific animation color.
-        -->
-        <property name="color">auto</property>
-        <property name="borderColor">auto</property>
-      </settings>
-
-      <!--
-        Configuration for every application.
-      -->
-      <application name="All">
-
-        <gesture type="PINCH" fingers="3" direction="IN">
-          <action type="CLOSE_WINDOW">
-            <animate>true</animate>
-            <color>F84A53</color>
-            <borderColor>F84A53</borderColor>
-          </action>
-        </gesture>
-
-        <gesture type="PINCH" fingers="3" direction="OUT">
-          <action type="RUN_COMMAND">
-            <repeat>false</repeat>
-            <command>sleep 0.4 && xmonadctl menu</command>
-            <on>begin</on>
-          </action>
-        </gesture>
-
-        <!-- Window Swapping -->
-        <gesture type="SWIPE" fingers="4" direction="UP">
-          <action type="RUN_COMMAND">
-            <repeat>false</repeat>
-            <command>xmonadctl swap-up</command>
-            <on>begin</on>
-          </action>
-        </gesture>
-
-        <gesture type="SWIPE" fingers="4" direction="DOWN">
-          <action type="RUN_COMMAND">
-            <repeat>false</repeat>
-            <command>xmonadctl swap-down</command>
-            <on>begin</on>
-          </action>
-        </gesture>
-
-        <gesture type="SWIPE" fingers="4" direction="LEFT">
-          <action type="RUN_COMMAND">
-            <repeat>false</repeat>
-            <command>xmonadctl swap-left</command>
-            <on>begin</on>
-          </action>
-        </gesture>
-
-        <gesture type="SWIPE" fingers="4" direction="RIGHT">
-          <action type="RUN_COMMAND">
-            <repeat>false</repeat>
-            <command>xmonadctl swap-right</command>
-            <on>begin</on>
-          </action>
-        </gesture>
-
-        <gesture type="TAP" fingers="4">
-          <action type="RUN_COMMAND">
-            <repeat>false</repeat>
-            <command>xmonadctl rotate</command>
-            <on>begin</on>
-          </action>
-        </gesture>
-
-        <gesture type="SWIPE" fingers="3" direction="LEFT">
-          <action type="CHANGE_DESKTOP">
-            <direction>auto</direction>
-            <animate>true</animate>
-            <animationPosition>auto</animationPosition>
-          </action>
-        </gesture>
-
-        <gesture type="SWIPE" fingers="3" direction="RIGHT">
-          <action type="CHANGE_DESKTOP">
-            <direction>auto</direction>
-            <animate>true</animate>
-            <animationPosition>auto</animationPosition>
-          </action>
-        </gesture>
-
-      <gesture type="SWIPE" fingers="3" direction="DOWN">
-          <action type="RUN_COMMAND">
-            <repeat>false</repeat>
-            <command>xmonadctl toggle-struts</command>
-            <on>begin</on>
-          </action>
-        </gesture>
-
-        <gesture type="TAP" fingers="2">
-          <action type="MOUSE_CLICK">
-            <button>3</button>
-            <on>begin</on>
-          </action>
-        </gesture>
-
-        <gesture type="TAP" fingers="3">
-          <action type="MOUSE_CLICK">
-            <button>2</button>
-            <on>begin</on>
-          </action>
-        </gesture>
-
-      </application>
-
-    </touchégg>
-  '';
+  xdg.configFile."nushell-plugins/plugin.nu".source =
+    ./config/nushell/plugin.nu;
+  xdg.configFile."nushell/completion.nu".source =
+    ./config/nushell/completion.nu;
   xdg.configFile."xmonad/build".executable = true;
   xdg.configFile."xmonad/build".text = ''
     #!/usr/bin/env bash
