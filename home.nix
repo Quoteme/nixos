@@ -86,6 +86,7 @@
       lua-language-server
       luajit
       manix
+      mathimg
       neocmakelsp
       nixfmt-classic
       poppler_utils

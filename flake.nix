@@ -2,41 +2,41 @@
   description = "Luca Happels nixos ";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/23819c0052409787c012fbad6649ed4fcdbce7f0";
-    nur.url = "github:nix-community/NUR";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nix-index-database.url = "github:nix-community/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    nixd.url = "github:nix-community/nixd";
-    # st-nix.url = "github:Quoteme/st-nix";
+    emacs-overlay.url =
+      "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
     emoji-board = {
       url = "github:Quoteme/emoji-board";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    emacs-overlay.url =
-      "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
-    # nix-autobahn.url = "github:Lassulus/nix-autobahn";
-    # nix-alien.url = "github:thiagokokada/nix-alien";
-    screenrotate.url = "github:Quoteme/screenrotate";
-    screenrotate.inputs.nixpkgs.follows = "nixpkgs";
-    # rescreenapp.url = "github:Quoteme/rescreenapp";
-    control_center = {
-      url = "github:Quoteme/control_center";
+    hmenke-nixos-modules.url = "github:hmenke/nixos-modules";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.3.0";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+    mathimg = {
+      url = "github:Quoteme/mathimg";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    # st-nix.url = "github:Quoteme/st-nix";
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    # nix-autobahn.url = "github:Lassulus/nix-autobahn";
+    # nix-alien.url = "github:thiagokokada/nix-alien";
+    nixd.url = "github:nix-community/nixd";
+    nixpkgs-stable.url = "nixpkgs/23819c0052409787c012fbad6649ed4fcdbce7f0";
+    # rescreenapp.url = "github:Quoteme/rescreenapp";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nur.url = "github:nix-community/NUR";
+    screenrotate.inputs.nixpkgs.follows = "nixpkgs";
+    screenrotate.url = "github:Quoteme/screenrotate";
     xmonad-luca = {
       url = "github:Quoteme/xmonad-luca";
       inputs.control_center.follows = "control_center";
       inputs.screenrotate.follows = "screenrotate";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hmenke-nixos-modules.url = "github:hmenke/nixos-modules";
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.3.0";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     xremap-flake.url = "github:xremap/nix-flake";
   };
@@ -74,6 +74,9 @@
           overlay-nixd
           overlay-screenrotate
           attrs.nur.overlay
+          (final: prev: {
+            mathimg = attrs.mathimg.defaultPackage.x86_64-linux;
+          })
         ];
       };
       nur-modules = import attrs.nur {
