@@ -389,7 +389,7 @@
             ];
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
-            home-manager.extraSpecialArgs = { inherit attrs; };
+            home-manager.extraSpecialArgs = { inherit attrs pkgs; };
           }
         ];
       };
