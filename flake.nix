@@ -89,7 +89,6 @@
         specialArgs = attrs;
         modules = [
           attrs.nur.nixosModules.nur
-          nur-modules.repos.LuisChDev.modules.nordvpn
           lanzaboote.nixosModules.lanzaboote
           home-manager.nixosModules.home-manager
           # ┏━╸┏━┓┏┓╻┏━╸╻┏━╸╻ ╻┏━┓┏━┓╺┳╸╻┏━┓┏┓╻ ┏┓╻╻╻ ╻
@@ -120,9 +119,6 @@
                 inherit config lib options pkgs;
               })
               (import ./modules/desktop/sway.nix {
-                inherit config lib options pkgs;
-              })
-              (import ./modules/environment/nordvpn.nix {
                 inherit config lib options pkgs;
               })
               (import ./modules/environment/systempackages.nix {

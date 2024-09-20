@@ -31,7 +31,6 @@ in {
         "docker"
         "input"
         "vboxusers" # maybe use `users.extraGroups.vboxusers.members = [ "luca" ];`
-        "nordvpn"
       ];
       packages = with pkgs; [
         attrs.emoji-board.defaultPackage.x86_64-linux
