@@ -26,7 +26,7 @@
     # nix-autobahn.url = "github:Lassulus/nix-autobahn";
     # nix-alien.url = "github:thiagokokada/nix-alien";
     nixd.url = "github:nix-community/nixd";
-    nixpkgs-stable.url = "nixpkgs/23819c0052409787c012fbad6649ed4fcdbce7f0";
+    nixpkgs-stable.url = "nixpkgs/nixpkgs-unstable";
     # rescreenapp.url = "github:Quoteme/rescreenapp";
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
