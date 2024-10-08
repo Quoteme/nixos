@@ -820,6 +820,4 @@ def montipostgres [] {
     ssh -L 5432:localhost:5432 mmbs@monti.ai
 }
 # plugins
-plugin add ~/.cargo/bin/nu_plugin_highlight
-plugin use highlight
 use ~/.cache/starship/init.nu
