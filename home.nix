@@ -259,8 +259,6 @@
     dmenu_command = rofi
     wifi_chars = ▂▄▆█
   '';
-  xdg.configFile."nushell-plugins/plugin.nu".source =
-    ./config/nushell/plugin.nu;
   xdg.configFile."nushell/completion.nu".source =
     ./config/nushell/completion.nu;
   xdg.configFile."xmonad/build".executable = true;
