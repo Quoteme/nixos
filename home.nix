@@ -76,7 +76,6 @@
   programs.neovim = {
     enable = true;
     extraLuaPackages = luaPkgs: with luaPkgs; [ luarocks magick ];
-    extraPython3Packages = pyPkgs: with pyPkgs; [ pylatexenc ];
     extraPackages = with pkgs; [
       clang
       cmake-lint
@@ -93,6 +92,21 @@
       tectonic
       tree-sitter
     ];
+    extraPython3Packages = pyPkgs:
+      with pyPkgs; [
+        pylatexenc
+        pynvim
+        jupyter-client
+        cairosvg # for image rendering
+        pnglatex # for image rendering
+        plotly # for image rendering
+        numpy
+        matplotlib
+        sympy
+        pyperclip
+        ipython
+        ipykernel
+      ];
     plugins = with pkgs; [ vimPlugins.neotest-haskell ];
     vimAlias = true;
     vimdiffAlias = true;
