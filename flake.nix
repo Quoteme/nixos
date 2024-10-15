@@ -335,7 +335,7 @@
 
             virtualisation = {
               libvirtd = {
-                enable = true;
+                enable = false;
                 qemu.package = (pkgs.stable.qemu_full.override {
                   gtkSupport = true;
                   sdlSupport = true;
@@ -343,14 +343,13 @@
                   openGLSupport = true;
                 });
               };
-              # virtualbox.host = {
-              #   enable = true;
-              #   package = pkgs.virtualboxWithExtpack;
-              #   enableExtensionPack = true;
-              # };
-              waydroid.enable =
-                true; # temporarily disabled because of system shutdown issues
-              lxd.enable = true;
+              virtualbox.host = {
+                enable = false;
+                package = pkgs.virtualboxWithExtpack;
+                enableExtensionPack = true;
+              };
+              waydroid.enable = false;
+              lxd.enable = false;
             };
             security = {
               polkit.enable = true;
