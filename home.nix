@@ -87,6 +87,8 @@
       manix
       mathimg
       neocmakelsp
+      nil
+      nixd
       nixfmt-classic
       poppler_utils
       tectonic

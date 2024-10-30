@@ -34,7 +34,6 @@ in {
       ];
       packages = with pkgs; [
         attrs.emoji-board.defaultPackage.x86_64-linux
-        nixd
         # Internet
         bitwarden-cli
         birdtray

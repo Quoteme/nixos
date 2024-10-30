@@ -58,7 +58,7 @@
         screenrotate = attrs.screenrotate.defaultPackage.x86_64-linux;
       };
       overlay-nixd = final: prev: {
-        nixd = attrs.nixd.packages.x86_64-linux.nixd;
+        nixd-nightly = attrs.nixd.packages.x86_64-linux.nixd;
       };
       pkgs = import nixpkgs {
         inherit system;
