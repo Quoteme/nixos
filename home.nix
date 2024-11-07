@@ -48,31 +48,11 @@
     enableBashIntegration = true;
   };
   # ghci vim bindings
-  programs.gitui.enable = true;
   programs.keychain = {
     enable = true;
     enableZshIntegration = true;
   };
   programs.lazygit.enable = true;
-  programs.mpv = {
-    enable = true;
-    config = {
-      profile = " gpu-hq ";
-      ytdl-format = " bestvideo + bestaudio ";
-      webui-port = " 4000 ";
-      script-opts = " ytdl_hook-ytdl_path=yt-dlp";
-      osc = " no ";
-      border = " no ";
-    };
-    scripts = with pkgs.mpvScripts; [
-      sponsorblock
-      mpris
-      mpv-playlistmanager
-      thumbfast
-      simple-mpv-webui
-      modernx
-    ];
-  };
   programs.neovim = {
     enable = true;
     extraLuaPackages = luaPkgs: with luaPkgs; [ luarocks magick ];
@@ -82,6 +62,7 @@
       hlint
       imagemagick
       lazygit
+      lua51Packages.lua
       lua-language-server
       luajit
       manix
@@ -114,7 +95,7 @@
     vimdiffAlias = true;
   };
   programs.nushell = {
-    enable = true;
+    enable = false;
     configFile.source = ./config/nushell/config.nu;
     envFile.source = ./config/nushell/env.nu;
     shellAliases = {
@@ -140,16 +121,6 @@
       keymap = "vi";
       completion-ignore-case = "on";
       show-all-if-ambiguous = "on";
-    };
-  };
-  programs.rofi = {
-    enable = true;
-    font = "scientifica, Gohu GohuFont, Siji 8";
-    theme = "sidebar";
-    extraConfig = {
-      modi = "combi";
-      combi-modi = "drun,window,ssh";
-      show-icons = true;
     };
   };
   programs.starship = {
@@ -206,6 +177,7 @@
       vi = "nvim";
       vim = "nvim";
       o = "xdg-open";
+      nd = "nix develop";
     };
     zplug = {
       enable = true;
@@ -238,43 +210,12 @@
       ];
     };
   };
-  services.picom = {
-    # disabled for now. Configure multiple monitors someday
-    enable = false;
-    shadow = false;
-    shadowOpacity = 0.8;
-    fade = false;
-    fadeDelta = 5;
-    fadeExclude = [ "window_type *= 'menu'" ];
-    inactiveOpacity = 1.0;
-    opacityRules = [
-      "100:name *= 'Netflix'"
-      "100:name *= 'Wikipedia'"
-      "100:name *= 'Youtube'"
-      "97:name *= 'control_center'"
-    ];
-  };
-  services.polybar = {
-    enable = false;
-    package = pkgs.polybar.override { pulseSupport = true; };
-    config = ./config/polybar;
-    script = "polybar top &";
-  };
-  services.syncthing = {
-    enable = true;
-    tray = { enable = true; };
-  };
   systemd.user.services.mpris-proxy = {
     Unit.Description = "Mpris proxy";
     Unit.After = [ "network.target" "sound.target" ];
     Service.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
     Install.WantedBy = [ "default.target" ];
   };
-  xdg.configFile."networkmanager-dmenu/config.ini".text = ''
-    [dmenu]
-    dmenu_command = rofi
-    wifi_chars = ▂▄▆█
-  '';
   xdg.configFile."nushell/completion.nu".source =
     ./config/nushell/completion.nu;
   xdg.configFile."xmonad/build".executable = true;

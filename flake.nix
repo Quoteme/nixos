@@ -33,7 +33,7 @@
     screenrotate.inputs.nixpkgs.follows = "nixpkgs";
     screenrotate.url = "github:Quoteme/screenrotate";
     xmonad-luca = {
-      url = "github:Quoteme/xmonad-luca";
+      url = "github:Quoteme/xmonad-luca/update-flake";
       inputs.control_center.follows = "control_center";
       inputs.screenrotate.follows = "screenrotate";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -212,14 +212,14 @@
 
             modules.applications.editors.vscode-fhs.enable = true;
             modules.applications.editors.vscode.enable = false;
-            modules.applications.gaming.steam.enable = true;
+            modules.applications.gaming.steam.enable = false;
             modules.applications.nix-extras.enable = true;
             modules.applications.virtualisation.docker.enable = true;
             modules.desktop.cosmic.enable = false;
             modules.desktop.gnome.enable = false;
             modules.desktop.kde.enable = true;
             modules.desktop.sway.enable = false;
-            modules.desktop.xmonad-luca.enable = true;
+            modules.desktop.xmonad-luca.enable = false;
             modules.desktopManager.lightdm.enable = false;
             modules.desktopManager.sddm.enable = false;
             modules.loginManager.greetd.enable = true;

@@ -1,24 +1,17 @@
-{ config
-, options
-, lib
-, pkgs
-, ...
-}@inputs:
+{ config, options, lib, pkgs, ... }@inputs:
 let
   inherit (builtins) pathExists readFile;
   inherit (lib.modules) mkIf;
 
   cfg = config.modules.desktop.xmonad-luca;
-in
-{
-  options.modules.desktop.xmonad-luca =
-    let
-      inherit (lib.options) mkEnableOption mkOption;
-      inherit (lib.types) nullOr path;
-    in
-    {
-      enable = mkEnableOption "Enable xmonad-luca: a xmonad configuration for Luca";
-    };
+in {
+  options.modules.desktop.xmonad-luca = let
+    inherit (lib.options) mkEnableOption mkOption;
+    inherit (lib.types) nullOr path;
+  in {
+    enable =
+      mkEnableOption "Enable xmonad-luca: a xmonad configuration for Luca";
+  };
 
   config = mkIf cfg.enable {
     services.logind.extraConfig = ''
@@ -46,7 +39,7 @@ in
     ];
     programs.xfconf.enable = true;
 
-    services.xserver.displayManager.defaultSession = "none+xmonad-home";
+    services.displayManager.defaultSession = "none+xmonad-home";
     # services.touchegg.enable = true;
     # services.blueman.enable = true;
     services.udisks2.enable = true;

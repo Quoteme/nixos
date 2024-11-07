@@ -1,10 +1,4 @@
-{ config
-, options
-, lib
-, pkgs
-, ...
-}@inputs:
-{
+{ config, options, lib, pkgs, ... }@inputs: {
 
   options.modules.fonts = {
     enable = lib.options.mkEnableOption {
@@ -18,25 +12,20 @@
     # List fonts installed in system profile
     fonts.packages = with pkgs; [
       # nerdfonts
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "Monaspace"
-          "Hasklig"
-        ];
-      })
+      (nerdfonts.override { fonts = [ "FiraCode" "Monaspace" "Hasklig" ]; })
       font-awesome
       julia-mono
       liberation_ttf
       material-icons
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
       openmoji-color
       scientifica
       siji
       unifont
     ];
-    fonts.fontconfig.defaultFonts.emoji = [ "Noto Color Emoji" "openmoji-color" ];
+    fonts.fontconfig.defaultFonts.emoji =
+      [ "Noto Color Emoji" "openmoji-color" ];
   };
 }
