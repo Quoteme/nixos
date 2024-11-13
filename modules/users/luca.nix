@@ -36,8 +36,6 @@ in {
         attrs.emoji-board.defaultPackage.x86_64-linux
         # Internet
         bitwarden-cli
-        birdtray
-        thunderbird
         # Video-Editing
         mediainfo
         # Media

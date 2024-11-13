@@ -1,26 +1,20 @@
-{ config
-, options
-, lib
-, pkgs
-, ...
-}@inputs:
+{ config, options, lib, pkgs, ... }@inputs:
 let
   inherit (builtins) pathExists readFile;
   inherit (lib.modules) mkIf;
 
   cfg = config.modules.desktop.gnome;
-in
-{
-  options.modules.desktop.gnome =
-    let
-      inherit (lib.options) mkEnableOption mkOption;
-      inherit (lib.types) nullOr path;
-    in
-    {
-      enable = mkEnableOption "Enable the Gnome desktop environment (together with GDM and all other goodies)";
-    };
+in {
+  options.modules.desktop.gnome = let
+    inherit (lib.options) mkEnableOption mkOption;
+    inherit (lib.types) nullOr path;
+  in {
+    enable = mkEnableOption
+      "Enable the Gnome desktop environment (together with GDM and all other goodies)";
+  };
 
   config = mkIf cfg.enable {
+    services.xserver.enable = true;
     services.xserver.displayManager.gdm.enable = true;
     services.xserver.desktopManager.gnome.enable = true;
     services.gnome.at-spi2-core.enable = true; # Accessibility Bus
@@ -33,23 +27,28 @@ in
     services.gnome.sushi.enable = true;
     services.gnome.tracker.enable = true;
     services.gnome.tracker-miners.enable = true;
-    services.gnome.gnome-online-miners.enable = true;
     services.gnome.gnome-user-share.enable = true;
     services.gnome.gnome-remote-desktop.enable = true;
     environment.systemPackages = with pkgs; [
       gnome.gnome-tweaks
       gnomeExtensions.pop-shell
       gnomeExtensions.gsconnect
-      gnomeExtensions.one-drive-resurrect
+      gnomeExtensions.appindicator
       ffmpegthumbnailer # thumbnails
       gnome.nautilus-python # enable plugins
       gst_all_1.gst-libav # thumbnails
       nautilus-open-any-terminal # terminal-context-entry
     ];
-    environment.gnome.excludePackages = (with pkgs.gnome; [
+    environment.gnome.excludePackages = (with pkgs; [
       gnome-terminal
-      geary
+      # geary
       epiphany
+      tali
+      gedit
+      gnome-tour
+      hitori
+      atomix
+      pkgs.firefox
     ]);
     security.pam.services.gdm = {
       enableGnomeKeyring = true;

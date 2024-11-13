@@ -216,13 +216,13 @@
             modules.applications.nix-extras.enable = true;
             modules.applications.virtualisation.docker.enable = true;
             modules.desktop.cosmic.enable = false;
-            modules.desktop.gnome.enable = false;
-            modules.desktop.kde.enable = true;
+            modules.desktop.gnome.enable = true;
+            modules.desktop.kde.enable = false;
             modules.desktop.sway.enable = false;
             modules.desktop.xmonad-luca.enable = false;
             modules.desktopManager.lightdm.enable = false;
             modules.desktopManager.sddm.enable = false;
-            modules.loginManager.greetd.enable = true;
+            modules.loginManager.greetd.enable = false;
             modules.environment.systemPackages.enable = true;
             modules.environment.user_shell_nushell.enable = true;
             modules.fonts.enable = true;
