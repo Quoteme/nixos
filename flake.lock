@@ -73,22 +73,6 @@
         "type": "github"
       }
     },
-    "emacs-overlay": {
-      "locked": {
-        "lastModified": 1644575200,
-        "narHash": "sha256-7BaSTzlAI/xndvPIieZSZOB5Nsgtrb7L5HqdGGdVbwg=",
-        "owner": "nix-community",
-        "repo": "emacs-overlay",
-        "rev": "da2f552d133497abd434006e0cae996c0a282394",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "emacs-overlay",
-        "rev": "da2f552d133497abd434006e0cae996c0a282394",
-        "type": "github"
-      }
-    },
     "emoji-board": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -1056,7 +1040,6 @@
     },
     "root": {
       "inputs": {
-        "emacs-overlay": "emacs-overlay",
         "emoji-board": "emoji-board",
         "hmenke-nixos-modules": "hmenke-nixos-modules",
         "home-manager": "home-manager",
