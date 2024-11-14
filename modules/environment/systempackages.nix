@@ -83,6 +83,7 @@ in {
       # stuff that is needed pretty much everywhere
       nodePackages.http-server
       myPython
+      uv
       # https://github.com/Mic92/nix-ld?tab=readme-ov-file#my-pythonnodejsrubyinterpreter-libraries-do-not-find-the-libraries-configured-by-nix-ld
       (pkgs.writeShellScriptBin "python" ''
         export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
