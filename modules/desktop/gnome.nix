@@ -29,16 +29,24 @@ in {
     services.gnome.tracker-miners.enable = true;
     services.gnome.gnome-user-share.enable = true;
     services.gnome.gnome-remote-desktop.enable = true;
-    environment.systemPackages = with pkgs; [
-      gnome.gnome-tweaks
-      gnomeExtensions.pop-shell
-      gnomeExtensions.gsconnect
-      gnomeExtensions.appindicator
-      ffmpegthumbnailer # thumbnails
-      gnome.nautilus-python # enable plugins
-      gst_all_1.gst-libav # thumbnails
-      nautilus-open-any-terminal # terminal-context-entry
-    ];
+    environment.systemPackages = with pkgs;
+      [
+        gnome.gnome-tweaks
+        ffmpegthumbnailer # thumbnails
+        gnome.nautilus-python # enable plugins
+        gst_all_1.gst-libav # thumbnails
+        nautilus-open-any-terminal # terminal-context-entry
+      ] ++ [
+        gnomeExtensions.appindicator
+        gnomeExtensions.blur-my-shell
+        gnomeExtensions.caffeine
+        gnomeExtensions.clipboard-indicator
+        gnomeExtensions.cpufreq
+        gnomeExtensions.fly-pie
+        gnomeExtensions.gsconnect
+        gnomeExtensions.gsconnect
+        gnomeExtensions.pop-shell
+      ];
     environment.gnome.excludePackages = (with pkgs; [
       gnome-terminal
       # geary
