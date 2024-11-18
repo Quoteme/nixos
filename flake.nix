@@ -2,8 +2,6 @@
   description = "Luca Happels nixos ";
 
   inputs = {
-    emacs-overlay.url =
-      "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
     emoji-board = {
       url = "github:Quoteme/emoji-board";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -65,7 +63,6 @@
         config.allowUnfree = true;
         overlays = [
           overlay-stable
-          attrs.emacs-overlay.overlay
           attrs.nix-vscode-extensions.overlays.default
           # attrs.godot.overlays.x86_64-linux.default
           # overlay-nix-autobahn
@@ -320,7 +317,6 @@
                 "$XDG_BIN_HOME"
                 "$FLUTTER_SDK/bin"
                 # "\$ANDROID_SDK_ROOT/platform-tools"
-                "$HOME/.config/emacs/bin"
                 "$HOME/.elan/bin"
                 "$HOME/.local/share/npm/bin"
                 # add rustup and cargo bin paths
