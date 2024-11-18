@@ -38,12 +38,11 @@ in {
         nautilus-open-any-terminal # terminal-context-entry
       ] ++ [
         gnomeExtensions.appindicator
+        gnomeExtensions.astra-monitor
         gnomeExtensions.blur-my-shell
         gnomeExtensions.caffeine
         gnomeExtensions.clipboard-indicator
-        gnomeExtensions.cpufreq
         gnomeExtensions.fly-pie
-        gnomeExtensions.gsconnect
         gnomeExtensions.gsconnect
         gnomeExtensions.pop-shell
       ];

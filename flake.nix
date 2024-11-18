@@ -20,7 +20,6 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     # st-nix.url = "github:Quoteme/st-nix";
     nix-index-database.url = "github:nix-community/nix-index-database";
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     # nix-autobahn.url = "github:Lassulus/nix-autobahn";
     # nix-alien.url = "github:thiagokokada/nix-alien";
     nixd.url = "github:nix-community/nixd";
@@ -63,7 +62,6 @@
         config.allowUnfree = true;
         overlays = [
           overlay-stable
-          attrs.nix-vscode-extensions.overlays.default
           # attrs.godot.overlays.x86_64-linux.default
           # overlay-nix-autobahn
           # attrs.nix-alien.overlays.default
