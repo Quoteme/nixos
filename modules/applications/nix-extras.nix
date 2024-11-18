@@ -1,13 +1,4 @@
-{ config
-, options
-, lib
-, pkgs
-, nixpkgs
-, nixpkgs-stable
-, nur
-, ...
-}@inputs:
-{
+{ config, options, lib, pkgs, nixpkgs, nixpkgs-stable, nur, ... }@inputs: {
   options.modules.applications.nix-extras = {
     enable = lib.options.mkEnableOption {
       type = lib.types.bool;
@@ -23,10 +14,7 @@
         experimental-features = nix-command flakes
         warn-dirty = false
       '';
-      nixPath = [
-        "nixpkgs=${nixpkgs}"
-        "stable=${nixpkgs-stable}"
-      ];
+      nixPath = [ "nixpkgs=${nixpkgs}" "stable=${nixpkgs-stable}" ];
       registry = {
         # nixpkgs.flake = nixpkgs;
         nixpkgs = {
@@ -69,9 +57,7 @@
       clean.extraArgs = "--keep-since 4d --keep 3";
       flake = "/etc/nixos";
     };
-    environment.variables = {
-      FLAKE = lib.mkForce "/etc/nixos";
-    };
+    environment.variables = { FLAKE = lib.mkForce "/etc/nixos"; };
     environment.systemPackages = with pkgs; [
       nix-output-monitor
       nixpkgs-fmt

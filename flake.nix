@@ -106,9 +106,6 @@
               (import ./modules/applications/editors/vscode-fhs.nix {
                 inherit config lib options pkgs;
               })
-              (import ./modules/applications/editors/vscode.nix {
-                inherit config lib options pkgs;
-              })
               (import ./modules/applications/gaming/steam.nix {
                 inherit config lib options pkgs;
               })
@@ -211,7 +208,6 @@
             };
 
             modules.applications.editors.vscode-fhs.enable = true;
-            modules.applications.editors.vscode.enable = false;
             modules.applications.gaming.steam.enable = false;
             modules.applications.nix-extras.enable = true;
             modules.applications.virtualisation.docker.enable = true;
