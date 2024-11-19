@@ -2,10 +2,6 @@
   description = "Luca Happels nixos ";
 
   inputs = {
-    emoji-board = {
-      url = "github:Quoteme/emoji-board";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     hmenke-nixos-modules.url = "github:hmenke/nixos-modules";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";

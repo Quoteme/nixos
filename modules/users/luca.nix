@@ -33,7 +33,6 @@ in {
         "vboxusers" # maybe use `users.extraGroups.vboxusers.members = [ "luca" ];`
       ];
       packages = with pkgs; [
-        attrs.emoji-board.defaultPackage.x86_64-linux
         # Internet
         bitwarden-cli
         # Video-Editing
