@@ -52,7 +52,9 @@ in {
         iotop
         amdgpu_top
         gtop
-      ];
+      ] ++ ( if config.hardware.nvidia.prime.offload.enable then [
+        gnomeExtensions.supergfxctl-gex
+      ] else [] );
     environment.gnome.excludePackages = (with pkgs; [
       gnome-terminal
       # geary

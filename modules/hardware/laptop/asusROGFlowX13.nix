@@ -54,27 +54,6 @@
       # AMD settings
       boot.initrd.kernelModules = [ "kvm-amd" ];
       programs.corectrl.enable = true;
-      # services.auto-cpufreq.enable = true;
-      #  services.auto-cpufreq.settings =
-      #    let
-      #      MHz = x: x * 1000;
-      #    in
-      #    {
-      #      battery = {
-      #        governor = "powersave";
-      #        scaling_min_freq = (MHz 400);
-      #        scaling_max_freq = (MHz 1800);
-      #        turbo = "never";
-      #      };
-      #      charger = {
-      #        governor = "performance";
-      #        # governor = "powersave";
-      #        # scaling_min_freq = (MHz 400);
-      #        # scaling_max_freq = (MHz 1800);
-      #        turbo = "auto";
-      #      };
-      #    };
-      # services.cpupower-gui.enable = true;
       services.thermald.enable = true;
       # supergfxd
       services.supergfxd = {
@@ -91,29 +70,31 @@
       };
       systemd.services.supergfxd.path = [ pkgs.kmod pkgs.pciutils ];
       # NVIDIA settings
-      # FIX: fix this
-      hardware.nvidia.package =
-        config.boot.kernelPackages.nvidiaPackages.stable;
-      hardware.graphics = {
-        enable = true;
-        # driSupport = true;
-        enable32Bit = true;
-        extraPackages = with pkgs.stable; [ amdvlk rocmPackages.clr.icd ];
-        extraPackages32 = with pkgs.stable; [ driversi686Linux.amdvlk ];
+      hardware = {
+        opengl.enable = true;
+        nvidia = {
+          package = config.boot.kernelPackages.nvidiaPackages.stable;
+          open = true;
+          modesetting.enable = true;
+          powerManagement.enable = true;
+          powerManagement.finegrained = true;
+          nvidiaSettings = true;
+          prime = {
+            offload.enable = true;
+            offload.enableOffloadCmd = true;
+            amdgpuBusId = "PCI:08:00:0";
+            nvidiaBusId = "PCI:01:00:0";
+          };
+        };
+        graphics = {
+          enable = true;
+          # driSupport = true;
+          enable32Bit = true;
+          extraPackages = with pkgs.stable; [ amdvlk rocmPackages.clr.icd ];
+          extraPackages32 = with pkgs.stable; [ driversi686Linux.amdvlk ];
+        };
       };
       services.xserver.videoDrivers = [ "nvidia" ];
-      hardware.nvidia.modesetting.enable = true;
-      hardware.nvidia.powerManagement.enable = true;
-      hardware.nvidia.powerManagement.finegrained = true;
-      # TODO: Find out if using the open source kernel module means we are using Nouveau
-      hardware.nvidia.open = true;
-      hardware.nvidia.nvidiaSettings = true;
-      hardware.nvidia.prime = {
-        offload.enable = true;
-        offload.enableOffloadCmd = true;
-        amdgpuBusId = "PCI:08:00:0";
-        nvidiaBusId = "PCI:01:00:0";
-      };
 
       environment.systemPackages = with pkgs; [
         # OpenCL
