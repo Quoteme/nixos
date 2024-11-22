@@ -42,15 +42,9 @@
     enableNushellIntegration = true;
     nix-direnv.enable = true;
   };
-  # ipython vim bindings
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
-  };
-  # ghci vim bindings
-  programs.keychain = {
-    enable = true;
-    enableZshIntegration = true;
   };
   programs.lazygit.enable = true;
   programs.neovim = {
