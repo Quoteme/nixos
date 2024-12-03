@@ -135,6 +135,7 @@
                 inherit config lib options pkgs attrs;
               })
               ./modules/applications/virtualisation/docker.nix
+              ./modules/applications/virtualisation/virt-manager.nix
               ./modules/desktop/gnome.nix
               ./modules/desktop/xmonad-luca.nix
               ./modules/hardware/audio.nix
@@ -202,6 +203,7 @@
             modules.applications.gaming.steam.enable = false;
             modules.applications.nix-extras.enable = true;
             modules.applications.virtualisation.docker.enable = true;
+            modules.applications.virtualisation.virt-manager.enable = true;
             modules.desktop.cosmic.enable = false;
             modules.desktop.gnome.enable = true;
             modules.desktop.kde.enable = false;

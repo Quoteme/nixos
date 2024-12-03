@@ -71,15 +71,6 @@ in {
       # https://git.sr.ht/~earboxer/swipeGuess
       pamixer
       neofetch
-      # screenrotate
-      # xidlehook
-      # Storage
-      # emulation
-      virt-manager
-      virglrenderer
-      # Wine
-      # wineWowPackages.full
-      # bottles
       # stuff that is needed pretty much everywhere
       nodePackages.http-server
       myPython
