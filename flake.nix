@@ -200,7 +200,7 @@
             };
 
             modules.applications.editors.vscode-fhs.enable = true;
-            modules.applications.gaming.steam.enable = false;
+            modules.applications.gaming.steam.enable = true;
             modules.applications.nix-extras.enable = true;
             modules.applications.virtualisation.docker.enable = true;
             modules.applications.virtualisation.virt-manager.enable = true;

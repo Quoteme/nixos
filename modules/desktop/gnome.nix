@@ -14,6 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    environment.sessionVariables = { GSK_RENDERER = "ngl"; };
     services.xserver.enable = true;
     services.xserver.displayManager.gdm.enable = true;
     services.xserver.desktopManager.gnome.enable = true;
@@ -44,6 +45,7 @@ in {
         gnomeExtensions.fly-pie
         gnomeExtensions.gsconnect
         gnomeExtensions.pop-shell
+        gnomeExtensions.media-controls
       ] ++ [
         # astra-monitor
         gnomeExtensions.astra-monitor
@@ -52,10 +54,11 @@ in {
         iotop
         amdgpu_top
         gtop
-      ] ++ ( if config.hardware.nvidia.prime.offload.enable then [
+      ] ++ (if config.hardware.nvidia.prime.offload.enable then [
         gnomeExtensions.supergfxctl-gex
         gnomeExtensions.gpu-supergfxctl-switch
-      ] else [] );
+      ] else
+        [ ]);
     environment.gnome.excludePackages = (with pkgs; [
       gnome-terminal
       # geary
@@ -73,7 +76,8 @@ in {
       gnupg.enable = true;
       sshAgentAuth = true;
     };
-    services.switcherooControl.enable = config.hardware.nvidia.prime.offload.enable;
+    services.switcherooControl.enable =
+      config.hardware.nvidia.prime.offload.enable;
     # make qt apps look like gtk
     # https://nixos.org/manual/nixos/stable/index.html#sec-x11-gtk-and-qt-themes
     qt.enable = true;
