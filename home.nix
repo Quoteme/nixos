@@ -173,6 +173,7 @@
       vim = "nvim";
       o = "xdg-open";
       nd = "nix develop -c $SHELL";
+      ndo = "nix develop -c $SHELL --offline";
     };
     zplug = {
       enable = true;
