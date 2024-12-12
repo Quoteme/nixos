@@ -32,9 +32,9 @@ in {
     services.gnome.gnome-remote-desktop.enable = true;
     environment.systemPackages = with pkgs;
       [
-        gnome.gnome-tweaks
+        gnome-tweaks
         ffmpegthumbnailer # thumbnails
-        gnome.nautilus-python # enable plugins
+        nautilus-python # enable plugins
         gst_all_1.gst-libav # thumbnails
         nautilus-open-any-terminal # terminal-context-entry
       ] ++ [

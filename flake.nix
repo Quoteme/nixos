@@ -292,7 +292,7 @@
               XDG_DATA_HOME = "\${HOME}/.local/share";
               XDG_LIB_HOME = "\${HOME}/.local/lib";
 
-              DOTNET_ROOT = "${pkgs.dotnet-sdk_7}";
+              # DOTNET_ROOT = "${pkgs.dotnet-sdk_7}";
 
               # XMONAD_DATA_DIR = "/etc/nixos/xmonad";
               # XMONAD_CONFIG_DIR = "/etc/nixos/xmonad";

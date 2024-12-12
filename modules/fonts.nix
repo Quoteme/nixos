@@ -12,7 +12,10 @@
     # List fonts installed in system profile
     fonts.packages = with pkgs; [
       # nerdfonts
-      (nerdfonts.override { fonts = [ "FiraCode" "Monaspace" "Hasklig" ]; })
+      # (nerdfonts.override { fonts = [ "FiraCode" "Monaspace" "Hasklig" ]; })
+      nerd-fonts.monaspace
+      nerd-fonts.hasklug
+      nerd-fonts.fira-code
       font-awesome
       julia-mono
       liberation_ttf

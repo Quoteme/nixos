@@ -164,7 +164,7 @@
         udisksctl mount -b /dev/disk/by-uuid/98bf9471-2174-498f-b8d8-9b918a387ec4 --options " exec "
       '';
 
-      l = "eza";
+      l = "eza --icons --git-ignore";
       lg = "lazygit";
       ll = "eza --long --icons --color --hyperlink";
       lt = "eza --long --tree --icons --color --hyperlink";
@@ -173,7 +173,7 @@
       vim = "nvim";
       o = "xdg-open";
       nd = "nix develop -c $SHELL";
-      ndo = "nix develop -c $SHELL --offline";
+      ndo = "nix develop --offline --command $SHELL";
     };
     zplug = {
       enable = true;

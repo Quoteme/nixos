@@ -48,6 +48,7 @@ in {
       ripgrep
       delta
       kondo
+      dust
       sd
       just
       pdfgrep
