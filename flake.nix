@@ -79,7 +79,7 @@
         system = "x86_64-linux";
         specialArgs = attrs;
         modules = [
-          attrs.nur.nixosModules.nur
+          attrs.nur.modules.nixos.default
           lanzaboote.nixosModules.lanzaboote
           home-manager.nixosModules.home-manager
           # ┏━╸┏━┓┏┓╻┏━╸╻┏━╸╻ ╻┏━┓┏━┓╺┳╸╻┏━┓┏┓╻ ┏┓╻╻╻ ╻
