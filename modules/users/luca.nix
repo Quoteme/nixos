@@ -11,8 +11,8 @@ in {
   in { enable = mkEnableOption "Enable the user 'luca'"; };
 
   config = mkIf cfg.enable {
-    programs.zsh.enable = true;
-    users.users.luca.shell = pkgs.zsh;
+    programs.fish.enable = true;
+    users.users.luca.shell = pkgs.fish;
     environment.pathsToLink = [ "/share/zsh" ];
     users.users.luca = {
       initialHashedPassword =
@@ -40,8 +40,6 @@ in {
         mediainfo
         # Media
         yt-dlp
-        # Gaming
-        xboxdrv
         # Programming
         # JavaScript/TypeScript
         nodejs_20

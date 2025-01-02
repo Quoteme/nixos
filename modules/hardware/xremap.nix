@@ -51,8 +51,12 @@
       "KEY_FINANCE" = "RIGHTALT-MINUS";
       # Open square brace key "["
       "KEY_SPORT" = "RIGHTALT-8";
-      # Close square brace key "]"
+      # Closed square brace key "]"
       "KEY_SHOP" = "RIGHTALT-9";
+      # Open curly brace key "{"
+      "SHIFT-KEY_CONNECT" = "RIGHTALT-7";
+      # Closed curly brace key "{"
+      "SHIFT-KEY_FINANCE" = "RIGHTALT-0";
     };
   }];
 }

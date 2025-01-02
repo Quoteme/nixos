@@ -151,6 +151,7 @@
             };
 
             # Networking
+            services.mullvad-vpn.enable = true;
             networking = {
               hostName = "nixos";
               networkmanager.enable = true;
@@ -235,7 +236,7 @@
             # Define a user account. Don't forget to set a password with ‘passwd’.
             # TODO: set passwort using hashed password
             users.users.root.initialHashedPassword = "";
-            users.defaultUserShell = pkgs.zsh;
+            users.defaultUserShell = pkgs.fish;
 
             # List packages installed in system profile. To search, run:
             # $ nix search nixpkgs wget

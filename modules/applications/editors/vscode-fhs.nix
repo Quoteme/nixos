@@ -11,6 +11,13 @@ in {
   in { enable = mkEnableOption "Enable vscode-fhs"; };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ vscode-fhs nixd nixfmt-classic ];
+    environment.systemPackages = with pkgs; [
+      vscode-fhs
+      nixd
+      nixfmt-classic
+      pkgs.platformio
+      pkgs.avrdude
+    ];
+    services.udev.packages = [ pkgs.platformio-core pkgs.openocd ];
   };
 }

@@ -9,11 +9,45 @@
   home.file.".ipython/profile_default/ipython_config.py".text = ''
     c.TerminalInteractiveShell.editing_mode = 'vi'
   '';
+  home.shellAliases = {
+    "..." = "cd ../..";
+    cd = "z";
+    explain = "gh copilot explain";
+    fm = "yazi";
+    ghce = "gh copilot explain";
+    ghcs = "gh copilot suggest";
+    help-explain = "gh copilot explain";
+    less = "${pkgs.nvimpager}/bin/nvimpager";
+
+    help-suggest = "gh copilot suggest";
+    l = "eza --icons --git-ignore";
+    lg = "lazygit";
+    ll = "eza --long --icons --color --hyperlink";
+    lt = "eza --long --tree --icons --color --hyperlink";
+    montigrafana =
+      "xdg-open http://localhost:3000 && ssh -L 3000:localhost:3000 mmbs@monti.hhu.de";
+    montikuma =
+      "xdg-open http://localhost:3001 && ssh -L 3001:localhost:3001 mmbs@monti.hhu.de";
+    montipostgres = "ssh -L 5432:localhost:5432 mmbs@monti.hhu.de";
+    montiprometheus =
+      "xdg-open http://localhost:9090 && ssh -L 9090:localhost:9090 mmbs@monti.hhu.de";
+    montissh = "TERM=xterm-256color ssh mmbs@monti.hhu.de";
+    nd = "nix develop -c $SHELL";
+    ndo = "nix develop --offline --command $SHELL";
+    o = "xdg-open";
+    steammount = ''
+      udisksctl unmount -b /dev/disk/by-uuid/98bf9471-2174-498f-b8d8-9b918a387ec4 &&
+      udisksctl mount -b /dev/disk/by-uuid/98bf9471-2174-498f-b8d8-9b918a387ec4 --options " exec "
+    '';
+    suggest = "gh copilot suggest";
+    v = "nvim";
+  };
   home.stateVersion = "22.05";
   programs.atuin = {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
     enableNushellIntegration = true;
   };
   programs.atuin.settings = { keymap_mode = "auto"; };
@@ -34,6 +68,7 @@
     enable = true;
     enableNushellIntegration = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
   };
   programs.direnv = {
     enable = true;
@@ -41,6 +76,12 @@
     enableZshIntegration = true;
     enableNushellIntegration = true;
     nix-direnv.enable = true;
+  };
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      fish_vi_key_bindings
+    '';
   };
   programs.fzf = {
     enable = true;
@@ -51,6 +92,7 @@
     enable = true;
     extraLuaPackages = luaPkgs: with luaPkgs; [ luarocks magick ];
     extraPackages = with pkgs; [
+      nginx-language-server
       clang
       cmake-lint
       hlint
@@ -93,18 +135,7 @@
     configFile.source = ./config/nushell/config.nu;
     envFile.source = ./config/nushell/env.nu;
     shellAliases = {
-      cd = "z";
-      explain = "gh copilot explain";
-      fm = "yazi";
-      ghce = "gh copilot explain";
-      ghcs = "gh copilot suggest";
-      help-explain = "gh copilot explain";
-      help-suggest = "gh copilot suggest";
-      lg = "lazygit";
-      o = "xdg-open";
-      python-enter-venv = "sh -i -c 'source .venv/bin/activate ; nu'";
-      suggest = "gh copilot suggest";
-      v = "nvim";
+
     };
   };
   programs.readline = {
@@ -121,6 +152,7 @@
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
     enableNushellIntegration = true;
     settings = {
       add_newline = true;
@@ -134,47 +166,22 @@
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
     enableNushellIntegration = true;
   };
   programs.zoxide = {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
     enableNushellIntegration = true;
   };
   programs.zsh = {
-    enable = true;
+    enable = false;
     initExtra = ''
       # load completions from ~/.config/zsh/completions
       fpath=(~/.config/zsh/completions $fpath)
     '';
-    shellAliases = {
-      # Monti
-      montissh = "TERM=xterm-256color ssh mmbs@monti.hhu.de";
-      montikuma =
-        "xdg-open http://localhost:3001 && ssh -L 3001:localhost:3001 mmbs@monti.hhu.de";
-      montiprometheus =
-        "xdg-open http://localhost:9090 && ssh -L 9090:localhost:9090 mmbs@monti.hhu.de";
-      montigrafana =
-        "xdg-open http://localhost:3000 && ssh -L 3000:localhost:3000 mmbs@monti.hhu.de";
-      montipostgres = "ssh -L 5432:localhost:5432 mmbs@monti.hhu.de";
-      # Steam
-      steammount = ''
-        udisksctl unmount -b /dev/disk/by-uuid/98bf9471-2174-498f-b8d8-9b918a387ec4 &&
-        udisksctl mount -b /dev/disk/by-uuid/98bf9471-2174-498f-b8d8-9b918a387ec4 --options " exec "
-      '';
-
-      l = "eza --icons --git-ignore";
-      lg = "lazygit";
-      ll = "eza --long --icons --color --hyperlink";
-      lt = "eza --long --tree --icons --color --hyperlink";
-      v = "nvim";
-      vi = "nvim";
-      vim = "nvim";
-      o = "xdg-open";
-      nd = "nix develop -c $SHELL";
-      ndo = "nix develop --offline --command $SHELL";
-    };
     zplug = {
       enable = true;
       plugins = [
