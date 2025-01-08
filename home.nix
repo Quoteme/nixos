@@ -90,7 +90,7 @@
   programs.lazygit.enable = true;
   programs.neovim = {
     enable = true;
-    extraLuaPackages = luaPkgs: with luaPkgs; [ luarocks magick ];
+    extraLuaPackages = luaPkgs: with luaPkgs; [ luarocks magick jsregexp ];
     extraPackages = with pkgs; [
       nginx-language-server
       clang
