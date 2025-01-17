@@ -46,6 +46,7 @@ in {
         gnomeExtensions.gsconnect
         gnomeExtensions.pop-shell
         gnomeExtensions.media-controls
+        gnomeExtensions.swap-finger-gestures-3-to-4
       ] ++ [
         # astra-monitor
         gnomeExtensions.astra-monitor
