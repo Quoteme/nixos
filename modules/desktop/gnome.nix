@@ -47,6 +47,8 @@ in {
         gnomeExtensions.pop-shell
         gnomeExtensions.media-controls
         gnomeExtensions.swap-finger-gestures-3-to-4
+        gnomeExtensions.emoji-copy
+        gnomeExtensions.pano
       ] ++ [
         # astra-monitor
         gnomeExtensions.astra-monitor
