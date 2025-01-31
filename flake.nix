@@ -94,6 +94,9 @@
                 nur = inputs.nur;
                 inherit config lib options pkgs inputs;
               })
+              (import ./modules/applications/ai/ollama.nix {
+                inherit config lib options pkgs;
+              })
               (import ./modules/applications/editors/vscode-fhs.nix {
                 inherit config lib options pkgs;
               })
@@ -201,6 +204,7 @@
             };
 
             modules.applications.editors.vscode-fhs.enable = true;
+            modules.applications.ai.ollama.enable = true;
             modules.applications.gaming.steam.enable = true;
             modules.applications.nix-extras.enable = true;
             modules.applications.virtualisation.docker.enable = true;
