@@ -114,16 +114,16 @@
         # pkgs.cudaPackages.cuda-samples
         pciutils
         (writeShellScriptBin "powerprofilesctl-cycle" ''
-          case $(powerprofilesctl get) in
+          case $(${pkgs.power-profiles-daemon}/bin/powerprofilesctl get) in
             power-saver)
-              notify-send -a \"changepowerprofile\" -u low -i /etc/nixos/xmonad/icon/powerprofilesctl-balanced.png \"powerprofile: balanced\"
-              powerprofilesctl set balanced;;
+              ${pkgs.libnotify}/bin/notify-send -a \"changepowerprofile\" -u low -i /etc/nixos/xmonad/icon/powerprofilesctl-balanced.png \"powerprofile: balanced\"
+              ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set balanced;;
             balanced)
-              notify-send -a \"changepowerprofile\" -u low -i /etc/nixos/xmonad/icon/powerprofilesctl-performance.png \"powerprofile: performance\"
-              powerprofilesctl set performance;;
+              ${pkgs.libnotify}/bin/notify-send -a \"changepowerprofile\" -u low -i /etc/nixos/xmonad/icon/powerprofilesctl-performance.png \"powerprofile: performance\"
+              ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance;;
             performance)
-              notify-send -a \"changepowerprofile\" -u low -i /etc/nixos/xmonad/icon/powerprofilesctl-power-saver.png \"powerprofile: power-saver\"
-              powerprofilesctl set power-saver;;
+              ${pkgs.libnotify}/bin/notify-send -a \"changepowerprofile\" -u low -i /etc/nixos/xmonad/icon/powerprofilesctl-power-saver.png \"powerprofile: power-saver\"
+              ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver;;
           esac
         '')
         (writeShellScriptBin "asusrog-dgpu-disable" ''
