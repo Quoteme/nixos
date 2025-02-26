@@ -28,6 +28,7 @@ in {
           pipx
         ]);
     in with pkgs; [
+      zathura
       distrobox
       devbox
       lm_sensors
@@ -62,7 +63,7 @@ in {
       htop-vim
       btop
       nvimpager
-      kitty
+      unstable.kitty
       # networkmanager_dmenu
       openvpn
       networkmanager-openvpn

@@ -9,19 +9,12 @@
       url = "github:nix-community/lanzaboote/v0.3.0";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
-    mathimg = {
-      url = "github:Quoteme/mathimg";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    # st-nix.url = "github:Quoteme/st-nix";
     nix-index-database.url = "github:nix-community/nix-index-database";
-    # nix-autobahn.url = "github:Lassulus/nix-autobahn";
-    # nix-alien.url = "github:thiagokokada/nix-alien";
     nixd.url = "github:nix-community/nixd";
     nixpkgs-stable.url = "nixpkgs/nixpkgs-unstable";
-    # rescreenapp.url = "github:Quoteme/rescreenapp";
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
     nur.url = "github:nix-community/NUR";
     screenrotate.inputs.nixpkgs.follows = "nixpkgs";
     screenrotate.url = "github:Quoteme/screenrotate";
@@ -36,44 +29,7 @@
 
   outputs = { self, nixpkgs, home-manager, nix-index-database, lanzaboote
     , xremap-flake, ... }@attrs:
-    let
-      system = "x86_64-linux";
-      overlay-stable = final: prev: {
-        stable = import attrs.nixpkgs-stable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-      };
-      overlay-st-nix = final: prev: {
-        st-nix = attrs.st-nix.defaultPackage.x86_64-linux;
-      };
-      overlay-screenrotate = final: prev: {
-        screenrotate = attrs.screenrotate.defaultPackage.x86_64-linux;
-      };
-      overlay-nixd = final: prev: {
-        nixd-nightly = attrs.nixd.packages.x86_64-linux.nixd;
-      };
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-        overlays = [
-          overlay-stable
-          # attrs.godot.overlays.x86_64-linux.default
-          # overlay-nix-autobahn
-          # attrs.nix-alien.overlays.default
-          overlay-st-nix
-          overlay-nixd
-          overlay-screenrotate
-          attrs.nur.overlay
-          (final: prev: {
-            mathimg = attrs.mathimg.defaultPackage.x86_64-linux;
-          })
-        ];
-      };
-      nur-modules = import attrs.nur {
-        nurpkgs = nixpkgs.legacyPackages.${system};
-        pkgs = nixpkgs.legacyPackages.${system};
-      };
+    let system = "x86_64-linux";
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -85,7 +41,23 @@
           # ┏━╸┏━┓┏┓╻┏━╸╻┏━╸╻ ╻┏━┓┏━┓╺┳╸╻┏━┓┏┓╻ ┏┓╻╻╻ ╻
           # ┃  ┃ ┃┃┗┫┣╸ ┃┃╺┓┃ ┃┣┳┛┣━┫ ┃ ┃┃ ┃┃┗┫ ┃┗┫┃┏╋┛
           # ┗━╸┗━┛╹ ╹╹  ╹┗━┛┗━┛╹┗╸╹ ╹ ╹ ╹┗━┛╹ ╹╹╹ ╹╹╹ ╹
-          ({ config, lib, options, nixpkgs, ... }@inputs: {
+          ({ config, lib, options, pkgs, nixpkgs, ... }@inputs: {
+            nixpkgs.overlays = [
+              attrs.nur.overlay
+              (final: prev: {
+                stable = import attrs.nixpkgs-stable {
+                  inherit system;
+                  config.allowUnfree = true;
+                };
+                unstable = import attrs.nixpkgs-unstable {
+                  inherit system;
+                  config.allowUnfree = true;
+                };
+                nixd-nightly = attrs.nixd.packages.x86_64-linux.nixd;
+                screenrotate = attrs.screenrotate.defaultPackage.x86_64-linux;
+              })
+            ];
+            nixpkgs.config.allowUnfree = true;
             imports = [
               ./hardware-configuration.nix
               (import ./modules/applications/nix-extras.nix {
@@ -94,43 +66,19 @@
                 nur = inputs.nur;
                 inherit config lib options pkgs inputs;
               })
-              (import ./modules/applications/ai/ollama.nix {
-                inherit config lib options pkgs;
-              })
-              (import ./modules/applications/editors/vscode-fhs.nix {
-                inherit config lib options pkgs;
-              })
-              (import ./modules/applications/gaming/steam.nix {
-                inherit config lib options pkgs;
-              })
-              (import ./modules/desktop/cosmic.nix {
-                inherit config lib options pkgs;
-              })
-              (import ./modules/desktop/kde.nix {
-                inherit config lib options pkgs;
-              })
-              (import ./modules/desktop/sway.nix {
-                inherit config lib options pkgs;
-              })
-              (import ./modules/environment/systempackages.nix {
-                inherit config lib options pkgs;
-              })
-              (import ./modules/environment/user_shell_nushell.nix {
-                inherit config lib options pkgs;
-              })
-              (import ./modules/fonts.nix { inherit config lib options pkgs; })
-              (import ./modules/hardware/laptop/asusROGFlowX13.nix {
-                inherit config lib options pkgs;
-              })
-              (import ./modules/login_manager/lightdm.nix {
-                inherit config lib options pkgs;
-              })
-              (import ./modules/login_manager/greetd.nix {
-                inherit config lib options pkgs;
-              })
-              (import ./modules/login_manager/sddm.nix {
-                inherit config lib options pkgs;
-              })
+              ./modules/applications/ai/ollama.nix
+              ./modules/applications/editors/vscode-fhs.nix
+              ./modules/applications/gaming/steam.nix
+              ./modules/desktop/cosmic.nix
+              ./modules/desktop/kde.nix
+              ./modules/desktop/sway.nix
+              ./modules/environment/systempackages.nix
+              ./modules/environment/user_shell_nushell.nix
+              ./modules/fonts.nix
+              ./modules/hardware/laptop/asusROGFlowX13.nix
+              ./modules/login_manager/lightdm.nix
+              ./modules/login_manager/greetd.nix
+              ./modules/login_manager/sddm.nix
               (import ./modules/users/luca.nix {
                 inherit config lib options pkgs attrs;
               })
@@ -378,9 +326,6 @@
               { programs.nix-index-database.comma.enable = true; }
               ./home.nix
             ];
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-            home-manager.extraSpecialArgs = { inherit attrs pkgs; };
           }
         ];
       };

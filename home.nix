@@ -102,7 +102,6 @@
       lua-language-server
       luajit
       manix
-      mathimg
       neocmakelsp
       nil
       nixd
