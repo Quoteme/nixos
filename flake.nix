@@ -6,22 +6,17 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.3.0";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nixd.url = "github:nix-community/nixd";
     nixpkgs-stable.url = "nixpkgs/nixpkgs-unstable";
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
     nur.url = "github:nix-community/NUR";
-    screenrotate.inputs.nixpkgs.follows = "nixpkgs";
-    screenrotate.url = "github:Quoteme/screenrotate";
     xmonad-luca = {
       url = "github:Quoteme/xmonad-luca/update-flake";
-      inputs.control_center.follows = "control_center";
-      inputs.screenrotate.follows = "screenrotate";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     xremap-flake.url = "github:xremap/nix-flake";
@@ -46,10 +41,6 @@
               attrs.nur.overlay
               (final: prev: {
                 stable = import attrs.nixpkgs-stable {
-                  inherit system;
-                  config.allowUnfree = true;
-                };
-                unstable = import attrs.nixpkgs-unstable {
                   inherit system;
                   config.allowUnfree = true;
                 };
@@ -102,7 +93,6 @@
             };
 
             # Networking
-            services.mullvad-vpn.enable = true;
             networking = {
               hostName = "nixos";
               networkmanager.enable = true;
@@ -153,7 +143,7 @@
 
             modules.applications.editors.vscode-fhs.enable = true;
             modules.applications.ai.ollama.enable = true;
-            modules.applications.gaming.steam.enable = true;
+            modules.applications.gaming.steam.enable = false;
             modules.applications.nix-extras.enable = true;
             modules.applications.virtualisation.docker.enable = true;
             modules.applications.virtualisation.virt-manager.enable = true;

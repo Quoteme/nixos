@@ -92,17 +92,18 @@
     enable = true;
     extraLuaPackages = luaPkgs: with luaPkgs; [ luarocks magick jsregexp ];
     extraPackages = with pkgs; [
-      nginx-language-server
       clang
       cmake-lint
+      ghostscript
       hlint
       imagemagick
       lazygit
-      lua51Packages.lua
       lua-language-server
+      lua51Packages.lua
       luajit
       manix
       neocmakelsp
+      nginx-language-server
       nil
       nixd
       nixfmt-classic

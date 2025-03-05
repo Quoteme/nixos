@@ -70,8 +70,6 @@ in {
           #!/usr/bin/env bash
           adb exec-out screenrecord --output-format=h264 - | ${pkgs.ffmpeg-full}/bin/ffplay -framerate 60 -probesize 32 -sync video  -
         '')
-        # Hardware
-        miraclecast
       ];
     };
   };

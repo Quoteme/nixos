@@ -14,7 +14,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.sessionVariables = { GSK_RENDERER = "ngl"; };
+    environment.sessionVariables = {
+      # GDK_BACKEND = "wayland";
+      KITTY_DISABLE_WAYLAND = "1";
+      GDK_DEBUG = "gl-no-fractional";
+      GDK_DISABLE = "gles-api,color-mgmt,vulkan";
+      GSK_RENDERER = "opengl";
+    };
     services.xserver.enable = true;
     services.xserver.displayManager.gdm.enable = true;
     services.xserver.desktopManager.gnome.enable = true;
@@ -64,7 +70,7 @@ in {
         [ ]);
     environment.gnome.excludePackages = (with pkgs; [
       gnome-terminal
-      # geary
+      geary
       epiphany
       tali
       gedit

@@ -63,7 +63,8 @@ in {
       htop-vim
       btop
       nvimpager
-      unstable.kitty
+      kitty
+      ghostty
       # networkmanager_dmenu
       openvpn
       networkmanager-openvpn
