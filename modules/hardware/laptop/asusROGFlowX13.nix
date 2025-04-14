@@ -37,7 +37,6 @@
         serviceConfig = { Restart = "on-failure"; };
       };
       powerManagement.powertop.enable = true;
-      systemd.sleep.extraConfig = "HibernateDelaySec=5min";
       # `nixos-generate-config --show-hardware-config` doesn't detect mount options automatically,
       # so to enable compression, you must specify it and other mount options
       # in a persistent configuration
@@ -195,7 +194,8 @@
         };
       }];
       # Automatically iibernate when suspended for 3 minutes
-      # services.logind.lidSwitch = "suspend-then-hibernate";
+      services.logind.lidSwitch = "suspend-then-hibernate";
+      systemd.sleep.extraConfig = "HibernateDelaySec=5min";
       # environment.etc."systemd/sleep.conf".text = "HibernateDelaySec=180";
 
       # Add an on-the-go configuration, which disables the nvidia graphics card completely
