@@ -28,14 +28,6 @@
         xserver = { wacom.enable = true; };
       };
       # power management
-      systemd.services.batterThreshold = {
-        script = ''
-          echo 80 | tee /sys/class/power_supply/BAT0/charge_control_end_threshold
-        '';
-        wantedBy = [ "multi-user.target" ];
-        description = "Set the charge threshold to protect battery life";
-        serviceConfig = { Restart = "on-failure"; };
-      };
       powerManagement.powertop.enable = true;
       # `nixos-generate-config --show-hardware-config` doesn't detect mount options automatically,
       # so to enable compression, you must specify it and other mount options
@@ -124,33 +116,6 @@
               ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver;;
           esac
         '')
-        (writeShellScriptBin "asusrog-dgpu-disable" ''
-          echo 1 |sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
-          echo 0 |sudo tee /sys/bus/pci/rescan
-          echo 1 |sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
-          echo "please logout and login again to use integrated graphics"
-        '')
-        (writeShellScriptBin "asusrog-dgpu-enable" ''
-          echo 0 |sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
-          echo 1 |sudo tee /sys/bus/pci/rescan
-          echo 0 |sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
-          echo "please logout and login again to use discrete graphics"
-        '')
-        (writeShellScriptBin "asusrog-goboost" ''
-          (set -x; powerprofilesctl set performance; sudo cpupower frequency-set -g ondemand >&/dev/null;)
-        '')
-        (writeShellScriptBin "asusrog-gonormal" ''
-          (set -x; powerprofilesctl set balanced; sudo cpupower frequency-set -g schedutil >&/dev/null;)
-        '')
-        (writeShellScriptBin "asusrog-gosilent" ''
-          (set -x; powerprofilesctl set power-saver; sudo cpupower frequency-set -g schedutil >&/dev/null;)
-        '')
-        (writeShellScriptBin "asusrog-gosave" ''
-          (set -x; sudo ryzenadj --power-saving >&/dev/null; powerprofilesctl set power-saver; sudo cpupower frequency-set -g conservative >&/dev/null;)
-        '')
-        (writeShellScriptBin "asusrog-monitor-mhz" ''
-          watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"
-        '')
       ];
       programs.rog-control-center.enable = true;
       # Start the fingerprint driver at boot
@@ -193,58 +158,8 @@
             "sha256:011b4q0v8mkfrv96d4bvg8fd5dg6y5q38w20qmf196hsx35r13sh";
         };
       }];
-      # Automatically iibernate when suspended for 3 minutes
+      # Automatically hibernate when suspended for some time
       services.logind.lidSwitch = "suspend-then-hibernate";
       systemd.sleep.extraConfig = "HibernateDelaySec=5min";
-      # environment.etc."systemd/sleep.conf".text = "HibernateDelaySec=180";
-
-      # Add an on-the-go configuration, which disables the nvidia graphics card completely
-      # specialisation = {
-      #   on-the-go.configuration = {
-      #     system.nixos.tags = [ "on-the-go" ];
-      #     environment.etc."specialisation".text =
-      #       "on-the-go"; # extra text for nix-helper
-      #     services.xserver.videoDrivers = lib.mkForce [ "amdgpu" ];
-      #     hardware.nvidia.modesetting.enable = lib.mkForce false;
-      #     hardware.nvidia.powerManagement.enable = lib.mkForce false;
-      #     hardware.nvidia.powerManagement.finegrained = lib.mkForce false;
-      #     hardware.nvidia.nvidiaSettings = lib.mkForce false;
-      #     hardware.nvidia.prime.offload.enable = lib.mkForce false;
-      #     hardware.nvidia.prime.offload.enableOffloadCmd = lib.mkForce false;
-      #   };
-      #   # supergfxd-integrated.configuration = {
-      #   #   system.nixos.tags = [ "supergfxd-integrated" ];
-      #   #   environment.etc."specialisation".text = "supergfxd-integrated"; # extra text for nix-helper
-      #   #   boot.kernelParams = [
-      #   #     "supergfxd.mode=Integrated"
-      #   #   ];
-      #   #   services.supergfxd = {
-      #   #     enable = lib.mkForce true;
-      #   #     settings.mode = lib.mkForce "Integrated";
-      #   #   };
-      #   # };
-      #   # supergfxd-hybrid.configuration = {
-      #   #   system.nixos.tags = [ "supergfxd-hybrid" ];
-      #   #   environment.etc."specialisation".text = "supergfxd-hybrid"; # extra text for nix-helper
-      #   #   boot.kernelParams = [
-      #   #     "supergfxd.mode=Hybrid"
-      #   #   ];
-      #   #   services.supergfxd = {
-      #   #     enable = lib.mkForce true;
-      #   #     settings.mode = lib.mkForce "Hybrid";
-      #   #   };
-      #   # };
-      #   # supergfxd-vfio.configuration = {
-      #   #   system.nixos.tags = [ "supergfxd-vfio" ];
-      #   #   environment.etc."specialisation".text = "supergfxd-vfio"; # extra text for nix-helper
-      #   #   boot.kernelParams = [
-      #   #     "supergfxd.mode=VFIO"
-      #   #   ];
-      #   #   services.supergfxd = {
-      #   #     enable = lib.mkForce true;
-      #   #     settings.mode = lib.mkForce "VFIO";
-      #   #   };
-      #   # };
-      # };
     };
 }
