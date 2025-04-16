@@ -160,6 +160,9 @@
       }];
       # Automatically hibernate when suspended for some time
       services.logind.lidSwitch = "suspend-then-hibernate";
-      systemd.sleep.extraConfig = "HibernateDelaySec=5min";
+      systemd.sleep.extraConfig = ''
+        HibernateDelaySec=5min
+        SuspendState=mem
+      '';
     };
 }
