@@ -102,6 +102,7 @@
       lua51Packages.lua
       luajit
       manix
+      mermaid-cli
       neocmakelsp
       nginx-language-server
       nil
