@@ -44,6 +44,7 @@ in {
         # JavaScript/TypeScript
         nodejs_20
         # Latex
+        tectonic
         typst
         pandoc
         quarto
