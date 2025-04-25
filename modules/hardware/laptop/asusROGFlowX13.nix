@@ -159,10 +159,13 @@
         };
       }];
       # Automatically hibernate when suspended for some time
-      services.logind.lidSwitch = "suspend-then-hibernate";
-      systemd.sleep.extraConfig = ''
-        HibernateDelaySec=5min
-        SuspendState=mem
-      '';
+      # Lid and power management configuration
+      # services.logind = { lidSwitch = "suspend-then-hibernate"; };
+      # systemd.sleep.extraConfig = ''
+      #   HibernateDelaySec=5min
+      #   HibernateState=disk
+      # '';
+      # Ensure power management is properly handled
+      powerManagement = { enable = true; };
     };
 }
