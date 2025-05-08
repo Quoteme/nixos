@@ -32,6 +32,10 @@ in {
         "docker"
         "input"
         "vboxusers" # maybe use `users.extraGroups.vboxusers.members = [ "luca" ];`
+        # esp-idf
+        "dialout"
+        "uucp"
+        "plugdev"
       ];
       packages = with pkgs; [
         # Internet

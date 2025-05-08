@@ -24,6 +24,7 @@
     lg = "lazygit";
     ll = "eza --long --icons --color --hyperlink";
     lt = "eza --long --tree --icons --color --hyperlink";
+    gg = "${pkgs.git-graph}/bin/git-graph";
     montigrafana =
       "xdg-open http://localhost:3000 && ssh -L 3000:localhost:3000 mmbs@monti.hhu.de";
     montikuma =
@@ -41,6 +42,7 @@
     '';
     suggest = "gh copilot suggest";
     v = "nvim";
+    ":e" = "nvim";
   };
   home.stateVersion = "22.05";
   programs.atuin = {
@@ -92,8 +94,8 @@
     enable = true;
     extraLuaPackages = luaPkgs: with luaPkgs; [ luarocks magick jsregexp ];
     extraPackages = with pkgs; [
+      inotify-tools
       clang
-      cmake-lint
       ghostscript
       hlint
       imagemagick
@@ -103,7 +105,6 @@
       luajit
       manix
       mermaid-cli
-      neocmakelsp
       nginx-language-server
       nil
       nixd
@@ -114,18 +115,18 @@
     ];
     extraPython3Packages = pyPkgs:
       with pyPkgs; [
+        cairosvg # for image rendering
+        ipykernel
+        ipython
+        jupyter-client
+        matplotlib
+        numpy
+        plotly # for image rendering
+        pnglatex # for image rendering
         pylatexenc
         pynvim
-        jupyter-client
-        cairosvg # for image rendering
-        pnglatex # for image rendering
-        plotly # for image rendering
-        numpy
-        matplotlib
-        sympy
         pyperclip
-        ipython
-        ipykernel
+        sympy
       ];
     plugins = with pkgs.vimPlugins; [ neotest-haskell image-nvim ];
     vimAlias = true;
