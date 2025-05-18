@@ -167,5 +167,11 @@
       # '';
       # Ensure power management is properly handled
       powerManagement = { enable = true; };
+      specialisation = {
+        hybrid.configuration = {
+          services.supergfxd = { settings = { mode = lib.mkForce "Hybrid"; }; };
+        };
+      };
+
     };
 }
