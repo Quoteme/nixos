@@ -223,23 +223,4 @@
   };
   xdg.configFile."nushell/completion.nu".source =
     ./config/nushell/completion.nu;
-  xdg.configFile."xmonad/build".executable = true;
-  xdg.configFile."xmonad/build".text = ''
-    #!/usr/bin/env bash
-
-    export XMONAD_DEV_DIR=$HOME/Dokumente/dev/xmonad-luca
-
-    # create the directory where the xmonad-dev binary will be stored
-    mkdir -p $HOME/.cache/xmonad/
-    # build xmonad using nix
-    nix build $XMONAD_DEV_DIR -o $HOME/.config/xmonad/result
-    # copy the resuslt to where xmonad expects it
-    cp $HOME/.config/xmonad/result/bin/xmonad-luca $HOME/.cache/xmonad/xmonad-x86_64-linux
-    # make the file overwritable, so we can hot-reload xmonad by doing:
-    # ```
-    # xmonad --recompile
-    # ```
-    # followed by <kbd>Mod</kbd>+<kbd>Shift</kbd>+<kbd>Delete</kbd>
-    chmod +w $HOME/.cache/xmonad/xmonad-x86_64-linux
-  '';
 }

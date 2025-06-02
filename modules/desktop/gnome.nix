@@ -52,7 +52,6 @@ in {
         gnomeExtensions.gsconnect
         gnomeExtensions.pop-shell
         gnomeExtensions.media-controls
-        gnomeExtensions.swap-finger-gestures-3-to-4
         gnomeExtensions.emoji-copy
         gnomeExtensions.pano
       ] ++ [
@@ -63,10 +62,9 @@ in {
         iotop
         amdgpu_top
         gtop
-      ] ++ (if config.hardware.nvidia.prime.offload.enable then [
-        gnomeExtensions.supergfxctl-gex
-        gnomeExtensions.gpu-supergfxctl-switch
-      ] else
+      ] ++ (if config.hardware.nvidia.prime.offload.enable then
+        [ gnomeExtensions.gpu-supergfxctl-switch ]
+      else
         [ ]);
     environment.gnome.excludePackages = (with pkgs; [
       gnome-terminal

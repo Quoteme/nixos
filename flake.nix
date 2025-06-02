@@ -15,10 +15,6 @@
     nixpkgs-stable.url = "nixpkgs/nixpkgs-unstable";
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
-    xmonad-luca = {
-      url = "github:Quoteme/xmonad-luca/update-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     xremap-flake.url = "github:xremap/nix-flake";
   };
 
@@ -80,7 +76,6 @@
               ./modules/applications/virtualisation/docker.nix
               ./modules/applications/virtualisation/virt-manager.nix
               ./modules/desktop/gnome.nix
-              ./modules/desktop/xmonad-luca.nix
               ./modules/hardware/audio.nix
               ./modules/hardware/disks.nix
               ./modules/hardware/keyboard_de.nix
@@ -152,7 +147,6 @@
             modules.desktop.gnome.enable = true;
             modules.desktop.kde.enable = false;
             modules.desktop.sway.enable = false;
-            modules.desktop.xmonad-luca.enable = false;
             modules.desktopManager.lightdm.enable = false;
             modules.desktopManager.sddm.enable = false;
             modules.loginManager.greetd.enable = false;
