@@ -16,17 +16,7 @@
       '';
       nixPath = [ "nixpkgs=${nixpkgs}" "stable=${nixpkgs-stable}" ];
       registry = {
-        # nixpkgs.flake = nixpkgs;
-        nixpkgs = {
-          from = {
-            type = "indirect";
-            id = "nixpkgs";
-          };
-          to = {
-            type = "path";
-            path = nixpkgs.outPath;
-          };
-        };
+        nixpkgs.flake = nixpkgs;
         stable.flake = nixpkgs-stable;
         nur.flake = nur;
       };
