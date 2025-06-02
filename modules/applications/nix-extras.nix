@@ -15,11 +15,22 @@
         warn-dirty = false
       '';
       nixPath = [ "nixpkgs=${nixpkgs}" "stable=${nixpkgs-stable}" ];
-      registry = {
-        nixpkgs.flake = nixpkgs;
-        stable.flake = nixpkgs-stable;
-        nur.flake = nur;
-      };
+      # based on https://nixos.wiki/wiki/flakes#:~:text=Pinning%20the%20registry%20to%20the%20system%20pkgs%20on%20NixOS
+      # registry = {
+      #   # nixpkgs.flake = nixpkgs;
+      #   nixpkgs = {
+      #     from = {
+      #       type = "indirect";
+      #       id = "nixpkgs";
+      #     };
+      #     to = {
+      #       type = "path";
+      #       path = nixpkgs.outPath;
+      #     };
+      #   };
+      #   stable.flake = nixpkgs-stable;
+      #   nur.flake = nur;
+      # };
       settings = {
         auto-optimise-store = true;
         substituters = [
