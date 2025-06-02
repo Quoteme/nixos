@@ -67,6 +67,7 @@
               ./modules/environment/user_shell_nushell.nix
               ./modules/fonts.nix
               ./modules/hardware/laptop/asusROGFlowX13.nix
+              ./modules/hardware/metered_connection.nix
               ./modules/login_manager/lightdm.nix
               ./modules/login_manager/greetd.nix
               ./modules/login_manager/sddm.nix
@@ -163,6 +164,7 @@
             modules.hardware.keyboard-de.enable = true;
             modules.hardware.laptop.asus-rog-flow-x13.enable = true;
             modules.hardware.printing.enable = true;
+            modules.hardware.metered_connection.enable = true;
             modules.users.luca.enable = true;
 
             # Enable OneDrive
