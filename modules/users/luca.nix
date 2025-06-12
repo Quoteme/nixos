@@ -14,6 +14,7 @@ in {
     programs.fish.enable = true;
     users.users.luca.shell = pkgs.fish;
     environment.pathsToLink = [ "/share/zsh" ];
+    nix.settings.trusted-users = [ "luca" ];
     users.users.luca = {
       initialHashedPassword =
         "$6$W62LDzjtggxhhOiJ$KKM1yuHOrEr3Mz4MSstUGBtlpEF2AHR8bAzFeaqo2l.rrka/phKnzbKbyM5HX955d9et2NnV2fOr9LnDCgB5M1";
