@@ -57,6 +57,8 @@
       "SHIFT-KEY_CONNECT" = "RIGHTALT-7";
       # Closed curly brace key "{"
       "SHIFT-KEY_FINANCE" = "RIGHTALT-0";
+      # simpler $
+      "SHIFT-SPACE" = "SHIFT-4";
     };
   }];
 }
