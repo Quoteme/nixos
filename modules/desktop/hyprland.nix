@@ -20,6 +20,9 @@ in {
       };
       security.pam.services.hyprlock = { };
       environment.systemPackages = [
+        wvkbd
+        swipe-guess
+        wtype
         hypridle
         hyprlock
         waytrogen
