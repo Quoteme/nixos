@@ -17,7 +17,18 @@ in {
         enable = true;
         # Whether to enable XWayland
         xwayland.enable = true;
+        withUWSM = true;
       };
+      xdg.portal = {
+        enable = true;
+        extraPortals = with pkgs; [
+          xdg-desktop-portal-hyprland
+          xdg-desktop-portal-gtk
+        ];
+        config.common.default = "gtk";
+      };
+      programs.iio-hyprland.enable = true;
+
       security.pam.services.hyprlock = { };
       environment.systemPackages = [
         wvkbd
