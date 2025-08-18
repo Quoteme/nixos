@@ -10,12 +10,14 @@ in {
     inherit (lib.types) nullOr path;
   in { enable = mkEnableOption "Enable the hyprland window manager"; };
 
-  config = mkIf cfg.enable {
-    programs.hyprland = {
-      # Install the packages from nixpkgs
-      enable = true;
-      # Whether to enable XWayland
-      xwayland.enable = true;
+  config = with pkgs;
+    mkIf cfg.enable {
+      programs.hyprland = {
+        # Install the packages from nixpkgs
+        enable = true;
+        # Whether to enable XWayland
+        xwayland.enable = true;
+      };
+      environment.systemPackages = [ waytrogen swaybg ];
     };
-  };
 }

@@ -140,7 +140,6 @@
 
     };
   };
-  wayland.windowManager.hyprland.plugins = [ pkgs.hyprlandPlugins.hyprgrass ];
   programs.readline = {
     enable = true;
     variables = {
@@ -221,6 +220,13 @@
     Unit.After = [ "network.target" "sound.target" ];
     Service.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
     Install.WantedBy = [ "default.target" ];
+  };
+  wayland.windowManager.hyprland = {
+    enable = true;
+    plugins = [ pkgs.hyprlandPlugins.hyprgrass ];
+    extraConfig = ''
+      source = /etc/nixos/config/hyprland/extra.conf
+    '';
   };
   xdg.configFile."nushell/completion.nu".source =
     ./config/nushell/completion.nu;
