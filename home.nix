@@ -223,8 +223,9 @@
   };
   wayland.windowManager.hyprland = {
     enable = true;
-    plugins = [ pkgs.hyprlandPlugins.hyprgrass ];
+    plugins = [ pkgs.hyprlandPlugins.hyprgrass pkgs.hyprlandPlugins.hyprspace ];
     extraConfig = ''
+      exec-once=waytrogen --restore
       source = /etc/nixos/config/hyprland/extra.conf
     '';
   };
