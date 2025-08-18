@@ -18,7 +18,10 @@ in {
         # Whether to enable XWayland
         xwayland.enable = true;
       };
+      security.pam.services.hyprlock = { };
       environment.systemPackages = [
+        hypridle
+        hyprlock
         waytrogen
         swaybg
         nwg-drawer

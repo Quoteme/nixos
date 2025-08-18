@@ -221,13 +221,15 @@
     Service.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
     Install.WantedBy = [ "default.target" ];
   };
+  programs.hyprlock.enable = true;
+  services.hypridle.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = [ pkgs.hyprlandPlugins.hyprgrass pkgs.hyprlandPlugins.hyprspace ];
     extraConfig = ''
-      exec-once=waytrogen --restore
-      exec-once=ashell --config-path /etc/nixos/config/hyprland/ashell.toml
-      exec-once=swaync
+      exec-once = waytrogen --restore
+      exec-once = ashell --config-path /etc/nixos/config/hyprland/ashell.toml
+      exec-once = swaync
       source = /etc/nixos/config/hyprland/extra.conf
     '';
   };
