@@ -226,9 +226,13 @@
     plugins = [ pkgs.hyprlandPlugins.hyprgrass pkgs.hyprlandPlugins.hyprspace ];
     extraConfig = ''
       exec-once=waytrogen --restore
+      exec-once=ashell --config-path /etc/nixos/config/hyprland/ashell.toml
       source = /etc/nixos/config/hyprland/extra.conf
     '';
   };
+  xdg.configFile."ashell/config.toml".source =
+    config.lib.file.mkOutOfStoreSymlink
+    /etc/nixos/config/hyprland/ashell/config.toml;
   xdg.configFile."nushell/completion.nu".source =
     ./config/nushell/completion.nu;
 }
