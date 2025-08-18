@@ -46,6 +46,7 @@ right = [
   [
     "Clock",
     "Privacy",
+    "DarkMode",
     "Settings",
     "Tray",
   ],
@@ -184,6 +185,24 @@ listen_cmd = "swaync-client -swb"
 icons.'dnd.*' = ""
 # Another regex can optionally show a red "alert" dot on the icon
 alert = ".*notification"
+
+[[CustomModule]]
+# The name will link the module in your left/center/right definition
+name = "DarkMode"
+# The default icon for this custom module
+# Here: a moon icon
+icon = ""
+# The command that will be executed on click
+# (toggle between dark and light mode)
+command = "gsettings get org.gnome.desktop.interface color-scheme | grep -q 'prefer-dark' && gsettings set org.gnome.desktop.interface color-scheme 'default' || gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+# # You can optionally configure your custom module to update the UI using another command
+# # The output right now follows the waybar json-style output, using the `alt` and `text` field
+# # E.g. `{"text": "3", "alt": "notification"}`
+# listen_cmd = "watch gsettings get org.gnome.desktop.interface color-scheme"
+# # You can define behavior for the `text` and `alt` fields
+# # Any number of regex can be used to change the icon based on the alt field
+# icons.'prefer-dark' = ""
+# icons.'default' = ""
 
 # Settings module configuration
 [settings]
