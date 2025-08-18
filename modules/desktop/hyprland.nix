@@ -18,7 +18,14 @@ in {
         # Whether to enable XWayland
         xwayland.enable = true;
       };
-      environment.systemPackages =
-        [ waytrogen swaybg nwg-drawer wofi ashell cliphist ];
+      environment.systemPackages = [
+        waytrogen
+        swaybg
+        nwg-drawer
+        wofi
+        ashell
+        cliphist
+        swaynotificationcenter
+      ];
     };
 }
