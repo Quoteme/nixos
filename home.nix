@@ -140,6 +140,7 @@
 
     };
   };
+  wayland.windowManager.hyprland.plugins = [ pkgs.hyprlandPlugins.hyprgrass ];
   programs.readline = {
     enable = true;
     variables = {
