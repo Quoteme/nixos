@@ -59,6 +59,7 @@
               ./modules/desktop/cosmic.nix
               ./modules/desktop/kde.nix
               ./modules/desktop/sway.nix
+              ./modules/desktop/hyprland.nix
               ./modules/environment/systempackages.nix
               ./modules/environment/user_shell_nushell.nix
               ./modules/fonts.nix
@@ -144,6 +145,7 @@
             modules.applications.virtualisation.docker.enable = true;
             modules.applications.virtualisation.virt-manager.enable = true;
             modules.desktop.cosmic.enable = false;
+            modules.desktop.hyprland.enable = true;
             modules.desktop.gnome.enable = true;
             modules.desktop.kde.enable = false;
             modules.desktop.sway.enable = false;
