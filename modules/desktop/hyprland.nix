@@ -12,6 +12,22 @@ in {
 
   config = with pkgs;
     mkIf cfg.enable {
+      environment.systemPackages = [
+        ashell
+        blueman
+        networkmanagerapplet
+        cliphist
+        hypridle
+        hyprlock
+        nwg-drawer
+        swaybg
+        swaynotificationcenter
+        swipe-guess
+        waytrogen
+        wofi
+        wtype
+        wvkbd
+      ];
       programs.hyprland = {
         # Install the packages from nixpkgs
         enable = true;
@@ -19,6 +35,9 @@ in {
         xwayland.enable = true;
         withUWSM = true;
       };
+      programs.iio-hyprland.enable = true;
+
+      security.pam.services.hyprlock = { };
       xdg.portal = {
         enable = true;
         extraPortals = with pkgs; [
@@ -27,22 +46,5 @@ in {
         ];
         config.common.default = "gtk";
       };
-      programs.iio-hyprland.enable = true;
-
-      security.pam.services.hyprlock = { };
-      environment.systemPackages = [
-        wvkbd
-        swipe-guess
-        wtype
-        hypridle
-        hyprlock
-        waytrogen
-        swaybg
-        nwg-drawer
-        wofi
-        ashell
-        cliphist
-        swaynotificationcenter
-      ];
     };
 }
