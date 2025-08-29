@@ -27,6 +27,10 @@ in {
         wofi
         wtype
         wvkbd
+        grim
+        slurp
+        swappy
+        jq
       ];
       services.gnome.gnome-keyring.enable = true;
       security.pam.services.gdm.enableGnomeKeyring = true;
