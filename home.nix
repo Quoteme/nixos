@@ -222,7 +222,50 @@
     Install.WantedBy = [ "default.target" ];
   };
   programs.hyprlock.enable = true;
-  services.hypridle.enable = true;
+  services.swayidle = {
+    enable = true;
+    timeouts = [
+      {
+        timeout = 120;
+        command = "hyprlock";
+      }
+      {
+        timeout = 400;
+        command = "hyprctl dispatch dpms off";
+      }
+      {
+        timeout = 12000;
+        command = "systemctl suspend";
+        resumeCommand = "hyprctl dispatch dpms on";
+      }
+    ];
+    events = [{
+      event = "before-sleep";
+      command = "hyprlock";
+    }];
+  };
+  services.hypridle = {
+    enable = false;
+    settings = {
+      general = {
+        after_sleep_cmd = "hyprctl dispatch dpms on";
+        ignore_dbus_inhibit = false;
+        lock_cmd = "hyprlock";
+      };
+
+      listener = [
+        {
+          timeout = 900;
+          on-timeout = "hyprlock";
+        }
+        {
+          timeout = 1200;
+          on-timeout = "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
+        }
+      ];
+    };
+  };
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = [ pkgs.hyprlandPlugins.hyprgrass pkgs.hyprlandPlugins.hyprspace ];
@@ -230,6 +273,7 @@
       exec-once = waytrogen --restore
       exec-once = ashell --config-path /etc/nixos/config/hyprland/ashell.toml
       exec-once = swaync
+      exec-once = iio-hyprland
       source = /etc/nixos/config/hyprland/extra.conf
     '';
   };
