@@ -279,7 +279,7 @@
                 enableExtensionPack = true;
               };
               waydroid.enable = false;
-              lxd.enable = false;
+              # lxd.enable = false;
             };
             security = {
               polkit.enable = true;
@@ -311,7 +311,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.luca.imports = [
-              nix-index-database.hmModules.nix-index
+              nix-index-database.homeModules.nix-index
               { programs.nix-index-database.comma.enable = true; }
               ./home.nix
             ];
