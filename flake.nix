@@ -12,7 +12,7 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nixd.url = "github:nix-community/nixd";
-    nixpkgs-stable.url = "nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     xremap-flake.url =

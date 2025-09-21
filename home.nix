@@ -268,7 +268,10 @@
   };
   wayland.windowManager.hyprland = {
     enable = true;
-    plugins = [ pkgs.hyprlandPlugins.hyprgrass pkgs.hyprlandPlugins.hyprspace ];
+    plugins = [
+      pkgs.stable.hyprlandPlugins.hyprgrass
+      pkgs.stable.hyprlandPlugins.hyprspace
+    ];
     extraConfig = ''
       exec-once = waytrogen --restore
       exec-once = ashell --config-path /etc/nixos/config/hyprland/ashell.toml
