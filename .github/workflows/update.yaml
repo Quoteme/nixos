@@ -1,0 +1,36 @@
+name: "Flake.lock: update unstable Nix dependencies"
+
+on:
+  workflow_dispatch: # allows manual triggering
+  schedule:
+    - cron: "0 4 * * 4" # At 04:00 on Thursday – https://crontab.guru/#0_4_*_*_4
+
+jobs:
+  nix-flake-update:
+    permissions:
+      contents: write
+      id-token: write
+      issues: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/determinate-nix-action@v3
+      - uses: DeterminateSystems/update-flake-lock@main
+        with:
+          inputs: hmenke-nixos-modules
+            home-manager
+            nix-index-database
+            nixd
+            nixpkgs
+            nur
+            xremap-flake
+          pr-title: "Update unstable Nix flake inputs" # Title of PR to be created
+          pr-labels: | # Labels to be set on the PR
+            dependencies
+            automated
+      - name: Merge
+        run: gh pr merge --auto "${{ steps.update.outputs.pull-request-number }}" --no-ff
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        if: ${{ steps.update.outputs.pull-request-number != '' }}
