@@ -84,6 +84,27 @@
     interactiveShellInit = ''
       fish_vi_key_bindings
     '';
+    functions = {
+      cp = {
+        description = "cp with progress bar";
+        wraps = "cp";
+        body = ''
+          rsync -ah --progress $argv
+        '';
+      };
+
+      mv = {
+        description = "mv with progress bar";
+        wraps = "mv";
+        body = ''
+          if test (count $argv) -eq 2
+            rsync -ah --progress --remove-source-files $argv; and rm -rf $argv[1]
+          else
+            command mv $argv
+          end
+        '';
+      };
+    };
   };
   programs.fzf = {
     enable = true;
