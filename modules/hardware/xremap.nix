@@ -59,6 +59,10 @@
       "SHIFT-KEY_FINANCE" = "RIGHTALT-0";
       # simpler $
       "SHIFT-SPACE" = "SHIFT-4";
+      # simpler %
+      "LEFTCTRL-KEY_CONNECT" = "SHIFT-5";
+      # simpler #
+      "LEFTCTRL-KEY_SHOP" = "KEY_102ND";
     };
   }];
 }
