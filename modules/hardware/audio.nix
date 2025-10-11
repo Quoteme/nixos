@@ -28,7 +28,7 @@ in {
     };
     # Create a drop-in file in `/etc/pipewire/pipewire.conf.d/` to enable
     # pipewirte-pulse `module-switch-on-connect` and `module-always-sink`.
-    hardware = {
+    services = {
       pulseaudio = {
         enable = false;
         extraModules = [ pkgs.pulseaudio-modules-bt ];
@@ -41,6 +41,8 @@ in {
           load-module module-switch-on-port-available
         '';
       };
+    };
+    hardware = {
       bluetooth = {
         enable = true;
         powerOnBoot = false;

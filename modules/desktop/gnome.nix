@@ -22,8 +22,8 @@ in {
       # GSK_RENDERER = "opengl";
     };
     services.xserver.enable = true;
-    services.xserver.displayManager.gdm.enable = true;
-    services.xserver.desktopManager.gnome.enable = true;
+    services.displayManager.gdm.enable = true;
+    services.desktopManager.gnome.enable = true;
     services.gnome.at-spi2-core.enable = true; # Accessibility Bus
     services.gnome.gnome-keyring.enable = true;
     services.gnome.gnome-settings-daemon.enable = true;
@@ -32,8 +32,8 @@ in {
     services.gnome.evolution-data-server.enable = true;
     services.gnome.glib-networking.enable = true;
     services.gnome.sushi.enable = true;
-    services.gnome.tracker.enable = true;
-    services.gnome.tracker-miners.enable = true;
+    services.gnome.tinysparql.enable = true;
+    services.gnome.localsearch.enable = true;
     services.gnome.gnome-user-share.enable = true;
     services.gnome.gnome-remote-desktop.enable = true;
     environment.systemPackages = with pkgs;
