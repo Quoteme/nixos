@@ -34,9 +34,9 @@ in {
       ];
       services.gnome.gnome-keyring.enable = true;
       security.pam.services.gdm.enableGnomeKeyring = true;
-      services.logind = {
-        powerKey = "ignore";
-        powerKeyLongPress = "suspend-then-hibernate";
+      services.logind.settings.Login = {
+        HandlePowerKey = "ignore";
+        HandlePowerKeyLongPress = "suspend-then-hibernate";
       };
       programs.hyprland = {
         # Install the packages from nixpkgs
