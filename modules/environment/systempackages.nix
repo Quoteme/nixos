@@ -84,15 +84,6 @@ in {
         export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
         exec ${pkgs.python3}/bin/python "$@"
       '')
-      (haskellPackages.ghcWithPackages (hpkgs:
-        with hpkgs; [
-          text-format-simple
-          haskell-dap
-          ghci-dap
-          haskell-debug-adapter
-        ]))
-      haskell-language-server
-      cabal-install
     ];
   };
 }

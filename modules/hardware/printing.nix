@@ -26,7 +26,6 @@ in {
       hplip
       samsung-unified-linux-driver
       splix
-      brlaser
       brgenml1lpr
       brgenml1cupswrapper
       cnijfilter2
