@@ -289,6 +289,9 @@
   };
   wayland.windowManager.hyprland = {
     enable = true;
+    # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
+    package = null;
+    portalPackage = null;
     plugins = [
       pkgs.stable.hyprlandPlugins.hyprgrass
       pkgs.stable.hyprlandPlugins.hyprspace
@@ -301,6 +304,8 @@
       source = /etc/nixos/config/hyprland/extra.conf
     '';
   };
+  xdg.configFile."uwsm/env".source =
+    "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
   gtk.enable = true;
   xdg.configFile."ashell/config.toml".source =
     config.lib.file.mkOutOfStoreSymlink
