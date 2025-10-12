@@ -194,7 +194,7 @@ name = "DarkMode"
 icon = ""
 # The command that will be executed on click
 # (toggle between dark and light mode)
-command = "gsettings get org.gnome.desktop.interface color-scheme | grep -q 'prefer-dark' && gsettings set org.gnome.desktop.interface color-scheme 'default' || gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+command = "dconf read /org/gnome/desktop/interface/color-scheme | grep -q 'prefer-dark' && dconf write /org/gnome/desktop/interface/color-scheme \"'default'\" || dconf write /org/gnome/desktop/interface/color-scheme \"'prefer-dark'\""
 # # You can optionally configure your custom module to update the UI using another command
 # # The output right now follows the waybar json-style output, using the `alt` and `text` field
 # # E.g. `{"text": "3", "alt": "notification"}`
