@@ -266,7 +266,7 @@
     }];
   };
   services.hypridle = {
-    enable = false;
+    enable = true;
     settings = {
       general = {
         after_sleep_cmd = "hyprctl dispatch dpms on";
@@ -301,6 +301,7 @@
       source = /etc/nixos/config/hyprland/extra.conf
     '';
   };
+  gtk.enable = true;
   xdg.configFile."ashell/config.toml".source =
     config.lib.file.mkOutOfStoreSymlink
     /etc/nixos/config/hyprland/ashell/config.toml;

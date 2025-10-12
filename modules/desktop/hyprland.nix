@@ -31,6 +31,9 @@ in {
         slurp
         swappy
         jq
+        libsecret
+        gsettings-desktop-schemas
+        dconf
       ];
       services.gnome.gnome-keyring.enable = true;
       security.pam.services.gdm.enableGnomeKeyring = true;
@@ -46,16 +49,27 @@ in {
         withUWSM = true;
       };
       programs.iio-hyprland.enable = true;
+      programs.dconf.enable = true;
+      services.dbus.packages = [ pkgs.dconf ];
 
+      services.xserver.updateDbusEnvironment = true;
       security.pam.services.hyprlock = { };
       xdg.portal = {
         enable = true;
-        extraPortals = with pkgs; [
-          xdg-desktop-portal
-          xdg-desktop-portal-hyprland
+        wlr.enable = true;
+        extraPortals = [
+          xdg-desktop-portal-wlr
           xdg-desktop-portal-gtk
+          xdg-desktop-portal-hyprland
         ];
-        config.common.default = "gtk";
+        configPackages = [ gnome-session ];
+        config = {
+          common = {
+            default = [ "gtk" ];
+            "org.freedesktop.impl.portal.Settings" = "gtk";
+          };
+          hyprland = { default = [ "hyprland" "gtk" "wlr" ]; };
+        };
       };
     };
 }
