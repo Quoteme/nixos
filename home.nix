@@ -306,7 +306,29 @@
   };
   xdg.configFile."uwsm/env".source =
     "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
-  gtk.enable = true;
+  gtk = {
+    enable = true;
+
+    theme = {
+      package = pkgs.vimix-gtk-themes;
+      name = "Vimix-light-doder";
+    };
+
+    iconTheme = {
+      package = pkgs.vimix-icon-theme;
+      name = "Vimix-beryl-dark";
+    };
+
+    cursorTheme = {
+      package = pkgs.vimix-cursors;
+      name = "Vimix-cursors";
+    };
+
+    font = {
+      name = "Sans";
+      size = 11;
+    };
+  };
   xdg.configFile."ashell/config.toml".source =
     config.lib.file.mkOutOfStoreSymlink
     /etc/nixos/config/hyprland/ashell/config.toml;

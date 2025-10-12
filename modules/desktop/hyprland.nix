@@ -14,6 +14,7 @@ in {
     mkIf cfg.enable {
       environment.systemPackages = [
         ashell
+        nautilus
         blueman
         networkmanagerapplet
         cliphist

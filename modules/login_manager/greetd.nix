@@ -12,7 +12,15 @@ in {
 
   config = mkIf cfg.enable {
     services.greetd.enable = true;
-    programs.regreet.enable = true;
+    programs.regreet = {
+      enable = true;
+      cursorTheme.package = pkgs.vimix-cursors;
+      cursorTheme.name = "Vimix-cursors";
+      iconTheme.package = pkgs.vimix-icon-theme;
+      iconTheme.name = "Vimix-beryl-dark";
+      theme.package = pkgs.vimix-gtk-themes;
+      theme.name = "Vimix-dark-doder";
+    };
     services.gnome.gnome-keyring.enable = true;
     security.pam.services.greetd.enableGnomeKeyring = true;
   };
