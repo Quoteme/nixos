@@ -295,7 +295,7 @@
     ];
     extraConfig = ''
       exec-once = waytrogen --restore
-      exec-once = ashell --config-path /etc/nixos/config/hyprland/ashell.toml
+      exec-once = ashell --config-path /etc/nixos/config/hyprland/ashell/config.toml
       exec-once = swaync
       exec-once = iio-hyprland
       source = /etc/nixos/config/hyprland/extra.conf

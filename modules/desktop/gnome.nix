@@ -9,8 +9,12 @@ in {
     inherit (lib.options) mkEnableOption mkOption;
     inherit (lib.types) nullOr path;
   in {
-    enable = mkEnableOption
-      "Enable the Gnome desktop environment (together with GDM and all other goodies)";
+    enable = mkEnableOption "Enable the Gnome desktop environment";
+    gdm = mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enable GDM display manager";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -22,7 +26,7 @@ in {
       # GSK_RENDERER = "opengl";
     };
     services.xserver.enable = true;
-    services.displayManager.gdm.enable = true;
+    services.displayManager.gdm.enable = cfg.gdm;
     services.desktopManager.gnome.enable = true;
     services.gnome.at-spi2-core.enable = true; # Accessibility Bus
     services.gnome.gnome-keyring.enable = true;

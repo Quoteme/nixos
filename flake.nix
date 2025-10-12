@@ -152,7 +152,7 @@
             modules.desktop.sway.enable = false;
             modules.desktopManager.lightdm.enable = false;
             modules.desktopManager.sddm.enable = false;
-            modules.loginManager.greetd.enable = false;
+            modules.loginManager.greetd.enable = true;
             modules.environment.systemPackages.enable = true;
             modules.environment.user_shell_nushell.enable = true;
             modules.fonts.enable = true;
