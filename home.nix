@@ -266,7 +266,7 @@
     }];
   };
   services.hypridle = {
-    enable = false;
+    enable = true;
     settings = {
       general = {
         after_sleep_cmd = "hyprctl dispatch dpms on";
@@ -289,6 +289,9 @@
   };
   wayland.windowManager.hyprland = {
     enable = true;
+    # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
+    package = null;
+    portalPackage = null;
     plugins = [
       pkgs.stable.hyprlandPlugins.hyprgrass
       pkgs.stable.hyprlandPlugins.hyprspace
@@ -300,6 +303,31 @@
       exec-once = iio-hyprland
       source = /etc/nixos/config/hyprland/extra.conf
     '';
+  };
+  xdg.configFile."uwsm/env".source =
+    "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+  gtk = {
+    enable = true;
+
+    theme = {
+      package = pkgs.vimix-gtk-themes;
+      name = "Vimix-light-doder";
+    };
+
+    iconTheme = {
+      package = pkgs.vimix-icon-theme;
+      name = "Vimix-beryl-dark";
+    };
+
+    cursorTheme = {
+      package = pkgs.vimix-cursors;
+      name = "Vimix-cursors";
+    };
+
+    font = {
+      name = "Sans";
+      size = 11;
+    };
   };
   xdg.configFile."ashell/config.toml".source =
     config.lib.file.mkOutOfStoreSymlink

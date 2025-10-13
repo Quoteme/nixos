@@ -147,7 +147,7 @@
             modules.applications.virtualisation.virt-manager.enable = true;
             modules.desktop.cosmic.enable = false;
             modules.desktop.hyprland.enable = true;
-            modules.desktop.gnome.enable = true;
+            modules.desktop.gnome.enable = false;
             modules.desktop.kde.enable = false;
             modules.desktop.sway.enable = false;
             modules.desktopManager.lightdm.enable = false;
