@@ -54,6 +54,7 @@ in {
       services.dbus.packages = [ pkgs.dconf ];
 
       services.xserver.updateDbusEnvironment = true;
+      services.upower.enable = true;
       security.pam.services.hyprlock = { };
       xdg.portal = {
         enable = true;
