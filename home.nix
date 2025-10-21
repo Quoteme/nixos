@@ -304,6 +304,8 @@
       source = /etc/nixos/config/hyprland/extra.conf
     '';
   };
+  services.batsignal = { enable = true; };
+
   xdg.configFile."uwsm/env".source =
     "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
   gtk = {

@@ -46,6 +46,7 @@ right = [
   [
     "Clock",
     "Privacy",
+    "PowerUsage",
     "DarkMode",
     "Settings",
     "Tray",
@@ -203,6 +204,12 @@ command = "dconf read /org/gnome/desktop/interface/color-scheme | grep -q 'prefe
 # # Any number of regex can be used to change the icon based on the alt field
 # icons.'prefer-dark' = ""
 # icons.'default' = ""
+
+[[CustomModule]]
+name = "PowerUsage"
+icon = "⚡"
+command = "awk '{printf \"%.2f W\", $1*1e-6}' /sys/class/power_supply/BAT0/power_now"
+listen_cmd = "while true; do watts=$(awk '{printf \"%.2f\", $1*1e-6}' /sys/class/power_supply/BAT0/power_now 2>/dev/null || echo '0.00'); printf '{\"text\":\"%sW\",\"alt\":\"power\"}\\n' \"$watts\"; sleep 2; done"
 
 # Settings module configuration
 [settings]
