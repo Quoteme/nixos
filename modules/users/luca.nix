@@ -39,15 +39,11 @@ in {
         "plugdev"
       ];
       packages = with pkgs; [
-        # Internet
-        bitwarden-cli
         # Video-Editing
         mediainfo
-        # Media
-        yt-dlp
         # Programming
         # JavaScript/TypeScript
-        nodejs_20
+        nodejs_24
         # Latex
         tectonic
         typst
