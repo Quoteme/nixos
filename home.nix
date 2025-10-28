@@ -122,7 +122,9 @@
       imagemagick
       lazygit
       lua-language-server
-      lua51Packages.lua
+      lua54Packages.luarocks
+      lua54Packages.lua
+      lua54Packages.jsregexp
       luajit
       manix
       mermaid-cli
