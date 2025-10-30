@@ -206,7 +206,7 @@
             programs.npm = {
               enable = true;
               npmrc = ''
-                prefix = \$HOME/.npm
+                prefix = ''${HOME}/.npm
                 color=true
               '';
             };
