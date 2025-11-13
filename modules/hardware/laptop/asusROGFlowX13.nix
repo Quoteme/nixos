@@ -168,6 +168,7 @@
       specialisation = {
         hybrid.configuration = {
           services.supergfxd = { settings = { mode = lib.mkForce "Hybrid"; }; };
+          powerManagement.powertop.enable = lib.mkForce false;
         };
       };
 
