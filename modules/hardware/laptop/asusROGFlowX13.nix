@@ -28,7 +28,7 @@
         xserver = { wacom.enable = true; };
       };
       # power management
-      powerManagement.powertop.enable = true;
+      powerManagement.powertop.enable = lib.mkForce false;
       # `nixos-generate-config --show-hardware-config` doesn't detect mount options automatically,
       # so to enable compression, you must specify it and other mount options
       # in a persistent configuration
@@ -66,8 +66,8 @@
           package = config.boot.kernelPackages.nvidiaPackages.stable;
           open = false;
           modesetting.enable = true;
-          powerManagement.enable = true;
-          powerManagement.finegrained = true;
+          powerManagement.enable = false;
+          powerManagement.finegrained = false;
           nvidiaSettings = true;
           prime = {
             offload.enable = true;
@@ -168,7 +168,6 @@
       specialisation = {
         hybrid.configuration = {
           services.supergfxd = { settings = { mode = lib.mkForce "Hybrid"; }; };
-          powerManagement.powertop.enable = lib.mkForce false;
         };
       };
 
