@@ -28,7 +28,7 @@
         xserver = { wacom.enable = true; };
       };
       # power management
-      powerManagement.powertop.enable = true;
+      powerManagement.powertop.enable = lib.mkForce false;
       # `nixos-generate-config --show-hardware-config` doesn't detect mount options automatically,
       # so to enable compression, you must specify it and other mount options
       # in a persistent configuration
@@ -115,6 +115,18 @@
               ${pkgs.libnotify}/bin/notify-send -a \"changepowerprofile\" -u low -i /etc/nixos/xmonad/icon/powerprofilesctl-power-saver.png \"powerprofile: power-saver\"
               ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver;;
           esac
+        '')
+        (writeShellScriptBin "asusrog-dgpu-disable" ''
+          echo 1 | sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
+          echo 1 | sudo tee /sys/bus/pci/rescan
+          echo 1 | sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
+          echo "please logout and login again to use integrated graphics"
+        '')
+        (writeShellScriptBin "asusrog-dgpu-enable" ''
+          echo 0 |sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
+          echo 1 |sudo tee /sys/bus/pci/rescan
+          echo 0 |sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
+          echo "please reboot to use discrete graphics"
         '')
       ];
       programs.rog-control-center.enable = true;
