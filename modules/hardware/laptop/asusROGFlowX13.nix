@@ -66,8 +66,8 @@
           package = config.boot.kernelPackages.nvidiaPackages.stable;
           open = false;
           modesetting.enable = true;
-          powerManagement.enable = false;
-          powerManagement.finegrained = false;
+          powerManagement.enable = true;
+          powerManagement.finegrained = true;
           nvidiaSettings = true;
           prime = {
             offload.enable = true;
@@ -115,6 +115,18 @@
               ${pkgs.libnotify}/bin/notify-send -a \"changepowerprofile\" -u low -i /etc/nixos/xmonad/icon/powerprofilesctl-power-saver.png \"powerprofile: power-saver\"
               ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver;;
           esac
+        '')
+        (writeShellScriptBin "asusrog-dgpu-disable" ''
+          echo 1 | sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
+          echo 1 | sudo tee /sys/bus/pci/rescan
+          echo 1 | sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
+          echo "please logout and login again to use integrated graphics"
+        '')
+        (writeShellScriptBin "asusrog-dgpu-enable" ''
+          echo 0 |sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
+          echo 1 |sudo tee /sys/bus/pci/rescan
+          echo 0 |sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
+          echo "please reboot to use discrete graphics"
         '')
       ];
       programs.rog-control-center.enable = true;
