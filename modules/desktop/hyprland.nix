@@ -49,6 +49,8 @@ in {
         xwayland.enable = true;
         withUWSM = true;
       };
+      xdg.configFile."uwsm/env".source =
+        "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
       programs.iio-hyprland.enable = true;
       programs.dconf.enable = true;
       services.dbus.packages = [ pkgs.dconf ];
