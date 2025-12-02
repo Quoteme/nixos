@@ -289,23 +289,6 @@
       ];
     };
   };
-  wayland.windowManager.hyprland = {
-    enable = true;
-    # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
-    package = null;
-    portalPackage = null;
-    plugins = [
-      pkgs.stable.hyprlandPlugins.hyprgrass
-      pkgs.stable.hyprlandPlugins.hyprspace
-    ];
-    extraConfig = ''
-      exec-once = waytrogen --restore
-      exec-once = ashell --config-path /etc/nixos/config/hyprland/ashell/config.toml
-      exec-once = swaync
-      exec-once = iio-hyprland
-      source = /etc/nixos/config/hyprland/extra.conf
-    '';
-  };
   services.batsignal = { enable = true; };
 
   xdg.configFile."uwsm/env".source =
