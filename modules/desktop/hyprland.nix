@@ -57,21 +57,17 @@ in {
           pkgs.stable.hyprlandPlugins.hyprgrass
           pkgs.stable.hyprlandPlugins.hyprspace
         ];
-        settings = {
-          extraConfig = ''
-            exec-once = waytrogen --restore
-            exec-once = ashell --config-path /etc/nixos/config/hyprland/ashell/config.toml
-            exec-once = swaync
-            exec-once = iio-hyprland
-            source = /etc/nixos/config/hyprland/extra.conf
-          '';
-        };
+        extraConfig = ''
+          exec-once = waytrogen --restore
+          exec-once = ashell --config-path /etc/nixos/config/hyprland/ashell/config.toml
+          exec-once = swaync
+          exec-once = iio-hyprland
+          source = /etc/nixos/config/hyprland/extra.conf
+        '';
         # Whether to enable XWayland
         xwayland.enable = true;
         withUWSM = true;
       };
-      xdg.configFile."uwsm/env".source =
-        "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
       programs.iio-hyprland.enable = true;
       programs.dconf.enable = true;
       services.dbus.packages = [ pkgs.dconf ];
@@ -79,22 +75,22 @@ in {
       services.xserver.updateDbusEnvironment = true;
       services.upower.enable = true;
       security.pam.services.hyprlock = { };
-      xdg.portal = {
-        enable = true;
-        wlr.enable = true;
-        extraPortals = [
-          xdg-desktop-portal-wlr
-          xdg-desktop-portal-gtk
-          xdg-desktop-portal-hyprland
-        ];
-        configPackages = [ gnome-session ];
-        config = {
-          common = {
-            default = [ "gtk" ];
-            "org.freedesktop.impl.portal.Settings" = "gtk";
-          };
-          hyprland = { default = [ "hyprland" "gtk" "wlr" ]; };
-        };
-      };
+      # xdg.portal = {
+      #   enable = true;
+      #   wlr.enable = true;
+      #   extraPortals = [
+      #     xdg-desktop-portal-wlr
+      #     xdg-desktop-portal-gtk
+      #     xdg-desktop-portal-hyprland
+      #   ];
+      #   configPackages = [ gnome-session ];
+      #   config = {
+      #     common = {
+      #       default = [ "gtk" ];
+      #       "org.freedesktop.impl.portal.Settings" = "gtk";
+      #     };
+      #     hyprland = { default = [ "hyprland" "gtk" "wlr" ]; };
+      #   };
+      # };
     };
 }

@@ -17,6 +17,7 @@
     nur.url = "github:nix-community/NUR";
     xremap-flake.url =
       "github:xremap/nix-flake/1924f2dc1a7c219b5323050a7fb27920e3a225d4";
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs = { self, nixpkgs, home-manager, nix-index-database, lanzaboote
