@@ -246,7 +246,7 @@
   };
   programs.hyprlock.enable = true;
   services.swayidle = {
-    enable = true;
+    enable = false;
     timeouts = [
       {
         timeout = 120;
@@ -273,13 +273,13 @@
       general = {
         after_sleep_cmd = "hyprctl dispatch dpms on";
         ignore_dbus_inhibit = false;
-        lock_cmd = "hyprlock";
+        lock_cmd = "wpctl set-mute @DEFAULT_AUDIO_SINK@ 1 && hyprlock";
       };
 
       listener = [
         {
           timeout = 900;
-          on-timeout = "hyprlock";
+          on-timeout = "wpctl set-mute @DEFAULT_AUDIO_SINK@ 1 && hyprlock";
         }
         {
           timeout = 1200;
