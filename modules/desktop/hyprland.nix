@@ -20,7 +20,6 @@ in {
         ];
       };
       environment.systemPackages = [
-        ashell
         nemo
         blueman
         networkmanagerapplet
@@ -44,6 +43,7 @@ in {
         dconf
       ];
       services.gnome.gnome-keyring.enable = true;
+      security.pam.services.login.enableGnomeKeyring = true;
       security.pam.services.gdm.enableGnomeKeyring = true;
       services.logind.settings.Login = {
         HandlePowerKey = "ignore";
@@ -59,7 +59,6 @@ in {
         ];
         extraConfig = ''
           exec-once = waytrogen --restore
-          exec-once = ashell --config-path /etc/nixos/config/hyprland/ashell/config.toml
           exec-once = swaync
           exec-once = iio-hyprland
           source = /etc/nixos/config/hyprland/extra.conf
