@@ -41,6 +41,7 @@ in {
         libsecret
         gsettings-desktop-schemas
         dconf
+        (pkgs.callPackage (import ../../pkgs/clipvault) { })
       ];
       services.gnome.gnome-keyring.enable = true;
       security.pam.services.login.enableGnomeKeyring = true;
@@ -60,6 +61,8 @@ in {
         extraConfig = ''
           exec-once = waytrogen --restore
           exec-once = swaync
+          exec-once = wl-paste --watch clipvault store --ignore-pattern '^<meta http-equiv='
+          exec-once = wl-paste --type image --watch clipvault store
           exec-once = iio-hyprland
           source = /etc/nixos/config/hyprland/extra.conf
         '';
