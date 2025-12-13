@@ -244,6 +244,8 @@
     Service.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
     Install.WantedBy = [ "default.target" ];
   };
+  services.gnome-keyring.enable = true;
+  home.packages = [ pkgs.gcr ];
   programs.hyprlock.enable = true;
   services.swayidle = {
     enable = false;
@@ -266,6 +268,31 @@
       event = "before-sleep";
       command = "hyprlock";
     }];
+  };
+  programs.hyprpanel = {
+    enable = true;
+    settings = {
+      theme.font.size = "0.8rem";
+      theme.font.name = "MonaspiceKr Nerd Font Propo";
+      theme.font.label = "MonaspiceKr Nerd Font Propo Medium";
+      bar.launcher.icon = "";
+      menus.dashboard.powermenu.avatar.image =
+        "/home/luca/Pictures/profile.jpg";
+      menus.dashboard.shortcuts.left.shortcut1.icon = "";
+      menus.dashboard.shortcuts.left.shortcut1.command = "app.zen_browser.zen";
+      menus.dashboard.shortcuts.left.shortcut1.tooltip = "Zen";
+      menus.dashboard.shortcuts.left.shortcut2.icon = "󰄛";
+      menus.dashboard.shortcuts.left.shortcut2.command = "kitty";
+      menus.dashboard.shortcuts.left.shortcut2.tooltip = "Kitty";
+      menus.dashboard.shortcuts.left.shortcut3.command =
+        "com.github.xournalpp.xournalpp";
+      menus.dashboard.shortcuts.left.shortcut3.icon = "";
+      menus.dashboard.shortcuts.left.shortcut3.tooltip = "Xournal++";
+      menus.clock.weather.location = "Berlin";
+      menus.clock.weather.unit = "metric";
+      menus.clock.time.military = true;
+      menus.clock.time.hideSeconds = true;
+    };
   };
   services.hypridle = {
     enable = true;
