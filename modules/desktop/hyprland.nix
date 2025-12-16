@@ -45,7 +45,8 @@ in {
       ];
       services.gnome.gnome-keyring.enable = true;
       security.pam.services.login.enableGnomeKeyring = true;
-      security.pam.services.gdm.enableGnomeKeyring = true;
+      security.pam.services.greetd.enableGnomeKeyring = true;
+      security.pam.services.greetd-password.enableGnomeKeyring = true;
       services.logind.settings.Login = {
         HandlePowerKey = "ignore";
         HandlePowerKeyLongPress = "suspend-then-hibernate";
@@ -72,9 +73,13 @@ in {
       };
       programs.iio-hyprland.enable = true;
       programs.dconf.enable = true;
-      services.dbus.packages = [ pkgs.dconf ];
+      services.dbus.packages = [ pkgs.dconf pkgs.gnome-keyring ];
 
       services.xserver.updateDbusEnvironment = true;
+      services.xserver.displayManager.sessionCommands = ''
+        eval $(gnome-keyring-daemon --start --daemonize --components=ssh,secrets)
+        export SSH_AUTH_SOCK
+      '';
       services.upower.enable = true;
       security.pam.services.hyprlock = { };
       # xdg.portal = {
