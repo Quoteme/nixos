@@ -132,7 +132,7 @@
       nil
       nixd
       nixfmt-classic
-      poppler_utils
+      poppler-utils
       tectonic
       tree-sitter
     ];

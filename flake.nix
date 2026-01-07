@@ -7,14 +7,17 @@
     home-manager.url = "github:nix-community/home-manager";
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nixd.url = "github:nix-community/nixd";
     nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nur.url = "github:nix-community/NUR";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     xremap-flake.url =
       "github:xremap/nix-flake/1924f2dc1a7c219b5323050a7fb27920e3a225d4";
     hyprland.url = "github:hyprwm/Hyprland";
@@ -37,7 +40,6 @@
           # ┗━╸┗━┛╹ ╹╹  ╹┗━┛┗━┛╹┗╸╹ ╹ ╹ ╹┗━┛╹ ╹╹╹ ╹╹╹ ╹
           ({ config, lib, options, pkgs, nixpkgs, ... }@inputs: {
             nixpkgs.overlays = [
-              attrs.nur.overlay
               (final: prev: {
                 stable = import attrs.nixpkgs-stable {
                   inherit system;
