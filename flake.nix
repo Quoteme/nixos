@@ -196,9 +196,6 @@
                 enableSSHSupport = true;
               };
 
-              # Android
-              adb.enable = true;
-
               # Other
               dconf.enable = true;
 
