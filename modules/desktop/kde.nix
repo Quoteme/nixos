@@ -16,7 +16,6 @@ in {
     # services.xserver.displayManager.lightdm.enable = true;
     # services.xserver.displayManager.defaultSession = "plasmawayland";
     # services.xserver.displayManager.setupCommands = ''
-    #   supergfxctl -m Integrated
     # '';
     services.desktopManager.plasma6.enable = true;
     xdg.portal.enable = true;
