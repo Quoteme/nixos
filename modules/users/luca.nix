@@ -49,7 +49,6 @@ in {
         typst
         pandoc
         quarto
-        poppler_utils
         texlive.combined.scheme-full
         # Rust
         # cargo
