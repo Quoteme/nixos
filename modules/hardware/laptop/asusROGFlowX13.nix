@@ -46,20 +46,6 @@
       boot.initrd.kernelModules = [ "kvm-amd" "amdgpu" ];
       programs.corectrl.enable = true;
       services.thermald.enable = true;
-      # supergfxd
-      services.supergfxd = {
-        enable = true;
-        settings = {
-          mode = "Integrated";
-          vfio_enable = false;
-          vfio_save = false;
-          always_reboot = false;
-          no_logind = false;
-          logout_timeout_s = 20;
-          hotplug_type = "Asus";
-        };
-      };
-      systemd.services.supergfxd.path = [ pkgs.kmod pkgs.pciutils ];
       # NVIDIA settings
       hardware = {
         nvidia = {
@@ -177,11 +163,5 @@
       # '';
       # Ensure power management is properly handled
       powerManagement = { enable = true; };
-      specialisation = {
-        hybrid.configuration = {
-          services.supergfxd = { settings = { mode = lib.mkForce "Hybrid"; }; };
-        };
-      };
-
     };
 }
