@@ -158,6 +158,10 @@
     plugins = with pkgs.vimPlugins; [ neotest-haskell image-nvim ];
     vimAlias = true;
     vimdiffAlias = true;
+    initLua = # lua
+      ''
+        require("config.lazy")
+      '';
   };
   programs.nushell = {
     enable = false;
