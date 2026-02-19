@@ -1,4 +1,8 @@
 { config, pkgs, attrs, ... }: {
+  home.sessionVariables = {
+    SSH_AUTH_SOCK =
+      "$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock";
+  };
   home.file.".ghci".text = ''
     import Data.Function
     :set prompt "\ESC[1;34m%s\n\ESC[0;34mλ> \ESC[m"
