@@ -48,6 +48,7 @@ in {
       eza
       # [10 Rust CLI tools for 2022](https://www.youtube.com/watch?v=haitmoSyTls)
       ripgrep
+      ripdrag
       delta
       kondo
       dust
@@ -65,7 +66,6 @@ in {
       btop
       nvimpager
       kitty
-      ghostty
       # networkmanager_dmenu
       openvpn
       networkmanager-openvpn
@@ -84,6 +84,11 @@ in {
         export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
         exec ${pkgs.python3}/bin/python "$@"
       '')
+      (pkgs.writeShellScriptBin "darkmode-toggle" # bash
+        ''
+          #!/usr/bin/env bash
+          ${pkgs.dconf}/bin/dconf read /org/gnome/desktop/interface/color-scheme | grep -q 'prefer-dark' && ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'default'" || ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+        '')
     ];
   };
 }

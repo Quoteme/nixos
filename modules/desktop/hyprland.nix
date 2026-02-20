@@ -20,7 +20,6 @@ in {
         ];
       };
       environment.systemPackages = [
-        nemo
         blueman
         networkmanagerapplet
         cliphist
