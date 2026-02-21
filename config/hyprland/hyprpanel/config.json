@@ -55,5 +55,11 @@
       "name": "MonaspiceKr Nerd Font Propo",
       "size": "0.8rem"
     }
-  }
+  },
+  "bar.clock.format": "%a %b %d  %H:%M:%S",
+  "bar.workspaces.showWsIcons": true,
+  "bar.workspaces.showApplicationIcons": true,
+  "bar.customModules.storage.paths": [
+    "/"
+  ]
 }
