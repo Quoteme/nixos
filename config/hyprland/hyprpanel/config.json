@@ -1,0 +1,59 @@
+{
+  "bar": {
+    "customModules": {
+      "hypridle": {
+        "isActiveCommand": "systemctl --user status hypridle.service | grep -q 'Active: active (running)' && echo 'yes' || echo 'no'",
+        "startCommand": "systemctl --user start hypridle.service",
+        "stopCommand": "systemctl --user stop hypridle.service"
+      }
+    },
+    "launcher": {
+      "icon": ""
+    }
+  },
+  "menus": {
+    "clock": {
+      "time": {
+        "hideSeconds": true,
+        "military": true
+      },
+      "weather": {
+        "location": "Berlin",
+        "unit": "metric"
+      }
+    },
+    "dashboard": {
+      "powermenu": {
+        "avatar": {
+          "image": "/home/luca/Pictures/profile.jpg"
+        }
+      },
+      "shortcuts": {
+        "left": {
+          "shortcut1": {
+            "command": "app.zen_browser.zen",
+            "icon": "",
+            "tooltip": "Zen"
+          },
+          "shortcut2": {
+            "command": "kitty",
+            "icon": "󰄛",
+            "tooltip": "Kitty"
+          },
+          "shortcut3": {
+            "command": "com.github.xournalpp.xournalpp",
+            "icon": "",
+            "tooltip": "Xournal++"
+          }
+        }
+      }
+    }
+  },
+  "theme": {
+    "font": {
+      "label": "MonaspiceKr Nerd Font Propo Medium",
+      "name": "MonaspiceKr Nerd Font Propo",
+      "size": "0.8rem"
+    }
+  }
+}

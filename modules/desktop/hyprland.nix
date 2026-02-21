@@ -40,8 +40,19 @@ in {
         libsecret
         gsettings-desktop-schemas
         dconf
+        hyprpanel
         (pkgs.callPackage (import ../../pkgs/clipvault) { })
       ];
+      system.userActivationScripts.hyprland = {
+        text = ''
+          mkdir -p "$HOME/.config/hyprpanel/"
+          mkdir -p "$HOME/.config/hypr/"
+          ln -sfn /etc/nixos/config/hyprland/hyprpanel/config.json "$HOME/.config/hyprpanel/config.json"
+          ln -sfn /etc/nixos/config/hyprland/hypridle/hypridle.conf "$HOME/.config/hypr/hypridle.conf"
+        '';
+        deps = [ ];
+      };
+      programs.hyprlock.enable = true;
       services.gnome.gnome-keyring.enable = true;
       security.pam.services.login.enableGnomeKeyring = true;
       security.pam.services.greetd.enableGnomeKeyring = true;
@@ -50,6 +61,7 @@ in {
         HandlePowerKey = "ignore";
         HandlePowerKeyLongPress = "suspend-then-hibernate";
       };
+      services.hypridle.enable = true;
       programs.hyprland = {
         # Install the packages from nixpkgs
         #
@@ -64,6 +76,7 @@ in {
           exec-once = wl-paste --watch clipvault store --ignore-pattern '^<meta http-equiv='
           exec-once = wl-paste --type image --watch clipvault store
           exec-once = iio-hyprland
+          exec-once = hyprpanel
           source = /etc/nixos/config/hyprland/extra.conf
         '';
         # Whether to enable XWayland

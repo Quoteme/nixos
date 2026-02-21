@@ -1,4 +1,4 @@
-{ config, pkgs, attrs, ... }: {
+{ config, pkgs, lib, ... }: {
   home.sessionVariables = {
     SSH_AUTH_SOCK =
       "$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock";
@@ -254,7 +254,6 @@
   };
   services.gnome-keyring.enable = true;
   home.packages = [ pkgs.gcr ];
-  programs.hyprlock.enable = true;
   services.swayidle = {
     enable = false;
     timeouts = [
@@ -276,53 +275,6 @@
       event = "before-sleep";
       command = "hyprlock";
     }];
-  };
-  programs.hyprpanel = {
-    enable = true;
-    settings = {
-      theme.font.size = "0.8rem";
-      theme.font.name = "MonaspiceKr Nerd Font Propo";
-      theme.font.label = "MonaspiceKr Nerd Font Propo Medium";
-      bar.launcher.icon = "";
-      menus.dashboard.powermenu.avatar.image =
-        "/home/luca/Pictures/profile.jpg";
-      menus.dashboard.shortcuts.left.shortcut1.icon = "";
-      menus.dashboard.shortcuts.left.shortcut1.command = "app.zen_browser.zen";
-      menus.dashboard.shortcuts.left.shortcut1.tooltip = "Zen";
-      menus.dashboard.shortcuts.left.shortcut2.icon = "󰄛";
-      menus.dashboard.shortcuts.left.shortcut2.command = "kitty";
-      menus.dashboard.shortcuts.left.shortcut2.tooltip = "Kitty";
-      menus.dashboard.shortcuts.left.shortcut3.command =
-        "com.github.xournalpp.xournalpp";
-      menus.dashboard.shortcuts.left.shortcut3.icon = "";
-      menus.dashboard.shortcuts.left.shortcut3.tooltip = "Xournal++";
-      menus.clock.weather.location = "Berlin";
-      menus.clock.weather.unit = "metric";
-      menus.clock.time.military = true;
-      menus.clock.time.hideSeconds = true;
-    };
-  };
-  services.hypridle = {
-    enable = true;
-    settings = {
-      general = {
-        after_sleep_cmd = "hyprctl dispatch dpms on";
-        ignore_dbus_inhibit = false;
-        lock_cmd = "wpctl set-mute @DEFAULT_AUDIO_SINK@ 1 && hyprlock";
-      };
-
-      listener = [
-        {
-          timeout = 900;
-          on-timeout = "wpctl set-mute @DEFAULT_AUDIO_SINK@ 1 && hyprlock";
-        }
-        {
-          timeout = 1200;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
-        }
-      ];
-    };
   };
   services.batsignal = { enable = true; };
 
