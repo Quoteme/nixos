@@ -22,6 +22,10 @@
     xremap-flake.url =
       "github:xremap/nix-flake/1924f2dc1a7c219b5323050a7fb27920e3a225d4";
     hyprland.url = "github:hyprwm/Hyprland";
+    hyprgrass = {
+      url = "github:horriblename/hyprgrass";
+      inputs.hyprland.follows = "hyprland"; # IMPORTANT
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, nix-index-database, lanzaboote
@@ -65,7 +69,10 @@
               ./modules/desktop/cosmic.nix
               ./modules/desktop/kde.nix
               ./modules/desktop/sway.nix
-              ./modules/desktop/hyprland.nix
+              (import ./modules/desktop/hyprland.nix {
+                plugins = [ attrs.hyprgrass.packages.${pkgs.system}.default ];
+                inherit config lib options pkgs inputs;
+              })
               ./modules/environment/systempackages.nix
               ./modules/environment/user_shell_nushell.nix
               ./modules/fonts.nix
