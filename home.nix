@@ -120,6 +120,7 @@
     enable = true;
     extraLuaPackages = luaPkgs: with luaPkgs; [ luarocks magick jsregexp ];
     extraPackages = with pkgs; [
+      statix
       inotify-tools
       clang
       ghostscript
@@ -136,7 +137,7 @@
       nginx-language-server
       nil
       nixd
-      nixfmt-classic
+      nixfmt
       poppler-utils
       tectonic
       tree-sitter
