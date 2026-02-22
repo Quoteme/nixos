@@ -119,5 +119,7 @@
     }
   },
   "menus.volume.raiseMaximumVolume": true,
-  "theme.matugen": false
+  "theme.matugen": true,
+  "wallpaper.image": "/home/luca/Pictures/geometrization_conjecture.jpeg",
+  "theme.matugen_settings.mode": "dark"
 }

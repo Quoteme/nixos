@@ -13,6 +13,7 @@
   home.file.".ipython/profile_default/ipython_config.py".text = ''
     c.TerminalInteractiveShell.editing_mode = 'vi'
   '';
+  home.packages = [ pkgs.gcr ];
   home.shellAliases = {
     "..." = "cd ../..";
     cd = "z";
@@ -253,31 +254,7 @@
     Install.WantedBy = [ "default.target" ];
   };
   services.gnome-keyring.enable = true;
-  home.packages = [ pkgs.gcr ];
-  services.swayidle = {
-    enable = false;
-    timeouts = [
-      {
-        timeout = 120;
-        command = "hyprlock";
-      }
-      {
-        timeout = 400;
-        command = "hyprctl dispatch dpms off";
-      }
-      {
-        timeout = 12000;
-        command = "systemctl suspend";
-        resumeCommand = "hyprctl dispatch dpms on";
-      }
-    ];
-    events = [{
-      event = "before-sleep";
-      command = "hyprlock";
-    }];
-  };
   services.batsignal = { enable = true; };
-
   gtk = {
     enable = true;
 

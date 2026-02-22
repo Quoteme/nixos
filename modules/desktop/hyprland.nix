@@ -63,8 +63,6 @@ in {
       };
       services.hypridle.enable = true;
       programs.hyprland = {
-        # Install the packages from nixpkgs
-        #
         enable = true;
         plugins = [
           pkgs.stable.hyprlandPlugins.hyprgrass
