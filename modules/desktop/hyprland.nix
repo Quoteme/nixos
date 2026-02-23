@@ -1,4 +1,4 @@
-{ config, options, lib, pkgs, ... }@inputs:
+{ config, options, lib, pkgs, plugins, ... }@inputs:
 let
   inherit (builtins) pathExists readFile;
   inherit (lib.modules) mkIf;
@@ -64,10 +64,7 @@ in {
       services.hypridle.enable = true;
       programs.hyprland = {
         enable = true;
-        plugins = [
-          pkgs.stable.hyprlandPlugins.hyprgrass
-          pkgs.stable.hyprlandPlugins.hyprspace
-        ];
+        plugins = plugins ++ [ pkgs.stable.hyprlandPlugins.hyprspace ];
         extraConfig = ''
           exec-once = waytrogen --restore
           exec-once = swaync
@@ -75,6 +72,7 @@ in {
           exec-once = wl-paste --type image --watch clipvault store
           exec-once = iio-hyprland
           exec-once = hyprpanel
+          exec-once = com.bitwarden.desktop
           source = /etc/nixos/config/hyprland/extra.conf
         '';
         # Whether to enable XWayland
@@ -92,22 +90,5 @@ in {
       '';
       services.upower.enable = true;
       security.pam.services.hyprlock = { };
-      # xdg.portal = {
-      #   enable = true;
-      #   wlr.enable = true;
-      #   extraPortals = [
-      #     xdg-desktop-portal-wlr
-      #     xdg-desktop-portal-gtk
-      #     xdg-desktop-portal-hyprland
-      #   ];
-      #   configPackages = [ gnome-session ];
-      #   config = {
-      #     common = {
-      #       default = [ "gtk" ];
-      #       "org.freedesktop.impl.portal.Settings" = "gtk";
-      #     };
-      #     hyprland = { default = [ "hyprland" "gtk" "wlr" ]; };
-      #   };
-      # };
     };
 }
