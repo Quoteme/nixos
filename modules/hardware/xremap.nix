@@ -39,6 +39,11 @@
         alone = "KEY_FINANCE";
         alone_timeout_millis = 500;
       };
+      "KEY_LEFTMETA" = {
+        held = "KEY_LEFTMETA";
+        alone = "ALTERASE";
+        alone_timeout_millis = 500;
+      };
     };
   }];
 
