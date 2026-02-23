@@ -262,6 +262,7 @@
                 # "\$ANDROID_SDK_ROOT/platform-tools"
                 "$HOME/.elan/bin"
                 "$HOME/.local/share/npm/bin"
+                "$HOME/.npm/bin"
                 # add rustup and cargo bin paths
                 "$CARGO_HOME/bin"
                 "$RUSTUP_HOME/toolchains/stable-x86_64-unknown-linux-gnu/bin"
