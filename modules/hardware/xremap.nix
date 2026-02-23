@@ -1,73 +1,79 @@
-{ pkgs, config, attrs, ... }: {
+{ attrs, ... }: {
   imports = [ attrs.xremap-flake.nixosModules.default ];
-  services.xremap = {
-    serviceMode = "user";
-    userName = "luca";
+  services = {
+    xremap = {
+      serviceMode = "user";
+      userName = "luca";
+    };
+
+    xremap.config.modmap = [{
+      name = "Better Vim bindings";
+      remap = {
+        # "CAPSLOCK" = {
+        #   held = "KEY_FINANCE";
+        #   alone = "ESC";
+        #   alone_timeout_millis = 500;
+        # };
+        "CAPSLOCK" = "ESC";
+        "FN" = {
+          held = "FN";
+          alone = "KEY_FINANCE";
+          alone_timeout_millis = 500;
+        };
+        "LEFTALT" = {
+          held = "LEFTALT";
+          alone = "KEY_CONNECT";
+          alone_timeout_millis = 500;
+        };
+        "LEFTCTRL" = {
+          held = "LEFTCTRL";
+          alone = "KEY_SPORT";
+          alone_timeout_millis = 500;
+        };
+        "RIGHTCTRL" = {
+          held = "RIGHTCTRL";
+          alone = "KEY_SHOP";
+          alone_timeout_millis = 500;
+        };
+        "RIGHTALT" = {
+          held = "RIGHTALT";
+          alone = "KEY_FINANCE";
+          alone_timeout_millis = 500;
+        };
+        "KEY_LEFTMETA" = {
+          held = "KEY_LEFTMETA";
+          alone = "KEY_HP";
+          alone_timeout_millis = 500;
+        };
+      };
+    }];
+
+    xremap.config.keymap = [{
+      name = "Better Vim bindings";
+      remap = {
+        # slash key "/"
+        "KEY_CONNECT" = "SHIFT-7";
+        # backslash key "\"
+        "KEY_FINANCE" = "RIGHTALT-MINUS";
+        # Open square brace key "["
+        "KEY_SPORT" = "RIGHTALT-8";
+        # Closed square brace key "]"
+        "KEY_SHOP" = "RIGHTALT-9";
+        # Open curly brace key "{"
+        "SHIFT-KEY_CONNECT" = "RIGHTALT-7";
+        # Closed curly brace key "}"
+        "SHIFT-KEY_FINANCE" = "RIGHTALT-0";
+        # Open brace key "("
+        "SHIFT-KEY_HP" = "SHIFT-8";
+        # simpler $
+        "SHIFT-SPACE" = "SHIFT-4";
+        # simpler :
+        "LEFTCTRL-KEY_CONNECT" = "SHIFT-KEY_DOT";
+        # simpler #
+        "LEFTCTRL-KEY_SHOP" = "KEY_102ND";
+        # simplter %
+        "KEY_HP" = "SHIFT-5";
+      };
+    }];
   };
-
-  services.xremap.config.modmap = [{
-    name = "Better Vim bindings";
-    remap = {
-      # "CAPSLOCK" = {
-      #   held = "KEY_FINANCE";
-      #   alone = "ESC";
-      #   alone_timeout_millis = 500;
-      # };
-      "CAPSLOCK" = "ESC";
-      "FN" = {
-        held = "FN";
-        alone = "KEY_FINANCE";
-        alone_timeout_millis = 500;
-      };
-      "LEFTALT" = {
-        held = "LEFTALT";
-        alone = "KEY_CONNECT";
-        alone_timeout_millis = 500;
-      };
-      "LEFTCTRL" = {
-        held = "LEFTCTRL";
-        alone = "KEY_SPORT";
-        alone_timeout_millis = 500;
-      };
-      "RIGHTCTRL" = {
-        held = "RIGHTCTRL";
-        alone = "KEY_SHOP";
-        alone_timeout_millis = 500;
-      };
-      "RIGHTALT" = {
-        held = "RIGHTALT";
-        alone = "KEY_FINANCE";
-        alone_timeout_millis = 500;
-      };
-      "KEY_LEFTMETA" = {
-        held = "KEY_LEFTMETA";
-        alone = "ALTERASE";
-        alone_timeout_millis = 500;
-      };
-    };
-  }];
-
-  services.xremap.config.keymap = [{
-    name = "Better Vim bindings";
-    remap = {
-      # slash key "/"
-      "KEY_CONNECT" = "SHIFT-7";
-      # backslash key "\"
-      "KEY_FINANCE" = "RIGHTALT-MINUS";
-      # Open square brace key "["
-      "KEY_SPORT" = "RIGHTALT-8";
-      # Closed square brace key "]"
-      "KEY_SHOP" = "RIGHTALT-9";
-      # Open curly brace key "{"
-      "SHIFT-KEY_CONNECT" = "RIGHTALT-7";
-      # Closed curly brace key "{"
-      "SHIFT-KEY_FINANCE" = "RIGHTALT-0";
-      # simpler $
-      "SHIFT-SPACE" = "SHIFT-4";
-      # simpler %
-      "LEFTCTRL-KEY_CONNECT" = "SHIFT-5";
-      # simpler #
-      "LEFTCTRL-KEY_SHOP" = "KEY_102ND";
-    };
-  }];
 }
