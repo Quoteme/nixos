@@ -49,7 +49,6 @@
     v = "nvim";
     ":e" = "nvim";
   };
-  home.stateVersion = "22.05";
   programs.atuin = {
     enable = true;
     enableBashIntegration = true;
@@ -284,4 +283,5 @@
     /etc/nixos/config/hyprland/ashell/config.toml;
   xdg.configFile."nushell/completion.nu".source =
     ./config/nushell/completion.nu;
+  home.stateVersion = "26.05";
 }
