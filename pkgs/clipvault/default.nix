@@ -14,6 +14,7 @@ rustPlatform.buildRustPackage rec {
 
   postInstall = ''
     install -Dm755 extras/clipvault_wofi.sh $out/bin/clipvault_wofi.sh
+    install -Dm755 extras/clipvault_rofi.sh $out/bin/clipvault_rofi.sh
   '';
 
   # Tests write to a logs dir; sandbox blocks it --> disable.
