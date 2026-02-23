@@ -30,7 +30,7 @@ in {
         swaynotificationcenter
         swipe-guess
         waytrogen
-        wofi
+        rofi
         wtype
         wvkbd
         grim
@@ -47,8 +47,11 @@ in {
         text = ''
           mkdir -p "$HOME/.config/hyprpanel/"
           mkdir -p "$HOME/.config/hypr/"
+          mkdir -p "$HOME/.config/rofi/"
           ln -sfn /etc/nixos/config/hyprland/hyprpanel/config.json "$HOME/.config/hyprpanel/config.json"
           ln -sfn /etc/nixos/config/hyprland/hypridle/hypridle.conf "$HOME/.config/hypr/hypridle.conf"
+          ln -sfn /etc/nixos/config/rofi/config.rasi "$HOME/.config/rofi/config.rasi"
+          ln -sfn /etc/nixos/config/rofi/theme.rasi "$HOME/.config/rofi/theme.rasi"
         '';
         deps = [ ];
       };

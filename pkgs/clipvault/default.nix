@@ -12,8 +12,13 @@ rustPlatform.buildRustPackage rec {
 
   cargoHash = "sha256-Mm0att6zu9Yknoa9NBsdrA8lz1o0Q6FzWS0UU+1f/f0=";
 
+  nativeBuildInputs = [ makeWrapper ];
+
   postInstall = ''
     install -Dm755 extras/clipvault_wofi.sh $out/bin/clipvault_wofi.sh
+    install -Dm755 extras/clipvault_rofi.sh $out/bin/clipvault_rofi.sh
+    wrapProgram $out/bin/clipvault_rofi.sh \
+      --prefix PATH : ${lib.makeBinPath [ libnotify ]}
   '';
 
   # Tests write to a logs dir; sandbox blocks it --> disable.

@@ -1,0 +1,31 @@
+/**
+ * Rofi configuration
+ * Location: ~/.config/rofi/config.rasi (symlinked from /etc/nixos/config/rofi/config.rasi)
+ */
+
+configuration {
+    /* General */
+    modi:            "drun,run,window";
+    show-icons:      true;
+    icon-theme:      "Papirus-Dark";
+    terminal:        "kitty";
+    ssh-command:     "{terminal} -e \"{ssh-client} {host} [-p {port}]\"";
+    drun-display-format: "{name}";
+
+    /* Matching */
+    matching:        "fuzzy";
+    case-sensitive:  false;
+    sort:            true;
+    sorting-method:  "fzf";
+
+    /* Display */
+    display-drun:    " Apps";
+    display-run:     " Run";
+    display-window:  " Windows";
+
+    /* Behaviour */
+    click-to-exit:   true;
+    steal-focus:     false;
+}
+
+@theme "~/.config/rofi/theme.rasi"
