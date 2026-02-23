@@ -37,6 +37,7 @@ in {
         slurp
         swappy
         jq
+        libnotify
         libsecret
         gsettings-desktop-schemas
         dconf
