@@ -13,6 +13,7 @@ in {
   config = with pkgs;
     mkIf cfg.enable {
       environment.systemPackages = [
+        hyprdim
         libnotify
         blueman
         networkmanagerapplet
@@ -58,6 +59,7 @@ in {
         enable = true;
         plugins = plugins;
         extraConfig = ''
+          exec-once = hyprdim
           exec-once = waytrogen --restore
           exec-once = swaync
           exec-once = wl-paste --watch clipvault store --ignore-pattern '^<meta http-equiv='
