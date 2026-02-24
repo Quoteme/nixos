@@ -22,13 +22,13 @@
     };
     xremap-flake.url =
       "github:xremap/nix-flake/1924f2dc1a7c219b5323050a7fb27920e3a225d4";
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland?submodules=1&ref=v0.49.0";
     hyprgrass = {
       url = "github:horriblename/hyprgrass";
       inputs.hyprland.follows = "hyprland";
     };
     hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl0.53.0";
+      url = "github:outfoxxed/hy3?ref=hl0.49.0";
       inputs.hyprland.follows = "hyprland";
     };
     hyprtasking = {
@@ -85,11 +85,9 @@
               ./modules/desktop/sway.nix
               (import ./modules/desktop/hyprland.nix {
                 plugins = [
-                  attrs.hyprgrass.packages.${pkgs.system}.default
+                  # attrs.hyprgrass.packages.${pkgs.system}.default
                   # attrs.hyprspace.packages.${pkgs.system}.default
-                  pkgs.stable.hyprlandPlugins.hyprspace
-                  # pkgs.hyprlandPlugins.hy3
-                  # attrs.hy3.packages.${pkgs.system}.hy3
+                  attrs.hy3.packages.${pkgs.system}.hy3
                   # attrs.hyprtasking.packages.${pkgs.system}.hyprtasking
                 ];
                 inherit config lib options pkgs inputs;

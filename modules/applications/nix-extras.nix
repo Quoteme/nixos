@@ -33,6 +33,7 @@
       # };
       settings = {
         auto-optimise-store = true;
+        trusted-users = [ "root" "luca" ];
         substituters = [
           "https://nix-community.cachix.org/"
           "https://gvolpe-nixos.cachix.org"
