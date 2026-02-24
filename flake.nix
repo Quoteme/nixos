@@ -15,6 +15,7 @@
     nixd.url = "github:nix-community/nixd";
     nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,13 +42,14 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nix-index-database, lanzaboote
-    , xremap-flake, nix-gl-host, ... }@attrs:
+    , xremap-flake, nix-gl-host, determinate, ... }@attrs:
     let system = "x86_64-linux";
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = attrs;
         modules = [
+          determinate.nixosModules.default
           attrs.hyprland.nixosModules.default
           attrs.nur.modules.nixos.default
           lanzaboote.nixosModules.lanzaboote
