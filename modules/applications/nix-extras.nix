@@ -10,7 +10,6 @@
 
   config = lib.modules.mkIf config.modules.applications.nix-extras.enable {
     nix = {
-      package = pkgs.nix;
       extraOptions = ''
         experimental-features = nix-command flakes
         warn-dirty = false
