@@ -56,7 +56,7 @@ in {
       };
       programs.hyprland = {
         enable = true;
-        plugins = plugins ++ [ pkgs.stable.hyprlandPlugins.hyprspace ];
+        plugins = plugins;
         extraConfig = ''
           exec-once = waytrogen --restore
           exec-once = swaync
