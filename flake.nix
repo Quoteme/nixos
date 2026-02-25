@@ -88,7 +88,7 @@
                   attrs.hyprgrass.packages.${pkgs.system}.default
                   # attrs.hyprspace.packages.${pkgs.system}.default
                   attrs.hy3.packages.${pkgs.system}.hy3
-                  # attrs.hyprtasking.packages.${pkgs.system}.hyprtasking
+                  attrs.hyprtasking.packages.${pkgs.system}.hyprtasking
                 ];
                 inherit config lib options pkgs inputs;
               })
