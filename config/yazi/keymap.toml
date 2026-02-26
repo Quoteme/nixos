@@ -1,0 +1,38 @@
+[[mgr.prepend_keymap]]
+on = "y"
+run = [
+  'shell -- for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list',
+  "yank",
+]
+
+# drag and drop support
+[[mgr.prepend_keymap]]
+on = "<C-n>"
+run = "shell -- ripdrag %s -x 2>/dev/null &"
+
+# ==== bookmarks ====
+
+[[mgr.prepend_keymap]]
+on = ["g", "d"]
+run = "cd ~/Downloads/"
+desc = "Cd to ~/Downloads"
+
+[[mgr.prepend_keymap]]
+on = ["g", "v"]
+run = "cd ~/Dokumente/dev"
+desc = "Cd to ~/Dokumente/dev"
+
+[[mgr.prepend_keymap]]
+on = ["g", "b"]
+run = "cd ~/Dokumente/dev/krimskrams/blender/"
+desc = "Cd to blender folder"
+
+[[mgr.prepend_keymap]]
+on = ["g", "m"]
+run = "cd ~/Dokumente/dev/uni/masterarbeit/"
+desc = "Cd to masterarbeit folder"
+
+[[mgr.prepend_keymap]]
+on = ["g", "p"]
+run = "cd ~/Pictures/"
+desc = "Cd to ~/Pictures"

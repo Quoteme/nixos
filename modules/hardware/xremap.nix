@@ -3,14 +3,13 @@
   services = {
     xremap = {
       serviceMode = "user";
+      withHypr = true;
       userName = "luca";
     };
 
     xremap.config.modmap = [{
       name = "Better Vim bindings";
-      application = {
-        "not" = ["blender"];
-      };
+      application = { "not" = [ "blender" ]; };
       remap = {
         # "CAPSLOCK" = {
         #   held = "KEY_FINANCE";

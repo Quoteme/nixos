@@ -14,6 +14,10 @@
     c.TerminalInteractiveShell.editing_mode = 'vi'
   '';
   home.packages = [ pkgs.gcr ];
+  home.shell.enableBashIntegration = true;
+  home.shell.enableZshIntegration = true;
+  home.shell.enableFishIntegration = true;
+  home.shell.enableNushellIntegration = true;
   home.shellAliases = {
     "..." = "cd ../..";
     cd = "z";
@@ -49,13 +53,7 @@
     v = "nvim";
     ":e" = "nvim";
   };
-  programs.atuin = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableFishIntegration = true;
-    enableNushellIntegration = true;
-  };
+  programs.atuin = { enable = true; };
   programs.atuin.settings = { keymap_mode = "auto"; };
   programs.bash = {
     enable = true;
@@ -70,12 +68,7 @@
       EDITOR = "nvim";
     };
   };
-  programs.carapace = {
-    enable = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
-    enableFishIntegration = true;
-  };
+  programs.carapace = { enable = true; };
   programs.direnv = {
     enable = true;
     enableBashIntegration = false;
@@ -184,10 +177,6 @@
   };
   programs.starship = {
     enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableFishIntegration = true;
-    enableNushellIntegration = true;
     settings = {
       add_newline = true;
       character = {
@@ -196,20 +185,14 @@
       };
     };
   };
-  programs.yazi = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableFishIntegration = true;
-    enableNushellIntegration = true;
+  programs.yazi = { enable = true; };
+  xdg.configFile = {
+    "yazi/keymap.toml".source =
+      config.lib.file.mkOutOfStoreSymlink /etc/nixos/config/yazi/keymap.toml;
+    "yazi/yazi.toml".source =
+      config.lib.file.mkOutOfStoreSymlink /etc/nixos/config/yazi/yazi.toml;
   };
-  programs.zoxide = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableFishIntegration = true;
-    enableNushellIntegration = true;
-  };
+  programs.zoxide = { enable = true; };
   programs.zsh = {
     enable = false;
     initExtra = ''

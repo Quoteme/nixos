@@ -39,6 +39,10 @@
       url = "github:KZDKM/Hyprspace";
       inputs.hyprland.follows = "hyprland";
     };
+    hyprfocus = {
+      url = "github:pyt0xic/hyprfocus";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, nix-index-database, lanzaboote
@@ -89,6 +93,7 @@
                   # attrs.hyprspace.packages.${pkgs.system}.default
                   attrs.hy3.packages.${pkgs.system}.hy3
                   attrs.hyprtasking.packages.${pkgs.system}.hyprtasking
+                  # attrs.hyprfocus.packages.${pkgs.system}.default
                 ];
                 inherit config lib options pkgs inputs;
               })
