@@ -169,7 +169,15 @@
             location.provider = "geoclue2";
 
             # Select internationalisation properties.
-            i18n.defaultLocale = "de_DE.UTF-8";
+            i18n.defaultLocale = "en_US.UTF-8";
+            i18n.supportedLocales = [
+              "en_US.UTF-8/UTF-8"
+              "de_DE.UTF-8/UTF-8"
+            ];
+            # To launch an app in German:
+            #   LANG=de_DE.UTF-8 some-app
+            # To switch the whole session temporarily:
+            #   export LANG=de_DE.UTF-8
             console = {
               font = "Lat2-Terminus16";
               useXkbConfig = true;
