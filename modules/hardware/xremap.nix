@@ -3,7 +3,7 @@
   services = {
     xremap = {
       serviceMode = "user";
-      withHypr = true;
+      # withHypr = true;
       userName = "luca";
     };
 
