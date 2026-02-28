@@ -14,7 +14,7 @@ in {
     environment.systemPackages = with pkgs; [
       vscode-fhs
       nixd
-      nixfmt-classic
+      nixfmt
       pkgs.platformio
       pkgs.avrdude
     ];
