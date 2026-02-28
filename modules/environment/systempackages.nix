@@ -28,7 +28,6 @@ in {
           pipx
         ]);
     in with pkgs; [
-      zathura
       distrobox
       devbox
       lm_sensors
