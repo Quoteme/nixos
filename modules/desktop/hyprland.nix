@@ -1,4 +1,4 @@
-{ config, options, lib, pkgs, plugins, ... }@inputs:
+{ config, options, lib, pkgs, hyprlandPlugins, ... }@inputs:
 let
   inherit (builtins) pathExists readFile;
   inherit (lib.modules) mkIf;
@@ -57,7 +57,7 @@ in {
       };
       programs.hyprland = {
         enable = true;
-        plugins = plugins;
+        plugins = hyprlandPlugins;
         extraConfig = ''
           exec-once = hyprdim
           exec-once = waytrogen --restore

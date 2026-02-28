@@ -47,78 +47,50 @@
 
   outputs = { self, nixpkgs, home-manager, nix-index-database, lanzaboote
     , xremap-flake, nix-gl-host, determinate, ... }@attrs:
-    let system = "x86_64-linux";
+    let
+      system = "x86_64-linux";
+      lib = nixpkgs.lib;
+      # Recursively collect every .nix file under ./modules
+      allModules = lib.filter (p: lib.hasSuffix ".nix" (toString p))
+        (lib.filesystem.listFilesRecursive ./modules);
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = attrs;
+        inherit system;
+        # All flake inputs + derived values are available as module arguments
+        specialArgs = attrs // {
+          inherit attrs;
+          # hyprland plugins passed as a single 'hyprlandPlugins' arg consumed by hyprland.nix
+          hyprlandPlugins = [
+            attrs.hyprgrass.packages.${system}.default
+            # attrs.hyprspace.packages.${system}.default
+            attrs.hy3.packages.${system}.hy3
+            attrs.hyprtasking.packages.${system}.hyprtasking
+            # attrs.hyprfocus.packages.${system}.default
+          ];
+        };
         modules = [
           determinate.nixosModules.default
           attrs.hyprland.nixosModules.default
           attrs.nur.modules.nixos.default
           lanzaboote.nixosModules.lanzaboote
           home-manager.nixosModules.home-manager
+          ./hardware-configuration.nix
+        ] ++ allModules ++ [
           # ┏━╸┏━┓┏┓╻┏━╸╻┏━╸╻ ╻┏━┓┏━┓╺┳╸╻┏━┓┏┓╻ ┏┓╻╻╻ ╻
           # ┃  ┃ ┃┃┗┫┣╸ ┃┃╺┓┃ ┃┣┳┛┣━┫ ┃ ┃┃ ┃┃┗┫ ┃┗┫┃┏╋┛
           # ┗━╸┗━┛╹ ╹╹  ╹┗━┛┗━┛╹┗╸╹ ╹ ╹ ╹┗━┛╹ ╹╹╹ ╹╹╹ ╹
-          ({ config, lib, options, pkgs, nixpkgs, ... }@inputs: {
+          ({ pkgs, nixpkgs-stable, ... }: {
             nixpkgs.overlays = [
               (final: prev: {
-                stable = import attrs.nixpkgs-stable {
+                stable = import nixpkgs-stable {
                   inherit system;
                   config.allowUnfree = true;
                 };
-                nixd-nightly = attrs.nixd.packages.x86_64-linux.nixd;
-                screenrotate = attrs.screenrotate.defaultPackage.x86_64-linux;
+                nixd-nightly = attrs.nixd.packages.${system}.nixd;
+                screenrotate = attrs.screenrotate.defaultPackage.${system};
               })
             ];
             nixpkgs.config.allowUnfree = true;
-            imports = [
-              ./hardware-configuration.nix
-              (import ./modules/applications/nix-extras.nix {
-                nixpkgs = nixpkgs;
-                nixpkgs-stable = inputs.nixpkgs-stable;
-                nur = inputs.nur;
-                inherit config lib options pkgs inputs nix-gl-host;
-              })
-              ./modules/applications/ai/ollama.nix
-              ./modules/applications/editors/vscode-fhs.nix
-              ./modules/applications/gaming/steam.nix
-              ./modules/desktop/cosmic.nix
-              ./modules/desktop/kde.nix
-              ./modules/desktop/sway.nix
-              (import ./modules/desktop/hyprland.nix {
-                plugins = [
-                  attrs.hyprgrass.packages.${pkgs.system}.default
-                  # attrs.hyprspace.packages.${pkgs.system}.default
-                  attrs.hy3.packages.${pkgs.system}.hy3
-                  attrs.hyprtasking.packages.${pkgs.system}.hyprtasking
-                  # attrs.hyprfocus.packages.${pkgs.system}.default
-                ];
-                inherit config lib options pkgs inputs;
-              })
-              ./modules/environment/systempackages.nix
-              ./modules/environment/user_shell_nushell.nix
-              ./modules/fonts.nix
-              ./modules/hardware/laptop/asusROGFlowX13.nix
-              ./modules/hardware/metered_connection.nix
-              ./modules/login_manager/lightdm.nix
-              ./modules/login_manager/greetd.nix
-              ./modules/login_manager/sddm.nix
-              (import ./modules/users/luca.nix {
-                inherit config lib options pkgs attrs;
-              })
-              (import ./modules/hardware/xremap.nix {
-                inherit config lib options pkgs attrs;
-              })
-              ./modules/applications/virtualisation/docker.nix
-              ./modules/applications/virtualisation/virt-manager.nix
-              ./modules/desktop/gnome.nix
-              ./modules/hardware/audio.nix
-              ./modules/hardware/disks.nix
-              ./modules/hardware/keyboard_de.nix
-              ./modules/hardware/printing.nix
-            ];
 
             boot = {
               kernelPackages = pkgs.stable.linuxPackages_latest;
@@ -208,24 +180,11 @@
             modules.hardware.metered_connection.enable = true;
             modules.users.luca.enable = true;
 
-            # Enable OneDrive
-            # services.onedrive = {
-            #   enable = true;
-            #   package = pkgs.onedrive;
-            # };
-            # Enable flatpak
             services.flatpak.enable = true;
             services.packagekit.enable = true;
             xdg.portal.enable = true;
-
-            # Define a user account. Don't forget to set a password with ‘passwd’.
-            # TODO: set passwort using hashed password
             users.users.root.initialHashedPassword = "";
             users.defaultUserShell = pkgs.fish;
-
-            # List packages installed in system profile. To search, run:
-            # $ nix search nixpkgs wget
-            # TODO: move this into another file
 
             programs = {
               # Some programs need SUID wrappers, can be configured further or are
@@ -277,8 +236,6 @@
               # XMONAD_CONFIG_DIR = "/etc/nixos/xmonad";
               # XMONAD_CACHE_DIR = "/etc/nixos/xmonad/.cache";
               # NAUTILUS_4_EXTENSION_DIR = "${config.system.path}/lib/nautilus/extensions-4";
-              MOZ_USE_XINPUT2 = "1";
-              MOZ_ENABLE_WAYLAND = "0";
 
               VISUAL = "nvim";
               EDITOR = "nvim";
@@ -310,11 +267,6 @@
                   virglSupport = true;
                   openGLSupport = true;
                 });
-              };
-              virtualbox.host = {
-                enable = false;
-                package = pkgs.virtualboxWithExtpack;
-                enableExtensionPack = true;
               };
               waydroid.enable = false;
               # lxd.enable = false;
