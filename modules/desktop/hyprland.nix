@@ -1,16 +1,29 @@
-{ config, options, lib, pkgs, hyprlandPlugins, ... }@inputs:
+{
+  config,
+  options,
+  lib,
+  pkgs,
+  hyprlandPlugins,
+  ...
+}@inputs:
 let
   inherit (builtins) pathExists readFile;
   inherit (lib.modules) mkIf;
 
   cfg = config.modules.desktop.hyprland;
-in {
-  options.modules.desktop.hyprland = let
-    inherit (lib.options) mkEnableOption mkOption;
-    inherit (lib.types) nullOr path;
-  in { enable = mkEnableOption "Enable the hyprland window manager"; };
+in
+{
+  options.modules.desktop.hyprland =
+    let
+      inherit (lib.options) mkEnableOption mkOption;
+      inherit (lib.types) nullOr path;
+    in
+    {
+      enable = mkEnableOption "Enable the hyprland window manager";
+    };
 
-  config = with pkgs;
+  config =
+    with pkgs;
     mkIf cfg.enable {
       environment.systemPackages = [
         libnotify
@@ -77,7 +90,10 @@ in {
       security.pam.services.greetd.enableGnomeKeyring = true;
       security.pam.services.hyprlock = { };
       security.pam.services.login.enableGnomeKeyring = true;
-      services.dbus.packages = [ pkgs.dconf pkgs.gnome-keyring ];
+      services.dbus.packages = [
+        pkgs.dconf
+        pkgs.gnome-keyring
+      ];
       services.gnome.gnome-keyring.enable = true;
       services.hypridle.enable = true;
       services.logind.settings.Login = {
