@@ -209,6 +209,7 @@
               modules.hardware.laptop.asus-rog-flow-x13.enable = true;
               modules.hardware.printing.enable = true;
               modules.hardware.metered_connection.enable = true;
+              modules.hardware.mullvad.enable = true;
               modules.users.luca.enable = true;
 
               services.flatpak.enable = true;
