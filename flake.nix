@@ -213,6 +213,10 @@
               modules.users.luca.enable = true;
 
               services.flatpak.enable = true;
+              programs.appimage = {
+                enable = true;
+                binfmt = true;
+              };
               services.packagekit.enable = true;
               xdg.portal.enable = true;
               users.users.root.initialHashedPassword = "";
@@ -290,7 +294,7 @@
 
               virtualisation = {
                 libvirtd = {
-                  enable = false;
+                  enable = true;
                   qemu.package = (
                     pkgs.stable.qemu_full.override {
                       gtkSupport = true;

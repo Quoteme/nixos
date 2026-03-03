@@ -1,14 +1,26 @@
-{ config, options, lib, pkgs, attrs, ... }@inputs:
+{
+  config,
+  options,
+  lib,
+  pkgs,
+  attrs,
+  ...
+}@inputs:
 let
   inherit (builtins) pathExists readFile;
   inherit (lib.modules) mkIf;
 
   cfg = config.modules.users.luca;
-in {
-  options.modules.users.luca = let
-    inherit (lib.options) mkEnableOption mkOption;
-    inherit (lib.types) nullOr path;
-  in { enable = mkEnableOption "Enable the user 'luca'"; };
+in
+{
+  options.modules.users.luca =
+    let
+      inherit (lib.options) mkEnableOption mkOption;
+      inherit (lib.types) nullOr path;
+    in
+    {
+      enable = mkEnableOption "Enable the user 'luca'";
+    };
 
   config = mkIf cfg.enable {
     programs.fish.enable = true;
@@ -16,8 +28,7 @@ in {
     environment.pathsToLink = [ "/share/zsh" ];
     nix.settings.trusted-users = [ "luca" ];
     users.users.luca = {
-      initialHashedPassword =
-        "$6$W62LDzjtggxhhOiJ$KKM1yuHOrEr3Mz4MSstUGBtlpEF2AHR8bAzFeaqo2l.rrka/phKnzbKbyM5HX955d9et2NnV2fOr9LnDCgB5M1";
+      initialHashedPassword = "$6$W62LDzjtggxhhOiJ$KKM1yuHOrEr3Mz4MSstUGBtlpEF2AHR8bAzFeaqo2l.rrka/phKnzbKbyM5HX955d9et2NnV2fOr9LnDCgB5M1";
       isNormalUser = true;
       extraGroups = [
         "networkmanager"
@@ -39,6 +50,7 @@ in {
         "plugdev"
       ];
       packages = with pkgs; [
+        # socat
         # Video-Editing
         mediainfo
         # Programming
