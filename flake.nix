@@ -42,6 +42,10 @@
       url = "github:pyt0xic/hyprfocus";
       inputs.hyprland.follows = "hyprland";
     };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland"; # Prevents version mismatch.
+    };
   };
 
   outputs =
@@ -72,6 +76,9 @@
           inherit attrs;
           # hyprland plugins passed as a single 'hyprlandPlugins' arg consumed by hyprland.nix
           hyprlandPlugins = [
+            attrs.hyprland-plugins.packages.${system}.hyprbars
+            attrs.hyprland-plugins.packages.${system}.hyprexpo
+            attrs.hyprland-plugins.packages.${system}.hyprfocus
             # attrs.hyprgrass.packages.${system}.default
             # attrs.hyprspace.packages.${system}.default
             # attrs.hy3.packages.${system}.hy3
