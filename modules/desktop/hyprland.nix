@@ -26,18 +26,16 @@ in
     with pkgs;
     mkIf cfg.enable {
       environment.systemPackages = [
+        cliphist
+        wl-clipboard
         libnotify
         blueman
         networkmanagerapplet
-        cliphist
         hypridle
-        hyprlock
         nwg-drawer
         swaybg
-        swaynotificationcenter
         swipe-guess
         waytrogen
-        rofi
         wtype
         wvkbd
         grim
@@ -47,8 +45,7 @@ in
         libsecret
         gsettings-desktop-schemas
         dconf
-        hyprpanel
-        (pkgs.callPackage (import ../../pkgs/clipvault) { })
+        noctalia-shell
       ];
       nix.settings = {
         substituters = [ "https://hyprland.cachix.org" ];
@@ -71,13 +68,11 @@ in
         enable = true;
         plugins = hyprlandPlugins;
         extraConfig = ''
-          exec-once = waytrogen --restore
-          exec-once = swaync
           exec-once = wl-paste --watch clipvault store --ignore-pattern '^<meta http-equiv='
           exec-once = wl-paste --type image --watch clipvault store
           exec-once = iio-hyprland
+          exec-once = noctalia-shell
           exec-once = mullvad-gui
-          exec-once = hyprpanel
           exec-once = com.bitwarden.desktop
           source = /etc/nixos/config/hyprland/extra.conf
         '';
@@ -85,11 +80,9 @@ in
         xwayland.enable = true;
         withUWSM = true;
       };
-      programs.hyprlock.enable = true;
       programs.iio-hyprland.enable = true;
       security.pam.services.greetd-password.enableGnomeKeyring = true;
       security.pam.services.greetd.enableGnomeKeyring = true;
-      security.pam.services.hyprlock = { };
       security.pam.services.login.enableGnomeKeyring = true;
       services.dbus.packages = [
         pkgs.dconf
