@@ -76,6 +76,7 @@ in
           exec-once = wl-paste --watch clipvault store --ignore-pattern '^<meta http-equiv='
           exec-once = wl-paste --type image --watch clipvault store
           exec-once = iio-hyprland
+          exec-once = mullvad-gui
           exec-once = hyprpanel
           exec-once = com.bitwarden.desktop
           source = /etc/nixos/config/hyprland/extra.conf
