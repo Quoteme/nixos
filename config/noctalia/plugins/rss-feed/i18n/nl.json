@@ -1,0 +1,30 @@
+{
+  "settings": {
+    "add": "Toevoegen",
+    "addFeed": "Nieuwe Feed Toevoegen",
+    "feedName": "Feed Naam",
+    "feedUrl": "Feed URL",
+    "feeds": "RSS-feeds",
+    "markOnClick": "Markeren als Gelezen bij Klikken",
+    "markOnClickDesc": "Items automatisch markeren als gelezen bij openen",
+    "maxItems": "Max Items per Feed",
+    "maxItemsDesc": "Maximum aantal items om op te halen per feed",
+    "noFeeds": "Geen feeds geconfigureerd. Voeg er hierboven een toe!",
+    "remove": "Verwijderen",
+    "seconds": "seconden",
+    "showOnlyUnread": "Alleen Ongelezen Tonen",
+    "showOnlyUnreadDesc": "Alleen ongelezen items tonen in het paneel",
+    "title": "RSS-lezer Instellingen",
+    "updateInterval": "Update Interval",
+    "updateIntervalDesc": "Hoe vaak nieuwe items controleren (seconden)"
+  },
+  "widget": {
+    "markAllRead": "Alles markeren als gelezen",
+    "noItems": "Geen items om weer te geven",
+    "timeDays": "%1d geleden",
+    "timeHours": "%1u geleden",
+    "timeMinutes": "%1min geleden",
+    "timeNow": "nu",
+    "title": "RSS-feeds"
+  }
+}

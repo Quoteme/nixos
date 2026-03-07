@@ -1,0 +1,30 @@
+{
+  "settings": {
+    "add": "Zêde bike",
+    "addFeed": "Xwarinek Nû Zêde Bike",
+    "feedName": "Navê Xwarinê",
+    "feedUrl": "URL'ê Xurekî",
+    "feeds": "Xwarinên RSS",
+    "markOnClick": "Bi tikandinê wekî Xwendî nîşan bide",
+    "markOnClickDesc": "Dema ku tişt tên vekirin, bixweber wan wekî xwendî nîşan bike",
+    "maxItems": "Her Feedî de Zêde Tişt",
+    "maxItemsDesc": "Hejmara herî zêde ya tiştên ku ji her feedê werin girtin",
+    "noFeeds": "Tuwalên xurekî nehatine mîhengkirin. Yekî li jor zêde bike!",
+    "remove": "Rakirin",
+    "seconds": "sanîye",
+    "showOnlyUnread": "Tenê Nexwendî Nîşan Bide",
+    "showOnlyUnreadDesc": "Tenê tiştên nehatî xwendin di panelê de nîşan bide",
+    "title": "Mîhengên Xwendevanê Feeda RSS",
+    "updateInterval": "Demê Nûkirinê",
+    "updateIntervalDesc": "Çend caran ji bo tiştên nû kontrol bike (saniye)"
+  },
+  "widget": {
+    "markAllRead": "Hemûyan wekî hatî xwendin nîşan bide",
+    "noItems": "Tiştên ku bên nîşandan tune ne",
+    "timeDays": "%1d berê",
+    "timeHours": "%1 demjimêr berê",
+    "timeMinutes": "%1 deqîqe berê",
+    "timeNow": "niha",
+    "title": "Xwarinên RSS"
+  }
+}

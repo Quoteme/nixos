@@ -1,0 +1,30 @@
+{
+  "settings": {
+    "add": "Dodaj",
+    "addFeed": "Dodaj nowy kanał",
+    "feedName": "Nazwa kanału",
+    "feedUrl": "Adres URL kanału",
+    "feeds": "Kanały RSS",
+    "markOnClick": "Oznacz jako przeczytane po kliknięciu",
+    "markOnClickDesc": "Automatycznie oznaczaj elementy jako przeczytane po ich otwarciu",
+    "maxItems": "Maksymalna liczba elementów na kanał",
+    "maxItemsDesc": "Maksymalna liczba elementów do pobrania z każdego kanału",
+    "noFeeds": "Nie skonfigurowano żadnych kanałów. Dodaj jeden powyżej!",
+    "remove": "Usuń",
+    "seconds": "sekundy",
+    "showOnlyUnread": "Pokaż tylko nieprzeczytane",
+    "showOnlyUnreadDesc": "Wyświetlaj tylko nieprzeczytane elementy w panelu",
+    "title": "Ustawienia czytnika kanałów RSS",
+    "updateInterval": "Interwał aktualizacji",
+    "updateIntervalDesc": "Jak często sprawdzać nowe elementy (sekundy)"
+  },
+  "widget": {
+    "markAllRead": "Oznacz wszystko jako przeczytane",
+    "noItems": "Brak elementów do wyświetlenia",
+    "timeDays": "%1d temu",
+    "timeHours": "%1 godz. temu",
+    "timeMinutes": "%1 min temu",
+    "timeNow": "teraz",
+    "title": "Kanały RSS"
+  }
+}

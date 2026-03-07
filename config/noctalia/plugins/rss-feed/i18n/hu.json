@@ -1,0 +1,30 @@
+{
+  "settings": {
+    "add": "Hozzáadás",
+    "addFeed": "Új hírforrás hozzáadása",
+    "feedName": "Hírfolyam neve",
+    "feedUrl": "Hírfolyam URL",
+    "feeds": "RSS-hírcsatornák",
+    "markOnClick": "Olvasottként jelölés kattintásra",
+    "markOnClickDesc": "Elemek automatikus megjelölése olvasottként, ha megnyitod őket",
+    "maxItems": "Maximum elemek száma hírcsatornánként",
+    "maxItemsDesc": "A hírcsatornánként lekérdezhető elemek maximális száma",
+    "noFeeds": "Nincsenek beállított csatornák. Adjon hozzá egyet fent!",
+    "remove": "Eltávolítás",
+    "seconds": "másodperc",
+    "showOnlyUnread": "Csak olvasatlanok megjelenítése",
+    "showOnlyUnreadDesc": "Csak a nem olvasott elemek megjelenítése a panelen",
+    "title": "RSS-hírcsatorna olvasó beállításai",
+    "updateInterval": "Frissítési időköz",
+    "updateIntervalDesc": "Új elemek keresésének gyakorisága (másodperc)"
+  },
+  "widget": {
+    "markAllRead": "Összes megjelölése olvasottként",
+    "noItems": "Nincsenek megjeleníthető elemek",
+    "timeDays": "%1d perce",
+    "timeHours": "%1 órával ezelőtt",
+    "timeMinutes": "%1 perce",
+    "timeNow": "most",
+    "title": "RSS-hírcsatornák"
+  }
+}

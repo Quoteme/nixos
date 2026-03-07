@@ -1,0 +1,30 @@
+{
+  "settings": {
+    "add": "Add",
+    "addFeed": "Add New Feed",
+    "feedName": "Feed Name",
+    "feedUrl": "Feed URL",
+    "feeds": "RSS Feeds",
+    "markOnClick": "Mark as Read on Click",
+    "markOnClickDesc": "Automatically mark items as read when opening them",
+    "maxItems": "Max Items Per Feed",
+    "maxItemsDesc": "Maximum number of items to fetch from each feed",
+    "noFeeds": "No feeds configured. Add one above!",
+    "remove": "Remove",
+    "seconds": "seconds",
+    "showOnlyUnread": "Show Only Unread",
+    "showOnlyUnreadDesc": "Display only unread items in the panel",
+    "title": "RSS Feed Reader Settings",
+    "updateInterval": "Update Interval",
+    "updateIntervalDesc": "How often to check for new items (seconds)"
+  },
+  "widget": {
+    "markAllRead": "Mark all as read",
+    "noItems": "No items to display",
+    "timeDays": "%1d ago",
+    "timeHours": "%1h ago",
+    "timeMinutes": "%1min ago",
+    "timeNow": "now",
+    "title": "RSS Feeds"
+  }
+}

@@ -38,6 +38,7 @@ in
         waytrogen
         wtype
         wvkbd
+        hyprshot
         grim
         slurp
         swappy
@@ -46,6 +47,8 @@ in
         gsettings-desktop-schemas
         dconf
         noctalia-shell
+        adw-gtk3
+        nwg-look
       ];
       nix.settings = {
         substituters = [ "https://hyprland.cachix.org" ];
@@ -110,6 +113,7 @@ in
           ln -sfn /etc/nixos/config/hyprland/hypridle/hypridle.conf "$HOME/.config/hypr/hypridle.conf"
           ln -sfn /etc/nixos/config/rofi/config.rasi "$HOME/.config/rofi/config.rasi"
           ln -sfn /etc/nixos/config/rofi/theme.rasi "$HOME/.config/rofi/theme.rasi"
+          ln -sfn /etc/nixos/config/noctalia/ "$HOME/.config/noctalia"
         '';
         deps = [ ];
       };

@@ -1,0 +1,28 @@
+{
+  "id": "rss-feed",
+  "name": "RSS Feed Reader",
+  "version": "1.0.3",
+  "description": "Monitor and read RSS/Atom feeds directly from your desktop",
+  "repository": "https://github.com/noctalia-dev/noctalia-plugins",
+  "author": "Lokize",
+  "license": "MIT",
+  "minNoctaliaVersion": "3.6.0",
+  "entryPoints": {
+    "barWidget": "BarWidget.qml",
+    "panel": "Panel.qml",
+    "settings": "Settings.qml"
+  },
+  "dependencies": {
+    "plugins": []
+  },
+  "metadata": {
+    "defaultSettings": {
+      "feeds": [],
+      "updateInterval": 600,
+      "maxItemsPerFeed": 10,
+      "showOnlyUnread": false,
+      "markAsReadOnClick": true,
+      "readItems": []
+    }
+  }
+}

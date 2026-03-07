@@ -1,0 +1,30 @@
+{
+  "settings": {
+    "add": "添加",
+    "addFeed": "添加新源",
+    "feedName": "源名称",
+    "feedUrl": "源URL",
+    "feeds": "RSS源",
+    "markOnClick": "点击时标记为已读",
+    "markOnClickDesc": "打开项目时自动标记为已读",
+    "maxItems": "每个源的最大项目数",
+    "maxItemsDesc": "从每个源获取的最大项目数",
+    "noFeeds": "未配置源。在上方添加一个！",
+    "remove": "删除",
+    "seconds": "秒",
+    "showOnlyUnread": "仅显示未读",
+    "showOnlyUnreadDesc": "在面板中仅显示未读项目",
+    "title": "RSS阅读器设置",
+    "updateInterval": "更新间隔",
+    "updateIntervalDesc": "检查新项目的频率（秒）"
+  },
+  "widget": {
+    "markAllRead": "全部标记为已读",
+    "noItems": "没有可显示的项目",
+    "timeDays": "%1天前",
+    "timeHours": "%1小时前",
+    "timeMinutes": "%1分钟前",
+    "timeNow": "现在",
+    "title": "RSS源"
+  }
+}

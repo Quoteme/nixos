@@ -1,0 +1,30 @@
+{
+  "settings": {
+    "add": "Aggiungi",
+    "addFeed": "Aggiungi Nuovo Feed",
+    "feedName": "Nome Feed",
+    "feedUrl": "URL Feed",
+    "feeds": "Feed RSS",
+    "markOnClick": "Segna Come Letto al Clic",
+    "markOnClickDesc": "Segna automaticamente elementi come letti quando li apri",
+    "maxItems": "Max Elementi per Feed",
+    "maxItemsDesc": "Numero massimo di elementi da recuperare da ogni feed",
+    "noFeeds": "Nessun feed configurato. Aggiungine uno sopra!",
+    "remove": "Rimuovi",
+    "seconds": "secondi",
+    "showOnlyUnread": "Mostra Solo Non Letti",
+    "showOnlyUnreadDesc": "Visualizza solo elementi non letti nel pannello",
+    "title": "Impostazioni Lettore RSS",
+    "updateInterval": "Intervallo di Aggiornamento",
+    "updateIntervalDesc": "Frequenza di controllo nuovi elementi (secondi)"
+  },
+  "widget": {
+    "markAllRead": "Segna tutti come letti",
+    "noItems": "Nessun elemento da visualizzare",
+    "timeDays": "%1g fa",
+    "timeHours": "%1h fa",
+    "timeMinutes": "%1min fa",
+    "timeNow": "ora",
+    "title": "Feed RSS"
+  }
+}
