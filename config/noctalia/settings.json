@@ -284,8 +284,8 @@
         ]
     },
     "colorSchemes": {
-        "darkMode": false,
-        "generationMethod": "fruit-salad",
+        "darkMode": true,
+        "generationMethod": "rainbow",
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "monitorForColors": "",
@@ -449,7 +449,7 @@
         "firstDayOfWeek": -1,
         "hideWeatherCityName": false,
         "hideWeatherTimezone": false,
-        "name": "Berlin",
+        "name": "Duesseldorf",
         "showCalendarEvents": true,
         "showCalendarWeather": true,
         "showWeekNumberInCalendar": false,
@@ -655,13 +655,13 @@
         "favorites": [
             {
                 "colorScheme": "Noctalia (default)",
-                "darkMode": false,
-                "generationMethod": "fruit-salad",
+                "darkMode": true,
+                "generationMethod": "rainbow",
                 "paletteColors": [
-                    "#3e5aa9",
-                    "#4b5c92",
-                    "#784f83",
-                    "#ba1a1a"
+                    "#efb0ff",
+                    "#d5c0d7",
+                    "#f5b7b2",
+                    "#ffb4ab"
                 ],
                 "path": "/home/luca/Pictures/Wallpapers/geometrization_conjecture.jpeg",
                 "useWallpaperColors": true

@@ -1,5 +1,15 @@
-{ config, options, lib, pkgs, nixpkgs, nixpkgs-stable, nur, nix-gl-host, ...
-}@inputs: {
+{
+  config,
+  options,
+  lib,
+  pkgs,
+  nixpkgs,
+  nixpkgs-stable,
+  nur,
+  nix-gl-host,
+  ...
+}@inputs:
+{
   options.modules.applications.nix-extras = {
     enable = lib.options.mkEnableOption {
       type = lib.types.bool;
@@ -14,7 +24,10 @@
         experimental-features = nix-command flakes
         warn-dirty = false
       '';
-      nixPath = [ "nixpkgs=${nixpkgs}" "stable=${nixpkgs-stable}" ];
+      nixPath = [
+        "nixpkgs=${nixpkgs}"
+        "stable=${nixpkgs-stable}"
+      ];
       # based on https://nixos.wiki/wiki/flakes#:~:text=Pinning%20the%20registry%20to%20the%20system%20pkgs%20on%20NixOS
       # registry = {
       #   # nixpkgs.flake = nixpkgs;
@@ -33,7 +46,10 @@
       # };
       settings = {
         auto-optimise-store = true;
-        trusted-users = [ "root" "luca" ];
+        trusted-users = [
+          "root"
+          "luca"
+        ];
         substituters = [
           "https://nix-community.cachix.org/"
           "https://gvolpe-nixos.cachix.org"
@@ -61,7 +77,9 @@
       clean.extraArgs = "--keep-since 4d --keep 3";
       flake = "/etc/nixos";
     };
-    environment.variables = { FLAKE = lib.mkForce "/etc/nixos"; };
+    environment.variables = {
+      FLAKE = lib.mkForce "/etc/nixos";
+    };
     environment.systemPackages = with pkgs; [
       nix-output-monitor
       nixpkgs-fmt
@@ -93,6 +111,7 @@
         cudaPackages.libnvjitlink
         cudaPackages.nccl
         nix-gl-host.defaultPackage.x86_64-linux
+        ffmpeg-full
         # List by default
         zlib
         zstd

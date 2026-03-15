@@ -46,6 +46,10 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland"; # Prevents version mismatch.
     };
+    hypr-dynamic-cursors = {
+      url = "github:VirtCode/hypr-dynamic-cursors";
+      inputs.hyprland.follows = "hyprland"; # to make sure that the plugin is built for the correct version of hyprland
+    };
   };
 
   outputs =
@@ -78,6 +82,7 @@
           hyprlandPlugins = [
             attrs.hyprland-plugins.packages.${system}.hyprbars
             attrs.hyprland-plugins.packages.${system}.hyprexpo
+            attrs.hypr-dynamic-cursors.packages.${system}.hypr-dynamic-cursors
             # attrs.hyprland-plugins.packages.${system}.hyprfocus
             # attrs.hyprgrass.packages.${system}.default
             # attrs.hyprspace.packages.${system}.default
@@ -194,6 +199,7 @@
               modules.applications.virtualisation.virt-manager.enable = true;
               modules.desktop.cosmic.enable = false;
               modules.desktop.hyprland.enable = true;
+              modules.desktop.niri.enable = true;
               modules.desktop.gnome.enable = false;
               modules.desktop.kde.enable = false;
               modules.desktop.sway.enable = false;
