@@ -55,6 +55,9 @@ in
         git
         git-graph
         gh
+        jujutsu
+        lazyjj
+        jjui
         eza
         # [10 Rust CLI tools for 2022](https://www.youtube.com/watch?v=haitmoSyTls)
         ripgrep
