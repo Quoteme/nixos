@@ -79,9 +79,6 @@ in
         btop
         nvimpager
         kitty
-        # networkmanager_dmenu
-        openvpn
-        networkmanager-openvpn
         # File manager
         # onboard
         # TODO: Add swypeGuess

@@ -29,7 +29,6 @@ in
         wl-clipboard
         libnotify
         blueman
-        networkmanagerapplet
         hypridle
         nwg-drawer
         swaybg
