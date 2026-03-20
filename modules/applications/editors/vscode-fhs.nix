@@ -15,8 +15,9 @@ in {
       vscode-fhs
       nixd
       nixfmt
-      pkgs.platformio
-      pkgs.avrdude
+      platformio
+      avrdude
+      poppler-utils
     ];
     services.udev.packages = [ pkgs.platformio-core pkgs.openocd ];
   };
