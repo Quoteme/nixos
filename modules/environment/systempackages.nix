@@ -35,6 +35,7 @@ in
             matplotlib
             plotly
             pipx
+            pytorch
           ]
         );
       in
