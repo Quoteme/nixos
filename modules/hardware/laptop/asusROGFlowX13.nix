@@ -10,6 +10,7 @@
   config =
     lib.modules.mkIf config.modules.hardware.laptop.asus-rog-flow-x13.enable {
       nixpkgs.config.allowUnfree = true;
+      nixpkgs.config.cudaSupport = true;
       # Secure boot
       boot.loader.systemd-boot.enable = lib.mkForce false;
       boot.loader.systemd-boot.configurationLimit = 5;
