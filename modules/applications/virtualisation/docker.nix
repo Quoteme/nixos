@@ -14,7 +14,7 @@ in {
     virtualisation.docker.enable = true;
     virtualisation.docker.enableOnBoot = false;
     virtualisation.docker.storageDriver = "btrfs";
-    # hardware.nvidia-container-toolkit.enable = true;
+    hardware.nvidia-container-toolkit.enable = true;
     users.users.luca.extraGroups = [ "docker" ];
     environment.systemPackages = with pkgs; [ docker-compose ];
   };
