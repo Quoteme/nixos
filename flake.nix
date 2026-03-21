@@ -196,6 +196,7 @@
               modules.applications.gaming.steam.enable = false;
               modules.applications.nix-extras.enable = true;
               modules.applications.virtualisation.docker.enable = true;
+              modules.applications.virtualisation.podman.enable = true;
               modules.applications.virtualisation.virt-manager.enable = true;
               modules.desktop.cosmic.enable = false;
               modules.desktop.hyprland.enable = true;
