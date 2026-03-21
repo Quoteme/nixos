@@ -284,7 +284,7 @@
         ]
     },
     "colorSchemes": {
-        "darkMode": false,
+        "darkMode": true,
         "generationMethod": "rainbow",
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
@@ -655,13 +655,13 @@
         "favorites": [
             {
                 "colorScheme": "Noctalia (default)",
-                "darkMode": false,
+                "darkMode": true,
                 "generationMethod": "rainbow",
                 "paletteColors": [
-                    "#804792",
-                    "#6a596c",
-                    "#82524e",
-                    "#ba1a1a"
+                    "#efb0ff",
+                    "#d5c0d7",
+                    "#f5b7b2",
+                    "#ffb4ab"
                 ],
                 "path": "/home/luca/Pictures/Wallpapers/geometrization_conjecture.jpeg",
                 "useWallpaperColors": true

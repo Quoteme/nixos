@@ -20,27 +20,27 @@
         "FN" = {
           held = "FN";
           alone = "KEY_FINANCE";
-          alone_timeout_millis = 500;
+          alone_timeout_millis = 250;
         };
         "LEFTALT" = {
           held = "LEFTALT";
           alone = "KEY_CONNECT";
-          alone_timeout_millis = 500;
+          alone_timeout_millis = 250;
         };
         "LEFTCTRL" = {
           held = "LEFTCTRL";
           alone = "KEY_SPORT";
-          alone_timeout_millis = 500;
+          alone_timeout_millis = 250;
         };
         "RIGHTCTRL" = {
           held = "RIGHTCTRL";
           alone = "KEY_SHOP";
-          alone_timeout_millis = 500;
+          alone_timeout_millis = 250;
         };
         "RIGHTALT" = {
           held = "RIGHTALT";
           alone = "KEY_FINANCE";
-          alone_timeout_millis = 500;
+          alone_timeout_millis = 250;
         };
         # "KEY_LEFTMETA" = {
         #   held = "KEY_LEFTMETA";

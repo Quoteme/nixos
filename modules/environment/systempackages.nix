@@ -35,7 +35,6 @@ in
             matplotlib
             plotly
             pipx
-            torch
             whisperx
           ]
         );

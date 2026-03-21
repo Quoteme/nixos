@@ -113,7 +113,6 @@
         cudaPackages.libnvjitlink
         cudaPackages.nccl
         nix-gl-host.defaultPackage.x86_64-linux
-        ffmpeg-full
         # List by default
         zlib
         zstd
@@ -178,7 +177,7 @@
         SDL2
         libusb1
         dbus-glib
-        ffmpeg
+        ffmpeg-full
         # Only libraries are needed from those two
         libudev0-shim
 
