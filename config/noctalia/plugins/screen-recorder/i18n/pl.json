@@ -45,6 +45,8 @@
       "copy-to-clipboard-description": "Kopiuj plik do schowka po zakończeniu nagrywania.",
       "output-folder": "Folder wyjściowy",
       "output-folder-description": "Folder, w którym będą zapisywane nagrania ekranu",
+      "restore-portal-session": "Przywróć sesję portalu",
+      "restore-portal-session-description": "Automatycznie przywracaj poprzednią sesję portalu dla kolejnych nagrań (wyłącza monit o wybór)",
       "show-cursor": "Pokaż kursor",
       "show-cursor-description": "Nagrywaj kursor myszy na filmie",
       "title": "Ogólne"

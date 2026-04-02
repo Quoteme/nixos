@@ -45,6 +45,8 @@
       "copy-to-clipboard-description": "Kopyahin ang file sa clipboard pagkatapos matapos ang pag-record.",
       "output-folder": "Cartella di output",
       "output-folder-description": "Cartella dove verranno salvate le registrazioni dello schermo",
+      "restore-portal-session": "Restore portal session",
+      "restore-portal-session-description": "Automatically restore the previous portal session for subsequent recordings (disables the selection prompt)",
       "show-cursor": "Mostra cursore",
       "show-cursor-description": "Registra il cursore del mouse nel video",
       "title": "Generale"

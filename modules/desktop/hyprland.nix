@@ -119,5 +119,17 @@ in
         '';
         deps = [ ];
       };
+      xdg.portal = {
+        enable = true;
+        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+        config.hyprland = {
+          default = [
+            "hyprland"
+            "gtk"
+          ];
+          # Route Secret portal explicitly to gnome-keyring via gtk
+          "org.freedesktop.portal.Secret" = [ "gnome-keyring" ];
+        };
+      };
     };
 }

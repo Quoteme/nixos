@@ -45,6 +45,8 @@
       "copy-to-clipboard-description": "Copia el archivo al portapapeles después de que termine la grabación.",
       "output-folder": "Carpeta de salida",
       "output-folder-description": "Carpeta donde se guardarán las grabaciones de pantalla",
+      "restore-portal-session": "Restaurar sesión del portal",
+      "restore-portal-session-description": "Restaurar automáticamente la sesión anterior del portal para grabaciones posteriores (desactiva el aviso de selección)",
       "show-cursor": "Mostrar cursor",
       "show-cursor-description": "Grabar el cursor del ratón en el video",
       "title": "General"

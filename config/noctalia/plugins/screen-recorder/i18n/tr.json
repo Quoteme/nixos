@@ -45,6 +45,8 @@
       "copy-to-clipboard-description": "Kayıt bittikten sonra dosyayı panoya kopyala.",
       "output-folder": "Çıktı klasörü",
       "output-folder-description": "Ekran kayıtlarının kaydedileceği klasör",
+      "restore-portal-session": "Portal oturumunu geri yükle",
+      "restore-portal-session-description": "Sonraki kayıtlar için önceki portal oturumunu otomatik olarak geri yükle (seçim penceresini devre dışı bırakır)",
       "show-cursor": "İmleci göster",
       "show-cursor-description": "Videoda fare imlecini kaydet",
       "title": "Genel"

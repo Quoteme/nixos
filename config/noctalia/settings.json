@@ -229,19 +229,6 @@
                 },
                 {
                     "defaultSettings": {
-                        "feeds": [
-                        ],
-                        "markAsReadOnClick": true,
-                        "maxItemsPerFeed": 10,
-                        "readItems": [
-                        ],
-                        "showOnlyUnread": false,
-                        "updateInterval": 600
-                    },
-                    "id": "plugin:rss-feed"
-                },
-                {
-                    "defaultSettings": {
                         "enableTodoIntegration": false,
                         "notecardsEnabled": true,
                         "pincardsEnabled": true,
@@ -249,6 +236,11 @@
                         "showCloseButton": false
                     },
                     "id": "plugin:clipper"
+                },
+                {
+                    "defaultSettings": {
+                    },
+                    "id": "plugin:kde-connect"
                 },
                 {
                     "colorizeDistroLogo": false,
@@ -365,7 +357,7 @@
         "colorizeIcons": false,
         "deadOpacity": 0.6,
         "displayMode": "auto_hide",
-        "enabled": true,
+        "enabled": false,
         "floatingRatio": 1,
         "inactiveIndicators": false,
         "monitors": [

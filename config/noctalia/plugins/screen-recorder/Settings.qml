@@ -59,6 +59,8 @@ ColumnLayout {
 
     property string editResolution: pluginApi?.pluginSettings?.resolution || pluginApi?.manifest?.metadata?.defaultSettings?.resolution || "original"
 
+    property bool editRestorePortalSession: pluginApi?.pluginSettings?.restorePortalSession ?? pluginApi?.manifest?.metadata?.defaultSettings?.restorePortalSession ?? false
+
     // Replay settings
     property bool editReplayEnabled: pluginApi?.pluginSettings?.replayEnabled ?? pluginApi?.manifest?.metadata?.defaultSettings?.replayEnabled ?? false
 
@@ -104,6 +106,7 @@ ColumnLayout {
         pluginApi.pluginSettings.audioSource = root.editAudioSource
         pluginApi.pluginSettings.videoSource = root.editVideoSource
         pluginApi.pluginSettings.resolution = root.editResolution
+        pluginApi.pluginSettings.restorePortalSession = root.editRestorePortalSession
 
         // Replay settings
         pluginApi.pluginSettings.replayEnabled = root.editReplayEnabled
@@ -176,6 +179,15 @@ ColumnLayout {
         checked: root.editHideInactive
         onToggled: c => root.editHideInactive = c
         defaultValue: pluginApi?.manifest?.metadata?.defaultSettings?.hideInactive ?? false
+    }
+
+    // Restore Portal Session
+    NToggle {
+        label: pluginApi.tr("settings.general.restore-portal-session")
+        description: pluginApi.tr("settings.general.restore-portal-session-description")
+        checked: root.editRestorePortalSession
+        onToggled: c => root.editRestorePortalSession = c
+        defaultValue: pluginApi?.manifest?.metadata?.defaultSettings?.restorePortalSession ?? false
     }
 
     NDivider {

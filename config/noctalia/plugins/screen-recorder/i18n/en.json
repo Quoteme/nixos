@@ -48,6 +48,8 @@
       "hide-when-inactive-description": "Hide the bar indicator when not recording",
       "output-folder": "Output folder",
       "output-folder-description": "Folder where screen recordings will be saved",
+      "restore-portal-session": "Restore portal session",
+      "restore-portal-session-description": "Automatically restore the previous portal session for subsequent recordings (disables the selection prompt)",
       "show-cursor": "Show cursor",
       "show-cursor-description": "Record mouse cursor in the video",
       "title": "General"

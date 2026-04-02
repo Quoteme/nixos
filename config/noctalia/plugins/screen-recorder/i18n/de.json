@@ -48,6 +48,8 @@
       "hide-when-inactive-description": "Widget in Statusleiste ausblenden, wenn keine Aufnahme stattfindet",
       "output-folder": "Ausgabeordner",
       "output-folder-description": "Ordner, in dem Bildschirmaufnahmen gespeichert werden",
+      "restore-portal-session": "Portal-Sitzung wiederherstellen",
+      "restore-portal-session-description": "Stellt die vorherige Portal-Sitzung für nachfolgende Aufnahmen automatisch wieder her (deaktiviert die Auswahlaufforderung)",
       "show-cursor": "Cursor anzeigen",
       "show-cursor-description": "Mauszeiger im Video aufnehmen",
       "title": "Allgemein"

@@ -44,7 +44,9 @@
       "copy-to-clipboard": "Másolás a vágólapra",
       "copy-to-clipboard-description": "A felvétel befejezése után másolja a fájlt a vágólapra.",
       "output-folder": "Kimeneti mappa",
-      "output-folder-description": "Mappa, ahová a képernyőfelvételek mentésre kerülnek",
+      "output-folder-description": "A mappa, ahová a képernyőfelvételek mentésre kerülnek",
+      "restore-portal-session": "Portál munkamenet visszaállítása",
+      "restore-portal-session-description": "Az előző portál munkamenet automatikus visszaállítása a következő felvételekhez (kikapcsolja a választóablakot)",
       "show-cursor": "Kurzor megjelenítése",
       "show-cursor-description": "Egérkurzor rögzítése a videóban",
       "title": "Általános"

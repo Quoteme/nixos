@@ -45,6 +45,8 @@
       "copy-to-clipboard-description": "Copiar o arquivo para a área de transferência após a gravação terminar.",
       "output-folder": "Pasta de saída",
       "output-folder-description": "Pasta onde as gravações de tela serão salvas",
+      "restore-portal-session": "Restaurar sessão do portal",
+      "restore-portal-session-description": "Restaurar automaticamente a sessão anterior do portal para gravações subsequentes (desativa o aviso de seleção)",
       "show-cursor": "Mostrar cursor",
       "show-cursor-description": "Gravar o cursor do mouse no vídeo",
       "title": "Geral"

@@ -48,6 +48,8 @@
       "hide-when-inactive-description": "録画していないときはウィジェットを隠す",
       "output-folder": "出力フォルダー",
       "output-folder-description": "画面録画が保存されるフォルダー",
+      "restore-portal-session": "ポータルセッションを復元する",
+      "restore-portal-session-description": "以降の録画のために前のポータルセッションを自動的に復元します（選択プロンプトを無効にします）",
       "show-cursor": "カーソルを表示",
       "show-cursor-description": "録画にマウスカーソルを記録する",
       "title": "全般"

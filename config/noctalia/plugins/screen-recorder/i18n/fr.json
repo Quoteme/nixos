@@ -45,6 +45,8 @@
       "copy-to-clipboard-description": "Copier le fichier dans le presse-papiers une fois l'enregistrement terminé.",
       "output-folder": "Dossier de sortie",
       "output-folder-description": "Dossier où les enregistrements d'écran seront enregistrés",
+      "restore-portal-session": "Restaurer la session du portail",
+      "restore-portal-session-description": "Restaurer automatiquement la session du portail précédente pour les enregistrements ultérieurs (désactive l'invite de sélection)",
       "show-cursor": "Afficher le curseur",
       "show-cursor-description": "Enregistrer le curseur de la souris dans la vidéo",
       "title": "Général"

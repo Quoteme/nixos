@@ -182,6 +182,16 @@
                 "en_US.UTF-8/UTF-8"
                 "de_DE.UTF-8/UTF-8"
               ];
+              i18n.extraLocaleSettings = {
+                LC_ADDRESS = "de_DE.UTF-8";
+                LC_MEASUREMENT = "de_DE.UTF-8";
+                LC_MONETARY = "de_DE.UTF-8";
+                LC_NAME = "de_DE.UTF-8";
+                LC_NUMERIC = "de_DE.UTF-8";
+                LC_PAPER = "de_DE.UTF-8";
+                LC_TELEPHONE = "de_DE.UTF-8";
+                LC_TIME = "de_DE.UTF-8";
+              };
               # To launch an app in German:
               #   LANG=de_DE.UTF-8 some-app
               # To switch the whole session temporarily:
@@ -194,6 +204,7 @@
               modules.applications.editors.vscode-fhs.enable = true;
               modules.applications.ai.ollama.enable = true;
               modules.applications.gaming.steam.enable = false;
+              modules.applications.networking.filesharing.enable = true;
               modules.applications.nix-extras.enable = true;
               modules.applications.virtualisation.docker.enable = true;
               modules.applications.virtualisation.podman.enable = true;

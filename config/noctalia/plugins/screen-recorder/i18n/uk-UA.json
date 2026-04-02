@@ -44,7 +44,9 @@
       "copy-to-clipboard": "Копіювати до буфера обміну",
       "copy-to-clipboard-description": "Копіювати файл у буфер обміну після завершення запису.",
       "output-folder": "Папка виводу",
-      "output-folder-description": "Папка, де зберігатимуться записи екрану",
+      "output-folder-description": "Папка, у якій будуть зберігатися записи екрана",
+      "restore-portal-session": "Відновити сеанс порталу",
+      "restore-portal-session-description": "Автоматично відновлювати попередній сеанс порталу для наступних записів (вимикає запит вибору)",
       "show-cursor": "Показати курсор",
       "show-cursor-description": "Записувати курсор миші у відео",
       "title": "Загальні"

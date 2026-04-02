@@ -45,6 +45,8 @@
       "copy-to-clipboard-description": "Kopieer het bestand naar het klembord nadat de opname is voltooid.",
       "output-folder": "Uitvoermap",
       "output-folder-description": "Map waar schermopnames worden opgeslagen",
+      "restore-portal-session": "Portalsessie herstellen",
+      "restore-portal-session-description": "Herstel automatisch de vorige portalsessie voor volgende opnamen (schakelt het selectievenster uit)",
       "show-cursor": "Cursor tonen",
       "show-cursor-description": "Muiscursor in de video opnemen",
       "title": "Algemeen"
