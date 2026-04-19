@@ -1,7 +1,12 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
   home.sessionVariables = {
-    SSH_AUTH_SOCK =
-      "$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock";
+    SSH_AUTH_SOCK = "$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock";
   };
   home.file.".ghci".text = ''
     import Data.Function
@@ -34,13 +39,10 @@
     ll = "eza --long --icons --color --hyperlink";
     lt = "eza --long --tree --icons --color --hyperlink";
     gg = "${pkgs.git-graph}/bin/git-graph";
-    montigrafana =
-      "xdg-open http://localhost:3000 && ssh -L 3000:localhost:3000 mmbs@monti.hhu.de";
-    montikuma =
-      "xdg-open http://localhost:3001 && ssh -L 3001:localhost:3001 mmbs@monti.hhu.de";
+    montigrafana = "xdg-open http://localhost:3000 && ssh -L 3000:localhost:3000 mmbs@monti.hhu.de";
+    montikuma = "xdg-open http://localhost:3001 && ssh -L 3001:localhost:3001 mmbs@monti.hhu.de";
     montipostgres = "ssh -L 5432:localhost:5432 mmbs@monti.hhu.de";
-    montiprometheus =
-      "xdg-open http://localhost:9090 && ssh -L 9090:localhost:9090 mmbs@monti.hhu.de";
+    montiprometheus = "xdg-open http://localhost:9090 && ssh -L 9090:localhost:9090 mmbs@monti.hhu.de";
     montissh = "TERM=xterm-256color ssh mmbs@monti.hhu.de";
     nd = "nix develop -c $SHELL";
     ndo = "nix develop --offline --command $SHELL";
@@ -53,8 +55,12 @@
     v = "nvim";
     ":e" = "nvim";
   };
-  programs.atuin = { enable = true; };
-  programs.atuin.settings = { keymap_mode = "auto"; };
+  programs.atuin = {
+    enable = true;
+  };
+  programs.atuin.settings = {
+    keymap_mode = "auto";
+  };
   programs.bash = {
     enable = true;
     bashrcExtra = ''
@@ -68,7 +74,9 @@
       EDITOR = "nvim";
     };
   };
-  programs.carapace = { enable = true; };
+  programs.carapace = {
+    enable = true;
+  };
   programs.direnv = {
     enable = true;
     enableBashIntegration = false;
@@ -110,7 +118,12 @@
   programs.lazygit.enable = true;
   programs.neovim = {
     enable = true;
-    extraLuaPackages = luaPkgs: with luaPkgs; [ luarocks magick jsregexp ];
+    extraLuaPackages =
+      luaPkgs: with luaPkgs; [
+        luarocks
+        magick
+        jsregexp
+      ];
     extraPackages = with pkgs; [
       statix
       inotify-tools
@@ -130,12 +143,13 @@
       nil
       nixd
       nixfmt
+      typenix
       poppler-utils
       tectonic
       tree-sitter
     ];
-    extraPython3Packages = pyPkgs:
-      with pyPkgs; [
+    extraPython3Packages =
+      pyPkgs: with pyPkgs; [
         cairosvg # for image rendering
         ipykernel
         ipython
@@ -149,7 +163,10 @@
         pyperclip
         sympy
       ];
-    plugins = with pkgs.vimPlugins; [ neotest-haskell image-nvim ];
+    plugins = with pkgs.vimPlugins; [
+      neotest-haskell
+      image-nvim
+    ];
     vimAlias = true;
     vimdiffAlias = true;
     initLua = # lua
@@ -185,14 +202,16 @@
       };
     };
   };
-  programs.yazi = { enable = true; };
-  xdg.configFile = {
-    "yazi/keymap.toml".source =
-      config.lib.file.mkOutOfStoreSymlink /etc/nixos/config/yazi/keymap.toml;
-    "yazi/yazi.toml".source =
-      config.lib.file.mkOutOfStoreSymlink /etc/nixos/config/yazi/yazi.toml;
+  programs.yazi = {
+    enable = true;
   };
-  programs.zoxide = { enable = true; };
+  xdg.configFile = {
+    "yazi/keymap.toml".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/config/yazi/keymap.toml;
+    "yazi/yazi.toml".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/config/yazi/yazi.toml;
+  };
+  programs.zoxide = {
+    enable = true;
+  };
   programs.zsh = {
     enable = false;
     initExtra = ''
@@ -205,11 +224,17 @@
         { name = "zsh-users/zsh-autosuggestions"; }
         {
           name = "dracula/zsh";
-          tags = [ "as:theme" "depth:1" ];
+          tags = [
+            "as:theme"
+            "depth:1"
+          ];
         }
         {
           name = "plugins/dirhistory";
-          tags = [ "from:oh-my-zsh" "depth:1" ];
+          tags = [
+            "from:oh-my-zsh"
+            "depth:1"
+          ];
         }
         {
           name = "jeffreytse/zsh-vi-mode";
@@ -217,28 +242,42 @@
         }
         {
           name = "plugins/zoxide";
-          tags = [ "from:oh-my-zsh" "depth:1" ];
+          tags = [
+            "from:oh-my-zsh"
+            "depth:1"
+          ];
         }
         {
           name = "plugins/flutter";
-          tags = [ "from:oh-my-zsh" "depth:1" ];
+          tags = [
+            "from:oh-my-zsh"
+            "depth:1"
+          ];
         }
         {
           name = "plugins/fd";
-          tags = [ "from:oh-my-zsh" "depth:1" ];
+          tags = [
+            "from:oh-my-zsh"
+            "depth:1"
+          ];
         }
       ];
     };
   };
   systemd.user.services.mpris-proxy = {
     Unit.Description = "Mpris proxy";
-    Unit.After = [ "network.target" "sound.target" ];
+    Unit.After = [
+      "network.target"
+      "sound.target"
+    ];
     Service.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
     Install.WantedBy = [ "default.target" ];
   };
   services.kdeconnect.enable = true;
   services.gnome-keyring.enable = true;
-  services.batsignal = { enable = true; };
+  services.batsignal = {
+    enable = true;
+  };
   gtk = {
     enable = true;
 
@@ -263,9 +302,7 @@
     };
   };
   xdg.configFile."ashell/config.toml".source =
-    config.lib.file.mkOutOfStoreSymlink
-    /etc/nixos/config/hyprland/ashell/config.toml;
-  xdg.configFile."nushell/completion.nu".source =
-    ./config/nushell/completion.nu;
+    config.lib.file.mkOutOfStoreSymlink /etc/nixos/config/hyprland/ashell/config.toml;
+  xdg.configFile."nushell/completion.nu".source = ./config/nushell/completion.nu;
   home.stateVersion = "26.05";
 }

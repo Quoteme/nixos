@@ -13,6 +13,7 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nixd.url = "github:nix-community/nixd";
+    typenix.url = "github:ryanrasti/typenix";
     nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     nixpkgs.url = "nixpkgs/nixos-unstable";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
@@ -105,6 +106,7 @@
           # ┃  ┃ ┃┃┗┫┣╸ ┃┃╺┓┃ ┃┣┳┛┣━┫ ┃ ┃┃ ┃┃┗┫ ┃┗┫┃┏╋┛
           # ┗━╸┗━┛╹ ╹╹  ╹┗━┛┗━┛╹┗╸╹ ╹ ╹ ╹┗━┛╹ ╹╹╹ ╹╹╹ ╹
           (
+            # @ts: { pkgs: Nixpkgs, nixpkgs_stable: Nixpkgs }
             { pkgs, nixpkgs-stable, ... }:
             {
               nixpkgs.overlays = [
@@ -114,6 +116,7 @@
                     config.allowUnfree = true;
                   };
                   nixd-nightly = attrs.nixd.packages.${system}.nixd;
+                  typenix = attrs.typenix.packages.${system}.typenix;
                   screenrotate = attrs.screenrotate.defaultPackage.${system};
                 })
               ];
