@@ -282,7 +282,7 @@
         "manualSunset": "18:30",
         "monitorForColors": "",
         "predefinedScheme": "Noctalia (default)",
-        "schedulingMode": "location",
+        "schedulingMode": "off",
         "useWallpaperColors": true
     },
     "controlCenter": {
@@ -612,10 +612,6 @@
             {
                 "enabled": true,
                 "id": "btop"
-            },
-            {
-                "enabled": true,
-                "id": "yazi"
             },
             {
                 "enabled": true,

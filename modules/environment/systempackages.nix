@@ -62,6 +62,8 @@ in
         eza
         # [10 Rust CLI tools for 2022](https://www.youtube.com/watch?v=haitmoSyTls)
         ripgrep
+        ripgrep-all
+        zathura
         ripdrag
         delta
         kondo
@@ -85,9 +87,7 @@ in
         # TODO: Add swypeGuess
         # https://git.sr.ht/~earboxer/swipeGuess
         pamixer
-        neofetch
         # stuff that is needed pretty much everywhere
-        nodePackages.http-server
         myPython
         uv
         # https://github.com/Mic92/nix-ld?tab=readme-ov-file#my-pythonnodejsrubyinterpreter-libraries-do-not-find-the-libraries-configured-by-nix-ld

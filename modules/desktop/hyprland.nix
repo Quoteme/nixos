@@ -27,6 +27,9 @@ in
     mkIf cfg.enable {
       environment.systemPackages = [
         nautilus
+        sushi
+        # turtle
+        # nautilus-open-any-terminal
         cliphist
         wl-clipboard
         libnotify
@@ -70,6 +73,11 @@ in
         };
       };
       programs.hyprland = {
+        # set the flake package
+        package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+        # make sure to also set the portal package, so that they are in sync
+        portalPackage =
+          inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
         enable = true;
         plugins = hyprlandPlugins;
         extraConfig = ''
