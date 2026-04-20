@@ -314,21 +314,6 @@
                 ];
               };
 
-              virtualisation = {
-                libvirtd = {
-                  enable = true;
-                  qemu.package = (
-                    pkgs.stable.qemu_full.override {
-                      gtkSupport = true;
-                      sdlSupport = true;
-                      virglSupport = true;
-                      openGLSupport = true;
-                    }
-                  );
-                };
-                waydroid.enable = false;
-                # lxd.enable = false;
-              };
               security = {
                 polkit.enable = true;
                 sudo.extraRules = [
