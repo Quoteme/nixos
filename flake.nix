@@ -232,6 +232,8 @@
               modules.hardware.metered_connection.enable = true;
               modules.hardware.vpn.enable = true;
               modules.hardware.vpn.softether.enable = false;
+              modules.security.gpg.enable = true;
+              modules.security.gpg.enableSSHSupport = false;
               modules.users.luca.enable = true;
 
               services.flatpak.enable = true;
