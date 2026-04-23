@@ -30,6 +30,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       gnupg
+      gpgme # library used by LibreOffice and other apps for GPG integration
       pinentry-curses
     ];
 

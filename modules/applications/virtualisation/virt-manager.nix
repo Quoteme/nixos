@@ -23,12 +23,13 @@ in
 
   config = mkIf cfg.enable {
     programs.virt-manager.enable = true;
+    services.spice-vdagentd.enable = true;
     virtualisation = {
       libvirtd = {
         enable = true;
         qemu = {
           package = (
-            pkgs.stable.qemu_full.override {
+            pkgs.qemu_full.override {
               gtkSupport = true;
               sdlSupport = true;
               virglSupport = true;

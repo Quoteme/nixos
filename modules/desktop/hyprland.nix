@@ -44,6 +44,7 @@ in
         wvkbd
         hyprshot
         grim
+        tesseract
         slurp
         swappy
         jq
@@ -94,6 +95,7 @@ in
         withUWSM = true;
       };
       programs.iio-hyprland.enable = true;
+      programs.seahorse.enable = true;
       security.pam.services.greetd-password.enableGnomeKeyring = true;
       security.pam.services.greetd.enableGnomeKeyring = true;
       security.pam.services.login.enableGnomeKeyring = true;
@@ -110,7 +112,7 @@ in
 
       services.upower.enable = true;
       services.xserver.displayManager.sessionCommands = ''
-        eval $(gnome-keyring-daemon --start --daemonize --components=ssh,secrets)
+        eval $(gnome-keyring-daemon --start --daemonize --components=pkcs11,ssh,secrets)
         export SSH_AUTH_SOCK
       '';
       services.xserver.updateDbusEnvironment = true;
