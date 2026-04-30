@@ -101,7 +101,6 @@ in
       security.pam.services.login.enableGnomeKeyring = true;
       services.dbus.packages = [
         pkgs.dconf
-        pkgs.gnome-keyring
       ];
       services.gnome.gnome-keyring.enable = true;
       services.hypridle.enable = true;
@@ -111,10 +110,6 @@ in
       };
 
       services.upower.enable = true;
-      services.xserver.displayManager.sessionCommands = ''
-        eval $(gnome-keyring-daemon --start --daemonize --components=pkcs11,ssh,secrets)
-        export SSH_AUTH_SOCK
-      '';
       services.xserver.updateDbusEnvironment = true;
       system.userActivationScripts.hyprland = {
         text = ''

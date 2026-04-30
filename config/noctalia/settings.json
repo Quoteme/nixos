@@ -281,9 +281,9 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "monitorForColors": "",
-        "predefinedScheme": "Noctalia (default)",
+        "predefinedScheme": "Kanagawa",
         "schedulingMode": "off",
-        "useWallpaperColors": true
+        "useWallpaperColors": false
     },
     "controlCenter": {
         "cards": [
@@ -642,17 +642,17 @@
         "enabled": true,
         "favorites": [
             {
-                "colorScheme": "Noctalia (default)",
+                "colorScheme": "Kanagawa",
                 "darkMode": true,
                 "generationMethod": "rainbow",
                 "paletteColors": [
-                    "#efb0ff",
-                    "#d5c0d7",
-                    "#f5b7b2",
-                    "#ffb4ab"
+                    "#76946a",
+                    "#c0a36e",
+                    "#7e9cd8",
+                    "#c34043"
                 ],
                 "path": "/home/luca/Pictures/Wallpapers/geometrization_conjecture.jpeg",
-                "useWallpaperColors": true
+                "useWallpaperColors": false
             }
         ],
         "fillColor": "#000000",

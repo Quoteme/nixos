@@ -274,7 +274,6 @@
     Install.WantedBy = [ "default.target" ];
   };
   services.kdeconnect.enable = true;
-  services.gnome-keyring.enable = true;
   services.batsignal = {
     enable = true;
   };
