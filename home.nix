@@ -163,16 +163,17 @@
         pyperclip
         sympy
       ];
-    plugins = with pkgs.vimPlugins; [
-      neotest-haskell
-      image-nvim
-    ];
+    # plugins = with pkgs.vimPlugins; [
+    #   { plugin = neotest-haskell; }
+    #   { plugin = image-nvim; }
+    # ];
     vimAlias = true;
     vimdiffAlias = true;
     initLua = # lua
       ''
         require("config.lazy")
       '';
+    extraConfig = "";
   };
   programs.nushell = {
     enable = false;
