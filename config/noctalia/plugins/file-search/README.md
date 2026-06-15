@@ -1,6 +1,6 @@
 # File Search Plugin
 
-File search using fd, integrated into the launcher.
+File search from the launcher.
 
 ## Requirements
 
@@ -8,7 +8,7 @@ This plugin requires [fd](https://github.com/sharkdp/fd#installation) to be inst
 
 ## Usage
 
-**Access from launcher**
+**Access from launcher:**
 
 Type `>file` in the Noctalia launcher to activate file search.
 

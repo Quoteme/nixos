@@ -9,7 +9,7 @@ Item {
   property var pluginApi: null
 
   // Provider metadata
-  property string name: "File Search"
+  property string name: pluginApi?.tr("provider.name")
   property var launcher: null
   property bool handleSearch: false
   property string supportedLayouts: "list"
@@ -19,14 +19,58 @@ Item {
   property var currentResults: []
   property string currentQuery: ""
   property bool searching: false
+  property int nextRequestId: 0
+  property int activeRequestId: 0
+  property int fileProcessRequestId: 0
+  property int dirProcessRequestId: 0
+  property int pendingProcessCount: 0
+  property bool currentRequestFailed: false
+  property var pendingResultsByType: ({ "files": [], "dirs": [] })
   property string fdCommandPath: ""
   property bool fdAvailable: false
 
   // Settings shortcuts
-  property bool showHidden: pluginApi?.pluginSettings?.showHidden ?? pluginApi?.manifest?.metadata?.defaultSettings?.showHidden ?? false
-  property int maxResults: pluginApi?.pluginSettings?.maxResults ?? pluginApi?.manifest?.metadata?.defaultSettings?.maxResults ?? 0
-  property string fileOpener: pluginApi?.pluginSettings?.fileOpener ?? pluginApi?.manifest?.metadata?.defaultSettings?.fileOpener ?? "xdg-open"
-  property string searchDirectory: pluginApi?.pluginSettings?.searchDirectory ?? pluginApi?.manifest?.metadata?.defaultSettings?.searchDirectory ?? "~"
+  property var cfg: pluginApi?.pluginSettings || ({})
+  property var defaults: pluginApi?.manifest?.metadata?.defaultSettings || ({})
+  property bool showHidden: cfg.showHidden ?? defaults.showHidden ?? false
+  property int maxResults: cfg.maxResults ?? defaults.maxResults ?? 0
+  property string fileOpener: cfg.fileOpener ?? defaults.fileOpener ?? "xdg-open"
+  property string fdCommand: cfg.fdCommand ?? defaults.fdCommand ?? "fd"
+  property string searchDirectory: cfg.searchDirectory ?? defaults.searchDirectory ?? "~"
+
+  Process {
+    id: fileSearchProcess
+    running: false
+
+    stdout: StdioCollector {
+      id: fileStdoutCollector
+    }
+
+    stderr: StdioCollector {
+      id: fileStderrCollector
+    }
+
+    onExited: function(exitCode) {
+      root.handleSearchProcessExit("files", fileProcessRequestId, exitCode, fileStdoutCollector.text, fileStderrCollector.text);
+    }
+  }
+
+  Process {
+    id: dirSearchProcess
+    running: false
+
+    stdout: StdioCollector {
+      id: dirStdoutCollector
+    }
+
+    stderr: StdioCollector {
+      id: dirStderrCollector
+    }
+
+    onExited: function(exitCode) {
+      root.handleSearchProcessExit("dirs", dirProcessRequestId, exitCode, dirStdoutCollector.text, dirStderrCollector.text);
+    }
+  }
 
   // Debounce timer for search
   Timer {
@@ -36,46 +80,9 @@ Item {
     onTriggered: root.executeSearch(root.currentQuery)
   }
 
-  // Process for running fd command
-  Process {
-    id: fdProcess
-    running: false
-    
-    stdout: StdioCollector {
-      id: stdoutCollector
-    }
-
-    stderr: StdioCollector {
-      id: stderrCollector
-    }
-
-    onExited: function(exitCode) {
-      root.searching = false;
-      
-      if (exitCode === 0) {
-        root.parseSearchResults(stdoutCollector.text);
-      } else {
-        Logger.e("FileSearch", "fd command failed with exit code:", exitCode);
-        Logger.e("FileSearch", "stderr:", stderrCollector.text);
-        
-        root.currentResults = [{
-          "name": "fd not found",
-          "description": "Please install fd to use file search.",
-          "icon": "alert-circle",
-          "isTablerIcon": true,
-          "onActivate": function() {}
-        }];
-      }
-      
-      if (launcher) {
-        launcher.updateResults();
-      }
-    }
-  }
-
   function init() {
     Logger.i("FileSearch", "Initializing plugin");
-    fdCommandPath = pluginApi?.pluginSettings?.fdCommand ?? "fd";
+    fdCommandPath = fdCommand;
     fdAvailable = true;
     Logger.i("FileSearch", "Using fd command:", fdCommandPath);
   }
@@ -87,7 +94,7 @@ Item {
   function commands() {
     return [{
       "name": ">file",
-      "description": "Search for files",
+      "description": pluginApi?.tr("launcher.command.description"),
       "icon": "file-search",
       "isTablerIcon": true,
       "isImage": false,
@@ -104,8 +111,8 @@ Item {
 
     if (!fdAvailable) {
       return [{
-        "name": "fd not found",
-        "description": "Please install fd to use file search",
+        "name": pluginApi?.tr("launcher.errors.fdNotFound.title"),
+        "description": pluginApi?.tr("launcher.errors.fdNotFound.description"),
         "icon": "alert-circle",
         "isTablerIcon": true,
         "isImage": false,
@@ -117,8 +124,8 @@ Item {
 
     if (query === "") {
       return [{
-        "name": "Type to search files",
-        "description": "Start typing to search for files",
+        "name": pluginApi?.tr("launcher.prompts.emptyQuery.title"),
+        "description": pluginApi?.tr("launcher.prompts.emptyQuery.description", { "root": displaySearchDirectory() }),
         "icon": "file-search",
         "isTablerIcon": true,
         "isImage": false,
@@ -128,12 +135,14 @@ Item {
 
     if (query !== currentQuery) {
       currentQuery = query;
+      activeRequestId = 0;
+      currentRequestFailed = false;
       searching = true;
       searchDebouncer.restart();
       
       return [{
-        "name": "Searching...",
-        "description": "Looking for files matching: " + query,
+        "name": pluginApi?.tr("launcher.prompts.searching.title"),
+        "description": pluginApi?.tr("launcher.prompts.searching.description", { "query": query }),
         "icon": "refresh",
         "isTablerIcon": true,
         "isImage": false,
@@ -143,8 +152,8 @@ Item {
 
     if (searching) {
       return [{
-        "name": "Searching...",
-        "description": "Looking for files matching: " + query,
+        "name": pluginApi?.tr("launcher.prompts.searching.title"),
+        "description": pluginApi?.tr("launcher.prompts.searching.description", { "query": query }),
         "icon": "refresh",
         "isTablerIcon": true,
         "isImage": false,
@@ -162,70 +171,209 @@ Item {
 
     Logger.d("FileSearch", "Executing search for:", query);
 
-    if (fdProcess.running) {
-      fdProcess.running = false;
+    if (fileSearchProcess.running) {
+      fileSearchProcess.running = false;
+    }
+    if (dirSearchProcess.running) {
+      dirSearchProcess.running = false;
     }
 
-    var expandedDir = searchDirectory;
-    if (expandedDir.startsWith("~")) {
-      expandedDir = Quickshell.env("HOME") + expandedDir.substring(1);
-    }
+    var expandedDir = expandHomePath(searchDirectory);
 
-    var args = [];
-    
-    // Options
+    nextRequestId += 1;
+    var requestId = nextRequestId;
+    activeRequestId = requestId;
+    currentRequestFailed = false;
+    pendingProcessCount = 2;
+    pendingResultsByType = ({ "files": [], "dirs": [] });
+
+    var commonArgs = [];
+
     if (showHidden) {
-      args.push("--hidden");
+      commonArgs.push("--hidden");
     }
-    
-    args.push("--type", "f");  // Files only
+
     if (maxResults > 0) {
-      args.push("--max-results", maxResults.toString());
+      commonArgs.push("--max-results", maxResults.toString());
     }
-    args.push("--base-directory", expandedDir);
-    args.push("--absolute-path");
-    args.push("--color", "never");
-    
-    args.push(query);
+    commonArgs.push("--base-directory", expandedDir);
+    commonArgs.push("--absolute-path");
+    commonArgs.push("--color", "never");
+    commonArgs.push(query);
 
-    Logger.d("FileSearch", "Running command:", fdCommandPath, args.join(" "));
+    var fileArgs = ["--type", "f"].concat(commonArgs);
+    var dirArgs = ["--type", "d"].concat(commonArgs);
 
-    fdProcess.command = [fdCommandPath].concat(args);
-    fdProcess.running = true;
+    fileProcessRequestId = requestId;
+    fileSearchProcess.command = [fdCommandPath].concat(fileArgs);
+    fileSearchProcess.running = true;
+
+    dirProcessRequestId = requestId;
+    dirSearchProcess.command = [fdCommandPath].concat(dirArgs);
+    dirSearchProcess.running = true;
+
+    Logger.d("FileSearch", "Running file command:", fdCommandPath, fileArgs.join(" "));
+    Logger.d("FileSearch", "Running dir command:", fdCommandPath, dirArgs.join(" "));
   }
 
-  function parseSearchResults(output) {
-    var lines = output.trim().split("\n");
+  function handleSearchProcessExit(kind, requestId, exitCode, stdoutText, stderrText) {
+    if (requestId !== activeRequestId || currentRequestFailed) {
+      return;
+    }
+
+    if (exitCode !== 0) {
+      currentRequestFailed = true;
+      searching = false;
+      pendingProcessCount = 0;
+      Logger.e("FileSearch", "fd command failed with exit code:", exitCode);
+      Logger.e("FileSearch", "stderr:", stderrText);
+      currentResults = [{
+        "name": pluginApi?.tr("launcher.errors.fdNotFound.title"),
+        "description": pluginApi?.tr("launcher.errors.fdNotFound.description"),
+        "icon": "alert-circle",
+        "isTablerIcon": true,
+        "onActivate": function() {}
+      }];
+      if (launcher) {
+        launcher.updateResults();
+      }
+      return;
+    }
+
+    pendingResultsByType[kind] = parseRawPaths(stdoutText);
+    pendingProcessCount -= 1;
+
+    if (pendingProcessCount <= 0) {
+      finalizeSearchResults(requestId);
+    }
+  }
+
+  function finalizeSearchResults(requestId) {
+    if (requestId !== activeRequestId || currentRequestFailed) {
+      return;
+    }
+
     var results = [];
 
-    if (lines.length === 0 || (lines.length === 1 && lines[0] === "")) {
+    for (var i = 0; i < pendingResultsByType.dirs.length; i++) {
+      results.push(formatFileEntry(pendingResultsByType.dirs[i], true));
+    }
+    for (var j = 0; j < pendingResultsByType.files.length; j++) {
+      results.push(formatFileEntry(pendingResultsByType.files[j], false));
+    }
+
+    results = sortResults(results, currentQuery);
+
+    if (maxResults > 0 && results.length > maxResults) {
+      results = results.slice(0, maxResults);
+    }
+
+    if (results.length === 0) {
       results.push({
-        "name": "No files found",
-        "description": "No files matching '" + currentQuery + "'",
+        "name": pluginApi?.tr("launcher.prompts.noResults.title"),
+        "description": pluginApi?.tr("launcher.prompts.noResults.description", { "query": currentQuery }),
         "icon": "file-off",
         "isTablerIcon": true,
         "isImage": false,
         "onActivate": function() {}
       });
+      searching = false;
       currentResults = results;
+      if (launcher) {
+        launcher.updateResults();
+      }
       return;
     }
 
-    for (var i = 0; i < lines.length; i++) {
-      var filePath = lines[i].trim();
-      if (filePath !== "") {
-        results.push(formatFileEntry(filePath));
-      }
-    }
-
+    searching = false;
     currentResults = results;
     Logger.d("FileSearch", "Found", results.length, "results");
+    if (launcher) {
+      launcher.updateResults();
+    }
   }
 
-  function formatFileEntry(filePath) {
-    var parts = filePath.split("/");
+  function parseRawPaths(output) {
+    var trimmed = output.trim();
+    if (trimmed === "") {
+      return [];
+    }
+    return trimmed.split("\n").filter(function(line) { return line.trim() !== ""; });
+  }
+
+  function expandHomePath(pathValue) {
+    var expandedPath = pathValue;
+    if (expandedPath.startsWith("~")) {
+      expandedPath = Quickshell.env("HOME") + expandedPath.substring(1);
+    }
+    return expandedPath;
+  }
+
+  function displaySearchDirectory() {
+    var expandedPath = expandHomePath(searchDirectory);
+    var homeDir = Quickshell.env("HOME");
+    if (expandedPath.startsWith(homeDir)) {
+      return "~" + expandedPath.slice(homeDir.length);
+    }
+    return expandedPath;
+  }
+
+  function sortResults(results, query) {
+    var queryLower = query.toLowerCase();
+    results.sort(function(a, b) {
+      var rankA = resultRank(a, queryLower);
+      var rankB = resultRank(b, queryLower);
+      if (rankA !== rankB) {
+        return rankA - rankB;
+      }
+
+      var nameA = (a.name || "").toLowerCase();
+      var nameB = (b.name || "").toLowerCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return (a.description || "").length - (b.description || "").length;
+    });
+    return results;
+  }
+
+  function resultRank(result, queryLower) {
+    var name = (result.name || "").toLowerCase();
+    var description = (result.description || "").toLowerCase();
+    var fullPath = description + "/" + name;
+
+    if (name === queryLower) {
+      return 0;
+    }
+    if (name.startsWith(queryLower)) {
+      return 1;
+    }
+    if (name.indexOf(queryLower) !== -1) {
+      return 2;
+    }
+    if (fullPath.indexOf(queryLower) !== -1) {
+      return 3;
+    }
+    return 4;
+  }
+
+  function formatFileEntry(filePath, forcedIsDirectory) {
+    var normalizedPath = filePath;
+    while (normalizedPath.length > 1 && normalizedPath.endsWith("/")) {
+      normalizedPath = normalizedPath.slice(0, -1);
+    }
+
+    var isDirectory = (forcedIsDirectory !== undefined) ? forcedIsDirectory : normalizedPath !== filePath;
+    var parts = normalizedPath.split("/");
     var filename = parts[parts.length - 1];
     var parentPath = parts.slice(0, -1).join("/");
+
+    if (filename === "") {
+      filename = normalizedPath;
+    }
     
     var homeDir = Quickshell.env("HOME");
     if (parentPath.startsWith(homeDir)) {
@@ -235,12 +383,12 @@ Item {
     return {
       "name": filename,
       "description": parentPath,
-      "icon": getFileIcon(filename),
+      "icon": isDirectory ? "folder" : getFileIcon(filename),
       "isTablerIcon": true,
       "isImage": false,
       "singleLine": false,
       "onActivate": function() {
-        root.openFile(filePath);
+        root.openFile(normalizedPath);
       }
     };
   }

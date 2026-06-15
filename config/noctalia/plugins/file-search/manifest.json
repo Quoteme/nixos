@@ -1,12 +1,12 @@
 {
     "id": "file-search",
     "name": "File Search",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "minNoctaliaVersion": "4.1.2",
     "author": "ericbreh",
     "license": "MIT",
     "repository": "https://github.com/noctalia-dev/noctalia-plugins",
-    "description": "File search using fd, integrated into the launcher",
+    "description": "File search from the launcher.",
     "tags": [
         "Launcher",
         "Productivity"
@@ -22,7 +22,7 @@
     "metadata": {
         "defaultSettings": {
             "showHidden": false,
-            "maxResults": 0,
+            "maxResults": 100,
             "fileOpener": "xdg-open",
             "searchDirectory": "~",
             "fdCommand": "fd"

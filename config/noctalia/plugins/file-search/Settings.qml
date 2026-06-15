@@ -37,7 +37,7 @@ ColumnLayout {
         spacing: Style.marginS
 
         NText {
-          text: "Include hidden files"
+          text: pluginApi?.tr("settings.showHidden.label")
           font.pointSize: Style.fontSizeL
           font.weight: Font.Medium
           color: Color.mOnSurface
@@ -54,9 +54,9 @@ ColumnLayout {
     // File Opener Input
     NTextInput {
       Layout.fillWidth: true
-      label: "File opener command"
-      description: "Command used to open files"
-      placeholderText: "xdg-open"
+      label: pluginApi?.tr("settings.fileOpener.label")
+      description: pluginApi?.tr("settings.fileOpener.description")
+      placeholderText: pluginApi?.tr("settings.fileOpener.placeholder")
       text: root.valueFileOpener
       onTextChanged: root.valueFileOpener = text
     }
@@ -64,9 +64,9 @@ ColumnLayout {
     // Search Directory Input
     NTextInput {
       Layout.fillWidth: true
-      label: "Search directory"
-      description: "Directory to search for files"
-      placeholderText: "~"
+      label: pluginApi?.tr("settings.searchDirectory.label")
+      description: pluginApi?.tr("settings.searchDirectory.description")
+      placeholderText: pluginApi?.tr("settings.searchDirectory.placeholder")
       text: root.valueSearchDirectory
       onTextChanged: root.valueSearchDirectory = text
     }
@@ -74,9 +74,9 @@ ColumnLayout {
     // fd Command Path Input
     NTextInput {
       Layout.fillWidth: true
-      label: "fd command path"
-      description: "Command name or path"
-      placeholderText: "fd"
+      label: pluginApi?.tr("settings.fdCommand.label")
+      description: pluginApi?.tr("settings.fdCommand.description")
+      placeholderText: pluginApi?.tr("settings.fdCommand.placeholder")
       text: root.valueFdCommand
       onTextChanged: root.valueFdCommand = text
     }
@@ -91,7 +91,7 @@ ColumnLayout {
         Layout.fillWidth: true
 
         NText {
-          text: "Maximum results"
+          text: pluginApi?.tr("settings.maxResults.label")
           font.pointSize: Style.fontSizeL
           font.weight: Font.Medium
           color: Color.mOnSurface
@@ -99,7 +99,7 @@ ColumnLayout {
         }
 
         NText {
-          text: root.valueMaxResults === 0 ? "Unlimited" : root.valueMaxResults.toString()
+          text: root.valueMaxResults === 0 ? pluginApi?.tr("settings.maxResults.unlimited") : root.valueMaxResults.toString()
           font.pointSize: Style.fontSizeM
           font.weight: Font.Medium
           color: Color.mPrimary
@@ -107,7 +107,7 @@ ColumnLayout {
       }
 
       NText {
-        text: "Limit the number of search results displayed (set to 0 for unlimited)"
+        text: pluginApi?.tr("settings.maxResults.description")
         font.pointSize: Style.fontSizeS
         color: Color.mOnSurfaceVariant
         wrapMode: Text.WordWrap
@@ -117,7 +117,7 @@ ColumnLayout {
       NSlider {
         Layout.fillWidth: true
         from: 0
-        to: 200
+        to: 1000
         stepSize: 10
         value: root.valueMaxResults
         onMoved: root.valueMaxResults = Math.round(value)

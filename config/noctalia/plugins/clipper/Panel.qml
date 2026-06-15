@@ -43,10 +43,12 @@ Item {
     // Panel dimensions - fullscreen transparent container
     property real contentPreferredWidth: (pluginApi?.pluginSettings?.fullscreenMode ?? false)
         ? (screen?.width ?? 1920)
-        : 1450 * Style.uiScaleRatio
-    property var contentPreferredHeight: (pluginApi?.pluginSettings?.fullscreenMode ?? false)
-        ? (screen?.height ?? 900)
-        : undefined
+        : (pluginApi?.pluginSettings?.panelWidth ?? 1450) * Style.uiScaleRatio
+    property var contentPreferredHeight: {
+        if (pluginApi?.pluginSettings?.fullscreenMode ?? false) return screen?.height ?? 900;
+        var h = pluginApi?.pluginSettings?.panelHeight ?? 0;
+        return h > 0 ? h * Style.uiScaleRatio : undefined;
+    }
 
     // SmartPanel background color - transparent when hidePanelBackground is enabled
     property color panelBackgroundColor: (pluginApi?.pluginSettings?.hidePanelBackground ?? false)
@@ -161,7 +163,7 @@ Item {
             anchors.margins: Style.marginM
             z: 10
             icon: "x"
-            tooltipText: pluginApi?.tr("panel.close") || "Close"
+            tooltipText: pluginApi?.tr("panel.close")
             colorBg: (typeof Color !== "undefined") ? Color.mSurfaceVariant : "#444444"
             colorBgHover: (typeof Color !== "undefined") ? Color.mError : "#CC0000"
             colorFg: (typeof Color !== "undefined") ? Color.mOnSurface : "#FFFFFF"
@@ -202,7 +204,7 @@ Item {
                     spacing: Style.marginM
 
                     NText {
-                        text: pluginApi?.tr("panel.title") || "Clipboard History"
+                        text: pluginApi?.tr("panel.title")
                         font.bold: true
                         font.pointSize: Style.fontSizeL
                         Layout.alignment: Qt.AlignVCenter
@@ -215,7 +217,7 @@ Item {
 
                     NIconButton {
                         icon: "settings"
-                        tooltipText: pluginApi?.tr("panel.settings") || "Settings"
+                        tooltipText: pluginApi?.tr("panel.settings")
                         Layout.alignment: Qt.AlignVCenter
                         colorBg: (typeof Color !== "undefined") ? Color.mSurfaceVariant : "#444444"
                         colorBgHover: (typeof Color !== "undefined") ? Color.mHover : "#666666"
@@ -232,7 +234,7 @@ Item {
                         id: searchInput
                         Layout.preferredWidth: 250
                         Layout.alignment: Qt.AlignVCenter
-                        placeholderText: pluginApi?.tr("panel.search-placeholder") || "Search..."
+                        placeholderText: pluginApi?.tr("panel.search-placeholder")
                         text: root.searchText
                         onTextChanged: root.searchText = text
 
@@ -335,7 +337,7 @@ Item {
                                 anchors.centerIn: parent
                                 focus: true
                                 icon: "apps"
-                                tooltipText: pluginApi?.tr("panel.filter-all") || "All"
+                                tooltipText: pluginApi?.tr("panel.filter-all")
                                 colorBg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mPrimary : Color.mSurfaceVariant) : "#444444"
                                 colorBgHover: (typeof Color !== "undefined") ? (parent.isActive ? Color.mPrimary : Color.mHover) : "#666666"
                                 colorFg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mOnPrimary : Color.mOnSurface) : "#FFFFFF"
@@ -433,7 +435,7 @@ Item {
                                 anchors.centerIn: parent
                                 focus: true
                                 icon: "align-left"
-                                tooltipText: pluginApi?.tr("panel.filter-text") || "Text"
+                                tooltipText: pluginApi?.tr("panel.filter-text")
                                 colorBg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mPrimary : Color.mSurfaceVariant) : "#444444"
                                 colorBgHover: (typeof Color !== "undefined") ? (parent.isActive ? Color.mPrimary : Color.mHover) : "#666666"
                                 colorFg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mOnPrimary : Color.mOnSurface) : "#FFFFFF"
@@ -528,7 +530,7 @@ Item {
                                 anchors.centerIn: parent
                                 focus: true
                                 icon: "photo"
-                                tooltipText: pluginApi?.tr("panel.filter-images") || "Images"
+                                tooltipText: pluginApi?.tr("panel.filter-images")
                                 colorBg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mTertiary : Color.mSurfaceVariant) : "#444444"
                                 colorBgHover: (typeof Color !== "undefined") ? (parent.isActive ? Color.mTertiary : Color.mHover) : "#666666"
                                 colorFg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mOnTertiary : Color.mOnSurface) : "#FFFFFF"
@@ -619,7 +621,7 @@ Item {
                                 anchors.centerIn: parent
                                 focus: true
                                 icon: "palette"
-                                tooltipText: pluginApi?.tr("panel.filter-colors") || "Colors"
+                                tooltipText: pluginApi?.tr("panel.filter-colors")
                                 colorBg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mSecondary : Color.mSurfaceVariant) : "#444444"
                                 colorBgHover: (typeof Color !== "undefined") ? (parent.isActive ? Color.mSecondary : Color.mHover) : "#666666"
                                 colorFg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mOnSecondary : Color.mOnSurface) : "#FFFFFF"
@@ -710,7 +712,7 @@ Item {
                                 anchors.centerIn: parent
                                 focus: true
                                 icon: "link"
-                                tooltipText: pluginApi?.tr("panel.filter-links") || "Links"
+                                tooltipText: pluginApi?.tr("panel.filter-links")
                                 colorBg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mPrimary : Color.mSurfaceVariant) : "#444444"
                                 colorBgHover: (typeof Color !== "undefined") ? (parent.isActive ? Color.mPrimary : Color.mHover) : "#666666"
                                 colorFg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mOnPrimary : Color.mOnSurface) : "#FFFFFF"
@@ -801,7 +803,7 @@ Item {
                                 anchors.centerIn: parent
                                 focus: true
                                 icon: "code"
-                                tooltipText: pluginApi?.tr("panel.filter-code") || "Code"
+                                tooltipText: pluginApi?.tr("panel.filter-code")
                                 colorBg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mSecondary : Color.mSurfaceVariant) : "#444444"
                                 colorBgHover: (typeof Color !== "undefined") ? (parent.isActive ? Color.mSecondary : Color.mHover) : "#666666"
                                 colorFg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mOnSecondary : Color.mOnSurface) : "#FFFFFF"
@@ -892,7 +894,7 @@ Item {
                                 anchors.centerIn: parent
                                 focus: true
                                 icon: "mood-smile"
-                                tooltipText: pluginApi?.tr("panel.filter-emoji") || "Emoji"
+                                tooltipText: pluginApi?.tr("panel.filter-emoji")
                                 colorBg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mPrimary : Color.mSurfaceVariant) : "#444444"
                                 colorBgHover: (typeof Color !== "undefined") ? (parent.isActive ? Color.mPrimary : Color.mHover) : "#666666"
                                 colorFg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mOnPrimary : Color.mOnSurface) : "#FFFFFF"
@@ -983,7 +985,7 @@ Item {
                                 anchors.centerIn: parent
                                 focus: true
                                 icon: "file"
-                                tooltipText: pluginApi?.tr("panel.filter-files") || "Files"
+                                tooltipText: pluginApi?.tr("panel.filter-files")
                                 colorBg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mTertiary : Color.mSurfaceVariant) : "#444444"
                                 colorBgHover: (typeof Color !== "undefined") ? (parent.isActive ? Color.mTertiary : Color.mHover) : "#666666"
                                 colorFg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mOnTertiary : Color.mOnSurface) : "#FFFFFF"
@@ -1067,7 +1069,7 @@ Item {
 
                     NButton {
                         focus: true
-                        text: pluginApi?.tr("panel.clear-all") || "Clear All"
+                        text: pluginApi?.tr("panel.clear-all")
                         icon: "trash"
                         Layout.alignment: Qt.AlignVCenter
                         Layout.topMargin: -2 * Style.uiScaleRatio
@@ -1219,14 +1221,14 @@ Item {
                         onPinClicked: {
                             if (isPinned) {
                                 root.pluginApi?.mainInstance?.unpinItem(clipboardId);
-                                ToastService.showNotice(pluginApi?.tr("toast.item-unpinned") || "Item unpinned");
+                                ToastService.showNotice(pluginApi?.tr("toast.item-unpinned"));
                             } else {
                                 const pinnedItems = root.pluginApi?.mainInstance?.pinnedItems || [];
                                 if (pinnedItems.length >= 20) {
-                                    ToastService.showWarning((pluginApi?.tr("toast.max-pinned-items") || "Maximum {max} pinned items reached").replace("{max}", "20"));
+                                    ToastService.showWarning(pluginApi?.tr("toast.max-pinned-items").replace("{max}", "20"));
                                 } else {
                                     root.pluginApi?.mainInstance?.pinItem(clipboardId);
-                                    ToastService.showNotice(pluginApi?.tr("toast.item-pinned") || "Item pinned");
+                                    ToastService.showNotice(pluginApi?.tr("toast.item-pinned"));
                                 }
                             }
                         }
@@ -1242,7 +1244,7 @@ Item {
                     NText {
                         anchors.centerIn: parent
                         visible: listView.count === 0
-                        text: root.filterType || root.searchText ? (pluginApi?.tr("panel.no-matches") || "No matching items") : (pluginApi?.tr("panel.empty") || "Clipboard is empty")
+                        text: root.filterType || root.searchText ? pluginApi?.tr("panel.no-matches") : pluginApi?.tr("panel.empty")
                         color: (typeof Color !== "undefined") ? Color.mOnSurfaceVariant : "#AAAAAA"
                     }
                 }
@@ -1272,7 +1274,7 @@ Item {
                     spacing: Style.marginM
 
                     NText {
-                        text: pluginApi?.tr("panel.pinned-title") || "Pinned Items"
+                        text: pluginApi?.tr("panel.pinned-title")
                         font.bold: true
                         font.pointSize: Style.fontSizeL
                         Layout.alignment: Qt.AlignVCenter
@@ -1338,7 +1340,7 @@ Item {
 
                         onPinClicked: {
                             root.pluginApi?.mainInstance?.unpinItem(modelData.id);
-                            ToastService.showNotice(pluginApi?.tr("toast.item-unpinned") || "Item unpinned");
+                            ToastService.showNotice(pluginApi?.tr("toast.item-unpinned"));
                         }
 
                         onDeleteClicked: {
@@ -1349,7 +1351,7 @@ Item {
                     NText {
                         anchors.centerIn: parent
                         visible: pinnedListView.count === 0
-                        text: pluginApi?.tr("panel.no-pinned") || "No pinned items"
+                        text: pluginApi?.tr("panel.no-pinned")
                         color: (typeof Color !== "undefined") ? Color.mOnSurfaceVariant : "#AAAAAA"
                     }
                 }

@@ -1,5 +1,15 @@
 {
   "tooltip": "Screenshot aufnehmen",
+  "notification": {
+    "title": "Screenshot",
+    "success": "Erfasst und in die Zwischenablage kopiert",
+    "error-grimshot": "Grimshot konnte nicht ausgeführt werden. Bitte stelle sicher, dass Grimshot installiert ist und sich im PATH befindet.",
+    "unsupported-compositor": "Screenshots werden in diesem Compositor nicht unterstützt."
+  },
+  "actions": {
+    "active-window": "Aktives Fenster erfassen",
+    "active-screen": "Aktiven Bildschirm erfassen"
+  },
   "settings": {
     "mode": {
       "label": "Screenshot-Modus",

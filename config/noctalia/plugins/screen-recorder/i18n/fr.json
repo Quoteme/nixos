@@ -13,6 +13,7 @@
     "started": "Enregistrement démarré.",
     "stop-recording": "Enregistreur d'écran (arrêter l'enregistrement)",
     "stopping": "Arrêt de l'enregistrement...",
+    "open-file": "Ouvrir le fichier",
     "monitor-not-found": "Impossible de détecter l'écran sous le curseur.",
     "replay-saved": "Replay enregistré.",
     "replay-started": "Tampon de replay démarré.",
@@ -43,6 +44,8 @@
     "general": {
       "copy-to-clipboard": "Copier dans le presse-papiers",
       "copy-to-clipboard-description": "Copier le fichier dans le presse-papiers une fois l'enregistrement terminé.",
+      "hide-when-inactive": "Masquer lorsqu'inactif",
+      "hide-when-inactive-description": "Masquer l'indicateur de la barre lorsqu'il n'y a pas d'enregistrement",
       "output-folder": "Dossier de sortie",
       "output-folder-description": "Dossier où les enregistrements d'écran seront enregistrés",
       "restore-portal-session": "Restaurer la session du portail",
