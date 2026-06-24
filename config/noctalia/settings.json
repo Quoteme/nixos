@@ -24,7 +24,7 @@
         "sortByMostUsed": true,
         "terminalCommand": "alacritty -e",
         "useApp2Unit": false,
-        "viewMode": "list"
+        "viewMode": "grid"
     },
     "audio": {
         "cavaFrameRate": 30,
@@ -181,13 +181,14 @@
                     "unreadBadgeColor": "primary"
                 },
                 {
-                    "deviceNativePath": "__default__",
-                    "displayMode": "graphic",
-                    "hideIfIdle": false,
-                    "hideIfNotDetected": true,
-                    "id": "Battery",
-                    "showNoctaliaPerformance": false,
-                    "showPowerProfiles": false
+                    "defaultSettings": {
+                        "colorPerformance": null,
+                        "colorPowerSaver": null,
+                        "colorizeByProfile": true,
+                        "showBalancedIcon": false,
+                        "showProfile": true
+                    },
+                    "id": "plugin:battery-and-power-management"
                 },
                 {
                     "displayMode": "onhover",
@@ -236,11 +237,6 @@
                         "showCloseButton": false
                     },
                     "id": "plugin:clipper"
-                },
-                {
-                    "defaultSettings": {
-                    },
-                    "id": "plugin:kde-connect"
                 },
                 {
                     "colorizeDistroLogo": false,
