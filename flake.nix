@@ -205,6 +205,7 @@
               };
 
               modules.applications.editors.vscode-fhs.enable = true;
+              modules.applications.editors.emacs.enable = true;
               modules.applications.ai.ollama.enable = true;
               modules.applications.gaming.steam.enable = false;
               modules.applications.networking.filesharing.enable = true;
