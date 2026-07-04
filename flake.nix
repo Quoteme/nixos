@@ -222,7 +222,7 @@
               modules.desktopManager.sddm.enable = false;
               modules.loginManager.greetd.enable = true;
               modules.environment.systemPackages.enable = true;
-              modules.environment.user_shell_nushell.enable = true;
+              modules.environment.user_shell_nushell.enable = false;
               modules.fonts.enable = true;
               modules.hardware.audio.enable = true;
               modules.hardware.disks.enable = true;

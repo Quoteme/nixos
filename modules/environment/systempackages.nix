@@ -35,7 +35,7 @@ in
             matplotlib
             plotly
             pipx
-            whisperx
+            # whisperx
           ]
         );
       in

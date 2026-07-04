@@ -57,9 +57,9 @@
   };
   programs.atuin = {
     enable = true;
-  };
-  programs.atuin.settings = {
-    keymap_mode = "auto";
+    settings = {
+      keymap_mode = "auto";
+    };
   };
   programs.bash = {
     enable = true;
