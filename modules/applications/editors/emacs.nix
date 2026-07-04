@@ -24,6 +24,9 @@ in
   config =
     with pkgs;
     mkIf cfg.enable {
+      environment.shellAliases = {
+        doom = "~/.config/emacs/bin/doom";
+      };
       services.emacs = {
         enable = true;
         package = emacs31;
