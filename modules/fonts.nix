@@ -1,4 +1,11 @@
-{ config, options, lib, pkgs, ... }@inputs: {
+{
+  config,
+  options,
+  lib,
+  pkgs,
+  ...
+}@inputs:
+{
 
   options.modules.fonts = {
     enable = lib.options.mkEnableOption {
@@ -27,8 +34,11 @@
       scientifica
       siji
       unifont
+      symbola
     ];
-    fonts.fontconfig.defaultFonts.emoji =
-      [ "Noto Color Emoji" "openmoji-color" ];
+    fonts.fontconfig.defaultFonts.emoji = [
+      "Noto Color Emoji"
+      "openmoji-color"
+    ];
   };
 }
