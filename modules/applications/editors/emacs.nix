@@ -29,7 +29,7 @@ in
       };
       services.emacs = {
         enable = true;
-        package = emacs31;
+        package = emacs;
       };
     };
 }
