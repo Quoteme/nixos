@@ -1,4 +1,11 @@
-{ config, options, lib, pkgs, ... }@inputs: {
+{
+  config,
+  options,
+  lib,
+  pkgs,
+  ...
+}@inputs:
+{
 
   options.modules.fonts = {
     enable = lib.options.mkEnableOption {
@@ -16,6 +23,8 @@
       nerd-fonts.monaspace
       nerd-fonts.hasklug
       nerd-fonts.fira-code
+      nerd-fonts.iosevka
+      nerd-fonts.symbols-only
       font-awesome
       julia-mono
       liberation_ttf
@@ -27,8 +36,11 @@
       scientifica
       siji
       unifont
+      symbola
     ];
-    fonts.fontconfig.defaultFonts.emoji =
-      [ "Noto Color Emoji" "openmoji-color" ];
+    fonts.fontconfig.defaultFonts.emoji = [
+      "Noto Color Emoji"
+      "openmoji-color"
+    ];
   };
 }
