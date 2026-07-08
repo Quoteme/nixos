@@ -23,6 +23,7 @@
       nerd-fonts.monaspace
       nerd-fonts.hasklug
       nerd-fonts.fira-code
+      nerd-fonts.iosevka
       nerd-fonts.symbols-only
       font-awesome
       julia-mono

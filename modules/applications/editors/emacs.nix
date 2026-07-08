@@ -31,5 +31,8 @@ in
         enable = true;
         package = emacs;
       };
+      environment.systemPackages = [
+        gcc
+      ];
     };
 }
