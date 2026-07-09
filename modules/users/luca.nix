@@ -79,10 +79,6 @@ in
         usbutils
         scrcpy
         android-tools
-        (writeScriptBin "shareAndroidScreen" ''
-          #!/usr/bin/env bash
-          adb exec-out screenrecord --output-format=h264 - | ${pkgs.ffmpeg-full}/bin/ffplay -framerate 60 -probesize 32 -sync video  -
-        '')
       ];
     };
   };

@@ -82,10 +82,8 @@
         # driSupport = true;
         enable32Bit = true;
         extraPackages = with pkgs.stable; [
-          amdvlk
           rocmPackages.clr.icd
         ];
-        extraPackages32 = with pkgs.stable; [ driversi686Linux.amdvlk ];
       };
     };
     services.xserver.videoDrivers = [
@@ -166,15 +164,16 @@
 
     # tablet-mode patch
     # See: https://github.com/camillemndn/nixos-config/blob/f71c2b099bec17ceb8a894f099791447deac70bf/hardware/asus/gv301qe/default.nix#L46
-    boot.kernelPatches = [
-      {
-        name = "asus-rog-flow-x13-tablet-mode";
-        patch = builtins.fetchurl {
-          url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.13/PATCH-0-1-HID-amd_sfh-Add-support-for-tablet-mode.patch?ref_type=heads";
-          sha256 = "sha256:0dmncwvkl24qqzfm4mnccjp3sin6fd1y8jbilb92mva75dd4mj9m";
-        };
-      }
-    ];
+    hardware.deviceTree.enable = false;
+    # boot.kernelPatches = [
+    #   {
+    #     name = "asus-rog-flow-x13-tablet-mode";
+    #     patch = builtins.fetchurl {
+    #       url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.13/PATCH-0-1-HID-amd_sfh-Add-support-for-tablet-mode.patch?ref_type=heads";
+    #       sha256 = "sha256:0dmncwvkl24qqzfm4mnccjp3sin6fd1y8jbilb92mva75dd4mj9m";
+    #     };
+    #   }
+    # ];
     # Automatically hibernate when suspended for some time
     # Lid and power management configuration
     # services.logind = { lidSwitch = "suspend-then-hibernate"; };

@@ -6,7 +6,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.2";
+      url = "github:nix-community/lanzaboote/v1.1.0";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     nix-gl-host.url = "github:numtide/nix-gl-host";
@@ -14,7 +14,7 @@
     nix-index-database.url = "github:nix-community/nix-index-database";
     nixd.url = "github:nix-community/nixd";
     typenix.url = "github:ryanrasti/typenix";
-    nixpkgs-stable.url = "nixpkgs/nixos-25.05";
+    nixpkgs-stable.url = "nixpkgs/nixos-26.05";
     nixpkgs.url = "nixpkgs/nixos-unstable";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     nur = {
@@ -82,8 +82,8 @@
           # hyprland plugins passed as a single 'hyprlandPlugins' arg consumed by hyprland.nix
           hyprlandPlugins = [
             attrs.hyprland-plugins.packages.${system}.hyprbars
-            attrs.hyprland-plugins.packages.${system}.hyprexpo
-            attrs.hypr-dynamic-cursors.packages.${system}.hypr-dynamic-cursors
+            # attrs.hyprland-plugins.packages.${system}.hyprexpo
+            # attrs.hypr-dynamic-cursors.packages.${system}.hypr-dynamic-cursors
             # attrs.hyprland-plugins.packages.${system}.hyprfocus
             # attrs.hyprgrass.packages.${system}.default
             # attrs.hyprspace.packages.${system}.default
@@ -123,7 +123,7 @@
               nixpkgs.config.allowUnfree = true;
 
               boot = {
-                kernelPackages = pkgs.stable.linuxPackages_latest;
+                kernelPackages = pkgs.linuxPackages_latest;
                 # windows integration
                 supportedFilesystems = [ "ntfs" ];
               };
@@ -206,7 +206,7 @@
 
               modules.applications.editors.vscode-fhs.enable = true;
               modules.applications.editors.emacs.enable = true;
-              modules.applications.ai.ollama.enable = true;
+              modules.applications.ai.ollama.enable = false;
               modules.applications.gaming.steam.enable = false;
               modules.applications.networking.filesharing.enable = true;
               modules.applications.nix-extras.enable = true;

@@ -24,7 +24,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages =
       let
-        myPython = pkgs.python313.withPackages (
+        myPython = pkgs.python314.withPackages (
           ps: with ps; [
             pytest
             debugpy
@@ -33,7 +33,7 @@ in
             numpy
             scipy
             matplotlib
-            plotly
+            # plotly
             pipx
             # whisperx
           ]

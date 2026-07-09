@@ -36,6 +36,7 @@ in
         blueman
         networkmanagerapplet
         hypridle
+        wayfreeze
         nwg-drawer
         swaybg
         swipe-guess

@@ -156,7 +156,6 @@
         jupyter-client
         matplotlib
         numpy
-        plotly # for image rendering
         pnglatex # for image rendering
         pylatexenc
         pynvim
