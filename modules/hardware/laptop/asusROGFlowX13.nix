@@ -37,7 +37,7 @@
       };
     };
     # power management
-    powerManagement.powertop.enable = lib.mkForce false;
+    powerManagement.powertop.enable = true;
     # `nixos-generate-config --show-hardware-config` doesn't detect mount options automatically,
     # so to enable compression, you must specify it and other mount options
     # in a persistent configuration
