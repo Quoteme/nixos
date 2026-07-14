@@ -56,36 +56,36 @@ in
         ];
       };
 
-      programs.dconf.enable = true;
-      programs.gamescope = {
-        enable = true;
-        env = {
-          __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-          __NV_PRIME_RENDER_OFFLOAD = "1";
-          __VK_LAYER_NV_optimus = "NVIDIA_only";
+      programs = {
+        dconf.enable = true;
+        gamescope = {
+          enable = true;
+          env = {
+            __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+            __NV_PRIME_RENDER_OFFLOAD = "1";
+            __VK_LAYER_NV_optimus = "NVIDIA_only";
+          };
         };
+        niri.enable = true;
       };
-      programs.niri.enable = true;
-      services.iio-niri.enable = true;
-      security.pam.services.greetd-password.enableGnomeKeyring = true;
-      security.pam.services.greetd.enableGnomeKeyring = true;
-      security.pam.services.login.enableGnomeKeyring = true;
-      services.dbus.packages = [
-        pkgs.dconf
-        pkgs.gnome-keyring
-      ];
-      services.gnome.gnome-keyring.enable = true;
-      services.logind.settings.Login = {
-        HandlePowerKey = "ignore";
-        HandlePowerKeyLongPress = "suspend-then-hibernate";
+      services = {
+        iio-niri.enable = true;
+        dbus.packages = [
+          pkgs.dconf
+          pkgs.gnome-keyring
+        ];
+        gnome.gnome-keyring.enable = true;
+        logind.settings.Login = {
+          HandlePowerKey = "ignore";
+          HandlePowerKeyLongPress = "suspend-then-hibernate";
+        };
+        upower.enable = true;
+        xserver.displayManager.sessionCommands = ''
+          eval $(gnome-keyring-daemon --start --daemonize --components=ssh,secrets)
+          export SSH_AUTH_SOCK
+        '';
+        xserver.updateDbusEnvironment = true;
       };
-
-      services.upower.enable = true;
-      services.xserver.displayManager.sessionCommands = ''
-        eval $(gnome-keyring-daemon --start --daemonize --components=ssh,secrets)
-        export SSH_AUTH_SOCK
-      '';
-      services.xserver.updateDbusEnvironment = true;
       system.userActivationScripts.niri = {
         text = ''
           ln -sfn /etc/nixos/config/niri/ "$HOME/.config/niri"

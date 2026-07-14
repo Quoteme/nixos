@@ -1,5 +1,5 @@
 {
-  description = "Luca Happels nixos ";
+  description = "Luca Happels nixos";
 
   inputs = {
     hmenke-nixos-modules.url = "github:hmenke/nixos-modules";
