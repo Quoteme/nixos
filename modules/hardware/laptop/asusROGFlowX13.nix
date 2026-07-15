@@ -142,8 +142,19 @@
     };
     services.fprintd = {
       enable = true;
-      tod.enable = true;
-      tod.driver = pkgs.libfprint-2-tod1-elan;
+      package = (
+        (pkgs.fprintd.override {
+          libfprint = pkgs.libfprint.overrideAttrs (oldAttrs: {
+            src = pkgs.fetchFromGitHub {
+              owner = "quoteme";
+              repo = "libfprint";
+              rev = "215f9e9a969ff03c03f5ea043bd19976e050581a";
+              hash = "sha256-wy6LBd/QPXDRuNPrcYgFwTYxl1c0vsQV6DAUJV5aHn0=";
+            };
+            patches = [ ];
+          });
+        })
+      );
     };
     services.asusd = {
       enable = true;
