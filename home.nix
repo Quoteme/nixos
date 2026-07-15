@@ -26,34 +26,15 @@
   home.shellAliases = {
     "..." = "cd ../..";
     cd = "z";
-    explain = "gh copilot explain";
-    fm = "yazi";
-    ghce = "gh copilot explain";
-    ghcs = "gh copilot suggest";
-    help-explain = "gh copilot explain";
     less = "${pkgs.nvimpager}/bin/nvimpager";
-
-    help-suggest = "gh copilot suggest";
     l = "eza --icons --git-ignore";
     lg = "lazygit";
     ll = "eza --long --icons --color --hyperlink";
     lt = "eza --long --tree --icons --color --hyperlink";
     gg = "${pkgs.git-graph}/bin/git-graph";
-    montigrafana = "xdg-open http://localhost:3000 && ssh -L 3000:localhost:3000 mmbs@monti.hhu.de";
-    montikuma = "xdg-open http://localhost:3001 && ssh -L 3001:localhost:3001 mmbs@monti.hhu.de";
-    montipostgres = "ssh -L 5432:localhost:5432 mmbs@monti.hhu.de";
-    montiprometheus = "xdg-open http://localhost:9090 && ssh -L 9090:localhost:9090 mmbs@monti.hhu.de";
-    montissh = "TERM=xterm-256color ssh mmbs@monti.hhu.de";
     nd = "nix develop -c $SHELL";
     ndo = "nix develop --offline --command $SHELL";
     o = "xdg-open";
-    steammount = ''
-      udisksctl unmount -b /dev/disk/by-uuid/98bf9471-2174-498f-b8d8-9b918a387ec4 &&
-      udisksctl mount -b /dev/disk/by-uuid/98bf9471-2174-498f-b8d8-9b918a387ec4 --options " exec "
-    '';
-    suggest = "gh copilot suggest";
-    v = "nvim";
-    ":e" = "nvim";
   };
   programs.atuin = {
     enable = true;
