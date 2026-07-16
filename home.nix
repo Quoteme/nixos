@@ -34,6 +34,8 @@
     gg = "${pkgs.git-graph}/bin/git-graph";
     nd = "nix develop -c $SHELL";
     ndo = "nix develop --offline --command $SHELL";
+    v = "nvim";
+    vi = "nvim";
     o = "xdg-open";
   };
   programs.atuin = {
