@@ -235,6 +235,7 @@
               modules.hardware.vpn.softether.enable = false;
               modules.security.gpg.enable = true;
               modules.security.gpg.enableSSHSupport = false;
+              modules.security.password-management.bitwarden.enable = true;
               modules.users.luca.enable = true;
 
               services.flatpak.enable = true;
