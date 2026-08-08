@@ -129,6 +129,7 @@
               };
 
               # Networking
+              nix.firewall.allowPrivateNetworks = true;
               networking = {
                 hostName = "nixos";
                 networkmanager.enable = true;
@@ -144,6 +145,7 @@
                     }
                   ];
                   allowedUDPPorts = [
+                    4445 # minecraft
                     51413
                     10001
                     10002
@@ -159,7 +161,7 @@
                   ];
                   allowedTCPPorts = [
                     22
-                    24800
+                    24800 # Minecraft server
                     25565
                     80
                     5000
