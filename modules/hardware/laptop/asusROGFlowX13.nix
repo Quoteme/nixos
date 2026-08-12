@@ -148,8 +148,8 @@
             src = pkgs.fetchFromGitHub {
               owner = "quoteme";
               repo = "libfprint";
-              rev = "0e9498eb4821ed43e26102179bae2728fb4f05ac";
-              hash = "sha256-XN+VyKukunFw2aAKCQDaa7jBTc6cxszsxb0Elar7Pzg=";
+              rev = "8bc24a48cc33cf4b02120628a6a156d05a9f8847";
+              hash = "sha256-u9E/rMrgtnUcC8P5b/rOtGi164x1IOYdrKkmnXpHlUA=";
             };
             patches = [ ];
           });
