@@ -146,6 +146,7 @@
                   ];
                   allowedUDPPorts = [
                     4445 # minecraft
+                    54675 # minecraft
                     51413
                     10001
                     10002
@@ -162,6 +163,7 @@
                   allowedTCPPorts = [
                     22
                     24800 # Minecraft server
+                    54675 # minecraft
                     25565
                     80
                     5000
@@ -209,7 +211,7 @@
               modules.applications.editors.vscode-fhs.enable = true;
               modules.applications.editors.emacs.enable = true;
               modules.applications.ai.ollama.enable = false;
-              modules.applications.gaming.steam.enable = false;
+              modules.applications.gaming.steam.enable = true;
               modules.applications.networking.filesharing.enable = true;
               modules.applications.nix-extras.enable = true;
               modules.applications.virtualisation.docker.enable = true;
@@ -273,7 +275,7 @@
 
               # Shell configuration
               environment.variables = {
-                TERMINAL = "kitty";
+                TERMINAL = "ghostty";
                 VISUAL = "nvim";
                 EDITOR = "nvim";
                 ACCESSIBILITY_ENABLED = "1";

@@ -26,6 +26,7 @@ in
     with pkgs;
     mkIf cfg.enable {
       environment.systemPackages = [
+        hyprpolkitagent
         nautilus
         sushi
         # turtle
@@ -83,6 +84,7 @@ in
         enable = true;
         plugins = hyprlandPlugins;
         extraConfig = ''
+          exec-once = ${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent
           exec-once = wl-paste --type text --watch cliphist store # Stores only text data
           exec-once = wl-paste --type image --watch cliphist store # Stores only image data
           exec-once = iio-hyprland

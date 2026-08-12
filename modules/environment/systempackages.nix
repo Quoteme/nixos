@@ -82,6 +82,7 @@ in
         btop
         nvimpager
         kitty
+        ghostty
         # File manager
         # onboard
         # TODO: Add swypeGuess
