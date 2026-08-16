@@ -28,7 +28,7 @@
       inputs.hyprland.follows = "hyprland";
     };
     hyprland-easymotion = {
-      url = "github:zakk4223/hyprland-easymotion";
+      url = "github:prtsie/hyprland-easymotion/1c9110e1e02047fa4e2a5ca6ec3e9bbf26ad3700";
       inputs.hyprland.follows = "hyprland";
     };
     hyprgrass = {
@@ -90,8 +90,8 @@
           # hyprland plugins passed as a single 'hyprlandPlugins' arg consumed by hyprland.nix
           hyprlandPlugins = [
             attrs.hyprland-plugins.packages.${system}.hyprbars
-            # attrs.hyprland-easymotion.packages.${system}.hyprland-easymotion
-            # attrs.hyprland-gloview.packages.${system}.gloview
+            attrs.hyprland-easymotion.packages.${system}.hyprland-easymotion
+            attrs.hyprland-gloview.packages.${system}.gloview
             # attrs.hyprland-plugins.packages.${system}.hyprexpo
             # attrs.hypr-dynamic-cursors.packages.${system}.hypr-dynamic-cursors
             # attrs.hyprland-plugins.packages.${system}.hyprfocus

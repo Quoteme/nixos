@@ -705,16 +705,17 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1780871642,
-        "narHash": "sha256-dAPpUNNr5gTpeGYfRUPqYEVAAghZuKqwZmNrCmv/Wks=",
-        "owner": "zakk4223",
+        "lastModified": 1785140496,
+        "narHash": "sha256-h+XNdtf2R4vUdwutxRzrOW1xu44EvmawxPZOcvxioZw=",
+        "owner": "prtsie",
         "repo": "hyprland-easymotion",
-        "rev": "ec9dccb9e6e6df71a4e2f77f9f1802b840ef755d",
+        "rev": "1c9110e1e02047fa4e2a5ca6ec3e9bbf26ad3700",
         "type": "github"
       },
       "original": {
-        "owner": "zakk4223",
+        "owner": "prtsie",
         "repo": "hyprland-easymotion",
+        "rev": "1c9110e1e02047fa4e2a5ca6ec3e9bbf26ad3700",
         "type": "github"
       }
     },
