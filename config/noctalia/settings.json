@@ -512,7 +512,7 @@
         "bluetoothRssiPollIntervalMs": 10000,
         "bluetoothRssiPollingEnabled": false,
         "disableDiscoverability": false,
-        "networkPanelView": "ethernet",
+        "networkPanelView": "wifi",
         "wifiDetailsViewMode": "grid"
     },
     "nightLight": {
@@ -701,6 +701,7 @@
         "enabled": true,
         "favorites": [
             {
+                "appearance": "dark",
                 "colorScheme": "Kanagawa",
                 "darkMode": true,
                 "generationMethod": "rainbow",

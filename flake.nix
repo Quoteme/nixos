@@ -22,7 +22,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     xremap-flake.url = "github:xremap/nix-flake/1924f2dc1a7c219b5323050a7fb27920e3a225d4";
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland/v0.56.0";
+    hyprland-gloview = {
+      url = "github:fedsfarm/gloview";
+      inputs.hyprland.follows = "hyprland";
+    };
+    hyprland-easymotion = {
+      url = "github:zakk4223/hyprland-easymotion";
+      inputs.hyprland.follows = "hyprland";
+    };
     hyprgrass = {
       url = "github:horriblename/hyprgrass";
       inputs.hyprland.follows = "hyprland";
@@ -44,7 +52,7 @@
       inputs.hyprland.follows = "hyprland";
     };
     hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
+      url = "github:hyprwm/hyprland-plugins/v0.56.0";
       inputs.hyprland.follows = "hyprland"; # Prevents version mismatch.
     };
     hypr-dynamic-cursors = {
@@ -82,6 +90,8 @@
           # hyprland plugins passed as a single 'hyprlandPlugins' arg consumed by hyprland.nix
           hyprlandPlugins = [
             attrs.hyprland-plugins.packages.${system}.hyprbars
+            # attrs.hyprland-easymotion.packages.${system}.hyprland-easymotion
+            # attrs.hyprland-gloview.packages.${system}.gloview
             # attrs.hyprland-plugins.packages.${system}.hyprexpo
             # attrs.hypr-dynamic-cursors.packages.${system}.hypr-dynamic-cursors
             # attrs.hyprland-plugins.packages.${system}.hyprfocus
