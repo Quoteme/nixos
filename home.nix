@@ -263,10 +263,10 @@
   gtk = {
     enable = true;
 
-    theme = {
-      package = pkgs.vimix-gtk-themes;
-      name = "Vimix-light-doder";
-    };
+    # theme = {
+    #   package = pkgs.vimix-gtk-themes;
+    #   name = "Vimix-light-doder";
+    # };
 
     iconTheme = {
       package = pkgs.vimix-icon-theme;

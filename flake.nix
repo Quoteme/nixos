@@ -59,6 +59,7 @@
       url = "github:VirtCode/hypr-dynamic-cursors";
       inputs.hyprland.follows = "hyprland"; # to make sure that the plugin is built for the correct version of hyprland
     };
+    claude-desktop.url = "github:aaddrick/claude-desktop-debian";
   };
 
   outputs =
@@ -129,6 +130,7 @@
                   typenix = attrs.typenix.packages.${system}.typenix;
                   screenrotate = attrs.screenrotate.defaultPackage.${system};
                 })
+                attrs.claude-desktop.overlays.default
               ];
               nixpkgs.config.allowUnfree = true;
 
@@ -220,7 +222,8 @@
 
               modules.applications.editors.vscode-fhs.enable = true;
               modules.applications.editors.emacs.enable = true;
-              modules.applications.ai.ollama.enable = false;
+              modules.applications.ai.ollama.enable = true;
+              modules.applications.ai.claude.enable = true;
               modules.applications.gaming.steam.enable = true;
               modules.applications.networking.filesharing.enable = true;
               modules.applications.nix-extras.enable = true;
