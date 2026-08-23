@@ -29,8 +29,8 @@
     less = "${pkgs.nvimpager}/bin/nvimpager";
     l = "eza --icons --git-ignore";
     lg = "lazygit";
-    ll = "eza --long --icons --color --hyperlink";
-    lt = "eza --long --tree --icons --color --hyperlink";
+    ll = "eza --long --icons always --color always --hyperlink always";
+    lt = "eza --long --tree --icons always --color always --hyperlink always";
     gg = "${pkgs.git-graph}/bin/git-graph";
     nd = "nix develop -c $SHELL";
     ndo = "nix develop --offline --command $SHELL";
