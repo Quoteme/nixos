@@ -42,11 +42,11 @@
           alone = "KEY_FINANCE";
           alone_timeout_millis = 250;
         };
-        # "KEY_LEFTMETA" = {
-        #   held = "KEY_LEFTMETA";
-        #   alone = "KEY_HP";
-        #   alone_timeout_millis = 500;
-        # };
+        "KEY_LEFTMETA" = {
+          held = "KEY_LEFTMETA";
+          alone = "KEY_HP";
+          alone_timeout_millis = 500;
+        };
       };
     }];
 
