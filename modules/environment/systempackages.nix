@@ -64,6 +64,7 @@ in
         ripgrep
         ripgrep-all
         zathura
+        sioyek
         ripdrag
         delta
         kondo
