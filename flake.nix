@@ -227,7 +227,7 @@
               modules.applications.gaming.steam.enable = true;
               modules.applications.networking.filesharing.enable = true;
               modules.applications.nix-extras.enable = true;
-              modules.applications.virtualisation.docker.enable = true;
+              modules.applications.virtualisation.docker.enable = false;
               modules.applications.virtualisation.podman.enable = true;
               modules.applications.virtualisation.virt-manager.enable = true;
               modules.desktop.cosmic.enable = false;

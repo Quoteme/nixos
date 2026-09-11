@@ -41,7 +41,6 @@ in
         "kvm"
         "libvirtd"
         "libvirt"
-        "docker"
         "input"
         "vboxusers" # maybe use `users.extraGroups.vboxusers.members = [ "luca" ];`
         # esp-idf
