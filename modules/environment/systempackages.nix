@@ -81,7 +81,6 @@ in
         toilet
         htop-vim
         btop
-        nvimpager
         kitty
         ghostty
         # File manager

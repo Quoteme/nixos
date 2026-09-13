@@ -292,7 +292,6 @@
                 VISUAL = "nvim";
                 EDITOR = "nvim";
                 ACCESSIBILITY_ENABLED = "1";
-                PAGER = "nvimpager";
                 # FZF - Ripgrep integration
                 INITIAL_QUERY = "";
                 RG_PREFIX = "rg --column --line-number --no-heading --color=always --smart-case ";
