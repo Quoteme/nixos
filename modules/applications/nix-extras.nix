@@ -51,6 +51,7 @@
           "luca"
         ];
         substituters = [
+          "https://quoteme-nixos.cachix.org" # this config, built by GitHub Actions (.github/workflows/build.yaml)
           "https://nix-community.cachix.org/"
           "https://gvolpe-nixos.cachix.org"
           "https://cuda-maintainers.cachix.org"
@@ -60,6 +61,7 @@
           "https://install.determinate.systems"
         ];
         trusted-public-keys = [
+          "quoteme-nixos.cachix.org-1:igk9LKipgfSJjn4jmSg/9SG5Y9ECbA+U0T+M90pXJGs="
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           "gvolpe-nixos.cachix.org-1:0MPlBIMwYmrNqoEaYTox15Ds2t1+3R+6Ycj0hZWMcL0="
           "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
