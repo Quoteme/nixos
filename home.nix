@@ -26,7 +26,6 @@
   home.shellAliases = {
     "..." = "cd ../..";
     cd = "z";
-    less = "${pkgs.nvimpager}/bin/nvimpager";
     l = "eza --icons --git-ignore";
     lg = "lazygit";
     ll = "eza --long --icons always --color always --hyperlink always";
