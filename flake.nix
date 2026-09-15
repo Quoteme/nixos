@@ -159,6 +159,7 @@
                   allowedUDPPorts = [
                     4445 # minecraft
                     54675 # minecraft
+                    54321
                     51413
                     10001
                     10002
@@ -176,6 +177,7 @@
                     22
                     24800 # Minecraft server
                     54675 # minecraft
+                    54321
                     25565
                     80
                     5000
