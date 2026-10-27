@@ -259,6 +259,9 @@
                     "icon": "noctalia",
                     "id": "ControlCenter",
                     "useDistroLogo": true
+                },
+                {
+                    "id": "plugin:keybind-cheatsheet"
                 }
             ]
         }

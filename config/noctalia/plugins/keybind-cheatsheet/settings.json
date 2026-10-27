@@ -1,0 +1,686 @@
+{
+  "cheatsheetData": [
+    {
+      "title": "Keybinds",
+      "binds": [
+        {
+          "keys": "RETURN",
+          "desc": "exec $terminal",
+          "_verb": "exec",
+          "_param": "$terminal",
+          "_mods": "",
+          "_mainKey": "RETURN"
+        },
+        {
+          "keys": "X",
+          "desc": "exec $terminal",
+          "_verb": "exec",
+          "_param": "$terminal",
+          "_mods": "",
+          "_mainKey": "X"
+        },
+        {
+          "keys": "ESCAPE",
+          "desc": "exec $ipc lockScreen lock",
+          "_verb": "exec",
+          "_param": "$ipc lockScreen lock",
+          "_mods": "",
+          "_mainKey": "ESCAPE"
+        },
+        {
+          "keys": "Shift + Q",
+          "desc": "killactive",
+          "_verb": "killactive",
+          "_param": "",
+          "_mods": "Shift",
+          "_mainKey": "Q"
+        },
+        {
+          "keys": "SHIFT E",
+          "desc": "exec $fileManager",
+          "_verb": "exec",
+          "_param": "$fileManager",
+          "_mods": "",
+          "_mainKey": "SHIFT E"
+        },
+        {
+          "keys": "F",
+          "desc": "togglefloating",
+          "_verb": "togglefloating",
+          "_param": "",
+          "_mods": "",
+          "_mainKey": "F"
+        },
+        {
+          "keys": "P",
+          "desc": "exec hyprctl --batch \"dispatch setfloating; dispatch pin\" # toggle sticky (pin only works on floating windows)",
+          "_verb": "exec",
+          "_param": "hyprctl --batch \"dispatch setfloating; dispatch pin\" # toggle sticky (pin only works on floating windows)",
+          "_mods": "",
+          "_mainKey": "P"
+        },
+        {
+          "keys": "D",
+          "desc": "exec $menu",
+          "_verb": "exec",
+          "_param": "$menu",
+          "_mods": "",
+          "_mainKey": "D"
+        },
+        {
+          "keys": "Shift + D",
+          "desc": "exec darkmode-toggle && notify-send \"toggling dark/light mode\"",
+          "_verb": "exec",
+          "_param": "darkmode-toggle && notify-send \"toggling dark/light mode\"",
+          "_mods": "Shift",
+          "_mainKey": "D"
+        },
+        {
+          "keys": "R",
+          "desc": "layoutmsg togglesplit",
+          "_verb": "layoutmsg",
+          "_param": "togglesplit",
+          "_mods": "",
+          "_mainKey": "R"
+        },
+        {
+          "keys": "Shift + R",
+          "desc": "exec /etc/nixos/config/hyprland/rebalance.sh",
+          "_verb": "exec",
+          "_param": "/etc/nixos/config/hyprland/rebalance.sh",
+          "_mods": "Shift",
+          "_mainKey": "R"
+        },
+        {
+          "keys": "Z",
+          "desc": "fullscreen 1 # toggle maximize (keeps bar), press again to restore",
+          "_verb": "fullscreen",
+          "_param": "1 # toggle maximize (keeps bar), press again to restore",
+          "_mods": "",
+          "_mainKey": "Z"
+        },
+        {
+          "keys": "C",
+          "desc": "exec $ipc controlCenter toggle",
+          "_verb": "exec",
+          "_param": "$ipc controlCenter toggle",
+          "_mods": "",
+          "_mainKey": "C"
+        },
+        {
+          "keys": "N",
+          "desc": "exec $ipc network togglePanel",
+          "_verb": "exec",
+          "_param": "$ipc network togglePanel",
+          "_mods": "",
+          "_mainKey": "N"
+        },
+        {
+          "keys": "B",
+          "desc": "exec $ipc bluetooth togglePanel",
+          "_verb": "exec",
+          "_param": "$ipc bluetooth togglePanel",
+          "_mods": "",
+          "_mainKey": "B"
+        },
+        {
+          "keys": "U",
+          "desc": "exec $ipc plugin:unicode toggle",
+          "_verb": "exec",
+          "_param": "$ipc plugin:unicode toggle",
+          "_mods": "",
+          "_mainKey": "U"
+        },
+        {
+          "keys": "Shift + B",
+          "desc": "exec $ipc battery togglePanel",
+          "_verb": "exec",
+          "_param": "$ipc battery togglePanel",
+          "_mods": "Shift",
+          "_mainKey": "B"
+        },
+        {
+          "keys": "COMMA",
+          "desc": "exec $ipc settings toggle",
+          "_verb": "exec",
+          "_param": "$ipc settings toggle",
+          "_mods": "",
+          "_mainKey": "COMMA"
+        },
+        {
+          "keys": "PERIOD",
+          "desc": "exec $ipc launcher emoji",
+          "_verb": "exec",
+          "_param": "$ipc launcher emoji",
+          "_mods": "",
+          "_mainKey": "PERIOD"
+        },
+        {
+          "keys": "W",
+          "desc": "exec $ipc launcher windows",
+          "_verb": "exec",
+          "_param": "$ipc launcher windows",
+          "_mods": "",
+          "_mainKey": "W"
+        },
+        {
+          "keys": "O",
+          "desc": "exec $ipc systemMonitor toggle",
+          "_verb": "exec",
+          "_param": "$ipc systemMonitor toggle",
+          "_mods": "",
+          "_mainKey": "O"
+        },
+        {
+          "keys": "MINUS",
+          "desc": "exec $ipc notifications toggleHistory",
+          "_verb": "exec",
+          "_param": "$ipc notifications toggleHistory",
+          "_mods": "",
+          "_mainKey": "MINUS"
+        },
+        {
+          "keys": "XF86LAUNCH3",
+          "desc": "exec $ipc darkMode toggle",
+          "_verb": "exec",
+          "_param": "$ipc darkMode toggle",
+          "_mods": "",
+          "_mainKey": "XF86LAUNCH3"
+        },
+        {
+          "keys": "SPACE",
+          "desc": "gloview:toggle",
+          "_verb": "gloview:toggle",
+          "_param": "",
+          "_mods": "",
+          "_mainKey": "SPACE"
+        },
+        {
+          "keys": "BRACKETRIGHT",
+          "desc": "gloview:next",
+          "_verb": "gloview:next",
+          "_param": "",
+          "_mods": "",
+          "_mainKey": "BRACKETRIGHT"
+        },
+        {
+          "keys": "BRACKETLEFT",
+          "desc": "gloview:prev",
+          "_verb": "gloview:prev",
+          "_param": "",
+          "_mods": "",
+          "_mainKey": "BRACKETLEFT"
+        },
+        {
+          "keys": "1-9",
+          "desc": "gloview:setworkspace 1-9",
+          "_verb": "gloview:setworkspace",
+          "_mods": "",
+          "_mainKey": "1-9",
+          "_merged": true
+        },
+        {
+          "keys": "S",
+          "desc": "easymotion action:hyprctl dispatch focuswindow address:{}",
+          "_verb": "easymotion",
+          "_param": "action:hyprctl dispatch focuswindow address:{}",
+          "_mods": "",
+          "_mainKey": "S"
+        },
+        {
+          "keys": "Shift + S",
+          "desc": "exec /etc/nixos/config/hyprland/screenshot.sh ask",
+          "_verb": "exec",
+          "_param": "/etc/nixos/config/hyprland/screenshot.sh ask",
+          "_mods": "Shift",
+          "_mainKey": "S"
+        },
+        {
+          "keys": "Shift + Alt + S",
+          "desc": "exec /etc/nixos/config/hyprland/screenshot.sh ocr",
+          "_verb": "exec",
+          "_param": "/etc/nixos/config/hyprland/screenshot.sh ocr",
+          "_mods": "Shift+Alt",
+          "_mainKey": "S"
+        },
+        {
+          "keys": "V",
+          "desc": "exec $clipboardHistory",
+          "_verb": "exec",
+          "_param": "$clipboardHistory",
+          "_mods": "",
+          "_mainKey": "V"
+        },
+        {
+          "keys": "E",
+          "desc": "exec $screenshotAction edit",
+          "_verb": "exec",
+          "_param": "$screenshotAction edit",
+          "_mods": "",
+          "_mainKey": "E"
+        },
+        {
+          "keys": "RETURN",
+          "desc": "exec $screenshotAction edit",
+          "_verb": "exec",
+          "_param": "$screenshotAction edit",
+          "_mods": "",
+          "_mainKey": "RETURN"
+        },
+        {
+          "keys": "O",
+          "desc": "exec $screenshotAction ocr",
+          "_verb": "exec",
+          "_param": "$screenshotAction ocr",
+          "_mods": "",
+          "_mainKey": "O"
+        },
+        {
+          "keys": "C",
+          "desc": "exec $screenshotAction copy",
+          "_verb": "exec",
+          "_param": "$screenshotAction copy",
+          "_mods": "",
+          "_mainKey": "C"
+        },
+        {
+          "keys": "ESCAPE",
+          "desc": "exec $screenshotAction copy",
+          "_verb": "exec",
+          "_param": "$screenshotAction copy",
+          "_mods": "",
+          "_mainKey": "ESCAPE"
+        },
+        {
+          "keys": "SUPER_L",
+          "desc": "exec touch $keyhintFlag && $ipc plugin:keybind-cheatsheet toggle",
+          "_verb": "exec",
+          "_param": "touch $keyhintFlag && $ipc plugin:keybind-cheatsheet toggle",
+          "_mods": "",
+          "_mainKey": "SUPER_L"
+        },
+        {
+          "keys": "Super + SUPER_L",
+          "desc": "exec rm $keyhintFlag && $ipc plugin:keybind-cheatsheet toggle",
+          "_verb": "exec",
+          "_param": "rm $keyhintFlag && $ipc plugin:keybind-cheatsheet toggle",
+          "_mods": "Super",
+          "_mainKey": "SUPER_L"
+        },
+        {
+          "keys": "LEFT",
+          "desc": "movefocus l",
+          "_verb": "movefocus",
+          "_param": "l",
+          "_mods": "",
+          "_mainKey": "LEFT"
+        },
+        {
+          "keys": "RIGHT",
+          "desc": "movefocus r",
+          "_verb": "movefocus",
+          "_param": "r",
+          "_mods": "",
+          "_mainKey": "RIGHT"
+        },
+        {
+          "keys": "UP",
+          "desc": "movefocus u",
+          "_verb": "movefocus",
+          "_param": "u",
+          "_mods": "",
+          "_mainKey": "UP"
+        },
+        {
+          "keys": "DOWN",
+          "desc": "movefocus d",
+          "_verb": "movefocus",
+          "_param": "d",
+          "_mods": "",
+          "_mainKey": "DOWN"
+        },
+        {
+          "keys": "H",
+          "desc": "movefocus l",
+          "_verb": "movefocus",
+          "_param": "l",
+          "_mods": "",
+          "_mainKey": "H"
+        },
+        {
+          "keys": "L",
+          "desc": "movefocus r",
+          "_verb": "movefocus",
+          "_param": "r",
+          "_mods": "",
+          "_mainKey": "L"
+        },
+        {
+          "keys": "K",
+          "desc": "movefocus u",
+          "_verb": "movefocus",
+          "_param": "u",
+          "_mods": "",
+          "_mainKey": "K"
+        },
+        {
+          "keys": "J",
+          "desc": "movefocus d",
+          "_verb": "movefocus",
+          "_param": "d",
+          "_mods": "",
+          "_mainKey": "J"
+        },
+        {
+          "keys": "Shift + H",
+          "desc": "movewindow l",
+          "_verb": "movewindow",
+          "_param": "l",
+          "_mods": "Shift",
+          "_mainKey": "H"
+        },
+        {
+          "keys": "Shift + L",
+          "desc": "movewindow r",
+          "_verb": "movewindow",
+          "_param": "r",
+          "_mods": "Shift",
+          "_mainKey": "L"
+        },
+        {
+          "keys": "Shift + K",
+          "desc": "movewindow u",
+          "_verb": "movewindow",
+          "_param": "u",
+          "_mods": "Shift",
+          "_mainKey": "K"
+        },
+        {
+          "keys": "Shift + J",
+          "desc": "movewindow d",
+          "_verb": "movewindow",
+          "_param": "d",
+          "_mods": "Shift",
+          "_mainKey": "J"
+        },
+        {
+          "keys": "Ctrl + H",
+          "desc": "resizeactive -50 0",
+          "_verb": "resizeactive",
+          "_param": "-50 0",
+          "_mods": "Ctrl",
+          "_mainKey": "H"
+        },
+        {
+          "keys": "Ctrl + L",
+          "desc": "resizeactive 50 0",
+          "_verb": "resizeactive",
+          "_param": "50 0",
+          "_mods": "Ctrl",
+          "_mainKey": "L"
+        },
+        {
+          "keys": "Ctrl + K",
+          "desc": "resizeactive 0 -50",
+          "_verb": "resizeactive",
+          "_param": "0 -50",
+          "_mods": "Ctrl",
+          "_mainKey": "K"
+        },
+        {
+          "keys": "Ctrl + J",
+          "desc": "resizeactive 0 50",
+          "_verb": "resizeactive",
+          "_param": "0 50",
+          "_mods": "Ctrl",
+          "_mainKey": "J"
+        },
+        {
+          "keys": "1-9",
+          "desc": "workspace 1-9",
+          "_verb": "workspace",
+          "_mods": "",
+          "_mainKey": "1-9",
+          "_merged": true
+        },
+        {
+          "keys": "0",
+          "desc": "workspace 10",
+          "_verb": "workspace",
+          "_param": "10",
+          "_mods": "",
+          "_mainKey": "0"
+        },
+        {
+          "keys": "Shift + 1-9",
+          "desc": "movetoworkspacesilent 1-9",
+          "_verb": "movetoworkspacesilent",
+          "_mods": "Shift",
+          "_mainKey": "1-9",
+          "_merged": true
+        },
+        {
+          "keys": "Shift + 0",
+          "desc": "movetoworkspacesilent 10",
+          "_verb": "movetoworkspacesilent",
+          "_param": "10",
+          "_mods": "Shift",
+          "_mainKey": "0"
+        },
+        {
+          "keys": "M",
+          "desc": "togglespecialworkspace magic",
+          "_verb": "togglespecialworkspace",
+          "_param": "magic",
+          "_mods": "",
+          "_mainKey": "M"
+        },
+        {
+          "keys": "Shift + M",
+          "desc": "movetoworkspace special:magic",
+          "_verb": "movetoworkspace",
+          "_param": "special:magic",
+          "_mods": "Shift",
+          "_mainKey": "M"
+        },
+        {
+          "keys": "Scroll Down",
+          "desc": "workspace e+1",
+          "_verb": "workspace",
+          "_param": "e+1",
+          "_mods": "",
+          "_mainKey": "MOUSE_DOWN"
+        },
+        {
+          "keys": "Scroll Up",
+          "desc": "workspace e-1",
+          "_verb": "workspace",
+          "_param": "e-1",
+          "_mods": "",
+          "_mainKey": "MOUSE_UP"
+        },
+        {
+          "keys": "Left Click",
+          "desc": "movewindow",
+          "_verb": "movewindow",
+          "_param": "",
+          "_mods": "",
+          "_mainKey": "MOUSE:272"
+        },
+        {
+          "keys": "Right Click",
+          "desc": "resizewindow",
+          "_verb": "resizewindow",
+          "_param": "",
+          "_mods": "",
+          "_mainKey": "MOUSE:273"
+        },
+        {
+          "keys": "Vol Up",
+          "desc": "exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+",
+          "_verb": "exec",
+          "_param": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+",
+          "_mods": "",
+          "_mainKey": "XF86AUDIORAISEVOLUME"
+        },
+        {
+          "keys": "Vol Down",
+          "desc": "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+          "_verb": "exec",
+          "_param": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+          "_mods": "",
+          "_mainKey": "XF86AUDIOLOWERVOLUME"
+        },
+        {
+          "keys": "Mute",
+          "desc": "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+          "_verb": "exec",
+          "_param": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+          "_mods": "",
+          "_mainKey": "XF86AUDIOMUTE"
+        },
+        {
+          "keys": "Mic Mute",
+          "desc": "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+          "_verb": "exec",
+          "_param": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+          "_mods": "",
+          "_mainKey": "XF86AUDIOMICMUTE"
+        },
+        {
+          "keys": "Bright Up",
+          "desc": "exec brightnessctl set 5%+",
+          "_verb": "exec",
+          "_param": "brightnessctl set 5%+",
+          "_mods": "",
+          "_mainKey": "XF86MONBRIGHTNESSUP"
+        },
+        {
+          "keys": "Bright Down",
+          "desc": "exec brightnessctl set 5%-",
+          "_verb": "exec",
+          "_param": "brightnessctl set 5%-",
+          "_mods": "",
+          "_mainKey": "XF86MONBRIGHTNESSDOWN"
+        },
+        {
+          "keys": "XF86KBDBRIGHTNESSUP",
+          "desc": "exec brightnessctl --device='asus::kbd_backlight' set 1+",
+          "_verb": "exec",
+          "_param": "brightnessctl --device='asus::kbd_backlight' set 1+",
+          "_mods": "",
+          "_mainKey": "XF86KBDBRIGHTNESSUP"
+        },
+        {
+          "keys": "XF86KBDBRIGHTNESSDOWN",
+          "desc": "exec brightnessctl --device='asus::kbd_backlight' set 1-",
+          "_verb": "exec",
+          "_param": "brightnessctl --device='asus::kbd_backlight' set 1-",
+          "_mods": "",
+          "_mainKey": "XF86KBDBRIGHTNESSDOWN"
+        },
+        {
+          "keys": "XF86LAUNCH4",
+          "desc": "exec $ipc powerProfile cycle",
+          "_verb": "exec",
+          "_param": "$ipc powerProfile cycle",
+          "_mods": "",
+          "_mainKey": "XF86LAUNCH4"
+        },
+        {
+          "keys": "Next",
+          "desc": "exec playerctl next",
+          "_verb": "exec",
+          "_param": "playerctl next",
+          "_mods": "",
+          "_mainKey": "XF86AUDIONEXT"
+        },
+        {
+          "keys": "Pause",
+          "desc": "exec playerctl play-pause",
+          "_verb": "exec",
+          "_param": "playerctl play-pause",
+          "_mods": "",
+          "_mainKey": "XF86AUDIOPAUSE"
+        },
+        {
+          "keys": "Play",
+          "desc": "exec playerctl play-pause",
+          "_verb": "exec",
+          "_param": "playerctl play-pause",
+          "_mods": "",
+          "_mainKey": "XF86AUDIOPLAY"
+        },
+        {
+          "keys": "Prev",
+          "desc": "exec playerctl previous",
+          "_verb": "exec",
+          "_param": "playerctl previous",
+          "_mods": "",
+          "_mainKey": "XF86AUDIOPREV"
+        },
+        {
+          "keys": "SWITCH:ON:LID SWITCH",
+          "desc": "exec $ipc lockScreen lock",
+          "_verb": "exec",
+          "_param": "$ipc lockScreen lock",
+          "_mods": "",
+          "_mainKey": "SWITCH:ON:LID SWITCH"
+        },
+        {
+          "keys": "SWITCH:OFF:LID SWITCH",
+          "desc": "exec $ipc lockScreen lockAndSuspend",
+          "_verb": "exec",
+          "_param": "$ipc lockScreen lockAndSuspend",
+          "_mods": "",
+          "_mainKey": "SWITCH:OFF:LID SWITCH"
+        }
+      ]
+    }
+  ],
+  "detectedCompositor": "hyprland",
+  "windowWidth": 1400,
+  "windowHeight": 850,
+  "autoHeight": true,
+  "columnCount": 3,
+  "modKeyVariable": "$mod",
+  "hyprlandConfigPath": "/etc/nixos/config/hyprland/extra.conf",
+  "hyprlandLuaConfigPath": "~/.config/hypr/hyprland.lua",
+  "hyprlandParserMode": "auto",
+  "niriConfigPath": "~/.config/niri/config.kdl",
+  "mangoConfigPath": "~/.config/mango/config.conf",
+  "mergeSequentialBinds": true,
+  "showUndescribedBinds": true,
+  "splitLargeWorkspaceCategory": true,
+  "workspaceSplitThreshold": 12,
+  "keyColorAlt": "#FF6B6B",
+  "keyColorXF86": "#4ECDC4",
+  "keyColorPrint": "#95E1D3",
+  "keyColorNumeric": "#A8DADC",
+  "keyColorMouse": "#F38181",
+  "keyColorSuper": "",
+  "keyColorCtrl": "",
+  "keyColorShift": "",
+  "keyColorDefault": "#6C757D",
+  "keyLabelColor": "#FFFFFF",
+  "keyTextSuper": "",
+  "keyTextCtrl": "",
+  "keyTextShift": "",
+  "keyTextAlt": "",
+  "keyTextXF86": "",
+  "keyTextPrint": "",
+  "keyTextNumeric": "",
+  "keyTextMouse": "",
+  "keyTextDefault": "",
+  "keyColorMod2": "",
+  "keyColorMod3": "",
+  "keyColorMod5": "",
+  "keyTextMod2": "",
+  "keyTextMod3": "",
+  "keyTextMod5": "",
+  "keyLabelMod2": "",
+  "keyLabelMod3": "",
+  "keyLabelMod5": "",
+  "descriptionTextColor": "",
+  "bindOverrides": {}
+}
