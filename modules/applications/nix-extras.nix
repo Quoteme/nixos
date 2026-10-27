@@ -28,6 +28,8 @@
         "nixpkgs=${nixpkgs}"
         "stable=${nixpkgs-stable}"
       ];
+      # `nix shell unstable#foo` -> the system's nixos-unstable input (same revision as flake.lock)
+      registry.unstable.flake = nixpkgs;
       # based on https://nixos.wiki/wiki/flakes#:~:text=Pinning%20the%20registry%20to%20the%20system%20pkgs%20on%20NixOS
       # registry = {
       #   # nixpkgs.flake = nixpkgs;
@@ -54,7 +56,6 @@
           "https://quoteme-nixos.cachix.org" # this config, built by GitHub Actions (.github/workflows/build.yaml)
           "https://nix-community.cachix.org/"
           "https://gvolpe-nixos.cachix.org"
-          "https://cuda-maintainers.cachix.org"
           "https://cache.nixos.org/"
           "https://cache.nixos-cuda.org"
           "https://lean4.cachix.org/"
@@ -64,7 +65,6 @@
           "quoteme-nixos.cachix.org-1:igk9LKipgfSJjn4jmSg/9SG5Y9ECbA+U0T+M90pXJGs="
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           "gvolpe-nixos.cachix.org-1:0MPlBIMwYmrNqoEaYTox15Ds2t1+3R+6Ycj0hZWMcL0="
-          "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
           "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
           "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
           "lean4.cachix.org-1:mawtxSxcaiWE24xCXXgh3qnvlTkyU7evRRnGeAhD4Wk="
