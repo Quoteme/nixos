@@ -106,11 +106,6 @@ in
         pkgs.dconf
       ];
       services.gnome.gnome-keyring.enable = true;
-      services.hypridle.enable = true;
-      systemd.user.services.hypridle.path = [
-        brightnessctl
-        wireplumber # wpctl
-      ];
       services.logind.settings.Login = {
         HandlePowerKey = "ignore";
         HandlePowerKeyLongPress = "suspend-then-hibernate";
