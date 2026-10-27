@@ -4,7 +4,7 @@
 #   screenshot.sh ocr   -> run tesseract, copy text to clipboard
 #   screenshot.sh ask   -> choose via notification buttons, or keys while it is
 #                          shown (submap "screenshot" in extra.conf):
-#                          e/Return = edit, o = ocr, Escape = copy.
+#                          e/Return = edit, o = ocr, c/Escape = copy.
 #                          Dismissed/timed out (8s) -> copy image to clipboard.
 # The capture happens while the screen is still frozen; wayfreeze is killed
 # before the (slow) follow-up step so the screen unfreezes immediately.
@@ -23,7 +23,7 @@ if [ "$mode" = ask ]; then
   trap 'hyprctl -q dispatch submap reset; rm -f "$img"' EXIT
   hyprctl -q dispatch submap screenshot
   # explicit timeout: noctalia never expires notifications that have actions
-  mode="$(notify-send -t 8000 -a screenshot -i "$img" -A edit=Edit -A ocr=OCR -A copy=Copy Screenshot)"
+  mode="$(notify-send -t 8000 -a screenshot -i "$img" -A "edit=(E)dit" -A "ocr=(O)CR" -A "copy=(C)opy" Screenshot)"
   hyprctl -q dispatch submap reset
 fi
 
