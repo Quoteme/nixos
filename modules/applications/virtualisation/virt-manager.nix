@@ -34,6 +34,8 @@ in
               sdlSupport = true;
               virglSupport = true;
               openGLSupport = true;
+              # ceph 20.2.4 fails to build (bundled qatlib autogen.sh: exec format error)
+              cephSupport = false;
             }
           );
           swtpm.enable = true;
