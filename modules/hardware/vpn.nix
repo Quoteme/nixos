@@ -8,7 +8,7 @@ in {
     inherit (lib.options) mkEnableOption ;
     mkEnabledOption = desc: (mkEnableOption desc) // { default = true; };
   in {
-    enable        = mkEnableOption "Enable VPN support (NetworkManager + nm-applet + openvpn3)";
+    enable        = mkEnableOption "Enable VPN support (NetworkManager + nm-applet + openvpn3 + openconnect)";
     mullvad       = { enable = mkEnabledOption "Enable Mullvad VPN"; };
     softether     = { enable = mkEnabledOption "Enable SoftEther VPN"; };
     strongswan    = { enable = mkEnabledOption "Enable strongSwan IKEv2/IPsec VPN"; };
@@ -24,7 +24,7 @@ in {
       networking.networkmanager = {
         enable = true;
         plugins = with pkgs; [
-          networkmanager-fortisslvpn
+          networkmanager-openconnect
           networkmanager-l2tp
           networkmanager-openvpn
           networkmanager_strongswan

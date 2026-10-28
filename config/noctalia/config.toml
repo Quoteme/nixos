@@ -1,0 +1,88 @@
+# Noctalia v5 config (ported from the v4 settings.json).
+# GUI changes are written to ~/.local/state/noctalia/settings.toml and win over this file;
+# inspect them with `noctalia config export` and copy what you want to keep in here.
+
+[theme]
+source = "builtin"
+builtin = "Tokyo-Night"
+mode = "dark"
+
+    [theme.templates]
+    builtin_ids = [ "kitty", "helix", "btop" ]
+
+[bar.default]
+position = "top"
+background_opacity = 0.93
+margin_ends = 0
+widget_spacing = 6
+start = [ "launcher", "clock", "cpu", "ram", "active_window", "media" ]
+center = [ "workspaces" ]
+end = [
+    "tray",
+    "notifications",
+    "power",
+    "volume",
+    "brightness",
+    "screenshot",
+    "recorder",
+    "clipboard",
+    "control-center",
+    "keybinds",
+]
+
+[widget.clock]
+type = "clock"
+format = "{:%H\n%M}"
+
+[widget.workspaces]
+type = "workspaces"
+labels_only_when_occupied = true
+
+[widget.power]
+type = "piero-93/battery-power-management:widget"
+
+[widget.recorder]
+type = "noctalia/screen_recorder:recorder"
+
+[widget.keybinds]
+type = "kenn/keybind-cheatsheet:keybinds"
+
+[plugins]
+enabled = [
+    "kenn/keybind-cheatsheet",
+    "piero-93/battery-power-management",
+    "noctalia/screen_recorder",
+    "nightwatch75/file-search",
+    "pmason314/rss-feeds",
+    "icefish/phone-connect",
+]
+
+[shell]
+avatar_path = "~/.face"
+
+    [shell.launcher]
+    app_grid = true
+    pinned = [ "app.zen_browser.zen" ]
+
+[location]
+address = "Duesseldorf"
+
+[weather]
+unit = "metric"
+
+[nightlight]
+enabled = true
+temperature_day = 6500
+temperature_night = 4000
+
+[notification]
+position = "top_right"
+
+[osd]
+position = "top_right"
+
+[wallpaper]
+directory = "~/Pictures/Wallpapers"
+
+[hooks]
+session_locked = "wpctl set-mute @DEFAULT_AUDIO_SINK@ 1"

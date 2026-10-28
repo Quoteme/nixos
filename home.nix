@@ -18,7 +18,7 @@
   home.file.".ipython/profile_default/ipython_config.py".text = ''
     c.TerminalInteractiveShell.editing_mode = 'vi'
   '';
-  home.packages = [ pkgs.gcr ];
+  home.packages = [ pkgs.gcr_3 ];
   home.shell.enableBashIntegration = true;
   home.shell.enableZshIntegration = true;
   home.shell.enableFishIntegration = true;

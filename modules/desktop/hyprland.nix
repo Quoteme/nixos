@@ -53,7 +53,7 @@ in
         libsecret
         gsettings-desktop-schemas
         dconf
-        noctalia-shell
+        noctalia
         adw-gtk3
         nwg-look
         (pkgs.callPackage (import ../../pkgs/clipvault) { })
@@ -88,7 +88,7 @@ in
           exec-once = wl-paste --type text --watch cliphist store # Stores only text data
           exec-once = wl-paste --type image --watch cliphist store # Stores only image data
           exec-once = iio-hyprland
-          exec-once = noctalia-shell
+          exec-once = noctalia
           exec-once = mullvad-gui
           exec-once = com.bitwarden.desktop
           source = /etc/nixos/config/hyprland/extra.conf
