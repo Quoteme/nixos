@@ -22,7 +22,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     xremap-flake.url = "github:xremap/nix-flake/1924f2dc1a7c219b5323050a7fb27920e3a225d4";
-    hyprland.url = "github:hyprwm/Hyprland/v0.56.0";
+    hyprland = {
+      url = "github:hyprwm/Hyprland/v0.56.2";
+      # v0.56.2's own nixpkgs pin ships glaze 8, but its CMakeLists requires glaze 7.x
+      # (relaxed upstream after the tag). Pin a nixpkgs that still has glaze 7.
+      inputs.nixpkgs.follows = "nixpkgs-hyprland";
+    };
+    nixpkgs-hyprland.url = "github:NixOS/nixpkgs/61b7c44c4073f0b827768aff0049561b5110ea5a";
     hyprland-gloview = {
       url = "github:fedsfarm/gloview";
       inputs.hyprland.follows = "hyprland";
@@ -91,7 +97,8 @@
           # hyprland plugins passed as a single 'hyprlandPlugins' arg consumed by hyprland.nix
           hyprlandPlugins = [
             attrs.hyprland-plugins.packages.${system}.hyprbars
-            attrs.hyprland-easymotion.packages.${system}.hyprland-easymotion
+            # easymotion only registers hyprlang dispatchers, which a Lua config cannot call
+            # attrs.hyprland-easymotion.packages.${system}.hyprland-easymotion
             attrs.hyprland-gloview.packages.${system}.gloview
             # attrs.hyprland-plugins.packages.${system}.hyprexpo
             # attrs.hypr-dynamic-cursors.packages.${system}.hypr-dynamic-cursors

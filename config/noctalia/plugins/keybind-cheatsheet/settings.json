@@ -695,7 +695,7 @@
   "columnCount": 3,
   "modKeyVariable": "$mod",
   "hyprlandConfigPath": "/etc/nixos/config/hyprland/extra.conf",
-  "hyprlandLuaConfigPath": "~/.config/hypr/hyprland.lua",
+  "hyprlandLuaConfigPath": "/etc/nixos/config/hyprland/hyprland.lua",
   "hyprlandParserMode": "auto",
   "niriConfigPath": "~/.config/niri/config.kdl",
   "mangoConfigPath": "~/.config/mango/config.conf",
