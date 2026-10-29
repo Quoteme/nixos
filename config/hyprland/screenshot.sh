@@ -36,13 +36,9 @@ if [ "$mode" = ask ]; then
   # always leave the submap, even if this script dies, else e/o stay grabbed
   trap 'hyprctl -q dispatch submap reset; rm -f "$img"' EXIT
   hyprctl -q dispatch submap screenshot
-  rm -f "$choice"
   # explicit timeout: noctalia never expires notifications that have actions
-  # -p prints the notification id first (saved for "choose"), then the clicked action
-  mode="$(notify-send -p -t 8000 -a screenshot -i "$img" -A "edit=(E)dit" -A "ocr=(O)CR" -A "copy=(C)opy" Screenshot |
-    { read -r id; echo "$id" > "$notif_id"; cat; })"
+  mode="$(notify-send -t 8000 -a screenshot -i "$img" -A "edit=(E)dit" -A "ocr=(O)CR" -A "copy=(C)opy" Screenshot)"
   hyprctl -q dispatch submap reset
-  [ -n "$mode" ] || mode="$(cat "$choice" 2>/dev/null)"
 fi
 
 case "$mode" in
