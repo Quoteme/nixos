@@ -22,6 +22,25 @@ in
     };
 
   config = mkIf cfg.enable {
+    xdg.mime.defaultApplications = lib.genAttrs [
+      "video/mp4"
+      "video/webm"
+      "video/x-matroska"
+      "video/quicktime"
+      "video/x-msvideo"
+      "video/mpeg"
+      "video/ogg"
+      "video/x-flv"
+      "video/3gpp"
+      "audio/mpeg"
+      "audio/flac"
+      "audio/ogg"
+      "audio/wav"
+      "audio/x-wav"
+      "audio/mp4"
+      "audio/opus"
+    ] (_: "mpv.desktop");
+
     environment.systemPackages =
       let
         myPython = pkgs.python314.withPackages (
@@ -83,6 +102,9 @@ in
         btop
         kitty
         ghostty
+        # native (non-flatpak) viewers, so xdg-open / nvim gx start instantly
+        loupe
+        mpv
         # File manager
         # onboard
         # TODO: Add swypeGuess
