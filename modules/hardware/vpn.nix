@@ -24,7 +24,7 @@ in {
       networking.networkmanager = {
         enable = true;
         plugins = with pkgs; [
-          networkmanager-fortisslvpn
+          networkmanager-openconnect  # also handles Fortinet SSL VPN (fortisslvpn removed upstream)
           networkmanager-l2tp
           networkmanager-openvpn
           networkmanager_strongswan
