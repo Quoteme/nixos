@@ -12,7 +12,8 @@ rustPlatform.buildRustPackage rec {
 
   cargoHash = "sha256-Mm0att6zu9Yknoa9NBsdrA8lz1o0Q6FzWS0UU+1f/f0=";
 
-  nativeBuildInputs = [ makeWrapper ];
+  nativeBuildInputs = [ makeWrapper pkg-config ];
+  buildInputs = [ sqlite ];
 
   postInstall = ''
     install -Dm755 extras/clipvault_wofi.sh $out/bin/clipvault_wofi.sh
