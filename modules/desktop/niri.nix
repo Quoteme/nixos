@@ -44,7 +44,7 @@ in
         libsecret
         gsettings-desktop-schemas
         dconf
-        noctalia-shell
+        noctalia
         adw-gtk3
         nwg-look
       ];
