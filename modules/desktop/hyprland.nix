@@ -57,6 +57,23 @@ in
         adw-gtk3
         nwg-look
         (pkgs.callPackage (import ../../pkgs/clipvault) { })
+        # After resume (or a VT switch) aquamarine can lose the eDP-1 CRTC while
+        # Hyprland still thinks the output is on -> black screen. Force a full
+        # modeset once Hyprland's VT is in the foreground again.
+        (writeShellScriptBin "hypr-resume-fix" ''
+          exec 9>"''${XDG_RUNTIME_DIR:-/tmp}/hypr-resume-fix.lock"
+          ${util-linux}/bin/flock -n 9 || exit 0
+          vt="tty''${XDG_VTNR:-1}"
+          until [ "$(cat /sys/class/tty/tty0/active)" = "$vt" ]; do sleep 0.5; done
+          sleep 1.5
+          hyprctl dispatch dpms off
+          sleep 1
+          hyprctl dispatch dpms on
+          sleep 1
+          hyprctl keyword monitor eDP-1,1920x1200@60,auto,1.0
+          sleep 2
+          hyprctl keyword monitor eDP-1,preferred,auto,1.0
+        '')
       ];
       nix.settings = {
         substituters = [ "https://hyprland.cachix.org" ];
