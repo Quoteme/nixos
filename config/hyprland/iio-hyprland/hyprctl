@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# hyprctl stand-in for iio-hyprland only (its exec-once puts this directory first
+# in PATH): rotations go through autorotate.sh, everything else to the real hyprctl.
+here=$(dirname "$(readlink -f "$0")")
+PATH=":$PATH:"
+PATH=${PATH//":$here:"/:}
+PATH=${PATH#:}
+export PATH=${PATH%:}
+
+if [[ "$*" =~ ^--batch\ keyword\ monitor\ [^,]+,transform,([0-3])\  ]]; then
+  exec "$here/../autorotate.sh" "${BASH_REMATCH[1]}"
+fi
+exec hyprctl "$@"

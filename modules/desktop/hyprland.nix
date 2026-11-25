@@ -70,9 +70,11 @@ in
           sleep 1
           hyprctl dispatch dpms on
           sleep 1
-          hyprctl keyword monitor eDP-1,1920x1200@60,auto,1.0
+          hyprctl keyword monitor eDP-1,1920x1200@120,auto,1.0
           sleep 2
-          hyprctl keyword monitor eDP-1,preferred,auto,1.0
+          hyprctl keyword monitor eDP-1,1920x1200@60,auto,1.0
+          # the monitor rules above drop the rotation
+          /etc/nixos/config/hyprland/autorotate.sh restore
         '')
       ];
       nix.settings = {
@@ -104,7 +106,8 @@ in
           exec-once = ${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent
           exec-once = wl-paste --type text --watch cliphist store # Stores only text data
           exec-once = wl-paste --type image --watch cliphist store # Stores only image data
-          exec-once = iio-hyprland
+          # PATH: routes its rotations through config/hyprland/autorotate.sh
+          exec-once = env PATH=/etc/nixos/config/hyprland/iio-hyprland:$PATH iio-hyprland
           exec-once = noctalia-shell
           exec-once = mullvad-gui
           exec-once = com.bitwarden.desktop
